@@ -1,0 +1,11 @@
+/vendor/
+/node_modules/
+/composer.lock
+
+/etc/build/*
+!/etc/build/.gitignore
+
+/tests/Application/yarn.lock
+
+/behat.yml
+/phpspec.yml
