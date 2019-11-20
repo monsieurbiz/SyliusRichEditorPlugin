@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "sylius/sylius": "^1.4"
+        "symfony/http-kernel": "^4.3"
     },
     "require-dev": {
         "behat/behat": "^3.4",
@@ -49,10 +49,5 @@
     },
     "autoload-dev": {
         "classmap": ["tests/Application/Kernel.php"]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.5-dev"
-        }
     }
 }
