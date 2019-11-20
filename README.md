@@ -18,3 +18,10 @@ return [
     Monsieurbiz\SyliusCmsPlugin\MonsieurbizSyliusCmsPlugin::class => ['all' => true],
 ];
 ```
+
+Then create the config file in config/packages/monsieurbiz_cms_plugin.yaml :
+
+```yaml
+imports:
+  - { resource: "@MonsieurbizSyliusCmsPlugin/Resources/config/config.yaml" }
+```
