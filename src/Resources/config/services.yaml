@@ -22,10 +22,9 @@ services:
     tags: ['controller.service_arguments']
 
   # Add JS in admin
-  monsieurbiz_sylius_cms.block_event_listener.layout.javascripts:
-    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+  Monsieurbiz\SyliusCmsPlugin\EventListener\Admin\JavascriptBlock:
     arguments:
-      - '@@MonsieurbizSyliusCmsPlugin/Admin/app_javascript.html.twig'
+      $template: '@@MonsieurbizSyliusCmsPlugin/Admin/app_javascript.html.twig'
     tags:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
