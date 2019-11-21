@@ -9,11 +9,14 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 
 final class MonsieurbizSyliusCmsExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function load(array $config, ContainerBuilder $container): void
+    CONST EXTENSION_CONFIG_NAME = 'monsieurbiz_sylius_cms';
+
+    public function load(array $configs, ContainerBuilder $container)
     {
-        $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+        foreach ($config as $name => $value) {
+            $container->setParameter(self::EXTENSION_CONFIG_NAME . '.' . $name, $value);
+        }
     }
 }
