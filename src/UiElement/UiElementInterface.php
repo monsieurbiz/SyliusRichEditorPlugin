@@ -6,6 +6,8 @@ namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+// @TODO : Implements JsonSerializable
+
 interface UiElementInterface
 {
     const TRANSLATION_PREFIX = 'monsieurbiz_cmsplugin.ui_element';
@@ -15,6 +17,7 @@ interface UiElementInterface
     public function getShortDescription(): string;
     public function getDescription(): string;
     public function getTitle(): string;
-    public function getPreview(): string;
+    public function getImage(): string;
     public function getFields(): array;
+    public function getForm(): void; // @TODO change return value
 }
