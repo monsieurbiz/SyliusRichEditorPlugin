@@ -1,1 +1,1 @@
-console.log('Example JS : ' + monsieurbizCmsPlugin.exampleParam);
+console.log(monsieurbizCmsPlugin.uiElements);
