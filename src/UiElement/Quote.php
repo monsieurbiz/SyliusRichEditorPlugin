@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
-class Quote implements UiElementInterface
+class Quote extends AbstractUiElement
 {
-    const TYPE = 'quote';
-
-    use UiElementTrait;
+    protected $type = 'quote';
 
     public function getFields(): array
     {
         return ['author', 'content'];
+    }
+
+    public function getForm(): void
+    {
+        // @TODO: Implement getForm() method.
     }
 }

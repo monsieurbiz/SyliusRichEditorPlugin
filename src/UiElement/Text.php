@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
-class Text implements UiElementInterface
+class Text extends AbstractUiElement
 {
-    const TYPE = 'text';
-
-    use UiElementTrait;
+    protected $type = 'text';
 
     public function getFields(): array
     {
         return ['content'];
+    }
+
+    public function getForm(): void
+    {
+        // @TODO: Implement getForm() method.
     }
 }
