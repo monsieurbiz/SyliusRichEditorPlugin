@@ -1,2 +1,9 @@
 imports:
   - { resource: "services.yaml" }
+
+monsieurbiz_sylius_cms:
+  # @TODO : Check if we can improve it
+  ui_element_classes :
+    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Image'
+    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Quote'
+    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Text'

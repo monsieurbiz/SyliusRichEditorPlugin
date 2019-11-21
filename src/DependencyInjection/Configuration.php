@@ -14,13 +14,19 @@ final class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('monsieurbiz_sylius_cms_plugin');
+        $treeBuilder = new TreeBuilder('monsieurbiz_sylius_cms');
         if (\method_exists($treeBuilder, 'getRootNode')) {
             $rootNode = $treeBuilder->getRootNode();
         } else {
             // BC layer for symfony/config 4.1 and older
-            $rootNode = $treeBuilder->root('monsieurbiz_sylius_cms_plugin');
+            $rootNode = $treeBuilder->root('monsieurbiz_sylius_cms');
         }
+
+        $rootNode
+            ->children()
+            ->variableNode('ui_element_classes')->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }
