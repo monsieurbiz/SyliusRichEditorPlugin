@@ -28,3 +28,8 @@ services:
       - '@@MonsieurbizSyliusCmsPlugin/Admin/app_javascript.html.twig'
     tags:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
+
+  # UiElement Factory using classes in config
+  Monsieurbiz\SyliusCmsPlugin\UiElement\Factory:
+    arguments:
+      $uiElementClasses: '%monsieurbiz_sylius_cms.ui_element_classes%'
