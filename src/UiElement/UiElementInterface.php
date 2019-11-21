@@ -8,10 +8,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 // @TODO : Implements JsonSerializable
 
-interface UiElementInterface
+interface UiElementInterface extends \JsonSerializable
 {
-    const TRANSLATION_PREFIX = 'monsieurbiz_cmsplugin.ui_element';
-
     public function __construct(TranslatorInterface $translator);
     public function getType(): string;
     public function getShortDescription(): string;

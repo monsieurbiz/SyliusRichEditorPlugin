@@ -9,6 +9,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractUiElement implements UiElementInterface
 {
+    const TRANSLATION_PREFIX = 'monsieurbiz_cmsplugin.ui_element';
+
     protected $type = '';
 
     /**
@@ -42,33 +44,44 @@ abstract class AbstractUiElement implements UiElementInterface
                 $reflection->getName(),
                 strtolower($reflection->getShortName()) // @TODO we can improve it with snakeCaseToCamelCaseNameConverter
             ));
-            throw new UndefinedUiElementTypeException('Please add a type to your UI Element');
         }
         return $this->type;
     }
 
     public function getTitle(): string
     {
-        $this->getTranslationKey('title');
+        return $this->getTranslation('title');
     }
 
     public function getShortDescription(): string
     {
-        $this->getTranslationKey('short_description');
+        return $this->getTranslation('short_description');
     }
 
     public function getDescription(): string
     {
-        $this->getTranslationKey('description');
+        return $this->getTranslation('description');
     }
 
     public function getImage(): string
     {
-        $this->getTranslationKey('image');
+        return $this->getTranslation('image');
     }
 
-    private function getTranslationKey(string $key): string
+    private function getTranslation(string $key): string
     {
-        return $this->getTranslator()->trans(sprintf('%s.%s.%s', self::TRANSLATION_PREFIX, $this->getType(), $key));
+        $translationKey = sprintf('%s.%s.%s', self::TRANSLATION_PREFIX, $this->getType(), $key);
+        return $this->getTranslator()->trans($translationKey) ?? $translationKey;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'short_description' => $this->getShortDescription(),
+            'description' => $this->getDescription(),
+            'title' => $this->getTitle(),
+            'image' => $this->getImage(),
+            'fields' => $this->getFields(),
+        ];
     }
 }
