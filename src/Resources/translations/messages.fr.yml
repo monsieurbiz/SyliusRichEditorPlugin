@@ -1,0 +1,14 @@
+monsieurbiz_cmsplugin:
+  ui_element:
+    text:
+      title: 'Lame Texte'
+      short_description: 'Description courte lame texte'
+      description: 'Une lame contenant un contenu texte'
+    image:
+      title: 'Lame Image'
+      short_description: 'Description courte lame image'
+      description: 'Une lame contenant une image avec un champ alternatif et un titre'
+    quote:
+      title: 'Lame Citation'
+      short_description: 'Description courte lame citation'
+      description: 'Une lame contenant un auteur et un contenu'
