@@ -8,6 +8,11 @@ class Quote extends AbstractUiElement
 {
     protected $type = 'quote';
 
+    public function getImage(): string
+    {
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/quote.png';
+    }
+
     public function getFields(): array
     {
         return ['author', 'content'];

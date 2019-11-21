@@ -63,11 +63,6 @@ abstract class AbstractUiElement implements UiElementInterface
         return $this->getTranslation('description');
     }
 
-    public function getImage(): string
-    {
-        return $this->getTranslation('image');
-    }
-
     private function getTranslation(string $key): string
     {
         $translationKey = sprintf('%s.%s.%s', self::TRANSLATION_PREFIX, $this->getType(), $key);

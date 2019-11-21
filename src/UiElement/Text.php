@@ -8,6 +8,11 @@ class Text extends AbstractUiElement
 {
     protected $type = 'text';
 
+    public function getImage(): string
+    {
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/text.png';
+    }
+
     public function getFields(): array
     {
         return ['content'];
