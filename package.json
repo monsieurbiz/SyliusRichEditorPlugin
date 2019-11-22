@@ -1,0 +1,23 @@
+{
+  "name": "sylius-cms-design",
+  "version": "0.0.1",
+  "description": "Add and manage custom content blocks in your content",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "encore production",
+    "watch": "encore dev --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monsieurbiz/sylius-cms-design.git"
+  },
+  "author": "Monsieur Biz <hello@monsieurbiz.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/monsieurbiz/sylius-cms-design/issues"
+  },
+  "homepage": "https://github.com/monsieurbiz/sylius-cms-design#readme",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.28.1"
+  }
+}
