@@ -1,41 +1,25 @@
-const uiElements = monsieurbizCmsPlugin.uiElements;
-const target = document.querySelector('textarea'); // @TODO have a data-component="cms" on each textarea.
-
-function hideField() {
-    target.setAttribute('hidden', 'true');
-}
-
-function displayElements(elements) {
-    const elementsContainer = document.createElement('div');
-
-    elementsContainer.classList.add('ui', 'segment', 'drag-list');
-
-    for (let key in elements) {
-        const element = `
-            <div class="ui segment raised drag-item" draggable="true">
-                <div class="ui grid">
-                    <div class="four wide column">
-                        <img class="ui small image" src="${elements[key].image}" alt="" width="150" height="150">
-                    </div>
-                    <div class="twelve wide column">
-                        <h2 class="ui header">${elements[key].title}</h2>
-                        <p>${elements[key].description}</p>
-                        <div class="ui buttons">
-                            <button class="ui button" type="button">Editer</button>
-                            <button class="ui button negative" type="button">Supprimer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        elementsContainer.insertAdjacentHTML('beforeend', element);
+// Application setup
+class MbizCmsFields {
+    constructor(config) {
+        this.config = config;
+        this.debug = this.config.debug;
+        this.target = document.querySelector(config.querySelector);
+        this.uiElements = this.config.uiElements;
+        this.translations = this.config.translations;
+        if (this.debug) {
+            console.log('Plugin configuration :');
+            console.log(this.config);
+            console.log('Matched element(s) :');
+            console.log(document.querySelectorAll(config.querySelector).length);
+        }
     }
 
-    target.parentNode.appendChild(elementsContainer);
+    init() {
+        this.target.setAttribute('hidden', 'true');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    hideField();
-    displayElements(uiElements);
+    let cms = new MbizCmsFields(monsieurbizCmsPluginConfig);
+    cms.init();
 });
