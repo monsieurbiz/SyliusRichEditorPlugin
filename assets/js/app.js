@@ -1,5 +1,5 @@
 const uiElements = monsieurbizCmsPlugin.uiElements;
-const target = document.getElementById('app_page_translations_fr_FR_content');
+const target = document.querySelector('textarea'); // @TODO have a data-component="cms" on each textarea.
 
 function hideField() {
     target.setAttribute('hidden', 'true');
