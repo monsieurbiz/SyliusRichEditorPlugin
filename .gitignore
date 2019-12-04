@@ -9,3 +9,5 @@
 
 /behat.yml
 /phpspec.yml
+
+/package-lock.json
