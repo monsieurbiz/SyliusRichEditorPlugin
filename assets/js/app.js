@@ -10,17 +10,26 @@ class MbizCmsFields {
      * @param config
      */
     constructor(config) {
+        // Configuration of plugin
         this.config = config;
         this.templateRender = this.config.templateRender;
         this.debug = this.config.debug;
         this.targets = document.querySelectorAll(config.querySelector);
         this.uiElements = this.config.uiElements;
         this.translations = this.config.translations;
-        this.uiElementContainerClass = 'component-ui-elements';
         if (this.debug) {
             this.log('Plugin configuration :', this.config);
             this.log('Matched element(s) :', this.targets.length);
         }
+
+        // Internal attributes
+        this.classes = {
+            uiElementContainer: 'mbiz-cms-component-ui-elements',
+            draggableContainer: 'mbiz-cms-draggable-container',
+            draggableItem: 'mbiz-cms-draggable-item',
+            draggableItemHandler: 'mbiz-cms-draggable-item-handler',
+        }
+
     }
 
     /**
@@ -58,7 +67,11 @@ class MbizCmsFields {
 
         // Init container
         const elementsContainer = document.createElement('div');
-        elementsContainer.classList.add('ui', 'segment', 'drag-list', this.uiElementContainerClass); // @TODO manage render depending on templateRender
+        elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementContainer);
+
+        if (this.templateRender === 'sylius') {
+            elementsContainer.classList.add('ui', 'segment', this.classes.draggableContainer, this.classes.uiElementContainer);
+        }
 
         // Loop on UI Elements
         let error = false;
@@ -99,7 +112,8 @@ class MbizCmsFields {
     renderUiElementMetaData(uiElementMetaData, templateRender) {
         if (templateRender === 'sylius') {
             return `
-            <div class="ui segment raised drag-item" draggable="true">
+            <div class="ui segment raised ${this.classes.draggableItem}">
+                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}"><i class="icon arrows alternate"></i></button>
                 <div class="ui grid">
                     <div class="four wide column">
                         <img class="ui small image" src="${uiElementMetaData.image}" alt="" width="150" height="150">
@@ -122,13 +136,10 @@ class MbizCmsFields {
     }
 
     initDraggable() {
-        const containerSelector = '.drag-item';
-        const containers = document.querySelectorAll(containerSelector);
-
-        new Sortable(containers, {
-            draggable: '.drag-item',
+        new Sortable(document.querySelectorAll('.' + this.classes.draggableContainer), {
+            handle: '.' + this.classes.draggableItemHandler,
+            draggable: '.' + this.classes.draggableItem,
             mirror: {
-                appendTo: containerSelector,
                 constrainDimensions: true,
             },
         });
@@ -161,7 +172,7 @@ class MbizCmsFields {
             target.removeAttribute('hidden');
         }
         // Remove generated blocks
-        for (let target of document.querySelectorAll('.' + this.uiElementContainerClass)) {
+        for (let target of document.querySelectorAll('.' + this.classes.uiElementContainer)) {
             target.remove();
         }
 
