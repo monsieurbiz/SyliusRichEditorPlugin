@@ -19,5 +19,8 @@
   "homepage": "https://github.com/monsieurbiz/sylius-cms-design#readme",
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.1"
+  },
+  "dependencies": {
+    "@shopify/draggable": "^1.0.0-beta.8"
   }
 }

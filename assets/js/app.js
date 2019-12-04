@@ -1,3 +1,5 @@
+import {Sortable} from '@shopify/draggable';
+
 /**
  * Class to manage CMS fields with UI Elements
  */
@@ -37,6 +39,9 @@ class MbizCmsFields {
             }
             this.initField(target, jsonContent);
         }
+
+        this.initDraggable();
+        this.addStyles();
     }
 
     /**
@@ -114,6 +119,34 @@ class MbizCmsFields {
 
         this.error('Cannot find render for : ', templateRender);
         return '';
+    }
+
+    initDraggable() {
+        const containerSelector = '.drag-item';
+        const containers = document.querySelectorAll(containerSelector);
+
+        new Sortable(containers, {
+            draggable: '.drag-item',
+            mirror: {
+                appendTo: containerSelector,
+                constrainDimensions: true,
+            },
+        });
+    }
+
+    addStyles() {
+        const head = document.getElementsByTagName('head')[0];
+        const styleTag = document.createElement('style');
+        const styles = `
+            .draggable--over {
+                opacity: .5;
+            }
+        `;
+
+        styleTag.setAttribute('type', 'text/css');
+        styleTag.appendChild(document.createTextNode(styles));
+
+        head.appendChild(styleTag);
     }
 
     /**
