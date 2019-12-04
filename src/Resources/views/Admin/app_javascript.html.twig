@@ -1,6 +1,6 @@
 <script type="text/javascript">
     var monsieurbizCmsPluginConfig = {
-        debug: true,
+        debug: false,
         templateRender: 'sylius',
         querySelector: 'textarea', // @TODO have a data-component="cms" on each textarea.
         translations: {
@@ -26,5 +26,12 @@
 
     #sidebar.visible {
         z-index: 1000;
+    }
+
+    /*
+    Draggable styles
+     */
+    .draggable--over {
+        opacity: .5;
     }
 </style>

@@ -48,9 +48,6 @@ class MbizCmsFields {
             }
             this.initField(target, jsonContent);
         }
-
-        this.initDraggable();
-        this.addStyles();
     }
 
     /**
@@ -101,6 +98,7 @@ class MbizCmsFields {
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
+            this.initDraggable(elementsContainer);
         }
     }
 
@@ -135,29 +133,19 @@ class MbizCmsFields {
         return '';
     }
 
-    initDraggable() {
-        new Sortable(document.querySelectorAll('.' + this.classes.draggableContainer), {
+    /**
+     * Init draggable elements for a container
+     *
+     * @param elementsContainer
+     */
+    initDraggable(elementsContainer) {
+        new Sortable(elementsContainer, {
             handle: '.' + this.classes.draggableItemHandler,
             draggable: '.' + this.classes.draggableItem,
             mirror: {
                 constrainDimensions: true,
             },
         });
-    }
-
-    addStyles() {
-        const head = document.getElementsByTagName('head')[0];
-        const styleTag = document.createElement('style');
-        const styles = `
-            .draggable--over {
-                opacity: .5;
-            }
-        `;
-
-        styleTag.setAttribute('type', 'text/css');
-        styleTag.appendChild(document.createTextNode(styles));
-
-        head.appendChild(styleTag);
     }
 
     /**
