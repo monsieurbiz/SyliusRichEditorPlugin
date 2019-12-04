@@ -4,8 +4,8 @@
         templateRender: 'sylius',
         querySelector: 'textarea', // @TODO have a data-component="cms" on each textarea.
         translations: {
-            edit: '{{ 'app.ui.edit' | trans | escape('js') }}',
-            delete: '{{ 'app.ui.delete' | trans | escape('js') }}',
+            edit: '{{ 'monsieurbiz_cmsplugin.form.edit' | trans | escape('js') }}',
+            delete: '{{ 'monsieurbiz_cmsplugin.form.delete' | trans | escape('js') }}',
         },
         uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
     };
