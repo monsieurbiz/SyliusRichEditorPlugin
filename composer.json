@@ -33,7 +33,8 @@
         "symfony/dotenv": "^4.2",
         "symfony/intl": "^3.4|^4.1",
         "symfony/web-profiler-bundle": "^3.4|^4.1",
-        "symfony/web-server-bundle": "^3.4|^4.1"
+        "symfony/web-server-bundle": "^3.4|^4.1",
+        "twig/twig": "^2.7"
     },
     "conflict": {
         "symfony/symfony": "4.1.8",
