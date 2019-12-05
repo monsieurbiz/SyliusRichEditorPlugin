@@ -34,7 +34,8 @@ class MbizCmsFields {
             draggableItem: 'mbiz-cms-draggable-item',
             draggableItemHandler: 'mbiz-cms-draggable-item-handler',
             deleteButton: 'mbiz-cms-delete-button',
-            toggleButton: 'mbiz-cms-toggle-button'
+            updateButton: 'mbiz-cms-update-button',
+            toggleButton: 'mbiz-cms-toggle-button',
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
@@ -197,7 +198,12 @@ class MbizCmsFields {
             this.initDeleteButton(deleteButton, jsonContent, target);
         }
 
-        // @TODO Init update
+        // Init Update
+        let updateButtons = document.querySelectorAll('.' + this.classes.updateButton);
+        this.log('Init update button(s), found : ', updateButtons.length)
+        for (let updateButton of updateButtons) {
+            this.initUpdateButton(updateButton);
+        }
     }
 
     /**
@@ -216,6 +222,18 @@ class MbizCmsFields {
                     elementToRemove.remove();
                 }
             }
+        };
+    }
+
+    /**
+     * Call controller to load and display form
+     *
+     * @param updateButton
+     */
+    initUpdateButton(updateButton) {
+        let _self = this;
+        updateButton.onclick = function() {
+            alert('Edit');
         };
     }
 
@@ -239,7 +257,7 @@ class MbizCmsFields {
                         <h2 class="ui header">${uiElementMetaData.title}</h2>
                         <p>${uiElementMetaData.description}</p>
                         <div class="ui buttons">
-                            <button class="ui button" type="button">${this.translations.edit}</button>
+                            <button class="ui button ${this.classes.updateButton}" type="button">${this.translations.edit}</button>
                             <button class="ui button negative ${this.classes.deleteButton}" type="button">${this.translations.delete}</button>
                         </div>
                     </div>
