@@ -15,3 +15,4 @@ monsieurbiz_cmsplugin:
   form:
     edit: 'Éditer'
     delete: 'Supprimer'
+    confirm_delete: 'Êtes vous sûr(e) de vouloir supprimer cet élément ?'
