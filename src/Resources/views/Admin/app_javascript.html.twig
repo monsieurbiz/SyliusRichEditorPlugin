@@ -1,6 +1,6 @@
 <script type="text/javascript">
     var monsieurbizCmsPluginConfig = {
-        debug: true,
+        debug: false,
         templateRender: 'sylius',
         querySelector: 'textarea', // @TODO have a data-component="cms" on each textarea.
         translations: {
@@ -12,3 +12,26 @@
 </script>
 
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliuscmsplugin/js/app.js'} %}
+
+<style>
+    /*
+    We need to add this CSS to break the translate3d(260px, 0, 0); of semantic UI wich breaks the drag and drop of draggable
+    We lose a little animation when we open or close the sidebar, but it break the offset when we drag UI Elements
+     */
+    body.pushable .ui.visible.left.sidebar ~ .pusher {
+        transform: none;
+        -webkit-transform: none;
+        padding-left: 260px;
+    }
+
+    #sidebar.visible {
+        z-index: 1000;
+    }
+
+    /*
+    Draggable styles
+     */
+    .draggable--over {
+        opacity: .5;
+    }
+</style>
