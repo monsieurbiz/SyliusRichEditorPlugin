@@ -97,6 +97,9 @@ class MbizCmsFields {
             elementsContainer.insertAdjacentHTML('beforeend', renderedUiElementMetaData);
         }
 
+        // Prepend actions buttons in container
+        elementsContainer.insertAdjacentHTML('afterbegin', this.renderActionsButtons(this.templateRender));
+
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
@@ -161,6 +164,25 @@ class MbizCmsFields {
                             <button class="ui button negative ${this.classes.deleteButton}" type="button">${this.translations.delete}</button>
                         </div>
                     </div>
+                </div>
+            </div>
+            `;
+        }
+
+        this.error('Cannot find render for : ', templateRender);
+        return '';
+    }
+
+    /**
+     * Return markup to display action buttons
+     */
+    renderActionsButtons(templateRender) {
+        if (templateRender === 'sylius') {
+            return `
+            <div class="field">
+                <div class="ui buttons">
+                    <button class="ui primary button" type="button">${this.translations.new}</button>
+                    <button class="ui button" type="button">${this.translations.preview}</button>
                 </div>
             </div>
             `;

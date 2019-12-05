@@ -16,3 +16,6 @@ monsieurbiz_cmsplugin:
     edit: 'Éditer'
     delete: 'Supprimer'
     confirm_delete: 'Êtes vous sûr(e) de vouloir supprimer cet élément ?'
+  action:
+    new: 'Ajouter du contenu'
+    preview: 'Prévisualiser'
