@@ -12,3 +12,6 @@ monsieurbiz_cmsplugin:
       title: 'Lame Citation'
       short_description: 'Description courte lame citation'
       description: 'Une lame contenant un auteur et un contenu'
+  form:
+    edit: 'Éditer'
+    delete: 'Supprimer'
