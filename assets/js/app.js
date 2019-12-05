@@ -112,7 +112,7 @@ class MbizCmsFields {
         if (templateRender === 'sylius') {
             return `
             <div class="ui segment raised ${this.classes.draggableItem}">
-                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}"><i class="icon arrows alternate"></i></button>
+                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}" type="button"><i class="icon arrows alternate ${this.classes.draggableItemHandler}"></i></button>
                 <div class="ui grid">
                     <div class="four wide column">
                         <img class="ui small image" src="${uiElementMetaData.image}" alt="" width="150" height="150">
@@ -140,15 +140,12 @@ class MbizCmsFields {
      * @param elementsContainer
      */
     initSortable(elementsContainer) {
-        // let sortable = new Sortable(elementsContainer, {
-        //     handle: '.' + this.classes.draggableItemHandler,
-        //     draggable: '.' + this.classes.draggableItem,
-        //     mirror: {
-        //         constrainDimensions: true,
-        //     },
-        // });
-        console.log(elementsContainer);
-        let sortable = new dragula([elementsContainer]);
+        let handleClass = this.classes.draggableItemHandler;
+        let sortable = new dragula([elementsContainer], {
+            moves: function (el, container, handle) {
+                return handle.classList.contains(handleClass);
+            }
+        });
         return sortable;
     }
 
