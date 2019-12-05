@@ -1,4 +1,4 @@
-import {Sortable} from '@shopify/draggable';
+import dragula from 'dragula';
 
 /**
  * Class to manage CMS fields with UI Elements
@@ -140,23 +140,25 @@ class MbizCmsFields {
      * @param elementsContainer
      */
     initSortable(elementsContainer) {
-        let sortable = new Sortable(elementsContainer, {
-            handle: '.' + this.classes.draggableItemHandler,
-            draggable: '.' + this.classes.draggableItem,
-            mirror: {
-                constrainDimensions: true,
-            },
-        });
+        // let sortable = new Sortable(elementsContainer, {
+        //     handle: '.' + this.classes.draggableItemHandler,
+        //     draggable: '.' + this.classes.draggableItem,
+        //     mirror: {
+        //         constrainDimensions: true,
+        //     },
+        // });
+        console.log(elementsContainer);
+        let sortable = new dragula([elementsContainer]);
         return sortable;
     }
 
     initSortableEvents(sortable, target, jsonContent) {
-        sortable.on('sortable:stop', (evt) => {
-            this.log('Drag stop : ', evt);
-            let oldIndex = evt.data.oldIndex;
-            let newIndex = evt.data.newIndex;
-            this.moveUiElement(oldIndex, newIndex, jsonContent, target);
-        });
+        // sortable.on('sortable:stop', (evt) => {
+        //     this.log('Drag stop : ', evt);
+        //     let oldIndex = evt.data.oldIndex;
+        //     let newIndex = evt.data.newIndex;
+        //     this.moveUiElement(oldIndex, newIndex, jsonContent, target);
+        // });
     }
 
     moveUiElement(oldIndex, newIndex, jsonContent, target) {
