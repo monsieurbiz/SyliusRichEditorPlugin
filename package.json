@@ -21,6 +21,6 @@
     "@symfony/webpack-encore": "^0.28.1"
   },
   "dependencies": {
-    "@shopify/draggable": "^1.0.0-beta.8"
+    "dragula": "^3.7.2"
   }
 }

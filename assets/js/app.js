@@ -1,4 +1,4 @@
-import {Sortable} from '@shopify/draggable';
+import dragula from 'dragula';
 
 /**
  * Class to manage CMS fields with UI Elements
@@ -98,8 +98,8 @@ class MbizCmsFields {
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
-            let sortable = this.initSortable(elementsContainer);
-            this.initSortableEvents(sortable, target, jsonContent)
+            let reorder = this.initReorder(elementsContainer);
+            this.initReorderEvent(reorder, target, jsonContent)
         }
     }
 
@@ -112,7 +112,7 @@ class MbizCmsFields {
         if (templateRender === 'sylius') {
             return `
             <div class="ui segment raised ${this.classes.draggableItem}">
-                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}"><i class="icon arrows alternate"></i></button>
+                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}" type="button"><i class="icon arrows alternate ${this.classes.draggableItemHandler}"></i></button>
                 <div class="ui grid">
                     <div class="four wide column">
                         <img class="ui small image" src="${uiElementMetaData.image}" alt="" width="150" height="150">
@@ -139,32 +139,65 @@ class MbizCmsFields {
      *
      * @param elementsContainer
      */
-    initSortable(elementsContainer) {
-        let sortable = new Sortable(elementsContainer, {
-            handle: '.' + this.classes.draggableItemHandler,
-            draggable: '.' + this.classes.draggableItem,
-            mirror: {
-                constrainDimensions: true,
-            },
+    initReorder(elementsContainer) {
+        let handleClass = this.classes.draggableItemHandler;
+        let drake = new dragula([elementsContainer], {
+            moves: function (el, container, handle) {
+                return handle.classList.contains(handleClass);
+            }
         });
-        return sortable;
+        return drake;
     }
 
-    initSortableEvents(sortable, target, jsonContent) {
-        sortable.on('sortable:stop', (evt) => {
-            this.log('Drag stop : ', evt);
-            let oldIndex = evt.data.oldIndex;
-            let newIndex = evt.data.newIndex;
-            this.moveUiElement(oldIndex, newIndex, jsonContent, target);
+    /**
+     * Init event to be able to reorder elements in it's field
+     *
+     * @param drake
+     * @param target
+     * @param jsonContent
+     */
+    initReorderEvent(drake, target, jsonContent) {
+        drake.on('drag', (el, source) => {
+            const index = this.getElementIndex(el);
+            this.log('Drag start : ', {index: index, el: el, source: source});
+            this.currentIndex = index;
+        });
+        drake.on('drop', (el, targetElement, source, sibling) => {
+            const oldIndex = this.currentIndex;
+            const newIndex = this.getElementIndex(el);
+            this.log('Drag stop : ', {oldIndex: oldIndex, newIndex: newIndex, el: el, targetElement: targetElement, source: source, sibling: sibling});
+            this.moveUiElement(oldIndex, newIndex, jsonContent, target)
         });
     }
 
+    /**
+     * Retrieve the index of element in UI Elements list
+     *
+     * @param el
+     * @returns {number}
+     */
+    getElementIndex(el) {
+        return [].slice.call(el.parentElement.children).indexOf(el);
+    }
+
+    /**
+     * Update the JSON to move UI elements
+     *
+     * @param oldIndex
+     * @param newIndex
+     * @param jsonContent
+     * @param target
+     */
     moveUiElement(oldIndex, newIndex, jsonContent, target) {
         if (oldIndex !== newIndex) {
             this.log('Move UI Element : ', {oldIndex: oldIndex, newIndex: newIndex, target: target, beforeMoveJson: jsonContent});
-            let newElement = jsonContent[oldIndex];
-            jsonContent[oldIndex] = jsonContent[newIndex];
-            jsonContent[newIndex] = newElement;
+            if (newIndex >= jsonContent.length) {
+                var k = newIndex - jsonContent.length + 1;
+                while (k--) {
+                    jsonContent.push(undefined); // @TODO define the new inserted UI Element ?
+                }
+            }
+            jsonContent.splice(newIndex, 0, jsonContent.splice(oldIndex, 1)[0]);
             target.value = JSON.stringify(jsonContent);
             this.log('Moved UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
         } else {
