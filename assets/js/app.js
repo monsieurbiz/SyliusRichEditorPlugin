@@ -98,7 +98,8 @@ class MbizCmsFields {
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
-            this.initDraggable(elementsContainer);
+            let sortable = this.initSortable(elementsContainer);
+            this.initSortableEvents(sortable, target, jsonContent)
         }
     }
 
@@ -138,14 +139,37 @@ class MbizCmsFields {
      *
      * @param elementsContainer
      */
-    initDraggable(elementsContainer) {
-        new Sortable(elementsContainer, {
+    initSortable(elementsContainer) {
+        let sortable = new Sortable(elementsContainer, {
             handle: '.' + this.classes.draggableItemHandler,
             draggable: '.' + this.classes.draggableItem,
             mirror: {
                 constrainDimensions: true,
             },
         });
+        return sortable;
+    }
+
+    initSortableEvents(sortable, target, jsonContent) {
+        sortable.on('sortable:stop', (evt) => {
+            this.log('Drag stop : ', evt);
+            let oldIndex = evt.data.oldIndex;
+            let newIndex = evt.data.newIndex;
+            this.moveUiElement(oldIndex, newIndex, jsonContent, target);
+        });
+    }
+
+    moveUiElement(oldIndex, newIndex, jsonContent, target) {
+        if (oldIndex !== newIndex) {
+            this.log('Move UI Element : ', {oldIndex: oldIndex, newIndex: newIndex, target: target, beforeMoveJson: jsonContent});
+            let newElement = jsonContent[oldIndex];
+            jsonContent[oldIndex] = jsonContent[newIndex];
+            jsonContent[newIndex] = newElement;
+            target.value = JSON.stringify(jsonContent);
+            this.log('Moved UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
+        } else {
+            this.log('Not moved UI Element, same index', {oldIndex: oldIndex, newIndex: newIndex, target: target, beforeMoveJson: jsonContent});
+        }
     }
 
     /**
