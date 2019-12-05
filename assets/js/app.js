@@ -176,10 +176,10 @@ class MbizCmsFields {
      * @param elementsContainer
      */
     initReorder(elementsContainer) {
-        let handleClass = this.classes.draggableItemHandler;
+        let _self = this;
         let drake = new dragula([elementsContainer], {
             moves: function (el, container, handle) {
-                return handle.classList.contains(handleClass);
+                return handle.classList.contains(_self.classes.draggableItemHandler);
             }
         });
         return drake;
