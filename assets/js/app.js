@@ -202,7 +202,7 @@ class MbizCmsFields {
         let updateButtons = document.querySelectorAll('.' + this.classes.updateButton);
         this.log('Init update button(s), found : ', updateButtons.length)
         for (let updateButton of updateButtons) {
-            this.initUpdateButton(updateButton);
+            this.initUpdateButton(updateButton, jsonContent, target);
         }
     }
 
@@ -230,10 +230,16 @@ class MbizCmsFields {
      *
      * @param updateButton
      */
-    initUpdateButton(updateButton) {
+    initUpdateButton(updateButton, jsonContent, target) {
         let _self = this;
         updateButton.onclick = function() {
-            alert('Edit');
+            let elementToUpdate = updateButton.closest('.' + _self.classes.draggableItem);
+            let updateIndex = _self.getElementIndex(elementToUpdate);
+            if (typeof jsonContent[updateIndex] === 'undefined') {
+                _self.error('Cannot find UI Element in index', {index: updateIndex, jsonContent: jsonContent});
+            }
+            let uiElementToUpdate = jsonContent[updateIndex];
+            _self.log('UI Element to update', uiElementToUpdate)
         };
     }
 
