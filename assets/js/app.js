@@ -38,9 +38,11 @@ class MbizCmsFields {
             deleteButton: 'mbiz-cms-delete-button',
             updateButton: 'mbiz-cms-update-button',
             toggleButton: 'mbiz-cms-toggle-button',
+            renderedModal: 'mbiz-cms-rendred-modal',
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
+            updateElement: new Event('updateElement'),
         };
     }
 
@@ -242,7 +244,7 @@ class MbizCmsFields {
             }
             let uiElementToUpdate = jsonContent[updateIndex];
             _self.log('UI Element to update', uiElementToUpdate);
-            _self.loadForm(uiElementToUpdate)
+            _self.loadForm(uiElementToUpdate, updateIndex, jsonContent, target)
         };
     }
 
@@ -250,8 +252,11 @@ class MbizCmsFields {
      * Load form for given UI Element
      *
      * @param uiElement [{type: "UI Element Type", fields: {}}]
+     * @param uiElementIndex
+     * @param jsonContent
+     * @param target
      */
-    loadForm(uiElement)
+    loadForm(uiElement, uiElementIndex, jsonContent, target)
     {
         let xhr = new XMLHttpRequest();
         let _self = this;
@@ -261,7 +266,7 @@ class MbizCmsFields {
             if (xhr.readyState === DONE){
                 if (xhr.status === OK) {
                     _self.log('Loaded form', {response: xhr.responseText, xhr: xhr});
-                    _self.renderModal(xhr.responseText)
+                    _self.renderModal(xhr.responseText, uiElement.type, uiElementIndex, jsonContent, target)
                 } else {
                     _self.log('Error during load form', {status: xhr.status, xhr: xhr});
                 }
@@ -272,20 +277,34 @@ class MbizCmsFields {
         xhr.send();
     }
 
-    renderModal(html) {
+    /**
+     * Display modal with the given HTML
+     *
+     * @param html
+     * @param uiElementType
+     * @param uiElementIndex
+     * @param jsonContent
+     * @param target
+     */
+    renderModal(html, uiElementType, uiElementIndex, jsonContent, target) {
         var modal = new tingle.modal({
             footer: true,
             stickyFooter: false,
             closeMethods: ['overlay', 'button', 'escape'],
+            cssClass: [this.classes.renderedModal],
             closeLabel: this.translations.close,
         });
         let _self = this;
 
         modal.setContent(html);
 
+        let form = this.initModalForm(uiElementType, uiElementIndex, jsonContent, target);
         modal.addFooterBtn(this.translations.apply_changes, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
-            // @TODO : Update data on JSON
-            _self.log('Edition submitted')
+            if (form !== false) {
+                form.dispatchEvent(new Event(_self.events.updateElement));
+            } else {
+                _self.log('No form to submit');
+            }
             modal.close();
         });
 
@@ -294,6 +313,91 @@ class MbizCmsFields {
         });
 
         modal.open();
+    }
+
+    /**
+     * Init form in modal if exists
+     *
+     * @param uiElementType
+     * @param uiElementIndex
+     * @param jsonContent
+     * @param target
+     * @returns {boolean|Element}
+     */
+    initModalForm(uiElementType, uiElementIndex, jsonContent, target)
+    {
+        let form = document.querySelector('.' + this.classes.renderedModal + ' form');
+
+        if (form === null) {
+            return false;
+        }
+
+        let _self = this;
+        form.addEventListener(this.events.updateElement, function(e) {
+            if (typeof _self.uiElements[uiElementType] === 'undefined') {
+                _self.error('Cannot find element of type ', uiElementType);
+                return;
+            }
+
+            const data = _self.convertFormToArray(form);
+            _self.log('Retrieved form data', {data: data});
+            let uiElement = _self.uiElements[uiElementType];
+
+            let updatedElement = {type: uiElementType, fields: {}};
+            for (const field of uiElement.fields) {
+                let formFieldName = uiElementType + '[' + field + ']';
+                if (typeof data[formFieldName] === 'undefined') {
+                    updatedElement.fields[field] = '';
+                } else {
+                    _self.log('Update field', {field: field, formFieldName: formFieldName, value: formFieldName});
+                    updatedElement.fields[field] = data[formFieldName];
+                }
+            }
+
+            _self.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
+
+        }, false);
+
+        return form;
+    }
+
+    /**
+     * Convert a form to an array
+     *
+     * @param form
+     * @returns {Array}
+     */
+    convertFormToArray(form)
+    {
+        // Setup our data
+        let formArray = [];
+
+        // Loop through each field in the form
+        for (let i = 0; i < form.elements.length; i++) {
+
+            let field = form.elements[i];
+
+            // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
+            if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+
+            // If a multi-select, get all selections
+            if (field.type === 'select-multiple') {
+                let values = [];
+                for (let n = 0; n < field.options.length; n++) {
+                    if (!field.options[n].selected) continue;
+                    values.push(field.options[n]);
+                }
+
+                formArray[field.name] = values;
+            }
+
+            // Convert field data to a query string
+            else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+                formArray[field.name] = field.value
+            }
+        }
+
+        return formArray;
     }
 
     /**
@@ -440,7 +544,7 @@ class MbizCmsFields {
      */
     addUiElement(type, index, jsonContent, target) {
         this.log('Add UI Element : ', {type: type, index: index, target: target, beforeMoveJson: jsonContent});
-        let uiElement = {type: type, fields: []};
+        let uiElement = {type: type, fields: {}};
         jsonContent.splice(index, 0, uiElement);
         target.value = JSON.stringify(jsonContent);
         this.log('Added UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
@@ -466,6 +570,26 @@ class MbizCmsFields {
             this.log('Moved UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
         } else {
             this.log('Not moved UI Element, same index', {oldIndex: oldIndex, newIndex: newIndex, target: target, beforeMoveJson: jsonContent});
+        }
+    }
+
+    /**
+     * Update the JSON for a given element
+     *
+     * @param index
+     * @param element
+     * @param jsonContent
+     * @param target
+     */
+    updateUiElement(index, element, jsonContent, target)
+    {
+        if (typeof jsonContent[index] !== 'undefined') {
+            this.log('Update UI Element : ', {index: index, element: element, jsonContent: jsonContent, target: target});
+            jsonContent[index] = element;
+            target.value = JSON.stringify(jsonContent);
+            this.log('Updated UI Element : ', {index: index, element: element, jsonContent: jsonContent, target: target});
+        } else {
+            this.error('Cannot found element for index', {index: index, element: element, jsonContent: jsonContent, target: target})
         }
     }
 
