@@ -255,16 +255,17 @@ class MbizCmsFields {
     /**
      * Init draggable elements for a container
      *
+     * @param uiElements
      * @param elementsContainer
      */
-    initReorder(UiElements, elementsContainer) {
+    initReorder(uiElements, elementsContainer) {
         let _self = this;
-        let drake = new dragula([UiElements, elementsContainer], {
+        let drake = new dragula([uiElements, elementsContainer], {
             copy: function (el, source) {
-                return source === UiElements
+                return source === uiElements
             },
             accepts: function (el, target) {
-                return target !== UiElements
+                return target !== uiElements
             },
             moves: function (el, container, handle) {
                 return handle.classList.contains(_self.classes.draggableItemHandler);
