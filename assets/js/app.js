@@ -201,7 +201,7 @@ class MbizCmsFields {
         }
 
         // Init Update
-        let updateButtons = document.querySelectorAll('.' + this.classes.updateButton);
+        let updateButtons = target.parentElement.querySelectorAll('.' + this.classes.updateButton);
         this.log('Init update button(s), found : ', updateButtons.length)
         for (let updateButton of updateButtons) {
             this.initUpdateButton(updateButton, jsonContent, target);
