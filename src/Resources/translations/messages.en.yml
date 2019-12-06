@@ -15,7 +15,10 @@ monsieurbiz_cmsplugin:
   form:
     edit: 'Edit'
     delete: 'Delete'
+    close: 'Close'
     confirm_delete: 'Are you sure to delete this element ?'
+    apply_changes: 'Apply changes'
+    cancel_changes: 'Cancel changes'
   action:
     new: 'Add new content'
     preview: 'Preview'
