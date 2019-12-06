@@ -34,6 +34,7 @@ class MbizCmsFields {
             draggableItem: 'mbiz-cms-draggable-item',
             draggableItemHandler: 'mbiz-cms-draggable-item-handler',
             deleteButton: 'mbiz-cms-delete-button',
+            toggleButton: 'mbiz-cms-toggle-button'
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
@@ -49,6 +50,7 @@ class MbizCmsFields {
             this.container.addEventListener('uiElementsBuilt', function(e) {
                 _self.log('Ui Elements container is built', e);
                 _self.initFields();
+                _self.toggleUiElementsVisibility();
             });
             this.initUiElements(this.container, this.uiElements);
 
@@ -167,6 +169,21 @@ class MbizCmsFields {
     }
 
     /**
+     * Toggle visibility of the ui elements
+     */
+    toggleUiElementsVisibility() {
+        const toggleButtons = document.querySelectorAll('.' + this.classes.toggleButton);
+
+        for (let toggleButton of toggleButtons) {
+            toggleButton.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                document.querySelector('#' + this.id.uiElementContainer).classList.toggle('is-expanded');
+            });
+        }
+    }
+
+    /**
      * Init action for each element, current actions are update and delete
      *
      * @param target
@@ -243,8 +260,7 @@ class MbizCmsFields {
             return `
             <div class="field">
                 <div class="ui buttons">
-                    <button class="ui primary button" type="button">${this.translations.new}</button>
-                    <button class="ui button" type="button">${this.translations.preview}</button>
+                    <button class="ui primary button ${this.classes.toggleButton}" type="button">${this.translations.new}</button>
                 </div>
             </div>
             `;

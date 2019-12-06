@@ -43,19 +43,38 @@
         position: fixed;
         top: 56px;
         left: 0;
-        z-index: 101;
+        z-index: 100;
         display: flex;
         width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
         background: rgba(0, 0, 0, .8);
-        transition: transform .5s ease;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+        transition: opacity .3s, visibility .3s, transform .5s ease;
     }
 
-    .mbiz-cms-dropable-container > * {
-        margin: 1em;
+    .mbiz-cms-dropable-container.is-expanded {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     .ui.visible.left.sidebar ~ .mbiz-cms-dropable-container {
         padding-right: 260px;
+        transform: translate3d(260px, -100%, 0);
+    }
+
+    .ui.visible.left.sidebar ~ .mbiz-cms-dropable-container.is-expanded {
         transform: translate3d(260px, 0, 0);
+    }
+
+    .mbiz-cms-dropable-container > * {
+        margin: 1em !important;
+    }
+
+    .mbiz-cms-dropable-container .ui.buttons {
+        display: none;
     }
 </style>
