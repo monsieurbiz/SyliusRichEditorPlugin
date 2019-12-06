@@ -366,37 +366,50 @@ class MbizCmsFields {
                 _self.error('Cannot find element of type ', uiElementType);
                 return;
             }
-
-            // Convert form data to an array
-            const data = _self.convertFormToArray(form);
-            _self.log('Retrieved form data', {data: data});
-            let uiElement = _self.uiElements[uiElementType];
-
-            // Initialize a new UI Element of the wanted type
-            let updatedElement = {type: uiElementType, fields: {}};
-
-
-            // Get each field of the UI Element and get it from the form data
-            for (const field of uiElement.fields) {
-                // Convert the field to the form field. Ex: "content" field of "text" UI Element will have a form field named "text[content]"
-                let formFieldName = uiElementType + '[' + field + ']';
-                if (typeof data[formFieldName] === 'undefined') {
-                    // Set empty value if form field does not exists
-                    _self.log('Field value not found, set empty', {field: field, formFieldName: formFieldName});
-                    updatedElement.fields[field] = '';
-                } else {
-                    // Set form value in field
-                    _self.log('Update field with form value', {field: field, formFieldName: formFieldName, value: data[formFieldName]});
-                    updatedElement.fields[field] = data[formFieldName];
-                }
-            }
-
-            // Update UI Element
-            _self.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
+            // Update elements with form data
+            _self.updateWithFormData(form, uiElementType, uiElementIndex, jsonContent, target);
 
         }, false);
 
         return form;
+    }
+
+    /**
+     * Update elements with form data
+     *
+     * @param form
+     * @param uiElementType
+     * @param uiElementIndex
+     * @param jsonContent
+     * @param target
+     */
+    updateWithFormData(form, uiElementType, uiElementIndex, jsonContent, target) {
+        // Convert form data to an array
+        const data = this.convertFormToArray(form);
+        this.log('Retrieved form data', {data: data});
+        let uiElement = this.uiElements[uiElementType];
+
+        // Initialize a new UI Element of the wanted type
+        let updatedElement = {type: uiElementType, fields: {}};
+
+
+        // Get each field of the UI Element and get it from the form data
+        for (const field of uiElement.fields) {
+            // Convert the field to the form field. Ex: "content" field of "text" UI Element will have a form field named "text[content]"
+            let formFieldName = uiElementType + '[' + field + ']';
+            if (typeof data[formFieldName] === 'undefined') {
+                // Set empty value if form field does not exists
+                this.log('Field value not found, set empty', {field: field, formFieldName: formFieldName});
+                updatedElement.fields[field] = '';
+            } else {
+                // Set form value in field
+                this.log('Update field with form value', {field: field, formFieldName: formFieldName, value: data[formFieldName]});
+                updatedElement.fields[field] = data[formFieldName];
+            }
+        }
+
+        // Update UI Element
+        this.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
     }
 
     /**
