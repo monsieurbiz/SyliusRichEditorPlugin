@@ -1,0 +1,3 @@
+monsieurbiz_sylius_cms_admin:
+  resource: "routing/admin.yaml"
+  prefix: /admin
