@@ -1,5 +1,5 @@
 monsieurbiz_sylius_cms_admin_modal_form:
-    path: /_partial/edit
+    path: /monsieurbiz_sylius_cms/modal/edit
     methods: [GET]
     defaults:
         _controller: Monsieurbiz\SyliusCmsPlugin\Controller\ModalController:formAction
