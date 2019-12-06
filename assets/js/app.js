@@ -20,7 +20,7 @@ class MbizCmsFields {
         this.uiElements = this.config.uiElements;
         this.translations = this.config.translations;
         this.formRoute = this.config.formRoute;
-        this.uploadRoute = this.config.uploadRoute;
+        this.submitRoute = this.config.submitRoute;
         if (this.debug) {
             this.log('Plugin configuration :', this.config);
             this.log('Matched element(s) :', this.targets.length);
@@ -43,7 +43,7 @@ class MbizCmsFields {
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
-            updateElement: new Event('updateElement'),
+            updateElement: function(modal) { return new CustomEvent('updateElement', {'detail': modal}) },
         };
     }
 
@@ -324,11 +324,10 @@ class MbizCmsFields {
         // Button to submit
         modal.addFooterBtn(this.translations.apply_changes, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
             if (form !== false) {
-                form.dispatchEvent(new Event(_self.events.updateElement));
+                form.dispatchEvent(_self.events.updateElement(modal));
             } else {
                 _self.log('No form to submit');
             }
-            modal.close();
         });
 
         // Button to cancel
@@ -361,14 +360,15 @@ class MbizCmsFields {
 
         let _self = this;
         // Actions to perform when form is submitted
-        form.addEventListener(this.events.updateElement, function(e) {
+        form.addEventListener('updateElement', function(e) {
             // Check if UI Element type we want to update exists
             if (typeof _self.uiElements[uiElementType] === 'undefined') {
                 _self.error('Cannot find element of type ', uiElementType);
                 return;
             }
-            // Update elements with form data
-            _self.updateWithFormData(form, uiElementType, uiElementIndex, jsonContent, target);
+            // Update elements with form data and modal to close it if data is valid
+            let modal = e.detail;
+            _self.updateWithFormData(form, uiElementType, uiElementIndex, modal, jsonContent, target);
 
         }, false);
 
@@ -384,31 +384,10 @@ class MbizCmsFields {
      * @param jsonContent
      * @param target
      */
-    updateWithFormData(form, uiElementType, uiElementIndex, jsonContent, target) {
+    updateWithFormData(form, uiElementType, uiElementIndex, modal, jsonContent, target) {
         // Convert form data to an array
-        const data = this.convertFormToArray(form);
-        this.log('Retrieved form data', {data: data});
-        let uiElement = this.uiElements[uiElementType];
-
-        // Initialize a new UI Element of the wanted type
-        let updatedElement = {type: uiElementType, fields: {}};
-
-
-        // Get each field of the UI Element and get it from the form data
-        for (const field of uiElement.fields) {
-            // Convert the field to the form field. Ex: "content" field of "text" UI Element will have a form field named "text[content]"
-            let formFieldName = uiElementType + '[' + field + ']';
-            if (typeof data[formFieldName] === 'undefined') {
-                // Set empty value if form field does not exists
-                this.log('Field value not found, set empty', {field: field, formFieldName: formFieldName});
-                updatedElement.fields[field] = '';
-            } else {
-                // Set form value in field
-                this.log('Update field with form value', {field: field, formFieldName: formFieldName, value: data[formFieldName]});
-                updatedElement.fields[field] = data[formFieldName];
-            }
-        }
-
+        const updatedElement = this.convertFormToElement(form, uiElementType, modal);
+        this.log('Retrieved form element', {updatedElement: updatedElement});
         // Update UI Element
         this.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
     }
@@ -417,54 +396,18 @@ class MbizCmsFields {
      * Convert a form to an array
      *
      * @param form
+     * @param uiElementType
+     * @param modal
      * @returns {Array}
      */
-    convertFormToArray(form)
+    convertFormToElement(form, uiElementType, modal)
     {
-        // Setup our data
-        let formArray = [];
-
-        // Loop through each field in the form
-        for (let i = 0; i < form.elements.length; i++) {
-
-            let field = form.elements[i];
-
-            // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
-            if (!field.name || field.disabled || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
-
-            // If type is file, upload the file and retrieve a string with path
-            if (field.type === 'file') {
-                const file = field.files[0];
-                if (file) {
-                    const path = this.uploadFile(file, field.name, formArray);
-                    formArray[field.name] = path;
-                }
-            }
-            // If a multi-select, get all selections
-            else if (field.type === 'select-multiple') {
-                let values = [];
-                for (let n = 0; n < field.options.length; n++) {
-                    if (!field.options[n].selected) continue;
-                    values.push(field.options[n]);
-                }
-
-                formArray[field.name] = values;
-            }
-
-            // Convert field data to a query string
-            else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
-                formArray[field.name] = field.value
-            }
-        }
-
-        return formArray;
-    }
-
-    uploadFile(file) {
         // Initialize form data
-        let formData = new FormData();
-        let imagePath = '';
-        formData.append('file', file);
+        let formData = new FormData(form);
+        formData.append('uiElementType', uiElementType);
+
+        // Initialize returned element
+        let element = {};
 
         // Initialize AJAX request
         let xhr = new XMLHttpRequest();
@@ -472,23 +415,35 @@ class MbizCmsFields {
         xhr.onreadystatechange = function(){
             const DONE = 4; // readyState 4 means the request is done.
             const OK = 200; // status 200 is a successful return.
+            const FORM_ERRORS = 406; // status 406 if form has errors.
             if (xhr.readyState === DONE){
                 if (xhr.status === OK) {
-                    _self.log('Uploaded file', {response: xhr.responseText, xhr: xhr});
-                    imagePath = xhr.responseText;
+                    _self.log('Data sent and validated', {form: form, response: xhr.responseText, xhr: xhr});
+                    let response = JSON.parse(xhr.responseText);
+                    if (typeof response.element !== "undefined") {
+                        element = response.element;
+                    }
+                    modal.close();
+                } else if(xhr.status === FORM_ERRORS) {
+                    _self.log('Form not valid', {form: form, response: xhr.responseText, xhr: xhr});
+                    let response = JSON.parse(xhr.responseText);
+                    if (typeof response.errors !== "undefined") {
+                        for (let field in response.errors) {
+                            alert(field + ' : ' + response.errors[field].join('\n'));
+                        }
+                    }
                 } else {
-                    _self.error('Error during file upload', {status: xhr.status, xhr: xhr});
-                    imagePath = '';
+                    _self.error('Error during file upload', {form: form, status: xhr.status, xhr: xhr});
                 }
             }
         };
 
         // Send data
-        xhr.open('POST', this.uploadRoute, false);
+        xhr.open('POST', this.submitRoute, false);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.send(formData);
 
-        return imagePath;
+        return element;
     }
 
     /**

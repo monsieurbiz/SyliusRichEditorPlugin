@@ -26,10 +26,16 @@ class ImageType extends AbstractType
             ->add('alt', TextType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_cmsplugin.ui_element.image.field.alt',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
             ->add('title', TextType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_cmsplugin.ui_element.image.field.title',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
         ;
     }

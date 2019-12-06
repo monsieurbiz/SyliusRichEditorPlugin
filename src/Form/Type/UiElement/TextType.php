@@ -7,6 +7,7 @@ namespace Monsieurbiz\SyliusCmsPlugin\Form\Type\UiElement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class TextType extends AbstractType
 {
@@ -16,6 +17,9 @@ class TextType extends AbstractType
             ->add('content', TextareaType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_cmsplugin.ui_element.text.field.content',
+                'constraints' => [
+                    new Assert\NotBlank([])
+                ],
             ])
         ;
     }
