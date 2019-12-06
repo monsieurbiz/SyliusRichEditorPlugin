@@ -50,8 +50,10 @@ class MbizCmsFields {
      * Init each CMS element
      */
     init() {
+        // Init only if we match at least one target
         if (this.targets.length) {
             let _self = this;
+            // Init fields only when UI Elements are built
             this.container.addEventListener('uiElementsBuilt', function(e) {
                 _self.log('Ui Elements container is built', e);
                 _self.initFields();
@@ -214,17 +216,25 @@ class MbizCmsFields {
      * Call remove UI Element on click after confirm
      *
      * @param deleteButton
+     * @param jsonContent
+     * @param target
      */
     initDeleteButton(deleteButton, jsonContent, target) {
         let _self = this;
         deleteButton.onclick = function() {
+            // Confirmation for delete
             if (confirm(_self.translations.confirm_delete)) {
+                // Retrieve associated element of clicked button
                 let elementToRemove = deleteButton.closest('.' + _self.classes.draggableItem);
+                // Retrieve the index of the element
                 let removedIndex = _self.getElementIndex(elementToRemove);
-                if (removedIndex !== false) {
-                    _self.removeUiElement(removedIndex, jsonContent, target);
-                    elementToRemove.remove();
+                // Check if index found and element exists
+                if (removedIndex === false || typeof jsonContent[removedIndex] === 'undefined') {
+                    _self.error('Cannot find UI Element in index', {index: removedIndex, jsonContent: jsonContent});
+                    return;
                 }
+                _self.removeUiElement(removedIndex, jsonContent, target);
+                elementToRemove.remove();
             }
         };
     }
@@ -233,14 +243,20 @@ class MbizCmsFields {
      * Call controller to load and display form
      *
      * @param updateButton
+     * @param jsonContent
+     * @param target
      */
     initUpdateButton(updateButton, jsonContent, target) {
         let _self = this;
         updateButton.onclick = function() {
+            // Retrieve associated element of clicked button
             let elementToUpdate = updateButton.closest('.' + _self.classes.draggableItem);
+            // Retrieve the index of the element
             let updateIndex = _self.getElementIndex(elementToUpdate);
-            if (typeof jsonContent[updateIndex] === 'undefined') {
+            // Check if index found and element exists
+            if (updateIndex === false || typeof jsonContent[updateIndex] === 'undefined') {
                 _self.error('Cannot find UI Element in index', {index: updateIndex, jsonContent: jsonContent});
+                return;
             }
             let uiElementToUpdate = jsonContent[updateIndex];
             _self.log('UI Element to update', uiElementToUpdate);
@@ -266,6 +282,7 @@ class MbizCmsFields {
             if (xhr.readyState === DONE){
                 if (xhr.status === OK) {
                     _self.log('Loaded form', {response: xhr.responseText, xhr: xhr});
+                    // Display the modal with the form
                     _self.renderModal(xhr.responseText, uiElement.type, uiElementIndex, jsonContent, target)
                 } else {
                     _self.log('Error during load form', {status: xhr.status, xhr: xhr});
@@ -287,6 +304,7 @@ class MbizCmsFields {
      * @param target
      */
     renderModal(html, uiElementType, uiElementIndex, jsonContent, target) {
+        // Init modal
         var modal = new tingle.modal({
             footer: true,
             stickyFooter: false,
@@ -296,9 +314,13 @@ class MbizCmsFields {
         });
         let _self = this;
 
+        // Add the content
         modal.setContent(html);
 
+        // Init the form inside the modal
         let form = this.initModalForm(uiElementType, uiElementIndex, jsonContent, target);
+
+        // Button to submit
         modal.addFooterBtn(this.translations.apply_changes, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
             if (form !== false) {
                 form.dispatchEvent(new Event(_self.events.updateElement));
@@ -308,10 +330,12 @@ class MbizCmsFields {
             modal.close();
         });
 
+        // Button to cancel
         modal.addFooterBtn(this.translations.cancel_changes, 'tingle-btn tingle-btn--secondary tingle-btn--pull-right', function () {
             modal.close();
         });
 
+        // Display the modal
         modal.open();
     }
 
@@ -326,34 +350,48 @@ class MbizCmsFields {
      */
     initModalForm(uiElementType, uiElementIndex, jsonContent, target)
     {
+        // Retrieve form in modal
         let form = document.querySelector('.' + this.classes.renderedModal + ' form');
 
+        // Do nothing if no form found
         if (form === null) {
             return false;
         }
 
         let _self = this;
+        // Actions to perform when form is submitted
         form.addEventListener(this.events.updateElement, function(e) {
+            // Check if UI Element type we want to update exists
             if (typeof _self.uiElements[uiElementType] === 'undefined') {
                 _self.error('Cannot find element of type ', uiElementType);
                 return;
             }
 
+            // Convert form data to an array
             const data = _self.convertFormToArray(form);
             _self.log('Retrieved form data', {data: data});
             let uiElement = _self.uiElements[uiElementType];
 
+            // Initialize a new UI Element of the wanted type
             let updatedElement = {type: uiElementType, fields: {}};
+
+
+            // Get each field of the UI Element and get it from the form data
             for (const field of uiElement.fields) {
+                // Convert the field to the form field. Ex: "content" field of "text" UI Element will have a form field named "text[content]"
                 let formFieldName = uiElementType + '[' + field + ']';
                 if (typeof data[formFieldName] === 'undefined') {
+                    // Set empty value if form field does not exists
+                    _self.log('Field value not found, set empty', {field: field, formFieldName: formFieldName});
                     updatedElement.fields[field] = '';
                 } else {
-                    _self.log('Update field', {field: field, formFieldName: formFieldName, value: formFieldName});
+                    // Set form value in field
+                    _self.log('Update field with form value', {field: field, formFieldName: formFieldName, value: data[formFieldName]});
                     updatedElement.fields[field] = data[formFieldName];
                 }
             }
 
+            // Update UI Element
             _self.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
 
         }, false);
@@ -459,6 +497,8 @@ class MbizCmsFields {
      */
     initReorder(uiElements, elementsContainer) {
         let _self = this;
+        // First container is the list of UI Elements we can add, the second is the content of the field
+        // We can only move elements from the `uiElements` to the `elementsContainer`
         let drake = new dragula([uiElements, elementsContainer], {
             copy: function (el, source) {
                 return source === uiElements
@@ -544,10 +584,14 @@ class MbizCmsFields {
      */
     addUiElement(type, index, jsonContent, target) {
         this.log('Add UI Element : ', {type: type, index: index, target: target, beforeMoveJson: jsonContent});
+        // Initialize new UI Element of wanted type
         let uiElement = {type: type, fields: {}};
+        // Add the element in JSON
         jsonContent.splice(index, 0, uiElement);
+        // Update the textarea with JSON
         target.value = JSON.stringify(jsonContent);
         this.log('Added UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
+        // Initialize actions for the new UI Element, it actually recreate also events for existing elements
         this.initActions(target, jsonContent);
     }
 
@@ -565,7 +609,9 @@ class MbizCmsFields {
             if (newIndex >= jsonContent.length) {
                 this.error('Element moved outside the list', {newIndex: newIndex, sizeList: jsonContent.length})
             }
+            // Move the UI element to the selected index and change position of others
             jsonContent.splice(newIndex, 0, jsonContent.splice(oldIndex, 1)[0]);
+            // Update the textarea with JSON
             target.value = JSON.stringify(jsonContent);
             this.log('Moved UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
         } else {
@@ -585,7 +631,9 @@ class MbizCmsFields {
     {
         if (typeof jsonContent[index] !== 'undefined') {
             this.log('Update UI Element : ', {index: index, element: element, jsonContent: jsonContent, target: target});
+            // Set new content for UI Element
             jsonContent[index] = element;
+            // Update the textarea with JSON
             target.value = JSON.stringify(jsonContent);
             this.log('Updated UI Element : ', {index: index, element: element, jsonContent: jsonContent, target: target});
         } else {
@@ -602,7 +650,9 @@ class MbizCmsFields {
      */
     removeUiElement(removedIndex, jsonContent, target) {
         this.log('Remove UI Element : ', {removedIndex: removedIndex, target: target, beforeMoveJson: jsonContent});
+        // Remove the element for this index, it will change indexes for other elements too
         jsonContent.splice(removedIndex, 1);
+        // Update the textarea with JSON
         target.value = JSON.stringify(jsonContent);
         this.log('Removed UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
     }
@@ -623,6 +673,7 @@ class MbizCmsFields {
             target.remove();
         }
 
+        // Display message for debug mode
         if (this.debug) {
             console.error(description);
             console.error(content);
@@ -636,6 +687,7 @@ class MbizCmsFields {
      * @param content
      */
     log(description, content) {
+        // Display message for debug mode
         if (this.debug) {
             console.log(description);
             if (content) {
