@@ -18,8 +18,9 @@ class Image extends AbstractUiElement
         return ['path', 'alt', 'title'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
         // @TODO: Implement getForm() method.
+        return '';
     }
 }

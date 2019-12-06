@@ -18,8 +18,9 @@ class Quote extends AbstractUiElement
         return ['author', 'content'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
         // @TODO: Implement getForm() method.
+        return '';
     }
 }

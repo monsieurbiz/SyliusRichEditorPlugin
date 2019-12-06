@@ -17,5 +17,5 @@ interface UiElementInterface extends \JsonSerializable
     public function getTitle(): string;
     public function getImage(): string;
     public function getFields(): array;
-    public function getForm(): void; // @TODO change return value
+    public function getFormClass(): string;
 }

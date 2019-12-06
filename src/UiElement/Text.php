@@ -18,8 +18,9 @@ class Text extends AbstractUiElement
         return ['content'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
         // @TODO: Implement getForm() method.
+        return '';
     }
 }
