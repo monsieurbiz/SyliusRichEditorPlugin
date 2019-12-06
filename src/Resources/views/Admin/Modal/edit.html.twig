@@ -5,7 +5,7 @@
 <p>{{ uiElement.description }}</p>
 
 
-{% if uiElement.type == 'image' and data.path is not empty %}
+{% if uiElement.type == 'image' and data.path is defined and data.path is not empty %}
     <p>{{ 'monsieurbiz_cmsplugin.ui_element.image.field.current_image' | trans }}</p>
     <p>
         <img src="{{ data.path }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" />
