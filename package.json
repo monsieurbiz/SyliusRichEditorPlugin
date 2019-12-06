@@ -21,6 +21,7 @@
     "@symfony/webpack-encore": "^0.28.1"
   },
   "dependencies": {
-    "dragula": "^3.7.2"
+    "dragula": "^3.7.2",
+    "tingle.js": "^0.15.2"
   }
 }
