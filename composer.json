@@ -8,7 +8,8 @@
         "php": "^7.2",
         "symfony/http-kernel": "^4.3",
         "sylius/ui-bundle": "^1.6",
-        "symfony/webpack-encore-bundle": "^1.7"
+        "symfony/webpack-encore-bundle": "^1.7",
+        "ext-json": "*"
     },
     "require-dev": {
         "behat/behat": "^3.4",
