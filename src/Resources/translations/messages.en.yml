@@ -14,6 +14,9 @@ monsieurbiz_cmsplugin:
       title: 'Quote Element'
       short_description: 'Short description of quote element'
       description: 'An element with an author and a content'
+      field:
+        author: 'Author'
+        content: 'Content'
   form:
     edit: 'Edit'
     delete: 'Delete'
