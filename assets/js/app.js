@@ -75,7 +75,7 @@ class MbizCmsFields {
             let uiElement = uiElements[type]
             this.log('Init UI Element :', uiElement);
 
-            let renderedUiElement = this.renderUiElementMetaData(uiElement, this.templateRender);
+            let renderedUiElement = this.renderUiElementMetaData(type, uiElement, this.templateRender);
             if (renderedUiElement === '') {
                 error = true;
                 continue;
@@ -144,7 +144,7 @@ class MbizCmsFields {
             // Render Ui Element meta data
             let uiElementMetaData = this.uiElements[uiElement.type];
             this.log('Matched Ui Element with meta data :', uiElementMetaData);
-            let renderedUiElementMetaData = this.renderUiElementMetaData(uiElementMetaData, this.templateRender);
+            let renderedUiElementMetaData = this.renderUiElementMetaData(uiElement.type, uiElementMetaData, this.templateRender);
             if (renderedUiElementMetaData === '') {
                 error = true;
                 continue;
@@ -205,12 +205,14 @@ class MbizCmsFields {
     /**
      * Return markup to display UI Element meta data depending on render
      *
+     * @param type
      * @param uiElementMetaData {short_description: "Short description", description: "Description", title: "Title", image: "/path/to/image.jpg"}
+     * @param templateRender
      */
-    renderUiElementMetaData(uiElementMetaData, templateRender) {
+    renderUiElementMetaData(type, uiElementMetaData, templateRender) {
         if (templateRender === 'sylius') {
             return `
-            <div class="ui segment raised ${this.classes.draggableItem}">
+            <div class="ui segment raised ${this.classes.draggableItem}" data-ui-element-type="${type}">
                 <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}" type="button"><i class="icon arrows alternate ${this.classes.draggableItemHandler}"></i></button>
                 <div class="ui grid">
                     <div class="four wide column">
@@ -303,15 +305,21 @@ class MbizCmsFields {
                 const oldIndex = this.currentIndex;
                 const newIndex = this.getElementIndex(el);
                 if (newIndex !== false) {
-                    this.log('Rorder drag stop : ', {oldIndex: oldIndex, newIndex: newIndex, el: el, targetElement: targetElement, source: source, sibling: sibling});
+                    this.log('Reorder drag stop : ', {oldIndex: oldIndex, newIndex: newIndex, el: el, targetElement: targetElement, source: source, sibling: sibling});
                     this.moveUiElement(oldIndex, newIndex, jsonContent, target)
                 }
             }
 
-            // Add a new element from top
-            if (source.id === this.id.uiElementContainer) {
+            // Add a new element from top to Ui Element list
+            if (source.id === this.id.uiElementContainer && targetElement !== null && targetElement.classList.contains(this.classes.uiElementContainer)) {
                 this.log('Copy drag stop : ', {el: el, targetElement: targetElement, source: source, sibling: sibling});
-                // this.moveUiElement(oldIndex, newIndex, jsonContent, target)
+                const newIndex = this.getElementIndex(el);
+                const type = el.dataset.uiElementType;
+                if (typeof type !== 'undefined') {
+                    this.addUiElement(type, newIndex, jsonContent, target)
+                } else {
+                    this.error('Cannot find `uiElementType` to add in data set', {dataSet: el.dataset, el: el});
+                }
             }
         });
     }
@@ -330,6 +338,22 @@ class MbizCmsFields {
     }
 
     /**
+     * Update the JSON to add an UI element
+     *
+     * @param type
+     * @param index
+     * @param jsonContent
+     * @param target
+     */
+    addUiElement(type, index, jsonContent, target) {
+        this.log('Add UI Element : ', {type: type, index: index, target: target, beforeMoveJson: jsonContent});
+        let uiElement = {type: type, fields: []};
+        jsonContent.splice(index, 0, uiElement);
+        target.value = JSON.stringify(jsonContent);
+        this.log('Added UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
+    }
+
+    /**
      * Update the JSON to move UI elements
      *
      * @param oldIndex
@@ -341,10 +365,7 @@ class MbizCmsFields {
         if (oldIndex !== newIndex) {
             this.log('Move UI Element : ', {oldIndex: oldIndex, newIndex: newIndex, target: target, beforeMoveJson: jsonContent});
             if (newIndex >= jsonContent.length) {
-                var k = newIndex - jsonContent.length + 1;
-                while (k--) {
-                    jsonContent.push(undefined); // @TODO define the new inserted UI Element ?
-                }
+                this.error('Element moved outside the list', {newIndex: newIndex, sizeList: jsonContent.length})
             }
             jsonContent.splice(newIndex, 0, jsonContent.splice(oldIndex, 1)[0]);
             target.value = JSON.stringify(jsonContent);
