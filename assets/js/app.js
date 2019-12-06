@@ -174,7 +174,7 @@ class MbizCmsFields {
      */
     initActions(target, jsonContent) {
         // Init Delete
-        let deleteButtons = document.querySelectorAll('.' + this.classes.deleteButton);
+        let deleteButtons = target.parentElement.querySelectorAll('.' + this.classes.deleteButton);
         this.log('Init delete button(s), found : ', deleteButtons.length)
         for (let deleteButton of deleteButtons) {
             this.initDeleteButton(deleteButton, jsonContent, target);
