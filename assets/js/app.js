@@ -1,4 +1,5 @@
 import dragula from 'dragula';
+import tingle from 'tingle.js';
 
 /**
  * Class to manage CMS fields with UI Elements
@@ -18,6 +19,7 @@ class MbizCmsFields {
         this.container = document.querySelector(config.containerSelector);
         this.uiElements = this.config.uiElements;
         this.translations = this.config.translations;
+        this.formRoute = this.config.formRoute;
         if (this.debug) {
             this.log('Plugin configuration :', this.config);
             this.log('Matched element(s) :', this.targets.length);
@@ -239,8 +241,59 @@ class MbizCmsFields {
                 _self.error('Cannot find UI Element in index', {index: updateIndex, jsonContent: jsonContent});
             }
             let uiElementToUpdate = jsonContent[updateIndex];
-            _self.log('UI Element to update', uiElementToUpdate)
+            _self.log('UI Element to update', uiElementToUpdate);
+            _self.loadForm(uiElementToUpdate)
         };
+    }
+
+    /**
+     * Load form for given UI Element
+     *
+     * @param uiElement [{type: "UI Element Type", fields: {}}]
+     */
+    loadForm(uiElement)
+    {
+        let xhr = new XMLHttpRequest();
+        let _self = this;
+        xhr.onreadystatechange = function(){
+            const DONE = 4; // readyState 4 means the request is done.
+            const OK = 200; // status 200 is a successful return.
+            if (xhr.readyState === DONE){
+                if (xhr.status === OK) {
+                    _self.log('Loaded form', {response: xhr.responseText, xhr: xhr});
+                    _self.renderModal(xhr.responseText)
+                } else {
+                    _self.log('Error during load form', {status: xhr.status, xhr: xhr});
+                }
+            }
+        };
+        xhr.open('GET', this.formRoute);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.send();
+    }
+
+    renderModal(html) {
+        var modal = new tingle.modal({
+            footer: true,
+            stickyFooter: false,
+            closeMethods: ['overlay', 'button', 'escape'],
+            closeLabel: this.translations.close,
+        });
+        let _self = this;
+
+        modal.setContent(html);
+
+        modal.addFooterBtn(this.translations.apply_changes, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+            // @TODO : Update data on JSON
+            _self.log('Edition submitted')
+            modal.close();
+        });
+
+        modal.addFooterBtn(this.translations.cancel_changes, 'tingle-btn tingle-btn--secondary tingle-btn--pull-right', function () {
+            modal.close();
+        });
+
+        modal.open();
     }
 
     /**
@@ -461,7 +514,9 @@ class MbizCmsFields {
     log(description, content) {
         if (this.debug) {
             console.log(description);
-            console.log(content);
+            if (content) {
+                console.log(content);
+            }
         }
     }
 }
