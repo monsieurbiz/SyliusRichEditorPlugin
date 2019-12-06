@@ -351,6 +351,7 @@ class MbizCmsFields {
         jsonContent.splice(index, 0, uiElement);
         target.value = JSON.stringify(jsonContent);
         this.log('Added UI Element : ', {afterMoveJson: jsonContent, newTargetValue: target.value});
+        this.initActions(target, jsonContent);
     }
 
     /**
