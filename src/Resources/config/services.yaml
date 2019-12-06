@@ -24,11 +24,11 @@ services:
   # Add JS in admin
   Monsieurbiz\SyliusCmsPlugin\EventListener\Admin\JavascriptBlock:
     arguments:
-      $template: '@@MonsieurbizSyliusCmsPlugin/Admin/app_javascript.html.twig'
+      $template: '@@MonsieurBizSyliusCmsPlugin/Admin/app_javascript.html.twig'
     tags:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
   # UiElement Factory using classes in config
   Monsieurbiz\SyliusCmsPlugin\UiElement\Factory:
     arguments:
-      $uiElementClasses: '%monsieurbiz_sylius_cms.ui_element_classes%'
+      $uiElementClasses: '%monsieur_biz_sylius_cms.ui_element_classes%'

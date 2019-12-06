@@ -1,11 +1,11 @@
-monsieurbiz_sylius_cms_admin_modal_form:
-    path: /monsieurbiz_sylius_cms/modal/edit
+monsieur_biz_sylius_cms_admin_modal_form:
+    path: /monsieur_biz_sylius_cms/modal/edit
     methods: [GET]
     defaults:
         _controller: Monsieurbiz\SyliusCmsPlugin\Controller\ModalController:formAction
 
-monsieurbiz_sylius_cms_admin_modal_submit:
-    path: /monsieurbiz_sylius_cms/modal/submit
+monsieur_biz_sylius_cms_admin_modal_submit:
+    path: /monsieur_biz_sylius_cms/modal/submit
     methods: [POST]
     defaults:
         _controller: Monsieurbiz\SyliusCmsPlugin\Controller\ModalController:submitAction

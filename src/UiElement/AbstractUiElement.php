@@ -82,6 +82,6 @@ abstract class AbstractUiElement implements UiElementInterface
 
     public function getTemplate(): string
     {
-        return sprintf('@MonsieurbizSyliusCmsPlugin/UiElement/%s.html.twig', $this->getType());
+        return sprintf('@MonsieurBizSyliusCmsPlugin/UiElement/%s.html.twig', $this->getType());
     }
 }
