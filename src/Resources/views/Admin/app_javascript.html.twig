@@ -3,10 +3,13 @@
         debug: {{ settings.attr.debug }},
         templateRender: 'sylius',
         querySelector: 'textarea', // @TODO have a data-component="cms" on each textarea.
+        containerSelector: 'body',
         translations: {
             edit: '{{ 'monsieurbiz_cmsplugin.form.edit' | trans | escape('js') }}',
             delete: '{{ 'monsieurbiz_cmsplugin.form.delete' | trans | escape('js') }}',
             confirm_delete: '{{ 'monsieurbiz_cmsplugin.form.confirm_delete' | trans | escape('js') }}',
+            new: '{{ 'monsieurbiz_cmsplugin.action.new' | trans | escape('js') }}',
+            preview: '{{ 'monsieurbiz_cmsplugin.action.preview' | trans | escape('js') }}',
         },
         uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
     };
@@ -15,31 +18,63 @@
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliuscmsplugin/js/app.js'} %}
 
 <style>
-    /*
-    Draggable styles
-     */
-
+    /* Dragula styles */
     .gu-mirror {
         position: fixed !important;
         margin: 0 !important;
-        z-index: 9999 !important;
-        opacity: 0.8;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-        filter: alpha(opacity=80);
+        z-index: 100 !important;
+        opacity: .8;
     }
+
     .gu-hide {
         display: none !important;
     }
+
     .gu-unselectable {
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
         user-select: none !important;
     }
+
     .gu-transit {
-        opacity: 0.2;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-        filter: alpha(opacity=20);
+        opacity: .2;
     }
 
+    /* Mbiz styles */
+    .mbiz-cms-dropable-container {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        z-index: 100;
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: rgba(0, 0, 0, .8);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+        transition: opacity .3s, visibility .3s, transform .5s ease;
+    }
+
+    .mbiz-cms-dropable-container.is-expanded {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .ui.visible.left.sidebar ~ .mbiz-cms-dropable-container {
+        padding-right: 260px;
+        transform: translate3d(260px, -100%, 0);
+    }
+
+    .ui.visible.left.sidebar ~ .mbiz-cms-dropable-container.is-expanded {
+        transform: translate3d(260px, 0, 0);
+    }
+
+    .mbiz-cms-dropable-container > * {
+        margin: 1em !important;
+    }
+
+    .mbiz-cms-dropable-container .ui.buttons {
+        display: none;
+    }
 </style>
