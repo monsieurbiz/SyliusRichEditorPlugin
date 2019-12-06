@@ -282,18 +282,35 @@ class MbizCmsFields {
      */
     initReorderEvent(drake, target, jsonContent) {
         drake.on('drag', (el, source) => {
-            const index = this.getElementIndex(el);
-            if (index !== false) {
-                this.log('Drag start : ', {index: index, el: el, source: source});
-                this.currentIndex = index;
+            // Reorder inside the list
+            if (source.id !== this.id.uiElementContainer) {
+                const index = this.getElementIndex(el);
+                if (index !== false) {
+                    this.log('Reorder drag start : ', {index: index, el: el, source: source});
+                    this.currentIndex = index;
+                }
+            }
+
+            // Add a new element from top
+            if (source.id === this.id.uiElementContainer) {
+                this.log('Copy drag start : ', {el: el, source: source});
             }
         });
         drake.on('drop', (el, targetElement, source, sibling) => {
-            const oldIndex = this.currentIndex;
-            const newIndex = this.getElementIndex(el);
-            if (newIndex !== false) {
-                this.log('Drag stop : ', {oldIndex: oldIndex, newIndex: newIndex, el: el, targetElement: targetElement, source: source, sibling: sibling});
-                this.moveUiElement(oldIndex, newIndex, jsonContent, target)
+            // Reorder inside the list
+            if (source.id !== this.id.uiElementContainer) {
+                const oldIndex = this.currentIndex;
+                const newIndex = this.getElementIndex(el);
+                if (newIndex !== false) {
+                    this.log('Rorder drag stop : ', {oldIndex: oldIndex, newIndex: newIndex, el: el, targetElement: targetElement, source: source, sibling: sibling});
+                    this.moveUiElement(oldIndex, newIndex, jsonContent, target)
+                }
+            }
+
+            // Add a new element from top
+            if (source.id === this.id.uiElementContainer) {
+                this.log('Copy drag stop : ', {el: el, targetElement: targetElement, source: source, sibling: sibling});
+                // this.moveUiElement(oldIndex, newIndex, jsonContent, target)
             }
         });
     }
