@@ -28,7 +28,7 @@ class MbizCmsFields {
             uiElementContainer: 'mbiz-cms-elements-container',
         };
         this.classes = {
-            uiElementContainer: 'mbiz-cms-component-ui-elements',
+            uiElementList: 'mbiz-cms-component-ui-elements',
             dropableContainer: 'mbiz-cms-dropable-container',
             draggableContainer: 'mbiz-cms-draggable-container',
             draggableItem: 'mbiz-cms-draggable-item',
@@ -69,7 +69,7 @@ class MbizCmsFields {
         // Init container
         const uiElementsContainer = document.createElement('div');
         uiElementsContainer.id = this.id.uiElementContainer;
-        uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementContainer);
+        uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementList);
 
         // Loop on UI Elements
         let error = false;
@@ -126,10 +126,10 @@ class MbizCmsFields {
 
         // Init container
         const elementsContainer = document.createElement('div');
-        elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementContainer);
+        elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementList);
 
         if (this.templateRender === 'sylius') {
-            elementsContainer.classList.add('ui', 'segment', this.classes.draggableContainer, this.classes.uiElementContainer);
+            elementsContainer.classList.add('ui', 'segment', this.classes.draggableContainer, this.classes.uiElementList);
         }
 
         // Loop on UI Elements
@@ -327,7 +327,7 @@ class MbizCmsFields {
             }
 
             // Add a new element from top to Ui Element list
-            if (source.id === this.id.uiElementContainer && targetElement !== null && targetElement.classList.contains(this.classes.uiElementContainer)) {
+            if (source.id === this.id.uiElementContainer && targetElement !== null && targetElement.classList.contains(this.classes.uiElementList)) {
                 this.log('Copy drag stop : ', {el: el, targetElement: targetElement, source: source, sibling: sibling});
                 const newIndex = this.getElementIndex(el);
                 const type = el.dataset.uiElementType;
@@ -418,7 +418,7 @@ class MbizCmsFields {
             target.removeAttribute('hidden');
         }
         // Remove generated blocks
-        for (let target of document.querySelectorAll('.' + this.classes.uiElementContainer)) {
+        for (let target of document.querySelectorAll('.' + this.classes.uiElementList)) {
             target.remove();
         }
 
