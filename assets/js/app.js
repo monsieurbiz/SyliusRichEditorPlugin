@@ -155,8 +155,8 @@ class MbizCmsFields {
             elementsContainer.insertAdjacentHTML('beforeend', renderedUiElementMetaData);
         }
 
-        // Prepend actions buttons in container
-        elementsContainer.insertAdjacentHTML('afterbegin', this.renderActionsButtons(this.templateRender));
+        // Add actions buttons before target
+        target.insertAdjacentHTML('beforebegin', this.renderActionsButtons(this.templateRender));
 
         // Append generated HTML to display current UI Elements of target
         if (!error) {
