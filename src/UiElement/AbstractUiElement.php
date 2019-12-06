@@ -79,4 +79,9 @@ abstract class AbstractUiElement implements UiElementInterface
             'fields' => $this->getFields(),
         ];
     }
+
+    public function getTemplate(): string
+    {
+        return sprintf('@MonsieurbizSyliusCmsPlugin/UiElement/%s.html.twig', $this->getType());
+    }
 }
