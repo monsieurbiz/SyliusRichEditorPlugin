@@ -10,6 +10,11 @@ monsieurbiz_cmsplugin:
       title: 'Lame Image'
       short_description: 'Description courte lame image'
       description: 'Une lame contenant une image avec un champ alternatif et un titre'
+      field:
+        current_image: 'Image actuelle'
+        image: 'Image'
+        alt: 'Texte alternatif'
+        title: 'Titre'
     quote:
       title: 'Lame Citation'
       short_description: 'Description courte lame citation'
