@@ -4,6 +4,8 @@ monsieurbiz_cmsplugin:
       title: 'Text Element'
       short_description: 'Short description of text element'
       description: 'An element with a text content'
+      field:
+        content: 'Content'
     image:
       title: 'Image Element'
       short_description: 'Short description of image element'
