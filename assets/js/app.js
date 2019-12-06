@@ -20,6 +20,7 @@ class MbizCmsFields {
         this.uiElements = this.config.uiElements;
         this.translations = this.config.translations;
         this.formRoute = this.config.formRoute;
+        this.uploadRoute = this.config.uploadRoute;
         if (this.debug) {
             this.log('Plugin configuration :', this.config);
             this.log('Matched element(s) :', this.targets.length);
@@ -129,7 +130,7 @@ class MbizCmsFields {
         this.log('Init field with parsed content :', jsonContent);
 
         // Hide original input
-        target.setAttribute('hidden', 'true');
+        // target.setAttribute('hidden', 'true');
 
         // Init container
         const elementsContainer = document.createElement('div');
@@ -429,10 +430,18 @@ class MbizCmsFields {
             let field = form.elements[i];
 
             // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
-            if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+            if (!field.name || field.disabled || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
 
+            // If type is file, upload the file and retrieve a string with path
+            if (field.type === 'file') {
+                const file = field.files[0];
+                if (file) {
+                    const path = this.uploadFile(file, field.name, formArray);
+                    formArray[field.name] = path;
+                }
+            }
             // If a multi-select, get all selections
-            if (field.type === 'select-multiple') {
+            else if (field.type === 'select-multiple') {
                 let values = [];
                 for (let n = 0; n < field.options.length; n++) {
                     if (!field.options[n].selected) continue;
@@ -449,6 +458,37 @@ class MbizCmsFields {
         }
 
         return formArray;
+    }
+
+    uploadFile(file) {
+        // Initialize form data
+        let formData = new FormData();
+        let imagePath = '';
+        formData.append('file', file);
+
+        // Initialize AJAX request
+        let xhr = new XMLHttpRequest();
+        let _self = this;
+        xhr.onreadystatechange = function(){
+            const DONE = 4; // readyState 4 means the request is done.
+            const OK = 200; // status 200 is a successful return.
+            if (xhr.readyState === DONE){
+                if (xhr.status === OK) {
+                    _self.log('Uploaded file', {response: xhr.responseText, xhr: xhr});
+                    imagePath = xhr.responseText;
+                } else {
+                    _self.error('Error during file upload', {status: xhr.status, xhr: xhr});
+                    imagePath = '';
+                }
+            }
+        };
+
+        // Send data
+        xhr.open('POST', this.uploadRoute, false);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.send(formData);
+
+        return imagePath;
     }
 
     /**

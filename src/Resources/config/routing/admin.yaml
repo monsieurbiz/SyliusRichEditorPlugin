@@ -3,3 +3,9 @@ monsieurbiz_sylius_cms_admin_modal_form:
     methods: [GET]
     defaults:
         _controller: Monsieurbiz\SyliusCmsPlugin\Controller\ModalController:formAction
+
+monsieurbiz_sylius_cms_admin_modal_upload:
+    path: /monsieurbiz_sylius_cms/modal/upload
+    methods: [POST]
+    defaults:
+        _controller: Monsieurbiz\SyliusCmsPlugin\Controller\ModalController:uploadAction

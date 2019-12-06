@@ -17,7 +17,7 @@ class ImageType extends AbstractType
         $builder
             ->add('image', FileType::class, [
                 'label' => 'monsieurbiz_cmsplugin.ui_element.image.field.image',
-                'mapped' => false,
+                'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
                 'constraints' => [
                     new Assert\Image([])

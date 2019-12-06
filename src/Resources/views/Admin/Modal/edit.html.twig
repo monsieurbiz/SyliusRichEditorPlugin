@@ -5,10 +5,11 @@
 <p>{{ uiElement.description }}</p>
 
 
-{% if uiElement.type == 'image' and data.path is defined and data.path is not empty %}
+{% if uiElement.type == 'image' and data.image is defined and data.image is not empty %}
+    {# @TODO Make a form render for file type and display image before field #}
     <p>{{ 'monsieurbiz_cmsplugin.ui_element.image.field.current_image' | trans }}</p>
     <p>
-        <img src="{{ data.path }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" />
+        <img src="{{ data.image }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" />
     </p>
 {% endif %}
 

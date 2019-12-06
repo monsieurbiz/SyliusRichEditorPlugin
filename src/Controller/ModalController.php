@@ -67,4 +67,8 @@ class ModalController extends AbstractController
         ]);
     }
 
+    public function uploadAction(Request $request): Response
+    {
+        return new Response('/mon/chemin/image.jpg');
+    }
 }

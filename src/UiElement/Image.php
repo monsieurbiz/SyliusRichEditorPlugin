@@ -17,7 +17,7 @@ class Image extends AbstractUiElement
 
     public function getFields(): array
     {
-        return ['path', 'alt', 'title'];
+        return ['image', 'alt', 'title'];
     }
 
     public function getFormClass(): string
