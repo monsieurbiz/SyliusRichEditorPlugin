@@ -726,11 +726,9 @@ class MbizCmsFields {
             target.remove();
         }
 
-        // Display message for debug mode
-        if (this.debug) {
-            console.error(description);
-            console.error(content);
-        }
+        // Display error
+        console.error(description);
+        console.error(content);
     }
 
     /**
