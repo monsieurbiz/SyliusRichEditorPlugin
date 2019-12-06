@@ -9,7 +9,7 @@
     {# @TODO Make a form render for file type and display image before field #}
     <p>{{ 'monsieurbiz_cmsplugin.ui_element.image.field.current_image' | trans }}</p>
     <p>
-        <img src="{{ data.image }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" />
+        <img src="{{ data.image }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" style="max-width: 300px;max-height: 300px;"/>
     </p>
 {% endif %}
 

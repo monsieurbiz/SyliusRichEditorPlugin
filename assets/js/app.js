@@ -130,7 +130,7 @@ class MbizCmsFields {
         this.log('Init field with parsed content :', jsonContent);
 
         // Hide original input
-        // target.setAttribute('hidden', 'true');
+        target.setAttribute('hidden', 'true');
 
         // Init container
         const elementsContainer = document.createElement('div');
