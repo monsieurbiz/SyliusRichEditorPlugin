@@ -267,7 +267,7 @@ class MbizCmsFields {
                 }
             }
         };
-        xhr.open('GET', this.formRoute);
+        xhr.open('GET', this.formRoute + '?data=' + encodeURIComponent(JSON.stringify(uiElement)));
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.send();
     }

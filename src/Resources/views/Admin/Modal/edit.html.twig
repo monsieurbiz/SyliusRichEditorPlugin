@@ -1,1 +1,9 @@
-<h1>Edition Ui Element</h1>
+{% form_theme form '@SyliusUi/Form/theme.html.twig' %}
+
+<h1>{{ uiElement.title }}</h1>
+
+<p>{{ uiElement.description }}</p>
+
+<p>
+    {{ form(form) }}
+</p>

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\Controller;
 
+use Monsieurbiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use Monsieurbiz\SyliusCmsPlugin\UiElement\Factory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\EngineInterface;
@@ -13,14 +15,20 @@ class ModalController extends AbstractController
     /** @var EngineInterface */
     private $templatingEngine;
 
+    /** @var Factory */
+    private $factory;
+
     /**
      * ModalController constructor.
      * @param EngineInterface $templatingEngine
+     * @param Factory $factory
      */
     public function __construct(
-        EngineInterface $templatingEngine
+        EngineInterface $templatingEngine,
+        Factory $factory
     ) {
         $this->templatingEngine = $templatingEngine;
+        $this->factory = $factory;
     }
 
     /**
@@ -31,11 +39,31 @@ class ModalController extends AbstractController
      */
     public function formAction(Request $request): Response
     {
-        if (!$request->isXmlHttpRequest()) {
+        // Check request
+        $data = $request->query->get('data') ?? null;
+        if (!$request->isXmlHttpRequest() || empty($data)) {
             throw $this->createNotFoundException();
         }
+
+        // Correct JSON decode data
+        $data = json_decode($data, true);
+        if (!isset($data['type']) || !isset($data['fields'])) {
+            throw $this->createNotFoundException();
+        }
+
+        try {
+            $uiElement = $this->factory->getUiElementByType($data['type']);
+        } catch (UndefinedUiElementTypeException $exception) {
+            throw $this->createNotFoundException($exception->getMessage());
+        }
+
+        // Create form depending on UI Element with data
+        $form = $this->createForm($uiElement->getFormClass(), $data['fields']);
+
         return $this->templatingEngine->renderResponse('@MonsieurbizSyliusCmsPlugin/Admin/Modal/edit.html.twig', [
-            'form' => null,
+            'form' => $form->createView(),
+            'uiElement' => $uiElement,
+            'data' => $data['fields'],
         ]);
     }
 
