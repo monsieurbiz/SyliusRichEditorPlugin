@@ -7,3 +7,4 @@ monsieurbiz_sylius_cms:
     - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Image'
     - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Quote'
     - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Text'
+  upload_directory: '%kernel.project_dir%/public/media/monsieurbiz_sylius_cms'

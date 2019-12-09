@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
+use Monsieurbiz\SyliusCmsPlugin\Form\Type\UiElement\QuoteType;
+
 class Quote extends AbstractUiElement
 {
     protected $type = 'quote';
@@ -18,8 +20,8 @@ class Quote extends AbstractUiElement
         return ['author', 'content'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
-        // @TODO: Implement getForm() method.
+        return QuoteType::class;
     }
 }

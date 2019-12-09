@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
+use Monsieurbiz\SyliusCmsPlugin\Form\Type\UiElement\TextType;
+
 class Text extends AbstractUiElement
 {
     protected $type = 'text';
@@ -18,8 +20,8 @@ class Text extends AbstractUiElement
         return ['content'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
-        // @TODO: Implement getForm() method.
+        return TextType::class;
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
 
+use Monsieurbiz\SyliusCmsPlugin\Form\Type\UiElement\ImageType;
+
 class Image extends AbstractUiElement
 {
     protected $type = 'image';
@@ -15,11 +17,11 @@ class Image extends AbstractUiElement
 
     public function getFields(): array
     {
-        return ['path', 'alt', 'title'];
+        return ['image', 'alt', 'title'];
     }
 
-    public function getForm(): void
+    public function getFormClass(): string
     {
-        // @TODO: Implement getForm() method.
+        return ImageType::class;
     }
 }
