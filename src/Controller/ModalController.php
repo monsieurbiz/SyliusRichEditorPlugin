@@ -70,7 +70,7 @@ class ModalController extends AbstractController
         // Create form depending on UI Element with data
         $form = $this->createForm($uiElement->getFormClass(), $data['fields']);
 
-        return $this->templatingEngine->renderResponse('@MonsieurbizSyliusCmsPlugin/Admin/Modal/edit.html.twig', [
+        return $this->templatingEngine->renderResponse('@MonsieurBizSyliusCmsPlugin/Admin/Modal/edit.html.twig', [
             'form' => $form->createView(),
             'uiElement' => $uiElement,
             'data' => $data['fields'],
@@ -153,7 +153,7 @@ class ModalController extends AbstractController
 
         // Move the file to the directory where brochures are stored
         $file = $file->move(
-            $this->getParameter('monsieurbiz_sylius_cms.upload_directory'),
+            $this->getParameter('monsieur_biz_sylius_cms.upload_directory'),
             $newFilename
         );
 

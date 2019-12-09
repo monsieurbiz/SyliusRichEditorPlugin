@@ -10,7 +10,8 @@
         "sylius/ui-bundle": "^1.6",
         "symfony/webpack-encore-bundle": "^1.7",
         "ext-json": "*",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "behat/behat": "^3.4",

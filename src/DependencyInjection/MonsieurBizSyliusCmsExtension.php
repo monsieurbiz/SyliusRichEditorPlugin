@@ -7,9 +7,9 @@ namespace Monsieurbiz\SyliusCmsPlugin\DependencyInjection;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
-final class MonsieurbizSyliusCmsExtension extends Extension
+final class MonsieurBizSyliusCmsExtension extends Extension
 {
-    CONST EXTENSION_CONFIG_NAME = 'monsieurbiz_sylius_cms';
+    CONST EXTENSION_CONFIG_NAME = 'monsieur_biz_sylius_cms';
 
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -19,4 +19,6 @@ final class MonsieurbizSyliusCmsExtension extends Extension
             $container->setParameter(self::EXTENSION_CONFIG_NAME . '.' . $name, $value);
         }
     }
+
+
 }
