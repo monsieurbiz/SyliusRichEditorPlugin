@@ -77,7 +77,7 @@ class MbizCmsFields {
         // Init container
         const uiElementsContainer = document.createElement('div');
         uiElementsContainer.id = this.id.uiElementContainer;
-        uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementList);
+        uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementList, 'is-expanded');
 
         // Loop on UI Elements
         let error = false;
@@ -96,7 +96,7 @@ class MbizCmsFields {
 
         // Append generated HTML to display current UI Elements of target
         if (!error) {
-            target.appendChild(uiElementsContainer);
+            target.insertBefore(uiElementsContainer, target.firstChild);
             this.container.dispatchEvent(this.events.uiElementsBuilt);
         }
     }

@@ -1,8 +1,13 @@
 {
   "entrypoints": {
-    "app": {
+    "cms-js": {
       "js": [
-        "/public/js/app.js"
+        "/public/js/cms-js.js"
+      ]
+    },
+    "cms-css": {
+      "css": [
+        "/public/css/cms-css.css"
       ]
     }
   }

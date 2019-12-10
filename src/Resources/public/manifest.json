@@ -1,6 +1,7 @@
 {
-  "public/app.js": "/public/js/app.js",
+  "public/cms-js.js": "/public/js/cms-js.js",
   "public/images/ui_elements/image.png": "/public/images/ui_elements/image.png",
   "public/images/ui_elements/quote.png": "/public/images/ui_elements/quote.png",
-  "public/images/ui_elements/text.png": "/public/images/ui_elements/text.png"
+  "public/images/ui_elements/text.png": "/public/images/ui_elements/text.png",
+  "public/cms-css.css": "/public/css/cms-css.css"
 }

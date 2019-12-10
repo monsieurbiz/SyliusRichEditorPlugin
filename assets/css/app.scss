@@ -1,0 +1,72 @@
+@import '~tingle.js/dist/tingle.css';
+
+/* Dragula styles */
+.gu-mirror {
+    position: fixed !important;
+    margin: 0 !important;
+    z-index: 100 !important;
+    opacity: .8;
+}
+
+.gu-hide {
+    display: none !important;
+}
+
+.gu-unselectable {
+    user-select: none !important;
+}
+
+.gu-transit {
+    opacity: .2;
+}
+
+/* Mbiz styles */
+.mbiz-cms-dropable-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: rgba(0, 0, 0, .8);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: opacity .3s, visibility .3s, transform .5s ease;
+}
+
+.mbiz-cms-dropable-container.is-expanded {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.ui.visible.left.sidebar ~ .mbiz-cms-dropable-container {
+    padding-right: 260px;
+    transform: translate3d(260px, -100%, 0);
+}
+
+.ui.visible.left.sidebar ~ .mbiz-cms-dropable-container.is-expanded {
+    transform: translate3d(260px, 0, 0);
+}
+
+.mbiz-cms-dropable-container > * {
+    margin: 1em !important;
+    width: 300px;
+}
+
+.mbiz-cms-dropable-container .ui.buttons {
+    display: none;
+}
+
+
+.tingle-modal-box__content form .field label {
+    display: block;
+    margin-bottom: 10px;
+}
+.tingle-modal-box__content form .field textarea {
+    display: block;
+    width: 100%;
+    min-height: 200px;
+}
