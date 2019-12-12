@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin;
+namespace MonsieurBiz\SyliusCmsPlugin;
 
-use Monsieurbiz\SyliusCmsPlugin\Application\MonofonyPluginTrait;
+use MonsieurBiz\SyliusCmsPlugin\Application\MonofonyPluginTrait;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class MonsieurBizSyliusCmsPlugin extends Bundle

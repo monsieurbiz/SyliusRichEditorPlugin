@@ -15,7 +15,7 @@ Change your `config/bundles.php` file to add the line for the plugin :
 
 return [
     //..
-    Monsieurbiz\SyliusCmsPlugin\MonsieurBizSyliusCmsPlugin::class => ['all' => true],
+    MonsieurBiz\SyliusCmsPlugin\MonsieurBizSyliusCmsPlugin::class => ['all' => true],
 ];
 ```
 

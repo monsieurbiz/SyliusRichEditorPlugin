@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
 
 use Symfony\Contracts\Translation\TranslatorInterface;
 

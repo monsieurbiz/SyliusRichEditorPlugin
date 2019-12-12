@@ -11,24 +11,24 @@ services:
 
   # Makes classes in src/ available to be used as services;
   # this creates a service per class whose id is the fully-qualified class name
-  Monsieurbiz\SyliusCmsPlugin\:
+  MonsieurBiz\SyliusCmsPlugin\:
     resource: '../../*'
     exclude: '../../{Entity,Migrations,Tests,Kernel.php}'
 
   # Controllers are imported separately to make sure services can be injected
   # as action arguments even if you don't extend any base controller class
-  Monsieurbiz\SyliusCmsPlugin\Controller\:
+  MonsieurBiz\SyliusCmsPlugin\Controller\:
     resource: '../../Controller'
     tags: ['controller.service_arguments']
 
   # Add JS in admin
-  Monsieurbiz\SyliusCmsPlugin\EventListener\Admin\JavascriptBlock:
+  MonsieurBiz\SyliusCmsPlugin\EventListener\Admin\JavascriptBlock:
     arguments:
       $template: '@@MonsieurBizSyliusCmsPlugin/Admin/app_javascript.html.twig'
     tags:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
   # UiElement Factory using classes in config
-  Monsieurbiz\SyliusCmsPlugin\UiElement\Factory:
+  MonsieurBiz\SyliusCmsPlugin\UiElement\Factory:
     arguments:
       $uiElementClasses: '%monsieur_biz_sylius_cms.ui_element_classes%'

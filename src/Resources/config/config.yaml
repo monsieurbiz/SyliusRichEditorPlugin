@@ -4,7 +4,7 @@ imports:
 monsieur_biz_sylius_cms:
   # @TODO : Check if we can improve it
   ui_element_classes :
-    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Image'
-    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Quote'
-    - 'Monsieurbiz\SyliusCmsPlugin\UiElement\Text'
+    - 'MonsieurBiz\SyliusCmsPlugin\UiElement\Image'
+    - 'MonsieurBiz\SyliusCmsPlugin\UiElement\Quote'
+    - 'MonsieurBiz\SyliusCmsPlugin\UiElement\Text'
   upload_directory: '%kernel.project_dir%/public/media/monsieur_biz_sylius_cms'

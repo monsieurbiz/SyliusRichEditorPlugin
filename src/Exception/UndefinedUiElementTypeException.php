@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\Exception;
+namespace MonsieurBiz\SyliusCmsPlugin\Exception;
 
 final class UndefinedUiElementTypeException extends \Exception
 {
