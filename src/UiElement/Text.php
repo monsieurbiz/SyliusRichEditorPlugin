@@ -12,7 +12,7 @@ class Text extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/text.png';
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/text.svg';
     }
 
     public function getFields(): array

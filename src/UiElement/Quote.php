@@ -12,7 +12,7 @@ class Quote extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/quote.png';
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/quote.svg';
     }
 
     public function getFields(): array

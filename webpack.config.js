@@ -33,7 +33,7 @@ Encore
     .configureFilenames({
         js: 'js/[name].js',
         css: 'css/[name].css',
-        images: 'img/[name].[ext]'
+        images: 'images/[name].[ext]'
     })
 ;
 
