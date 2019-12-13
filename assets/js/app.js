@@ -114,6 +114,9 @@ class MbizCmsFields {
     initFields() {
         for (let target of this.targets) {
             let content = target.value;
+            if (!content) {
+                content = '[]';
+            }
             this.log('Target\'s content :', content);
             let jsonContent;
             try {
