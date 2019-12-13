@@ -21,10 +21,10 @@ services:
     resource: '../../Controller'
     tags: ['controller.service_arguments']
 
-  # Add JS in admin
-  Monsieurbiz\SyliusCmsPlugin\EventListener\Admin\JavascriptBlock:
+  # Add template with JS and CSS in admin
+  Monsieurbiz\SyliusCmsPlugin\EventListener\Admin\AppBlock:
     arguments:
-      $template: '@@MonsieurBizSyliusCmsPlugin/Admin/app_javascript.html.twig'
+      $template: '@@MonsieurBizSyliusCmsPlugin/Admin/app.html.twig'
     tags:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
