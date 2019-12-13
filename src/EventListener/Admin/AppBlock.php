@@ -9,7 +9,7 @@ use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
 use \Twig_Environment;
 
-class JavascriptBlock
+class AppBlock
 {
     /** @var string */
     private $template;

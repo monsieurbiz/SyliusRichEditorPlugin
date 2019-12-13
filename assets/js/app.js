@@ -36,6 +36,13 @@ class MbizCmsFields {
             draggableContainer: 'mbiz-cms-draggable-container',
             draggableItem: 'mbiz-cms-draggable-item',
             draggableItemHandler: 'mbiz-cms-draggable-item-handler',
+            draggableItemInner: 'mbiz-cms-draggable-item-inner',
+            draggableItemImg: 'mbiz-cms-draggable-item-img',
+            draggableItemContent: 'mbiz-cms-draggable-item-content',
+            draggableItemInfos: 'mbiz-cms-draggable-item-infos',
+            draggableItemTitle: 'mbiz-cms-draggable-item-title',
+            draggableItemActions: 'mbiz-cms-draggable-item-actions',
+            draggableItemButton: 'mbiz-cms-draggable-item-button',
             deleteButton: 'mbiz-cms-delete-button',
             updateButton: 'mbiz-cms-update-button',
             toggleButton: 'mbiz-cms-toggle-button',
@@ -96,7 +103,7 @@ class MbizCmsFields {
 
         // Append generated HTML to display current UI Elements of target
         if (!error) {
-            target.appendChild(uiElementsContainer);
+            target.insertBefore(uiElementsContainer, target.firstChild);
             this.container.dispatchEvent(this.events.uiElementsBuilt);
         }
     }
@@ -135,10 +142,6 @@ class MbizCmsFields {
         // Init container
         const elementsContainer = document.createElement('div');
         elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementList);
-
-        if (this.templateRender === 'sylius') {
-            elementsContainer.classList.add('ui', 'segment', this.classes.draggableContainer, this.classes.uiElementList);
-        }
 
         // Loop on UI Elements
         let error = false;
@@ -454,29 +457,26 @@ class MbizCmsFields {
      * @param templateRender
      */
     renderUiElementMetaData(type, uiElementMetaData, templateRender) {
-        if (templateRender === 'sylius') {
-            return `
-            <div class="ui segment raised ${this.classes.draggableItem}" data-ui-element-type="${type}">
-                <button class="ui right floated massive button icon ${this.classes.draggableItemHandler}" type="button"><i class="icon arrows alternate ${this.classes.draggableItemHandler}"></i></button>
-                <div class="ui grid">
-                    <div class="four wide column">
-                        <img class="ui small image" src="${uiElementMetaData.image}" alt="" width="150" height="150">
-                    </div>
-                    <div class="twelve wide column">
-                        <h2 class="ui header">${uiElementMetaData.title}</h2>
+        return `
+        <div class="${this.classes.draggableItem}" data-ui-element-type="${type}">
+            <button class="${this.classes.draggableItemHandler}" type="button">${this.translations.move}</button>
+            <div class="${this.classes.draggableItemInner}">
+                <div class="${this.classes.draggableItemImg}">
+                    <img src="${uiElementMetaData.image}" alt="" width="90" height="90">
+                </div>
+                <div class="${this.classes.draggableItemContent}">
+                    <div class="${this.classes.draggableItemInfos}">
+                        <h2 class="${this.classes.draggableItemTitle}">${uiElementMetaData.title}</h2>
                         <p>${uiElementMetaData.description}</p>
-                        <div class="ui buttons">
-                            <button class="ui button ${this.classes.updateButton}" type="button">${this.translations.edit}</button>
-                            <button class="ui button negative ${this.classes.deleteButton}" type="button">${this.translations.delete}</button>
-                        </div>
+                    </div>
+                    <div class="${this.classes.draggableItemActions}">
+                        <button class="${this.classes.draggableItemButton} ${this.classes.updateButton}" type="button" data-tooltip="${this.translations.edit}">${this.translations.edit}</button>
+                        <button class="${this.classes.draggableItemButton} ${this.classes.deleteButton}" type="button" data-tooltip="${this.translations.delete}">${this.translations.delete}</button>
                     </div>
                 </div>
             </div>
-            `;
-        }
-
-        this.error('Cannot find render for : ', templateRender);
-        return '';
+        </div>
+        `;
     }
 
     /**

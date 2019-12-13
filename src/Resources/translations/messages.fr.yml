@@ -23,6 +23,7 @@ monsieurbiz_cmsplugin:
         author: 'Auteur'
         content: 'Contenu'
   form:
+    move: 'Déplacer'
     edit: 'Éditer'
     delete: 'Supprimer'
     close: 'Fermer'

@@ -12,7 +12,7 @@ class Image extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/image.png';
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/image.svg';
     }
 
     public function getFields(): array

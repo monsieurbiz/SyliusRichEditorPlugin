@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/monsieurbiz/sylius-cms-design#readme",
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.28.1"
+    "@symfony/webpack-encore": "^0.28.1",
+    "autoprefixer": "^9.7.3",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.3.1"
   },
   "dependencies": {
     "dragula": "^3.7.2",
