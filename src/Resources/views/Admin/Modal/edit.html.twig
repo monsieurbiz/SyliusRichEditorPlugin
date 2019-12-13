@@ -13,6 +13,12 @@
     </p>
 {% endif %}
 
+{% if uiElement.type == 'video' and data.video is defined and data.video is not empty %}
+    <video width="100%" poster="{{ data.image }}" controls>
+        <source src="{{ data.video }}" type="video/{{ data.video|split('.')|last }}">
+    </video>
+{% endif %}
+
 <p>
     {{ form(form) }}
 </p>
