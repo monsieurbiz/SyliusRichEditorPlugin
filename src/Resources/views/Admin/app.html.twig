@@ -1,6 +1,6 @@
 <script type="text/javascript">
     var monsieurbizCmsPluginConfig = {
-        debug: {{ settings.attr.debug }},
+        debug: {{ settings.attr.debug|number_format }},
         templateRender: 'sylius',
         querySelector: '[data-component="cms"]',
         containerSelector: '#wrapper',
