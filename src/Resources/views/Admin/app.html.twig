@@ -2,7 +2,7 @@
     var monsieurbizCmsPluginConfig = {
         debug: {{ settings.attr.debug }},
         templateRender: 'sylius',
-        querySelector: '[data-component="cms"]', // @TODO have a data-component="cms" on each textarea.
+        querySelector: '[data-component="cms"]',
         containerSelector: '#wrapper',
         formRoute: '{{ path('monsieur_biz_sylius_cms_admin_modal_form') | escape('js') }}',
         submitRoute: '{{ path('monsieur_biz_sylius_cms_admin_modal_submit') | escape('js') }}',
