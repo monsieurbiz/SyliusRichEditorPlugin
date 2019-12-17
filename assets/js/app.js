@@ -33,6 +33,7 @@ class MbizCmsFields {
         this.classes = {
             uiElementList: 'mbiz-cms-component-ui-elements',
             dropableContainer: 'mbiz-cms-dropable-container',
+            dropableContainerInner: 'mbiz-cms-dropable-container-inner',
             draggableContainer: 'mbiz-cms-draggable-container',
             draggableItem: 'mbiz-cms-draggable-item',
             draggableItemHandler: 'mbiz-cms-draggable-item-handler',
@@ -46,6 +47,7 @@ class MbizCmsFields {
             deleteButton: 'mbiz-cms-delete-button',
             updateButton: 'mbiz-cms-update-button',
             toggleButton: 'mbiz-cms-toggle-button',
+            closeButton: 'mbiz-cms-close-button',
             renderedModal: 'mbiz-cms-rendred-modal',
         };
         this.events = {
@@ -86,6 +88,15 @@ class MbizCmsFields {
         uiElementsContainer.id = this.id.uiElementContainer;
         uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementList);
 
+        // Init close container button
+        const uiElementsContainerClose = `<button type="button" class="${this.classes.closeButton} ${this.classes.toggleButton}">${this.translations.close}</button>`;
+        uiElementsContainer.insertAdjacentHTML('beforeend', uiElementsContainerClose);
+
+        // Init container inner
+        const uiElementsContainerInner = document.createElement('div');
+        uiElementsContainerInner.classList.add(this.classes.dropableContainerInner);
+        uiElementsContainer.appendChild(uiElementsContainerInner);
+
         // Loop on UI Elements
         let error = false;
         for (let type in uiElements) {
@@ -98,7 +109,7 @@ class MbizCmsFields {
                 continue;
             }
 
-            uiElementsContainer.insertAdjacentHTML('beforeend', renderedUiElement);
+            uiElementsContainerInner.insertAdjacentHTML('beforeend', renderedUiElement);
         }
 
         // Append generated HTML to display current UI Elements of target
@@ -145,6 +156,7 @@ class MbizCmsFields {
         // Init container
         const elementsContainer = document.createElement('div');
         elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementList);
+        elementsContainer.dataset.placeholder = this.translations.placeholder;
 
         // Loop on UI Elements
         let error = false;
@@ -177,7 +189,7 @@ class MbizCmsFields {
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
-            let reorder = this.initReorder(document.getElementById(this.id.uiElementContainer), elementsContainer);
+            let reorder = this.initReorder(document.querySelector('#' + this.id.uiElementContainer + '> div'), elementsContainer);
             this.initReorderEvent(reorder, target, jsonContent);
         }
     }
@@ -279,8 +291,7 @@ class MbizCmsFields {
      * @param jsonContent
      * @param target
      */
-    loadForm(uiElement, uiElementIndex, jsonContent, target)
-    {
+    loadForm(uiElement, uiElementIndex, jsonContent, target) {
         let xhr = new XMLHttpRequest();
         let _self = this;
         xhr.onreadystatechange = function(){
@@ -312,7 +323,7 @@ class MbizCmsFields {
      */
     renderModal(html, uiElementType, uiElementIndex, jsonContent, target) {
         // Init modal
-        var modal = new tingle.modal({
+        const modal = new tingle.modal({
             footer: true,
             stickyFooter: false,
             closeMethods: ['overlay', 'button', 'escape'],
@@ -321,6 +332,14 @@ class MbizCmsFields {
         });
         let _self = this;
 
+        let modalPrimaryButtonClass = 'tingle-btn tingle-btn--primary tingle-btn--pull-right';
+        let modalsecondaryButtonClass = 'tingle-btn tingle-btn--secondary tingle-btn--pull-right';
+
+        if (this.templateRender === 'sylius') {
+            modalPrimaryButtonClass = 'ui button primary tingle-btn--pull-right';
+            modalsecondaryButtonClass = 'ui button tingle-btn--pull-right';
+        }
+
         // Add the content
         modal.setContent(html);
 
@@ -328,7 +347,7 @@ class MbizCmsFields {
         let form = this.initModalForm(uiElementType, uiElementIndex, jsonContent, target);
 
         // Button to submit
-        modal.addFooterBtn(this.translations.apply_changes, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+        modal.addFooterBtn(this.translations.apply_changes, modalPrimaryButtonClass, function () {
             if (form !== false) {
                 form.dispatchEvent(_self.events.updateElement(modal));
             } else {
@@ -337,7 +356,7 @@ class MbizCmsFields {
         });
 
         // Button to cancel
-        modal.addFooterBtn(this.translations.cancel_changes, 'tingle-btn tingle-btn--secondary tingle-btn--pull-right', function () {
+        modal.addFooterBtn(this.translations.cancel_changes, modalsecondaryButtonClass, function () {
             modal.close();
         });
 
@@ -354,8 +373,7 @@ class MbizCmsFields {
      * @param target
      * @returns {boolean|Element}
      */
-    initModalForm(uiElementType, uiElementIndex, jsonContent, target)
-    {
+    initModalForm(uiElementType, uiElementIndex, jsonContent, target) {
         // Retrieve form in modal
         let form = document.querySelector('.' + this.classes.renderedModal + ' form');
 
@@ -406,8 +424,7 @@ class MbizCmsFields {
      * @param modal
      * @returns {Array}
      */
-    convertFormToElement(form, uiElementType, modal)
-    {
+    convertFormToElement(form, uiElementType, modal) {
         // Initialize form data
         let formData = new FormData(form);
         formData.append('uiElementType', uiElementType);
@@ -457,9 +474,8 @@ class MbizCmsFields {
      *
      * @param type
      * @param uiElementMetaData {short_description: "Short description", description: "Description", title: "Title", image: "/path/to/image.jpg"}
-     * @param templateRender
      */
-    renderUiElementMetaData(type, uiElementMetaData, templateRender) {
+    renderUiElementMetaData(type, uiElementMetaData) {
         return `
         <div class="${this.classes.draggableItem}" data-ui-element-type="${type}">
             <button class="${this.classes.draggableItemHandler}" type="button">${this.translations.move}</button>
@@ -638,8 +654,7 @@ class MbizCmsFields {
      * @param jsonContent
      * @param target
      */
-    updateUiElement(index, element, jsonContent, target)
-    {
+    updateUiElement(index, element, jsonContent, target) {
         if (typeof jsonContent[index] !== 'undefined') {
             this.log('Update UI Element : ', {index: index, element: element, jsonContent: jsonContent, target: target});
             // Set new content for UI Element

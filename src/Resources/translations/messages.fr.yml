@@ -30,6 +30,7 @@ monsieurbiz_cmsplugin:
     confirm_delete: 'Êtes vous sûr(e) de vouloir supprimer cet élément ?'
     apply_changes: 'Appliquer les modifications'
     cancel_changes: 'Annuler les modifications'
+    placeholder: 'Faites glisser les widgets dans cette zone'
   action:
-    new: 'Ajouter du contenu'
+    new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'

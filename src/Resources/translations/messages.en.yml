@@ -30,6 +30,7 @@ monsieurbiz_cmsplugin:
     confirm_delete: 'Are you sure to delete this element ?'
     apply_changes: 'Apply changes'
     cancel_changes: 'Cancel changes'
+    placeholder: 'Drag widgets in this area'
   action:
-    new: 'Add new content'
+    new: 'Toggle available widgets'
     preview: 'Preview'
