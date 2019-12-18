@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
 
-use Monsieurbiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractUiElement implements UiElementInterface

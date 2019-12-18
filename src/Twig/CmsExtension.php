@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\Twig;
+namespace MonsieurBiz\SyliusCmsPlugin\Twig;
 
-use Monsieurbiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Monsieurbiz\SyliusCmsPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusCmsPlugin\UiElement\Factory;
 use Twig\Environment;
 
 final class CmsExtension extends AbstractExtension

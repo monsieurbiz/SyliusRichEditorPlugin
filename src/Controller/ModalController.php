@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\Controller;
+namespace MonsieurBiz\SyliusCmsPlugin\Controller;
 
-use Monsieurbiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
-use Monsieurbiz\SyliusCmsPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusCmsPlugin\UiElement\Factory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;

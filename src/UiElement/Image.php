@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
 
-use Monsieurbiz\SyliusCmsPlugin\Form\Type\UiElement\ImageType;
+use MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement\ImageType;
 
 class Image extends AbstractUiElement
 {
