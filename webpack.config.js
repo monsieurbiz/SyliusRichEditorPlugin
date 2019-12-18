@@ -7,8 +7,8 @@ Encore
     .setPublicPath('/public')
 
     // entries
-    .addEntry('cms-js', './assets/js/app.js')
-    .addStyleEntry('cms-css', './assets/css/app.scss')
+    .addEntry('rich-editor-js', './assets/js/app.js')
+    .addStyleEntry('rich-editor-css', './assets/css/app.scss')
 
     // copy images
     .copyFiles({

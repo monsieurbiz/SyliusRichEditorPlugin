@@ -1,11 +1,11 @@
-monsieur_biz_sylius_cms_admin_modal_form:
-    path: /monsieur_biz_sylius_cms/modal/edit
+monsieur_biz_sylius_rich_editor_admin_modal_form:
+    path: /monsieur_biz_sylius_rich_editor/modal/edit
     methods: [GET]
     defaults:
-        _controller: MonsieurBiz\SyliusCmsPlugin\Controller\ModalController:formAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:formAction
 
-monsieur_biz_sylius_cms_admin_modal_submit:
-    path: /monsieur_biz_sylius_cms/modal/submit
+monsieur_biz_sylius_rich_editor_admin_modal_submit:
+    path: /monsieur_biz_sylius_rich_editor/modal/submit
     methods: [POST]
     defaults:
-        _controller: MonsieurBiz\SyliusCmsPlugin\Controller\ModalController:submitAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:submitAction

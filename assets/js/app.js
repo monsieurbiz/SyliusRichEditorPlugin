@@ -3,12 +3,12 @@ import tingle from 'tingle.js';
 import { exec, init } from 'pell'
 
 /**
- * Class to manage CMS fields with UI Elements
+ * Class to manage Rich editor fields with UI Elements
  */
-class MbizCmsFields {
+class MbizRichEditorFields {
 
     /**
-     * Constructor for MbizCmsFields, see config in `src/Resources/views/Admin/app_javascript.html.twig`
+     * Constructor for MbizRichEditorFields, see config in `src/Resources/views/Admin/app.html.twig`
      * @param config
      */
     constructor(config) {
@@ -29,29 +29,29 @@ class MbizCmsFields {
 
         // Internal attributes
         this.id = {
-            uiElementsContainer: 'mbiz-cms-elements-container',
-            uiElementsContainerInner: 'mbiz-cms-elements-container-inner',
-            uiElementsContent: 'mbiz-cms-elements-content',
+            uiElementsContainer: 'mbiz-rich-editor-elements-container',
+            uiElementsContainerInner: 'mbiz-rich-editor-elements-container-inner',
+            uiElementsContent: 'mbiz-rich-editor-elements-content',
         };
         this.classes = {
-            uiElementList: 'mbiz-cms-component-ui-elements',
-            dropableContainer: 'mbiz-cms-dropable-container',
-            dropableContainerInner: 'mbiz-cms-dropable-container-inner',
-            draggableContainer: 'mbiz-cms-draggable-container',
-            draggableItem: 'mbiz-cms-draggable-item',
-            draggableItemHandler: 'mbiz-cms-draggable-item-handler',
-            draggableItemInner: 'mbiz-cms-draggable-item-inner',
-            draggableItemImg: 'mbiz-cms-draggable-item-img',
-            draggableItemContent: 'mbiz-cms-draggable-item-content',
-            draggableItemInfos: 'mbiz-cms-draggable-item-infos',
-            draggableItemTitle: 'mbiz-cms-draggable-item-title',
-            draggableItemActions: 'mbiz-cms-draggable-item-actions',
-            draggableItemButton: 'mbiz-cms-draggable-item-button',
-            deleteButton: 'mbiz-cms-delete-button',
-            updateButton: 'mbiz-cms-update-button',
-            toggleButton: 'mbiz-cms-toggle-button',
-            closeButton: 'mbiz-cms-close-button',
-            renderedModal: 'mbiz-cms-rendred-modal',
+            uiElementList: 'mbiz-rich-editor-component-ui-elements',
+            dropableContainer: 'mbiz-rich-editor-dropable-container',
+            dropableContainerInner: 'mbiz-rich-editor-dropable-container-inner',
+            draggableContainer: 'mbiz-rich-editor-draggable-container',
+            draggableItem: 'mbiz-rich-editor-draggable-item',
+            draggableItemHandler: 'mbiz-rich-editor-draggable-item-handler',
+            draggableItemInner: 'mbiz-rich-editor-draggable-item-inner',
+            draggableItemImg: 'mbiz-rich-editor-draggable-item-img',
+            draggableItemContent: 'mbiz-rich-editor-draggable-item-content',
+            draggableItemInfos: 'mbiz-rich-editor-draggable-item-infos',
+            draggableItemTitle: 'mbiz-rich-editor-draggable-item-title',
+            draggableItemActions: 'mbiz-rich-editor-draggable-item-actions',
+            draggableItemButton: 'mbiz-rich-editor-draggable-item-button',
+            deleteButton: 'mbiz-rich-editor-delete-button',
+            updateButton: 'mbiz-rich-editor-update-button',
+            toggleButton: 'mbiz-rich-editor-toggle-button',
+            closeButton: 'mbiz-rich-editor-close-button',
+            renderedModal: 'mbiz-rich-editor-rendred-modal',
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
@@ -60,7 +60,7 @@ class MbizCmsFields {
     }
 
     /**
-     * Init each CMS element
+     * Init each Rich Editor element
      */
     init() {
         // Init only if we match at least one target
@@ -123,7 +123,7 @@ class MbizCmsFields {
     }
 
     /**
-     * Init each CMS fields
+     * Init each Rich Editor fields
      */
     initFields() {
         for (let target of this.targets) {
@@ -136,7 +136,7 @@ class MbizCmsFields {
             try {
                 jsonContent = JSON.parse(content);
             } catch(e) {
-                this.error('Unable to parse the CMS JSON for this content : ', content);
+                this.error('Unable to parse the Rich Content JSON for this content : ', content);
                 continue;
             }
             this.initField(target, jsonContent);
@@ -792,6 +792,6 @@ class MbizCmsFields {
 
 // Init the plugin
 document.addEventListener('DOMContentLoaded', () => {
-    let cms = new MbizCmsFields(monsieurbizCmsPluginConfig);
-    cms.init();
+    let richEditor = new MbizRichEditorFields(monsieurbizRichEditorPluginConfig);
+    richEditor.init();
 });

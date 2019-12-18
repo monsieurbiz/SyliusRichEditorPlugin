@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Form\Type\WysiwygType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,14 +17,14 @@ class QuoteType extends AbstractType
         $builder
             ->add('author', TextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_cmsplugin.ui_element.quote.field.author',
+                'label' => 'monsieurbiz_richeditorplugin.ui_element.quote.field.author',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],
             ])
             ->add('content', WysiwygType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_cmsplugin.ui_element.quote.field.content',
+                'label' => 'monsieurbiz_richeditorplugin.ui_element.quote.field.content',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],

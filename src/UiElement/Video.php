@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement\VideoType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType;
 
 class Video extends AbstractUiElement
 {
@@ -12,7 +12,7 @@ class Video extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/video.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/video.svg';
     }
 
     public function getFields(): array

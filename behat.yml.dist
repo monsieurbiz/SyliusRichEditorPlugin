@@ -38,7 +38,7 @@ default:
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/Application/config/bootstrap.php
             kernel:
-                class: Tests\MonsieurBiz\SyliusCmsPlugin\Application\Kernel
+                class: Tests\MonsieurBiz\SyliusRichEditorPlugin\Application\Kernel
 
         FriendsOfBehat\VariadicExtension: ~
 

@@ -1,13 +1,13 @@
 {
   "entrypoints": {
-    "cms-js": {
+    "rich-editor-js": {
       "js": [
-        "/public/js/cms-js.js"
+        "/public/js/rich-editor-js.js"
       ]
     },
-    "cms-css": {
+    "rich-editor-css": {
       "css": [
-        "/public/css/cms-css.css"
+        "/public/css/rich-editor-css.css"
       ]
     }
   }

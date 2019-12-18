@@ -1,5 +1,5 @@
 {
-  "name": "sylius-cms-design",
+  "name": "monsieurbiz-sylius-rich-editor-plugin",
   "version": "0.0.1",
   "description": "Add and manage custom content blocks in your content",
   "main": "webpack.config.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/monsieurbiz/sylius-cms-design.git"
+    "url": "git+https://github.com/monsieurbiz/sylius-rich-editor-plugin.git"
   },
   "author": "Monsieur Biz <hello@monsieurbiz.com>",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/monsieurbiz/sylius-cms-design/issues"
+    "url": "https://github.com/monsieurbiz/sylius-rich-editor-plugin/issues"
   },
-  "homepage": "https://github.com/monsieurbiz/sylius-cms-design#readme",
+  "homepage": "https://github.com/monsieurbiz/sylius-rich-editor-plugin#readme",
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.1",
     "autoprefixer": "^9.7.3",

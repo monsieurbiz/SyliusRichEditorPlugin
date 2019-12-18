@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: MonsieurBiz\SyliusCmsPlugin
-        psr4_prefix: MonsieurBiz\SyliusCmsPlugin
+        namespace: MonsieurBiz\SyliusRichEditorPlugin
+        psr4_prefix: MonsieurBiz\SyliusRichEditorPlugin

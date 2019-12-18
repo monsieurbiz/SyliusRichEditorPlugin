@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\Controller;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
-use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
-use MonsieurBiz\SyliusCmsPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -70,7 +70,7 @@ class ModalController extends AbstractController
         // Create form depending on UI Element with data
         $form = $this->createForm($uiElement->getFormClass(), $data['fields']);
 
-        return $this->templatingEngine->renderResponse('@MonsieurBizSyliusCmsPlugin/Admin/Modal/edit.html.twig', [
+        return $this->templatingEngine->renderResponse('@MonsieurBizSyliusRichEditorPlugin/Admin/Modal/edit.html.twig', [
             'form' => $form->createView(),
             'uiElement' => $uiElement,
             'data' => $data['fields'],
@@ -110,7 +110,7 @@ class ModalController extends AbstractController
             foreach ($form as $child) {
                 if (!$child->isValid()) {
                     foreach ($child->getErrors() as $error) {
-                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_cmsplugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
+                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_richeditorplugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
                         $errors[$childLabel][] = $error->getMessage();
                     }
                 }
@@ -153,7 +153,7 @@ class ModalController extends AbstractController
 
         // Move the file to the directory where brochures are stored
         $file = $file->move(
-            $this->getParameter('monsieur_biz_sylius_cms.upload_directory'),
+            $this->getParameter('monsieurbiz_sylius_rich_editor.upload_directory'),
             $newFilename
         );
 

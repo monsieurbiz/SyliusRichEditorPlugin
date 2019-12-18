@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Exception\DuplicatedUiElementTypeException;
-use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\DuplicatedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Webmozart\Assert\Assert;
 

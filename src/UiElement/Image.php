@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement\ImageType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType;
 
 class Image extends AbstractUiElement
 {
@@ -12,7 +12,7 @@ class Image extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/image.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/image.svg';
     }
 
     public function getFields(): array

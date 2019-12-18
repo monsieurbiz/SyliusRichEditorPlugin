@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\MonsieurBiz\SyliusCmsPlugin\Application;
+namespace Tests\MonsieurBiz\SyliusRichEditorPlugin\Application;
 
 use PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
