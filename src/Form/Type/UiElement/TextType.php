@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement;
 
-use Monsieurbiz\SyliusCmsPlugin\Form\Type\WysiwygType;
+use MonsieurBiz\SyliusCmsPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;

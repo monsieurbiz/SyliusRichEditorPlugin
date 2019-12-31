@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusCmsPlugin\Form\Type;
+namespace MonsieurBiz\SyliusCmsPlugin\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;
