@@ -23,8 +23,8 @@ class MbizCmsFields {
         this.formRoute = this.config.formRoute;
         this.submitRoute = this.config.submitRoute;
         if (this.debug) {
-            this.log('Plugin configuration :', this.config);
-            this.log('Matched element(s) :', this.targets.length);
+            this.log('Plugin configuration:', this.config);
+            this.log('Matched element(s):', this.targets.length);
         }
 
         // Internal attributes
@@ -83,7 +83,7 @@ class MbizCmsFields {
      * @param uiElements
      */
     initUiElements(target, uiElements) {
-        this.log('Init UI Elements :', uiElements);
+        this.log('Init UI Elements:', uiElements);
 
         // Init container
         const uiElementsContainer = document.createElement('div');
@@ -104,7 +104,7 @@ class MbizCmsFields {
         let error = false;
         for (let type in uiElements) {
             let uiElement = uiElements[type]
-            this.log('Init UI Element :', uiElement);
+            this.log('Init UI Element:', uiElement);
 
             let renderedUiElement = this.renderUiElementMetaData(type, uiElement, this.templateRender);
             if (renderedUiElement === '') {
@@ -131,7 +131,7 @@ class MbizCmsFields {
             if (!content) {
                 content = '[]';
             }
-            this.log('Target\'s content :', content);
+            this.log('Target\'s content:', content);
             let jsonContent;
             try {
                 jsonContent = JSON.parse(content);
@@ -151,7 +151,7 @@ class MbizCmsFields {
      * @param jsonContent [{type: "UI Element Type", fields: {}}]
      */
     initField(target, jsonContent) {
-        this.log('Init field with parsed content :', jsonContent);
+        this.log('Init field with parsed content:', jsonContent);
 
         // Hide original input
         target.setAttribute('hidden', 'true');
@@ -166,7 +166,7 @@ class MbizCmsFields {
         let error = false;
         for (let uiElement of jsonContent) {
             // Retrieve the Ui Element type
-            this.log('Init UI Element :', uiElement);
+            this.log('Init UI Element:', uiElement);
             if (typeof this.uiElements[uiElement.type] === 'undefined') {
                 error = true;
                 this.error('Cannot find element of type ', uiElement.type);
@@ -175,7 +175,7 @@ class MbizCmsFields {
 
             // Render Ui Element meta data
             let uiElementMetaData = this.uiElements[uiElement.type];
-            this.log('Matched Ui Element with meta data :', uiElementMetaData);
+            this.log('Matched Ui Element with meta data:', uiElementMetaData);
             let renderedUiElementMetaData = this.renderUiElementMetaData(uiElement.type, uiElementMetaData, this.templateRender);
             if (renderedUiElementMetaData === '') {
                 error = true;
@@ -183,7 +183,7 @@ class MbizCmsFields {
             }
 
             // Add rendered Ui Element meta data in container
-            this.log('Rendered Ui Element meta data :', renderedUiElementMetaData);
+            this.log('Rendered Ui Element meta data:', renderedUiElementMetaData);
             elementsContainer.insertAdjacentHTML('beforeend', renderedUiElementMetaData);
         }
 
