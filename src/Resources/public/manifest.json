@@ -1,7 +1,9 @@
 {
   "public/cms-css.css": "/public/css/cms-css.css",
   "public/cms-js.js": "/public/js/cms-js.js",
+  "public/images/ui_elements/default.svg": "/public/images/ui_elements/default.svg",
   "public/images/ui_elements/image.svg": "/public/images/ui_elements/image.svg",
   "public/images/ui_elements/quote.svg": "/public/images/ui_elements/quote.svg",
-  "public/images/ui_elements/text.svg": "/public/images/ui_elements/text.svg"
+  "public/images/ui_elements/text.svg": "/public/images/ui_elements/text.svg",
+  "public/images/ui_elements/video.svg": "/public/images/ui_elements/video.svg"
 }
