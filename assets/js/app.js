@@ -29,7 +29,9 @@ class MbizCmsFields {
 
         // Internal attributes
         this.id = {
-            uiElementContainer: 'mbiz-cms-elements-container',
+            uiElementsContainer: 'mbiz-cms-elements-container',
+            uiElementsContainerInner: 'mbiz-cms-elements-container-inner',
+            uiElementsContent: 'mbiz-cms-elements-content',
         };
         this.classes = {
             uiElementList: 'mbiz-cms-component-ui-elements',
@@ -71,7 +73,6 @@ class MbizCmsFields {
                 _self.toggleUiElementsVisibility();
             });
             this.initUiElements(this.container, this.uiElements);
-
         }
     }
 
@@ -86,7 +87,7 @@ class MbizCmsFields {
 
         // Init container
         const uiElementsContainer = document.createElement('div');
-        uiElementsContainer.id = this.id.uiElementContainer;
+        uiElementsContainer.id = this.id.uiElementsContainer;
         uiElementsContainer.classList.add(this.classes.dropableContainer, this.classes.uiElementList);
 
         // Init close container button
@@ -95,6 +96,7 @@ class MbizCmsFields {
 
         // Init container inner
         const uiElementsContainerInner = document.createElement('div');
+        uiElementsContainerInner.id = this.id.uiElementsContainerInner;
         uiElementsContainerInner.classList.add(this.classes.dropableContainerInner);
         uiElementsContainer.appendChild(uiElementsContainerInner);
 
@@ -156,6 +158,7 @@ class MbizCmsFields {
 
         // Init container
         const elementsContainer = document.createElement('div');
+        elementsContainer.id = this.id.uiElementsContent;
         elementsContainer.classList.add(this.classes.draggableContainer, this.classes.uiElementList);
         elementsContainer.dataset.placeholder = this.translations.placeholder;
 
@@ -190,7 +193,7 @@ class MbizCmsFields {
         // Append generated HTML to display current UI Elements of target
         if (!error) {
             target.parentNode.appendChild(elementsContainer);
-            let reorder = this.initReorder(document.querySelector('#' + this.id.uiElementContainer + '> div'), elementsContainer);
+            let reorder = this.initReorder(document.querySelector('#' + this.id.uiElementsContainer + '> div'), elementsContainer);
             this.initReorderEvent(reorder, target, jsonContent);
         }
     }
@@ -205,7 +208,7 @@ class MbizCmsFields {
             toggleButton.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                document.querySelector('#' + this.id.uiElementContainer).classList.toggle('is-expanded');
+                document.querySelector('#' + this.id.uiElementsContainer).classList.toggle('is-expanded');
             });
         }
     }
@@ -608,7 +611,7 @@ class MbizCmsFields {
     initReorderEvent(drake, target, jsonContent) {
         drake.on('drag', (el, source) => {
             // Reorder inside the list
-            if (source.id !== this.id.uiElementContainer) {
+            if (source.id !== this.id.uiElementsContainer) {
                 const index = this.getElementIndex(el);
                 if (index !== false) {
                     this.log('Reorder drag start : ', {index: index, el: el, source: source});
@@ -617,13 +620,13 @@ class MbizCmsFields {
             }
 
             // Add a new element from top
-            if (source.id === this.id.uiElementContainer) {
+            if (source.id === this.id.uiElementsContainer) {
                 this.log('Copy drag start : ', {el: el, source: source});
             }
         });
         drake.on('drop', (el, targetElement, source, sibling) => {
             // Reorder inside the list
-            if (source.id !== this.id.uiElementContainer) {
+            if (source.id !== this.id.uiElementsContainerInner) {
                 const oldIndex = this.currentIndex;
                 const newIndex = this.getElementIndex(el);
                 if (newIndex !== false) {
@@ -633,7 +636,7 @@ class MbizCmsFields {
             }
 
             // Add a new element from top to Ui Element list
-            if (source.id === this.id.uiElementContainer && targetElement !== null && targetElement.classList.contains(this.classes.uiElementList)) {
+            if (source.id === this.id.uiElementsContainerInner && targetElement !== null && targetElement.classList.contains(this.classes.uiElementList)) {
                 this.log('Copy drag stop : ', {el: el, targetElement: targetElement, source: source, sibling: sibling});
                 const newIndex = this.getElementIndex(el);
                 const type = el.dataset.uiElementType;
