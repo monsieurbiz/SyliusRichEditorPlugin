@@ -410,7 +410,7 @@ class MbizCmsFields {
      * @param container
      */
     initWysiwyg(container) {
-        const targets = container.querySelectorAll('textarea');
+        const targets = container.querySelectorAll('textarea.wysiwyg-enabled');
 
         for (let target of targets) {
             // Hide targeted input
