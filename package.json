@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "dragula": "^3.7.2",
+    "pell": "^1.0.6",
     "tingle.js": "^0.15.2"
   }
 }

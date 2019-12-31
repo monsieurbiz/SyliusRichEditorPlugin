@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement;
 
+use Monsieurbiz\SyliusCmsPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -22,7 +22,7 @@ class QuoteType extends AbstractType
                     new Assert\NotBlank([])
                 ],
             ])
-            ->add('content', TextareaType::class, [
+            ->add('content', WysiwygType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_cmsplugin.ui_element.quote.field.content',
                 'constraints' => [

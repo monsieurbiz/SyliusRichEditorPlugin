@@ -61,6 +61,10 @@
                 &:focus {
                     border-color: rgba(26, 187, 156, .4);
                 }
+
+                &[hidden="true"] {
+                    display: none;
+                }
             }
 
             textarea {
@@ -94,6 +98,14 @@
 
 .gu-transit {
     opacity: .2;
+}
+
+// Pell
+@import '~pell/src/pell';
+
+.pell {
+    overflow: hidden;
+    border-radius: 4px;
 }
 
 // Sylius

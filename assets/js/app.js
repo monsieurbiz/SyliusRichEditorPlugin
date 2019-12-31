@@ -1,5 +1,6 @@
 import dragula from 'dragula';
 import tingle from 'tingle.js';
+import { exec, init } from 'pell'
 
 /**
  * Class to manage CMS fields with UI Elements
@@ -322,6 +323,8 @@ class MbizCmsFields {
      * @param target
      */
     renderModal(html, uiElementType, uiElementIndex, jsonContent, target) {
+        let _self = this;
+
         // Init modal
         const modal = new tingle.modal({
             footer: true,
@@ -329,8 +332,10 @@ class MbizCmsFields {
             closeMethods: ['overlay', 'button', 'escape'],
             cssClass: [this.classes.renderedModal],
             closeLabel: this.translations.close,
+            onOpen: function() {
+                _self.initWysiwyg(modal.modalBoxContent);
+            },
         });
-        let _self = this;
 
         let modalPrimaryButtonClass = 'tingle-btn tingle-btn--primary tingle-btn--pull-right';
         let modalsecondaryButtonClass = 'tingle-btn tingle-btn--secondary tingle-btn--pull-right';
@@ -397,6 +402,59 @@ class MbizCmsFields {
         }, false);
 
         return form;
+    }
+
+    /**
+     * Init wysiwyg with form content data
+     *
+     * @param container
+     */
+    initWysiwyg(container) {
+        const targets = container.querySelectorAll('textarea.wysiwyg-enabled');
+
+        for (let target of targets) {
+            // Hide targeted input
+            target.setAttribute('hidden', 'true');
+
+            // Create container
+            const wysiwygContainer = document.createElement('div');
+            wysiwygContainer.classList.add('pell');
+            target.parentNode.appendChild(wysiwygContainer);
+
+            // Init pell wysiwyg
+            const editor = init({
+                element: wysiwygContainer,
+
+                // <Function>, required
+                // Use the output html, triggered by element's `oninput` event
+                onChange: html => {
+                    target.textContent = html
+                },
+
+                // <string>, optional, default = 'div'
+                // Instructs the editor which element to inject via the return key
+                defaultParagraphSeparator: 'p',
+
+                // <Array[string | Object]>, string if overwriting, object if customizing/creating
+                // action.name<string> (only required if overwriting)
+                // action.icon<string> (optional if overwriting, required if custom action)
+                // action.title<string> (optional)
+                // action.result<Function> (required)
+                // Specify the actions you specifically want (in order)
+                actions: [
+                  'bold',
+                  'italic',
+                  'underline',
+                  'ulist',
+                  'olist',
+                  'link'
+                ],
+            })
+
+            // Populate wysiwyg with initial content
+            const initialContent = target.value;
+            editor.content.innerHTML = initialContent;
+        }
     }
 
     /**
