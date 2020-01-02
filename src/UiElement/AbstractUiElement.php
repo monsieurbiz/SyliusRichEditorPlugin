@@ -84,4 +84,9 @@ abstract class AbstractUiElement implements UiElementInterface
     {
         return sprintf('@MonsieurBizSyliusCmsPlugin/UiElement/%s.html.twig', $this->getType());
     }
+
+    public function getImage(): string
+    {
+        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/default.svg';
+    }
 }
