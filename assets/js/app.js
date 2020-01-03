@@ -103,7 +103,7 @@ class MbizCmsFields {
         // Loop on UI Elements
         let error = false;
         for (let type in uiElements) {
-            let uiElement = uiElements[type]
+            let uiElement = uiElements[type];
             this.log('Init UI Element:', uiElement);
 
             let renderedUiElement = this.renderUiElementMetaData(type, uiElement, this.templateRender);
@@ -445,12 +445,20 @@ class MbizCmsFields {
                 // action.result<Function> (required)
                 // Specify the actions you specifically want (in order)
                 actions: [
-                  'bold',
-                  'italic',
-                  'underline',
-                  'ulist',
-                  'olist',
-                  'link'
+                    'bold',
+                    'italic',
+                    'underline',
+                    'ulist',
+                    'olist',
+                    'heading1',
+                    'heading2',
+                    {
+                        name: 'heading3',
+                        icon: '<b>H<sub>3</sub></b>',
+                        title: 'Heading 3',
+                        result: () => exec('formatBlock', '<h3>')
+                    },
+                    'link'
                 ],
             })
 
