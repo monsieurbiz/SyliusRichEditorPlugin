@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement\TextType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType;
 
 class Text extends AbstractUiElement
 {
@@ -12,7 +12,7 @@ class Text extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/text.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/text.svg';
     }
 
     public function getFields(): array

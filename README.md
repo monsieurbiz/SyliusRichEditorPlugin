@@ -1,12 +1,12 @@
-# Documentation for MonsieurBizSearchPlugin
+# Rich Editor Plugin
 
-A CMS plugin for Sylius
+A plugin which adds a pretty cool rich editor for CMS purpose to your app.
 
 ## Setup
 
 Require the plugin
 
-`composer require monsieurbiz/sylius-cms-plugin`
+`composer require monsieurbiz/sylius-rich-editor-plugin`
 
 Change your `config/bundles.php` file to add the line for the plugin : 
 
@@ -15,13 +15,13 @@ Change your `config/bundles.php` file to add the line for the plugin :
 
 return [
     //..
-    MonsieurBiz\SyliusCmsPlugin\MonsieurBizSyliusCmsPlugin::class => ['all' => true],
+    MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true],
 ];
 ```
 
-Then create the config file in config/packages/monsieurbiz_cms_plugin.yaml :
+Then create the config file in `config/packages/monsieurbiz_rich_editor_plugin.yaml` :
 
 ```yaml
 imports:
-  - { resource: "@MonsieurBizSyliusCmsPlugin/Resources/config/config.yaml" }
+  - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
 ```

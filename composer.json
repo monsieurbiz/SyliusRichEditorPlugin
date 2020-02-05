@@ -1,8 +1,8 @@
 {
-    "name": "monsieurbiz/sylius-cms-plugin",
+    "name": "monsieurbiz/sylius-rich-editor-plugin",
     "type": "sylius-plugin",
-    "keywords": ["sylius", "sylius-plugin"],
-    "description": "A CMS plugin for Sylius.",
+    "keywords": ["monsieurbiz", "sylius", "sylius-plugin", "monofony"],
+    "description": "A Rich Editor plugin for Sylius.",
     "license": "MIT",
     "require": {
         "php": "^7.2",
@@ -49,8 +49,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "MonsieurBiz\\SyliusCmsPlugin\\": "src/",
-            "Tests\\MonsieurBiz\\SyliusCmsPlugin\\": "tests/"
+            "MonsieurBiz\\SyliusRichEditorPlugin\\": "src/",
+            "Tests\\MonsieurBiz\\SyliusRichEditorPlugin\\": "tests/"
         }
     },
     "autoload-dev": {

@@ -136,7 +136,7 @@
 // Dropable container
 // --------------------------------------------------------------------------
 
-.mbiz-cms-dropable-container {
+.mbiz-rich-editor-dropable-container {
     position: sticky;
     top: 56px;
     z-index: 100;
@@ -159,7 +159,7 @@
         z-index: 100;
     }
 
-    .mbiz-cms-close-button {
+    .mbiz-rich-editor-close-button {
         @extend %text-hide;
         @extend %btn-unstyled;
 
@@ -193,7 +193,7 @@
     }
 }
 
-.mbiz-cms-dropable-container-inner {
+.mbiz-rich-editor-dropable-container-inner {
     display: flex;
     width: 100%;
     max-height: 0;
@@ -215,7 +215,7 @@
 // Draggable container
 // --------------------------------------------------------------------------
 
-.mbiz-cms-draggable-container {
+.mbiz-rich-editor-draggable-container {
     position: relative;
     display: flex;
     flex: 1 1 auto;
@@ -252,7 +252,7 @@
 // Draggable item
 // --------------------------------------------------------------------------
 
-.mbiz-cms-draggable-item {
+.mbiz-rich-editor-draggable-item {
     position: relative;
     display: flex;
     flex: 1 1 auto;
@@ -268,14 +268,14 @@
         cursor: grabbing;
     }
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         flex: 1;
         padding-left: 32px;
         background: #eee;
     }
 }
 
-.mbiz-cms-draggable-item-handler {
+.mbiz-rich-editor-draggable-item-handler {
     @extend %text-hide;
     @extend %btn-unstyled;
 
@@ -309,7 +309,7 @@
         cursor: grabbing;
     }
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         position: absolute;
         top: 0;
         right: 0;
@@ -332,7 +332,7 @@
     }
 }
 
-.mbiz-cms-draggable-item-inner {
+.mbiz-rich-editor-draggable-item-inner {
     display: flex;
     flex: 1 1 auto;
     align-items: center;
@@ -341,14 +341,14 @@
     border: 1px solid rgba(34, 36, 38, .1);
     border-radius: 4px;
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         padding: 0;
         border: 0;
         border-radius: 0;
     }
 }
 
-.mbiz-cms-draggable-item-img {
+.mbiz-rich-editor-draggable-item-img {
     flex: 0 0 auto;
     width: 90px;
     height: 90px;
@@ -360,34 +360,34 @@
         height: auto;
     }
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         width: 70px;
         height: 70px;
     }
 }
 
-.mbiz-cms-draggable-item-content {
+.mbiz-rich-editor-draggable-item-content {
     display: flex;
     flex: 1 1 auto;
     align-items: center;
     justify-content: space-between;
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         font-size: 13px;
     }
 }
 
-.mbiz-cms-draggable-item-title {
+.mbiz-rich-editor-draggable-item-title {
     margin: 0 0 6px;
     font-size: 18px;
     font-weight: 700;
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         font-size: 16px;
     }
 }
 
-.mbiz-cms-draggable-item-actions {
+.mbiz-rich-editor-draggable-item-actions {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
@@ -397,12 +397,12 @@
         margin: 0 0 0 12px;
     }
 
-    .mbiz-cms-dropable-container & {
+    .mbiz-rich-editor-dropable-container & {
         display: none;
     }
 }
 
-.mbiz-cms-draggable-item-button {
+.mbiz-rich-editor-draggable-item-button {
     @extend %text-hide;
     @extend %btn-unstyled;
 
@@ -424,7 +424,7 @@
         opacity: 1;
     }
 
-    &.mbiz-cms-delete-button {
+    &.mbiz-rich-editor-delete-button {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23555' d='M20 7v14a1 1 0 01-1 1H5a1 1 0 01-1-1V7H2V5h20v2h-2zm-9 3v7h2v-7h-2zM7 2h10v2H7V2z'/%3E%3C/svg%3E");
     }
 }

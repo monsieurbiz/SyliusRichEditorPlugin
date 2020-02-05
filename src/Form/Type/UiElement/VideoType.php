@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement;
+namespace Monsieurbiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -15,7 +15,7 @@ class VideoType extends AbstractType
     {
         $builder
             ->add('video', FileType::class, [
-                'label' => 'monsieurbiz_cmsplugin.ui_element.video.field.video',
+                'label' => 'monsieurbiz_richeditorplugin.ui_element.video.field.video',
                 'data_class' => null,
                 'required' => true,
                 'constraints' => [
@@ -29,7 +29,7 @@ class VideoType extends AbstractType
                 ],
             ])
             ->add('image', FileType::class, [
-                'label' => 'monsieurbiz_cmsplugin.ui_element.video.field.image',
+                'label' => 'monsieurbiz_richeditorplugin.ui_element.video.field.image',
                 'data_class' => null,
                 'required' => true,
                 'constraints' => [

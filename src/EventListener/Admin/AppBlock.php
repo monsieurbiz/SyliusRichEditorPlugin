@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\EventListener\Admin;
+namespace MonsieurBiz\SyliusRichEditorPlugin\EventListener\Admin;
 
-use MonsieurBiz\SyliusCmsPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
 use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
 use \Twig_Environment;

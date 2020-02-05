@@ -1,26 +1,26 @@
 <script type="text/javascript">
-    var monsieurbizCmsPluginConfig = {
+    var monsieurbizRichEditorPluginConfig = {
         debug: {{ settings.attr.debug|number_format }},
         templateRender: 'sylius',
-        querySelector: '[data-component="cms"]',
+        querySelector: '[data-component="rich-editor"]',
         containerSelector: '#wrapper',
-        formRoute: '{{ path('monsieur_biz_sylius_cms_admin_modal_form') | escape('js') }}',
-        submitRoute: '{{ path('monsieur_biz_sylius_cms_admin_modal_submit') | escape('js') }}',
+        formRoute: '{{ path('monsieur_biz_sylius_rich_editor_admin_modal_form') | escape('js') }}',
+        submitRoute: '{{ path('monsieur_biz_sylius_rich_editor_admin_modal_submit') | escape('js') }}',
         translations: {
-            move: '{{ 'monsieurbiz_cmsplugin.form.move' | trans | escape('js') }}',
-            close: '{{ 'monsieurbiz_cmsplugin.form.close' | trans | escape('js') }}',
-            edit: '{{ 'monsieurbiz_cmsplugin.form.edit' | trans | escape('js') }}',
-            delete: '{{ 'monsieurbiz_cmsplugin.form.delete' | trans | escape('js') }}',
-            confirm_delete: '{{ 'monsieurbiz_cmsplugin.form.confirm_delete' | trans | escape('js') }}',
-            apply_changes: '{{ 'monsieurbiz_cmsplugin.form.apply_changes' | trans | escape('js') }}',
-            cancel_changes: '{{ 'monsieurbiz_cmsplugin.form.cancel_changes' | trans | escape('js') }}',
-            placeholder: '{{ 'monsieurbiz_cmsplugin.form.placeholder' | trans | escape('js') }}',
-            new: '{{ 'monsieurbiz_cmsplugin.action.new' | trans | escape('js') }}',
-            preview: '{{ 'monsieurbiz_cmsplugin.action.preview' | trans | escape('js') }}',
+            move: '{{ 'monsieurbiz_richeditor_plugin.form.move' | trans | escape('js') }}',
+            close: '{{ 'monsieurbiz_richeditor_plugin.form.close' | trans | escape('js') }}',
+            edit: '{{ 'monsieurbiz_richeditor_plugin.form.edit' | trans | escape('js') }}',
+            delete: '{{ 'monsieurbiz_richeditor_plugin.form.delete' | trans | escape('js') }}',
+            confirm_delete: '{{ 'monsieurbiz_richeditor_plugin.form.confirm_delete' | trans | escape('js') }}',
+            apply_changes: '{{ 'monsieurbiz_richeditor_plugin.form.apply_changes' | trans | escape('js') }}',
+            cancel_changes: '{{ 'monsieurbiz_richeditor_plugin.form.cancel_changes' | trans | escape('js') }}',
+            placeholder: '{{ 'monsieurbiz_richeditor_plugin.form.placeholder' | trans | escape('js') }}',
+            new: '{{ 'monsieurbiz_richeditor_plugin.action.new' | trans | escape('js') }}',
+            preview: '{{ 'monsieurbiz_richeditor_plugin.action.preview' | trans | escape('js') }}',
         },
         uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
     };
 </script>
 
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliuscmsplugin/js/cms-js.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliuscmsplugin/css/cms-css.css'} %}
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}

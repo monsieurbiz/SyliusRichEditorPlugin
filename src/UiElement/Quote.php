@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Form\Type\UiElement\QuoteType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType;
 
 class Quote extends AbstractUiElement
 {
@@ -12,7 +12,7 @@ class Quote extends AbstractUiElement
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/quote.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/quote.svg';
     }
 
     public function getFields(): array

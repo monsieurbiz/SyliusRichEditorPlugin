@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractUiElement implements UiElementInterface
 {
-    const TRANSLATION_PREFIX = 'monsieurbiz_cmsplugin.ui_element';
+    const TRANSLATION_PREFIX = 'monsieurbiz_richeditorplugin.ui_element';
 
     protected $type = '';
 
@@ -82,11 +82,11 @@ abstract class AbstractUiElement implements UiElementInterface
 
     public function getTemplate(): string
     {
-        return sprintf('@MonsieurBizSyliusCmsPlugin/UiElement/%s.html.twig', $this->getType());
+        return sprintf('@MonsieurBizSyliusRichEditorPlugin/UiElement/%s.html.twig', $this->getType());
     }
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliuscmsplugin/images/ui_elements/default.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/default.svg';
     }
 }

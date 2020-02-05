@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusCmsPlugin\Twig;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
-use MonsieurBiz\SyliusCmsPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use MonsieurBiz\SyliusCmsPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
 use Twig\Environment;
 
-final class CmsExtension extends AbstractExtension
+final class RichEditorExtension extends AbstractExtension
 {
     /**
      * @var Factory
@@ -31,11 +31,11 @@ final class CmsExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('mbiz_cms_render', [$this, 'renderCmsField'], ['is_safe' => ['html']]),
+            new TwigFilter('mbiz_rich_editor_render', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
         ];
     }
 
-    public function renderCmsField($content)
+    public function renderRichEditorField($content)
     {
         $elements = json_decode($content, true);
         if (!$elements) {

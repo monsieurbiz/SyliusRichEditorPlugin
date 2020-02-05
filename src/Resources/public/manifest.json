@@ -1,6 +1,6 @@
 {
-  "public/cms-css.css": "/public/css/cms-css.css",
-  "public/cms-js.js": "/public/js/cms-js.js",
+  "public/rich-editor-css.css": "/public/css/rich-editor-css.css",
+  "public/rich-editor-js.js": "/public/js/rich-editor-js.js",
   "public/images/ui_elements/default.svg": "/public/images/ui_elements/default.svg",
   "public/images/ui_elements/image.svg": "/public/images/ui_elements/image.svg",
   "public/images/ui_elements/quote.svg": "/public/images/ui_elements/quote.svg",
