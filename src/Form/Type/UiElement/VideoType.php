@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Monsieurbiz\SyliusRichEditorPlugin\Form\Type\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
