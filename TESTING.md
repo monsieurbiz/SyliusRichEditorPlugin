@@ -13,7 +13,8 @@
     $ (cd tests/Application && bin/console doctrine:schema:create -e test)
     ```
 
-To be able to setup the plugin's database, remember to configure you database credentials in `tests/Application/.env` and `tests/Application/.env.test`.
+To be able to setup the plugin's database, remember to configure your database credentials in `tests/Application/.env` 
+and `tests/Application/.env.test`. You can also add custom configuration in `tests/Application/.env.test.local`.
 
 ## Usage
 
