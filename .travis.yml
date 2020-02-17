@@ -44,3 +44,7 @@ script:
 
     - vendor/bin/phpunit
     - vendor/bin/phpspec run
+
+branches:
+    only:
+        - master
