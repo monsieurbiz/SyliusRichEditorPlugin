@@ -3,7 +3,9 @@ includes:
     - vendor/phpstan/phpstan-webmozart-assert/extension.neon
 
 parameters:
-    reportUnmatchedIgnoredErrors: false
+    level: max
+    paths:
+        - %rootDir%/src/
 
     excludes_analyse:
         # Makes PHPStan crash
