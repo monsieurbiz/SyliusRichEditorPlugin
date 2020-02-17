@@ -11,3 +11,5 @@
 /phpspec.yml
 
 /package-lock.json
+
+/.php-version
