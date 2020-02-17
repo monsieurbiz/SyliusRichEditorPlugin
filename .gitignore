@@ -13,3 +13,4 @@
 /package-lock.json
 
 /.php-version
+/.phpunit.result.cache
