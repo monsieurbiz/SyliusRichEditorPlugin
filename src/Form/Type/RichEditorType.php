@@ -1,6 +1,6 @@
 <?php
 
-namespace Monsieurbiz\SyliusRichEditorPlugin\Form\Type;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormInterface;

@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
  */
 trait MonofonyPluginTrait
 {
-    /** @var ExtensionInterface|bool */
+    /** @var ExtensionInterface|null */
     private $containerExtension;
 
     /**
@@ -50,11 +50,11 @@ trait MonofonyPluginTrait
 
                 $this->containerExtension = $extension;
             } else {
-                $this->containerExtension = false;
+                $this->containerExtension = null;
             }
         }
 
-        return $this->containerExtension ?: null;
+        return $this->containerExtension;
     }
 
     /**
