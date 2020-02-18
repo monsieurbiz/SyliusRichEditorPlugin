@@ -25,6 +25,13 @@ return array(
                        "author": "Baudelaire",
                        "content": "Citation de Baudelaire"
                      }
+                   },
+                   {
+                     "type": "video",
+                     "fields": {
+                       "video": "/medias/toto.mp4",
+                       "image": "/medias/toto.jpg"
+                     }
                    }
              ]',
 )
@@ -39,3 +46,6 @@ return array(
     Citation de Baudelaire
     <br />— <cite>Baudelaire</cite>
 </blockquote>
+<video width="100%" poster="/medias/toto.jpg" controls>
+    <source src="/medias/toto.mp4" type="video/mp4">
+</video>
