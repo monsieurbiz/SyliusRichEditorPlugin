@@ -2,7 +2,13 @@
 
 ## Installation
 
-1. From the plugin root directory, run the following commands:
+1. To be able to run yarn build correctly, create symlink for `node_modules` :
+
+    ```bash
+    ln -s tests/Application/node_modules node_modules
+    ```
+
+2. From the plugin root directory, run the following commands:
 
     ```bash
     $ (cd tests/Application && yarn install)
