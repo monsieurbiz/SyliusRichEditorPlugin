@@ -55,7 +55,7 @@ monsieur_biz_rich_editor_plugin:
 
 ### Update your form type
 
-To make a field use the rich editor, you have to use `RichEditorType` in your field.
+To make a field use the rich editor, you have to use `RichEditorType` on it.
 
 Here is a simple example with the description field of the `ProductTranslationType` form : 
 
@@ -250,9 +250,15 @@ Here is an example of simple render for this element :
 
 ### The result !
 
+#### The element is on the toolbar
+
 ![The GMap element](screenshots/gmap_element.png)
 
+#### You have a form in the modal to edit it
+
 ![The GMap form](screenshots/gmap_form.png)
+
+#### It will use your template to render it
 
 ![The GMap display](screenshots/gmap_render.png)
 
