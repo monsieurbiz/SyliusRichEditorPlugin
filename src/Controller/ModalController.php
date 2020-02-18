@@ -153,7 +153,7 @@ class ModalController extends AbstractController
 
         // Move the file to the directory where brochures are stored
         $file = $file->move(
-            $this->getParameter('monsieurbiz_sylius_rich_editor.upload_directory'),
+            $this->getParameter('monsieur_biz_sylius_rich_editor.upload_directory'),
             $newFilename
         );
 
