@@ -110,7 +110,7 @@ class ModalController extends AbstractController
             foreach ($form as $child) {
                 if (!$child->isValid()) {
                     foreach ($child->getErrors() as $error) {
-                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_richeditorplugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
+                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_richeditor_plugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
                         $errors[$childLabel][] = $error->getMessage();
                     }
                 }
@@ -153,7 +153,7 @@ class ModalController extends AbstractController
 
         // Move the file to the directory where brochures are stored
         $file = $file->move(
-            $this->getParameter('monsieurbiz_sylius_rich_editor.upload_directory'),
+            $this->getParameter('monsieur_biz_sylius_rich_editor.upload_directory'),
             $newFilename
         );
 

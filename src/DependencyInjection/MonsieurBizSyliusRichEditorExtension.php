@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 
 final class MonsieurBizSyliusRichEditorExtension extends Extension
 {
-    CONST EXTENSION_CONFIG_NAME = 'monsieurbiz_sylius_rich_editor';
+    CONST EXTENSION_CONFIG_NAME = 'monsieur_biz_sylius_rich_editor';
 
     public function load(array $configs, ContainerBuilder $container)
     {

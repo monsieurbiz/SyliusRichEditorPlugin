@@ -15,7 +15,7 @@ class VideoType extends AbstractType
     {
         $builder
             ->add('video', FileType::class, [
-                'label' => 'monsieurbiz_richeditorplugin.ui_element.video.field.video',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.video.field.video',
                 'data_class' => null,
                 'required' => true,
                 'constraints' => [
@@ -29,7 +29,7 @@ class VideoType extends AbstractType
                 ],
             ])
             ->add('image', FileType::class, [
-                'label' => 'monsieurbiz_richeditorplugin.ui_element.video.field.image',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.video.field.image',
                 'data_class' => null,
                 'required' => true,
                 'constraints' => [

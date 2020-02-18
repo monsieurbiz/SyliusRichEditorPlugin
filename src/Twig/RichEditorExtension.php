@@ -38,7 +38,7 @@ final class RichEditorExtension extends AbstractExtension
     public function renderRichEditorField($content)
     {
         $elements = json_decode($content, true);
-        if (!$elements) {
+        if ($elements === false) {
             return $content;
         }
 
