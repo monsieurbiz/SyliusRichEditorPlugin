@@ -9,7 +9,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractUiElement implements UiElementInterface
 {
-    const TRANSLATION_PREFIX = 'monsieurbiz_richeditorplugin.ui_element';
+    const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
 
     protected $type = '';
 

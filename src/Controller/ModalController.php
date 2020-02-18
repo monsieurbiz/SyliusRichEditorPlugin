@@ -110,7 +110,7 @@ class ModalController extends AbstractController
             foreach ($form as $child) {
                 if (!$child->isValid()) {
                     foreach ($child->getErrors() as $error) {
-                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_richeditorplugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
+                        $childLabel = $this->translator->trans(sprintf('monsieurbiz_richeditor_plugin.ui_element.%s.field.%s', $uiElementType, $child->getName()));
                         $errors[$childLabel][] = $error->getMessage();
                     }
                 }

@@ -16,7 +16,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'label' => 'monsieurbiz_richeditorplugin.ui_element.image.field.image',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
                 'constraints' => [
@@ -25,14 +25,14 @@ class ImageType extends AbstractType
             ])
             ->add('alt', TextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditorplugin.ui_element.image.field.alt',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.alt',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],
             ])
             ->add('title', TextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditorplugin.ui_element.image.field.title',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.title',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],
