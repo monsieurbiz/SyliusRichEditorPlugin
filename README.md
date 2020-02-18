@@ -41,6 +41,13 @@ imports:
   - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
 ```
 
+Finally import the routes in `config/routes.yaml` : 
+
+```yaml
+monsieur_biz_rich_editor_plugin:
+    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing.yaml"
+```
+
 ## Contributing
 
 You can open an issue or a Pull Request if you want! 😘  
