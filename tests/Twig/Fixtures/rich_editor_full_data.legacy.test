@@ -1,0 +1,41 @@
+--TEST--
+"mbiz_rich_editor_render" filter with full data
+--TEMPLATE--
+{{ data|mbiz_rich_editor_render }}
+--DATA--
+return array(
+    'data' => '[
+                   {
+                     "type": "text",
+                     "fields": {
+                       "content": "Mon texte"
+                     }
+                   },
+                   {
+                     "type": "image",
+                     "fields": {
+                       "image": "/medias/toto.jpg",
+                       "alt": "Toto",
+                       "title": "Photo de Toto"
+                     }
+                   },
+                   {
+                     "type": "quote",
+                     "fields": {
+                       "author": "Baudelaire",
+                       "content": "Citation de Baudelaire"
+                     }
+                   }
+             ]',
+)
+--EXPECT--
+<p>
+    Mon texte
+</p>
+<p>
+    <img src="/medias/toto.jpg" alt="Toto" title="Photo de Toto" />
+</p>
+<blockquote>
+    Citation de Baudelaire
+    <br />— <cite>Baudelaire</cite>
+</blockquote>
