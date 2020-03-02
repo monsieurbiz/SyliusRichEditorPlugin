@@ -41,3 +41,7 @@ monsieurbiz_richeditor_plugin:
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
+  error:
+    cannot_parse_json: 'Cannot parse the current content'
+    cannot_find_type: 'Cannot find type for some UI Elements'
+    cannot_upload_image: 'Cannot upload the image. The file may be too large or have incorrect format.'

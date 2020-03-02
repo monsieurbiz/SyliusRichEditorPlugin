@@ -41,3 +41,7 @@ monsieurbiz_richeditor_plugin:
   action:
     new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'
+  error:
+    cannot_parse_json: 'Impossible d''analyser le contenu actuel.'
+    cannot_find_type: 'Impossible de trouver le type pour certains éléments'
+    cannot_upload_file: 'Impossible de charger le fichier. Il est possible qu''il soit trop lourd ou son format incorrect.'

@@ -20,6 +20,7 @@ class MbizRichEditorFields {
         this.container = document.querySelector(config.containerSelector);
         this.uiElements = this.config.uiElements;
         this.translations = this.config.translations;
+        this.errorsTranslations = this.config.errorsTranslations;
         this.formRoute = this.config.formRoute;
         this.submitRoute = this.config.submitRoute;
         if (this.debug) {
@@ -136,7 +137,12 @@ class MbizRichEditorFields {
             try {
                 jsonContent = JSON.parse(content);
             } catch(e) {
-                this.error('Unable to parse the Rich Content JSON for this content : ', content);
+                this.error(
+                    'Unable to parse the Rich Content JSON for this content : ',
+                    content,
+                    this.errorsTranslations.cannotParseJson,
+                    true
+                );
                 continue;
             }
             this.initField(target, jsonContent);
@@ -169,7 +175,11 @@ class MbizRichEditorFields {
             this.log('Init UI Element:', uiElement);
             if (typeof this.uiElements[uiElement.type] === 'undefined') {
                 error = true;
-                this.error('Cannot find element of type ', uiElement.type);
+                this.error(
+                    'Cannot find element of type ',
+                    uiElement.type,
+                    this.errorsTranslations.cannotFindType
+                );
                 continue;
             }
 
@@ -524,8 +534,20 @@ class MbizRichEditorFields {
                             alert(field + ' : ' + response.errors[field].join('\n'));
                         }
                     }
+                    // Make UI Element without field in textarea while it's not valid
+                    let emptyElement = {type: uiElementType, fields: {}};
+                    _self.log('Return element with empty fields', emptyElement);
+                    element = emptyElement
                 } else {
-                    _self.error('Error during file upload', {form: form, status: xhr.status, xhr: xhr});
+                    _self.error(
+                        'Error during file upload',
+                        {form: form, status: xhr.status, xhr: xhr},
+                        _self.errorsTranslations.cannotUploadFile
+                    );
+                    // Make UI Element without field in textarea while it's not valid
+                    let emptyElement = {type: uiElementType, fields: {}};
+                    _self.log('Return element with empty fields', emptyElement);
+                    element = emptyElement
                 }
             }
         };
@@ -757,20 +779,30 @@ class MbizRichEditorFields {
      *
      * @param description
      * @param content
+     * @param displayedError
+     * @param resetRichField
      */
-    error(description, content) {
-        // If error, display original fields
-        for (let target of this.targets) {
-            target.removeAttribute('hidden');
-        }
-        // Remove generated blocks
-        for (let target of document.querySelectorAll('.' + this.classes.uiElementList)) {
-            target.remove();
+    error(description, content, displayedError = null, resetRichField = false) {
+        if (resetRichField) {
+            // If error, display original fields
+            for (let target of this.targets) {
+                target.removeAttribute('hidden');
+            }
+
+            // Remove generated blocks
+            for (let target of document.querySelectorAll('.' + this.classes.uiElementList)) {
+                target.remove();
+            }
         }
 
-        // Display error
+        // Display error in console
         console.error(description);
         console.error(content);
+
+        // Display error for user if message exists
+        if (displayedError) {
+            alert(displayedError);
+        }
     }
 
     /**

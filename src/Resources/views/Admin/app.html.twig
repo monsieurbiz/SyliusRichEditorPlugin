@@ -18,6 +18,11 @@
             new: '{{ 'monsieurbiz_richeditor_plugin.action.new' | trans | escape('js') }}',
             preview: '{{ 'monsieurbiz_richeditor_plugin.action.preview' | trans | escape('js') }}',
         },
+        errorsTranslations: {
+            cannotParseJson: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_parse_json' | trans | escape('js') }}',
+            cannotFindType: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_find_type' | trans | escape('js') }}',
+            cannotUploadFile: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_upload_file' | trans | escape('js') }}',
+        },
         uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
     };
 </script>
