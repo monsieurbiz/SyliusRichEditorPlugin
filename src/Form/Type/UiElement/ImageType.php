@@ -23,6 +23,7 @@ class ImageType extends AbstractType
                     new Assert\NotBlank([]),
                     new Assert\Image([])
                 ],
+                'attr' => ['data-image' => 'true']
             ])
             ->add('alt', TextType::class, [
                 'required' => true,

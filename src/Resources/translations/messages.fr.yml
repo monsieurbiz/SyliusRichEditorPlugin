@@ -38,6 +38,9 @@ monsieurbiz_richeditor_plugin:
     apply_changes: 'Appliquer les modifications'
     cancel_changes: 'Annuler les modifications'
     placeholder: 'Faites glisser les widgets dans cette zone'
+    current_image: 'Image actuelle'
+    current_video: 'Video actuelle'
+    current_file: 'Fichier actuel'
   action:
     new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'

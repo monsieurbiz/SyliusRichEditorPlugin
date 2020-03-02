@@ -1,0 +1,28 @@
+{% extends '@SyliusUi/Form/theme.html.twig' %}
+
+{% block file_widget %}
+    {% if form.vars.data is not empty %}
+        {% if form.vars.attr['data-image'] is defined %}
+            <p>
+                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</span><br />
+                <img src="{{ form.vars.data }}" alt="" style="max-width: 300px;max-height: 300px;" />
+            </p>
+        {% elseif form.vars.attr['data-video'] is defined %}
+            <p>
+                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_video' | trans }}</span><br />
+                <video width="100%" controls style="max-width: 300px;max-height: 300px;">
+                    <source src="{{ form.vars.data }}" type="video/{{ form.vars.data|split('.')|last }}">
+                </video>
+            </p>
+        {% else %}
+            <p>
+                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_file' | trans }}</span><br />
+                <a href="{{ form.vars.data }}" target="_blank" rel="noopener noreferrer">
+                    {{ form.vars.data }}
+                </a>
+            </p>
+        {% endif %}
+    {% endif %}
+    {{- form_widget(form) -}}
+{% endblock %}
+

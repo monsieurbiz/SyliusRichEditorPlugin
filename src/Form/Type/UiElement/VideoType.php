@@ -27,6 +27,7 @@ class VideoType extends AbstractType
                         ]
                     ])
                 ],
+                'attr' => ['data-video' => 'true']
             ])
             ->add('image', FileType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.video.field.image',
@@ -36,6 +37,7 @@ class VideoType extends AbstractType
                     new Assert\NotBlank(),
                     new Assert\Image([])
                 ],
+                'attr' => ['data-image' => 'true']
             ])
         ;
     }

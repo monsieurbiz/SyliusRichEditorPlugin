@@ -1,23 +1,8 @@
-{% form_theme form '@SyliusUi/Form/theme.html.twig' %}
+{% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
 
 <h1>{{ uiElement.title }}</h1>
 
 <p>{{ uiElement.description }}</p>
-
-
-{% if uiElement.type == 'image' and data.image is defined and data.image is not empty %}
-    {# @TODO Make a form render for file type and display image before field #}
-    <p>{{ 'monsieurbiz_richeditor_plugin.ui_element.image.field.current_image' | trans }}</p>
-    <p>
-        <img src="{{ data.image }}" alt="{{ data.alt | default('') }}" title="{{ data.title | default('') }}" style="max-width: 300px;max-height: 300px;"/>
-    </p>
-{% endif %}
-
-{% if uiElement.type == 'video' and data.video is defined and data.video is not empty %}
-    <video width="100%" poster="{{ data.image }}" controls>
-        <source src="{{ data.video }}" type="video/{{ data.video|split('.')|last }}">
-    </video>
-{% endif %}
 
 <p>
     {{ form(form) }}
