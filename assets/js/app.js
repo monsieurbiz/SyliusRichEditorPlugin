@@ -490,9 +490,13 @@ class MbizRichEditorFields {
     updateWithFormData(form, uiElementType, uiElementIndex, modal, jsonContent, target) {
         // Convert form data to an array
         const updatedElement = this.convertFormToElement(form, uiElementType, modal);
-        this.log('Retrieved form element', {updatedElement: updatedElement});
-        // Update UI Element
-        this.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
+        if (updatedElement) {
+            this.log('Retrieved form element', {updatedElement: updatedElement});
+            // Update UI Element
+            this.updateUiElement(uiElementIndex, updatedElement, jsonContent, target);
+        } else {
+            this.log('Invalid form, no element update');
+        }
     }
 
     /**
@@ -534,20 +538,16 @@ class MbizRichEditorFields {
                             alert(field + ' : ' + response.errors[field].join('\n'));
                         }
                     }
-                    // Make UI Element without field in textarea while it's not valid
-                    let emptyElement = {type: uiElementType, fields: {}};
-                    _self.log('Return element with empty fields', emptyElement);
-                    element = emptyElement
+                    // Return false to not update current data
+                    element = false;
                 } else {
                     _self.error(
                         'Error during file upload',
                         {form: form, status: xhr.status, xhr: xhr},
                         _self.errorsTranslations.cannotUploadFile
                     );
-                    // Make UI Element without field in textarea while it's not valid
-                    let emptyElement = {type: uiElementType, fields: {}};
-                    _self.log('Return element with empty fields', emptyElement);
-                    element = emptyElement
+                    // Return false to not update current data
+                    element = false;
                 }
             }
         };
