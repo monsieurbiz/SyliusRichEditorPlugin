@@ -20,6 +20,7 @@ class ImageType extends AbstractType
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
                 'constraints' => [
+                    new Assert\NotBlank([]),
                     new Assert\Image([])
                 ],
             ])
