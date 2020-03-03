@@ -40,7 +40,7 @@ monsieurbiz_richeditor_plugin:
     placeholder: 'Drag widgets in this area'
     current_image: 'Current image'
     current_video: 'Current video'
-    current_file: 'Current file
+    current_file: 'Current file'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
