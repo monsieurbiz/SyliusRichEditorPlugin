@@ -29,6 +29,8 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
+  file:
+    change: 'Change file'
   form:
     move: 'Move'
     edit: 'Edit'

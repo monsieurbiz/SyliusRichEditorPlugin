@@ -2,27 +2,34 @@
 
 {% block file_widget %}
     {% if form.vars.data is not empty %}
-        {% if form.vars.attr['data-image'] is defined %}
-            <p>
-                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</span><br />
-                <img src="{{ form.vars.data }}" alt="" style="max-width: 300px;max-height: 300px;" />
-            </p>
-        {% elseif form.vars.attr['data-video'] is defined %}
-            <p>
-                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_video' | trans }}</span><br />
-                <video width="100%" controls style="max-width: 300px;max-height: 300px;">
-                    <source src="{{ form.vars.data }}" type="video/{{ form.vars.data|split('.')|last }}">
-                </video>
-            </p>
-        {% else %}
-            <p>
-                <span>{{ 'monsieurbiz_richeditor_plugin.form.current_file' | trans }}</span><br />
-                <a href="{{ form.vars.data }}" target="_blank" rel="noopener noreferrer">
-                    {{ form.vars.data }}
-                </a>
-            </p>
-        {% endif %}
-        {{- form_widget(form, {'type': 'hidden', 'attr': {'value': form.vars.data }}) -}}
+        <div>
+            {% if form.vars.attr['data-image'] is defined %}
+                <p>
+                    <small>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</small><br />
+                    <img src="{{ form.vars.data }}" alt="" style="max-width: 300px;max-height: 300px;" />
+                </p>
+            {% elseif form.vars.attr['data-video'] is defined %}
+                <p>
+                    <small>{{ 'monsieurbiz_richeditor_plugin.form.current_video' | trans }}</small><br />
+                    <video width="100%" controls style="max-width: 300px;max-height: 300px;">
+                        <source src="{{ form.vars.data }}" type="video/{{ form.vars.data|split('.')|last }}">
+                    </video>
+                </p>
+            {% else %}
+                <p>
+                    <small>{{ 'monsieurbiz_richeditor_plugin.form.current_file' | trans }}</small><br />
+                    <a href="{{ form.vars.data }}" target="_blank" rel="noopener noreferrer">
+                        {{ form.vars.data }}
+                    </a>
+                </p>
+            {% endif %}
+            <button type="button" class="ui button" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
+                {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
+            </button>
+
+            <input type="hidden" name="{{ form.vars.full_name }}" value="{{ form.vars.data }}" />
+        </div>
+        {{- form_widget(form, {'attr': {'style': 'display: none;'}, 'full_name': 'change_' ~ form.vars.full_name}) -}}
     {% else %}
         {{- form_widget(form) -}}
     {% endif %}

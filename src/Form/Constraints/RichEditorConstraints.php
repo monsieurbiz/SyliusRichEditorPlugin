@@ -13,11 +13,11 @@ final class RichEditorConstraints
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required
      *
-     * @param $options
-     * @param $fieldName
+     * @param array $options
+     * @param string $fieldName
      * @return array
      */
-    public static function getImageConstraints($options, $fieldName) {
+    public static function getImageConstraints(array $options, string $fieldName) {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
@@ -36,11 +36,11 @@ final class RichEditorConstraints
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required
      *
-     * @param $options
-     * @param $fieldName
+     * @param array $options
+     * @param string $fieldName
      * @return array
      */
-    public static function getVideoConstraints($options, $fieldName) {
+    public static function getVideoConstraints(array $options, string $fieldName) {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
