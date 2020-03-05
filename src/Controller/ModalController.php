@@ -98,7 +98,8 @@ class ModalController extends AbstractController
         }
 
         // Create and validate form
-        $form = $this->createForm($uiElement->getFormClass());
+        $data = $request->request->get($uiElement->getType());
+        $form = $this->createForm($uiElement->getFormClass(), $data);
         $form->handleRequest($request);
         if (!$form->isSubmitted()) {
             throw $this->createNotFoundException();

@@ -22,7 +22,9 @@
                 </a>
             </p>
         {% endif %}
+        {{- form_widget(form, {'type': 'hidden', 'attr': {'value': form.vars.data }}) -}}
+    {% else %}
+        {{- form_widget(form) -}}
     {% endif %}
-    {{- form_widget(form) -}}
 {% endblock %}
 

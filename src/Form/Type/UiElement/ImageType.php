@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,10 +20,7 @@ class ImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                    new Assert\Image([])
-                ],
+                'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
                 'attr' => ['data-image' => 'true']
             ])
             ->add('alt', TextType::class, [
