@@ -129,7 +129,12 @@ class ModalController extends AbstractController
                 $element->fields->{$field} = $this->uploadAndReturnPath($file[$field]);
             // Value in form exists, we take it
             } elseif (($value = $request->request->get($uiElementType)) && isset($value[$field])) {
-                $element->fields->{$field} = (string) $value[$field];
+                // Allow array if choices inputs
+                if (is_array($value[$field])) {
+                    $element->fields->{$field} = $value[$field];
+                } else {
+                    $element->fields->{$field} = (string) $value[$field];
+                }
             // Value is not set, set an empty one
             } else {
                 $element->fields->{$field} = '';
