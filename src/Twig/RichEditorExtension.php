@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
 use Twig\Environment;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class RichEditorExtension extends AbstractExtension
 {
@@ -22,10 +24,16 @@ final class RichEditorExtension extends AbstractExtension
      */
     private $twig;
 
-    public function __construct(Factory $factory, Environment $twig)
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    public function __construct(Factory $factory, Environment $twig, EventDispatcherInterface $eventDispatcher)
     {
         $this->factory = $factory;
         $this->twig = $twig;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function getFilters()
@@ -55,6 +63,9 @@ final class RichEditorExtension extends AbstractExtension
             }
 
             $template = $uiElement->getTemplate();
+
+            $event = new RenderUiElementEvent($uiElement, $element);
+            $this->eventDispatcher->dispatch($event);
 
             $html .= $this->twig->render($template, ['element' => $element['fields']]);
         }
