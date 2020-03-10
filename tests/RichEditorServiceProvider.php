@@ -7,6 +7,7 @@ namespace Tests\MonsieurBiz\SyliusRichEditorPlugin;
 use MonsieurBiz\SyliusRichEditorPlugin\Twig\RichEditorExtension;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 
 final class RichEditorServiceProvider extends KernelTestCase
@@ -20,7 +21,9 @@ final class RichEditorServiceProvider extends KernelTestCase
         $factory = $container->get(Factory::class);
         /** @var Environment $environment */
         $environment = $container->get(Environment::class);
+        /** @var EventDispatcherInterface $eventDispatcher */
+        $eventDispatcher = $container->get(EventDispatcherInterface::class);
 
-        return new RichEditorExtension($factory, $environment);
+        return new RichEditorExtension($factory, $environment, $eventDispatcher);
     }
 }
