@@ -176,6 +176,9 @@ class Gmap extends AbstractUiElement
 }
 ```
 
+You can use the trait `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\YoutubeVideoTrait` which gives you access to
+the method `getVideoIframeURLFromPublicURL(string $url)` in your UiElement.
+
 ### Create the UiElement form type
 
 ```php
@@ -247,6 +250,9 @@ Here is an example of simple render for this element :
 ```twig
 <iframe id="gmap_canvas" src="{{ element.gmap_link }}" scrolling="no" marginheight="0" marginwidth="0" width="600" height="500" frameborder="0"></iframe>
 ```
+
+> Tip! You can access the UiElement itself via the `uiElement` variable in your template!  
+> Very useful if you use the `YoutubeVideoTrait` as example: `{{ uiElement.getVideoIframeURLFromPublicURL(element.video_url) }}`.
 
 ### The result !
 

@@ -6,18 +6,18 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
 use Twig\Environment;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class RichEditorExtension extends AbstractExtension
 {
     /**
-     * @var Factory
+     * @var UiElementFactoryInterface
      */
-    private $factory;
+    private $uiElementFactory;
 
     /**
      * @var Environment
@@ -29,13 +29,23 @@ final class RichEditorExtension extends AbstractExtension
      */
     private $eventDispatcher;
 
-    public function __construct(Factory $factory, Environment $twig, EventDispatcherInterface $eventDispatcher)
+    /**
+     * RichEditorExtension constructor.
+     *
+     * @param UiElementFactoryInterface $uiElementFactory
+     * @param Environment $twig
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(UiElementFactoryInterface $uiElementFactory, Environment $twig, EventDispatcherInterface $eventDispatcher)
     {
-        $this->factory = $factory;
+        $this->uiElementFactory = $uiElementFactory;
         $this->twig = $twig;
         $this->eventDispatcher = $eventDispatcher;
     }
 
+    /**
+     * @return TwigFilter[]
+     */
     public function getFilters()
     {
         return [
@@ -43,10 +53,18 @@ final class RichEditorExtension extends AbstractExtension
         ];
     }
 
-    public function renderRichEditorField($content)
+    /**
+     * @param string $content
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function renderRichEditorField(string $content)
     {
         $elements = json_decode($content, true);
-        if ($elements === false) {
+        if (!is_array($elements)) {
             return $content;
         }
 
@@ -57,7 +75,7 @@ final class RichEditorExtension extends AbstractExtension
             }
 
             try {
-                $uiElement = $this->factory->getUiElementByType($element['type']);
+                $uiElement = $this->uiElementFactory->getUiElementByType($element['type']);
             } catch (UndefinedUiElementTypeException $exception) {
                 continue;
             }
@@ -68,7 +86,10 @@ final class RichEditorExtension extends AbstractExtension
             $this->eventDispatcher->dispatch($event);
             $element = $event->getElement();
 
-            $html .= $this->twig->render($template, ['element' => $element['fields']]);
+            $html .= $this->twig->render($template, [
+                'uiElement' => $uiElement,
+                'element' => $element['fields'],
+            ]);
         }
 
         return $html;
