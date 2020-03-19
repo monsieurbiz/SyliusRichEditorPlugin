@@ -7,7 +7,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,14 +23,14 @@ class ImageType extends AbstractType
                 'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
                 'attr' => ['data-image' => 'true']
             ])
-            ->add('alt', TextType::class, [
+            ->add('alt', FormTextType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.alt',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],
             ])
-            ->add('title', TextType::class, [
+            ->add('title', FormTextType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.title',
                 'constraints' => [
