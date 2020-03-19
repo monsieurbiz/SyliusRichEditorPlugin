@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
 
 class Quote extends AbstractUiElement
 {

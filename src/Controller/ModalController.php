@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -64,7 +64,7 @@ class ModalController extends AbstractController
         // Find UI Element from type
         try {
             $uiElement = $this->uiElementFactory->getUiElementByType($data['type']);
-        } catch (UndefinedUiElementTypeException $exception) {
+        } catch (UiElementNotFoundException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
         }
 
@@ -94,7 +94,7 @@ class ModalController extends AbstractController
         // Find UI Element from type
         try {
             $uiElement = $this->uiElementFactory->getUiElementByType($uiElementType);
-        } catch (UndefinedUiElementTypeException $exception) {
+        } catch (UiElementNotFoundException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
         }
 

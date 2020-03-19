@@ -24,8 +24,7 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->variableNode('ui_element_classes')->end()
-            ->scalarNode('upload_directory')->end()
+                ->scalarNode('upload_directory')->end()
             ->end()
         ;
 

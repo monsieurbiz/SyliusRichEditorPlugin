@@ -3,23 +3,11 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Factory;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\DuplicatedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 interface UiElementFactoryInterface
 {
-
-    /**
-     * UiElementFactory constructor.
-     *
-     * @param TranslatorInterface $translator
-     * @param string[] $uiElementClasses
-     *
-     * @throws DuplicatedUiElementTypeException
-     * @throws \ReflectionException
-     */
-    public function __construct(TranslatorInterface $translator, array $uiElementClasses);
 
     /**
      * @return UiElementInterface[]
@@ -30,6 +18,7 @@ interface UiElementFactoryInterface
      * @param string $type
      *
      * @return UiElementInterface
+     * @throws UiElementNotFoundException
      */
     public function getUiElementByType(string $type): UiElementInterface;
 
