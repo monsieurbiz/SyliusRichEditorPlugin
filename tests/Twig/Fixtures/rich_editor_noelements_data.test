@@ -4,6 +4,6 @@
 {{ data|mbiz_rich_editor_render }}
 --DATA--
 return array(
-    'data' => '',
+    'data' => '{}',
 )
 --EXPECT--

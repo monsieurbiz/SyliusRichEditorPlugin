@@ -1,0 +1,34 @@
+--TEST--
+"mbiz_rich_editor_render" filter with full data
+--TEMPLATE--
+{{ data|mbiz_rich_editor_render }}
+--DATA--
+return array(
+    'data' => '<p>
+    Mon texte
+</p>
+<p>
+    <img src="/medias/toto.jpg" alt="Toto" title="Photo de Toto" />
+</p>
+<blockquote>
+    Citation de Baudelaire
+    <br />— <cite>Baudelaire</cite>
+</blockquote>
+<video width="100%" poster="/medias/toto.jpg" controls>
+    <source src="/medias/toto.mp4" type="video/mp4">
+</video>',
+)
+--EXPECT--
+<p>
+    Mon texte
+</p>
+<p>
+    <img src="/medias/toto.jpg" alt="Toto" title="Photo de Toto" />
+</p>
+<blockquote>
+    Citation de Baudelaire
+    <br />— <cite>Baudelaire</cite>
+</blockquote>
+<video width="100%" poster="/medias/toto.jpg" controls>
+    <source src="/medias/toto.mp4" type="video/mp4">
+</video>
