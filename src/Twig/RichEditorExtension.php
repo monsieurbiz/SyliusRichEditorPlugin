@@ -43,7 +43,15 @@ final class RichEditorExtension extends AbstractExtension
         ];
     }
 
-    public function renderRichEditorField($content)
+    /**
+     * @param string $content
+     *
+     * @return string
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function renderRichEditorField(string $content)
     {
         $elements = json_decode($content, true);
         if ($elements === false) {
@@ -68,7 +76,10 @@ final class RichEditorExtension extends AbstractExtension
             $this->eventDispatcher->dispatch($event);
             $element = $event->getElement();
 
-            $html .= $this->twig->render($template, ['element' => $element['fields']]);
+            $html .= $this->twig->render($template, [
+                'uiElement' => $uiElement,
+                'element' => $element['fields'],
+            ]);
         }
 
         return $html;
