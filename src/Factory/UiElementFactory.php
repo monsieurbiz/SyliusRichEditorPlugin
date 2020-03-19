@@ -2,17 +2,27 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Factory;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\DuplicatedUiElementTypeException;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Webmozart\Assert\Assert;
 
-final class Factory
+final class UiElementFactory implements UiElementFactoryInterface
 {
     private $uiElements = [];
 
+    /**
+     * UiElementFactory constructor.
+     *
+     * @param TranslatorInterface $translator
+     * @param string[] $uiElementClasses
+     *
+     * @throws DuplicatedUiElementTypeException
+     * @throws \ReflectionException
+     */
     public function __construct(TranslatorInterface $translator, array $uiElementClasses)
     {
         foreach ($uiElementClasses as $uiElementClass) {
@@ -31,7 +41,10 @@ final class Factory
         }
     }
 
-    public function getUiElements()
+    /**
+     * @return UiElementInterface[]
+     */
+    public function getUiElements(): array
     {
         return $this->uiElements;
     }

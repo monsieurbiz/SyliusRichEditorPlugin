@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory;
+use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -18,25 +18,26 @@ class ModalController extends AbstractController
     /** @var EngineInterface */
     private $templatingEngine;
 
-    /** @var Factory */
-    private $factory;
+    /** @var UiElementFactoryInterface */
+    private $uiElementFactory;
 
     /** @var TranslatorInterface */
     private $translator;
 
     /**
      * ModalController constructor.
+     *
      * @param EngineInterface $templatingEngine
-     * @param Factory $factory
+     * @param UiElementFactoryInterface $uiElementFactory
      * @param TranslatorInterface $translator
      */
     public function __construct(
         EngineInterface $templatingEngine,
-        Factory $factory,
+        UiElementFactoryInterface $uiElementFactory,
         TranslatorInterface $translator
     ) {
         $this->templatingEngine = $templatingEngine;
-        $this->factory = $factory;
+        $this->uiElementFactory = $uiElementFactory;
         $this->translator = $translator;
     }
 
@@ -62,7 +63,7 @@ class ModalController extends AbstractController
 
         // Find UI Element from type
         try {
-            $uiElement = $this->factory->getUiElementByType($data['type']);
+            $uiElement = $this->uiElementFactory->getUiElementByType($data['type']);
         } catch (UndefinedUiElementTypeException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
         }
@@ -92,7 +93,7 @@ class ModalController extends AbstractController
 
         // Find UI Element from type
         try {
-            $uiElement = $this->factory->getUiElementByType($uiElementType);
+            $uiElement = $this->uiElementFactory->getUiElementByType($uiElementType);
         } catch (UndefinedUiElementTypeException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
         }

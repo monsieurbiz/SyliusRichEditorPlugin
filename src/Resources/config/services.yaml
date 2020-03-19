@@ -29,6 +29,9 @@ services:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
   # UiElement Factory using classes in config
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Factory:
+  MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface:
+    alias: MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory
+
+  MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory:
     arguments:
       $uiElementClasses: '%monsieur_biz_sylius_rich_editor.ui_element_classes%'
