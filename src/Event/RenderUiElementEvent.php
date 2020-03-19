@@ -19,6 +19,12 @@ class RenderUiElementEvent extends Event
      */
     protected $uiElement;
 
+    /**
+     * RenderUiElementEvent constructor.
+     *
+     * @param UiElementInterface $uiElement
+     * @param array $element
+     */
     public function __construct(
         UiElementInterface $uiElement,
         array $element
@@ -27,17 +33,25 @@ class RenderUiElementEvent extends Event
         $this->element = $element;
     }
 
+    /**
+     * @return UiElementInterface
+     */
     public function getUiElement(): UiElementInterface
     {
         return $this->uiElement;
     }
 
-
+    /**
+     * @return array
+     */
     public function getElement(): array
     {
         return $this->element;
     }
 
+    /**
+     * @param array $element
+     */
     public function setElement(array $element): void
     {
         $this->element = $element;
