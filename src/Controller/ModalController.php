@@ -51,7 +51,7 @@ class ModalController extends AbstractController
     {
         // Check request
         $data = $request->query->get('data') ?? null;
-        if (!$request->isXmlHttpRequest() || empty($data)) {
+        if (empty($data)) {
             throw $this->createNotFoundException();
         }
 
