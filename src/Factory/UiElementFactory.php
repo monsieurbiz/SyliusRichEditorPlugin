@@ -4,41 +4,26 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Factory;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\DuplicatedUiElementTypeException;
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
-use Webmozart\Assert\Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistryInterface;
 
 final class UiElementFactory implements UiElementFactoryInterface
 {
-    private $uiElements = [];
+    /**
+     * @var UiElementRegistryInterface
+     */
+    private $uiElementRegistry;
 
     /**
      * UiElementFactory constructor.
      *
-     * @param TranslatorInterface $translator
-     * @param string[] $uiElementClasses
-     *
-     * @throws DuplicatedUiElementTypeException
-     * @throws \ReflectionException
+     * @param UiElementRegistryInterface $uiElementRegistry
      */
-    public function __construct(TranslatorInterface $translator, array $uiElementClasses)
-    {
-        foreach ($uiElementClasses as $uiElementClass) {
-            /** @var UiElementInterface $uiElement */
-            $uiElement = new $uiElementClass($translator);
-            Assert::isInstanceOf($uiElement, UiElementInterface::class);
-            if (isset($this->uiElements[$uiElement->getType()])) {
-                $reflection = new \ReflectionClass($this->uiElements[$uiElement->getType()]);
-                throw new DuplicatedUiElementTypeException(sprintf(
-                    'The UI Element with type "%s" already exists in class "%s',
-                    $uiElement->getType(),
-                    $reflection->getName()
-                ));
-            }
-            $this->uiElements[$uiElement->getType()] = $uiElement;
-        }
+    public function __construct(
+        UiElementRegistryInterface $uiElementRegistry
+    ) {
+        $this->uiElementRegistry = $uiElementRegistry;
     }
 
     /**
@@ -46,19 +31,17 @@ final class UiElementFactory implements UiElementFactoryInterface
      */
     public function getUiElements(): array
     {
-        return $this->uiElements;
+        return $this->uiElementRegistry->getUiElements();
     }
 
     /**
      * @param string $type
+     *
      * @return UiElementInterface
-     * @throws UndefinedUiElementTypeException
+     * @throws UiElementNotFoundException
      */
     public function getUiElementByType(string $type): UiElementInterface
     {
-        if (!isset($this->uiElements[$type])) {
-            throw new UndefinedUiElementTypeException(sprintf('The UI Element type "%s" cannot be found', $type));
-        }
-        return $this->uiElements[$type];
+        return $this->uiElementRegistry->getUiElement($type);
     }
 }

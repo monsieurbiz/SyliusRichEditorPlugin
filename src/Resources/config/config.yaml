@@ -2,10 +2,4 @@ imports:
   - { resource: "services.yaml" }
 
 monsieur_biz_sylius_rich_editor:
-  # @TODO : Check if we can improve it
-  ui_element_classes :
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Image'
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Quote'
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Text'
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Video'
   upload_directory: '%kernel.project_dir%/public/media/rich-editor'

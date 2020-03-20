@@ -142,6 +142,8 @@ In this example, we will add a Google Maps element.
 
 ### Create the UiElement class
 
+Your element NEED to implement the `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface` interface.
+
 ```php
 <?php
 
@@ -150,9 +152,10 @@ declare(strict_types=1);
 namespace App\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
 use App\Form\Type\UiElement\GmapType;
 
-class Gmap extends AbstractUiElement
+class Gmap extends AbstractUiElement implements UiElementInterface
 {
     protected $type = 'gmap';
 
@@ -212,15 +215,19 @@ class GmapType extends AbstractType
 
 ### Declare your class as UI Element
 
-Create or update the file `config/packages/monsieur_biz_sylius_rich_editor.yaml` and add your class : 
+Use your `services.yaml` for that:
 
-```yaml
-monsieur_biz_sylius_rich_editor:
-  ui_element_classes :
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Image'
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Quote'
-    - 'MonsieurBiz\SyliusRichEditorPlugin\UiElement\Text'
-    - 'App\UiElement\Gmap'
+```
+App\UiElement\Gmap:
+    tags: ['monsieurbiz_rich_editor.ui_element']
+```
+
+You can also use a resource for all your UiElements, example:
+
+```
+App\UiElement\:
+    resource: '../../UiElement/'
+    tags: ['monsieurbiz_rich_editor.ui_element']
 ```
 
 ### Add translations

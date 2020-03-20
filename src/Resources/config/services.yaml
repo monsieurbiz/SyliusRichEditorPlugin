@@ -15,6 +15,17 @@ services:
     resource: '../../*'
     exclude: '../../{Entity,Migrations,Tests,Kernel.php}'
 
+  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element\:
+    resource: '../../UiElement/Element/*'
+    tags: ['monsieurbiz_rich_editor.ui_element']
+
+  # Registry
+  monsieurbiz_rich_editor.registry:
+    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistry
+
+  MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistryInterface:
+    alias: monsieurbiz_rich_editor.registry
+
   # Controllers are imported separately to make sure services can be injected
   # as action arguments even if you don't extend any base controller class
   MonsieurBiz\SyliusRichEditorPlugin\Controller\:
@@ -31,7 +42,3 @@ services:
   # UiElement Factory using classes in config
   MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface:
     alias: MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory
-
-  MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory:
-    arguments:
-      $uiElementClasses: '%monsieur_biz_sylius_rich_editor.ui_element_classes%'

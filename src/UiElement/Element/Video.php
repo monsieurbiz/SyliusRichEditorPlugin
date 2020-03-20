@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
 
 class Video extends AbstractUiElement
 {
