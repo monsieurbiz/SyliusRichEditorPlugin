@@ -142,7 +142,7 @@ In this example, we will add a Google Maps element.
 
 ### Create the UiElement class
 
-Your element NEED to implement the `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface` interface.
+Your element NEEDS to implement the `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface` interface.
 
 ```php
 <?php
