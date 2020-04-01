@@ -13,19 +13,14 @@ trait YoutubeVideoTrait
      */
     public function getVideoIframeURLFromPublicURL(string $url): ?string
     {
-        // Already embedded
-        if (\strpos($url, 'www.youtube.com/embed') !== false) {
-            return $url;
-        }
+        $reg = '/(?:https?:\/\/)?(?:www\.)?(?:youtu.be\/|youtube\.com\/(?:watch(?:\/|\/?\?(?:\S*&)?v=)|embed\/))([\w\d]+)/';
+        $isValid = (bool) preg_match($reg, $url, $matches);
 
-        $query = \parse_url($url, PHP_URL_QUERY);
-        \parse_str($query, $params);
-
-        if (!isset($params['v'])) {
+        if (!$isValid || !isset($matches[1])) {
             return null;
         }
 
-        return \sprintf('https://www.youtube.com/embed/%s', $params['v']);
+        return \sprintf('https://www.youtube.com/embed/%s', $matches[1]);
     }
 
 }
