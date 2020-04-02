@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class ImageType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

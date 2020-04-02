@@ -46,6 +46,7 @@ class MbizRichEditorFields {
             draggableItemContent: 'mbiz-rich-editor-draggable-item-content',
             draggableItemInfos: 'mbiz-rich-editor-draggable-item-infos',
             draggableItemTitle: 'mbiz-rich-editor-draggable-item-title',
+            draggableItemName: 'mbiz-rich-editor-draggable-item-name',
             draggableItemActions: 'mbiz-rich-editor-draggable-item-actions',
             draggableItemButton: 'mbiz-rich-editor-draggable-item-button',
             deleteButton: 'mbiz-rich-editor-delete-button',
@@ -107,7 +108,7 @@ class MbizRichEditorFields {
             let uiElement = uiElements[type];
             this.log('Init UI Element:', uiElement);
 
-            let renderedUiElement = this.renderUiElementMetaData(type, uiElement, this.templateRender);
+            let renderedUiElement = this.renderUiElementMetaData(type, uiElement, '', this.templateRender);
             if (renderedUiElement === '') {
                 error = true;
                 continue;
@@ -186,7 +187,7 @@ class MbizRichEditorFields {
             // Render Ui Element meta data
             let uiElementMetaData = this.uiElements[uiElement.type];
             this.log('Matched Ui Element with meta data:', uiElementMetaData);
-            let renderedUiElementMetaData = this.renderUiElementMetaData(uiElement.type, uiElementMetaData, this.templateRender);
+            let renderedUiElementMetaData = this.renderUiElementMetaData(uiElement.type, uiElementMetaData, String(uiElement.name), this.templateRender);
             if (renderedUiElementMetaData === '') {
                 error = true;
                 continue;
@@ -565,8 +566,15 @@ class MbizRichEditorFields {
      *
      * @param type
      * @param uiElementMetaData {short_description: "Short description", description: "Description", title: "Title", image: "/path/to/image.jpg"}
+     * @param name
+     * @param templateRenderer
      */
-    renderUiElementMetaData(type, uiElementMetaData) {
+    renderUiElementMetaData(type, uiElementMetaData, name, templateRenderer) {
+        if (name !== "undefined") {
+            name = `<span class="${this.classes.draggableItemName}">(${name})</span>`;
+        } else {
+            name = '';
+        }
         return `
         <div class="${this.classes.draggableItem}" data-ui-element-type="${type}">
             <button class="${this.classes.draggableItemHandler}" type="button">${this.translations.move}</button>
@@ -576,7 +584,10 @@ class MbizRichEditorFields {
                 </div>
                 <div class="${this.classes.draggableItemContent}">
                     <div class="${this.classes.draggableItemInfos}">
-                        <h2 class="${this.classes.draggableItemTitle}">${uiElementMetaData.title}</h2>
+                        <h2 class="${this.classes.draggableItemTitle}">
+                            ${uiElementMetaData.title}
+                            ${name}
+                        </h2>
                         <p>${uiElementMetaData.description}</p>
                     </div>
                     <div class="${this.classes.draggableItemActions}">

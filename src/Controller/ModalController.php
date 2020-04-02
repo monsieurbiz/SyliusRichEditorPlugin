@@ -5,6 +5,8 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\NameableTypeInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\NameableInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -69,7 +71,15 @@ class ModalController extends AbstractController
         }
 
         // Create form depending on UI Element with data
-        $form = $this->createForm($uiElement->getFormClass(), $data['fields']);
+        $form = $this->createForm($uiElement->getFormClass());//, $data['fields']);
+
+        $innerType = $form->getConfig()->getType()->getInnerType();
+        $formData = $data['fields'];
+        if ($innerType instanceof NameableTypeInterface && isset($data['name'])) {
+            $formData[$innerType->getUiElementNameName()] = $data['name'];
+        }
+
+        $form->setData($formData);
 
         return $this->templatingEngine->renderResponse('@MonsieurBizSyliusRichEditorPlugin/Admin/Modal/edit.html.twig', [
             'form' => $form->createView(),
@@ -124,6 +134,7 @@ class ModalController extends AbstractController
         $element = new \stdClass();
         $element->type = $uiElement->getType();
         $element->fields = new \stdClass();
+        $element->name = null;
         foreach ($uiElement->getFields() as $field) {
             // If file, upload it and retrieve the path
             if (($file = $request->files->get($uiElementType)) && isset($file[$field])) {
@@ -139,6 +150,14 @@ class ModalController extends AbstractController
             // Value is not set, set an empty one
             } else {
                 $element->fields->{$field} = '';
+            }
+        }
+
+        // UI Element's name
+        $innerType = $form->getConfig()->getType()->getInnerType();
+        if ($uiElement instanceof NameableInterface && $innerType instanceof NameableTypeInterface) {
+            if (($value = $request->request->get($uiElementType)) && isset($value[$innerType->getUiElementNameName()])) {
+                $element->name = $value[$innerType->getUiElementNameName()];
             }
         }
 

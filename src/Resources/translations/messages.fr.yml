@@ -50,3 +50,4 @@ monsieurbiz_richeditor_plugin:
     cannot_parse_json: 'Impossible d''analyser le contenu actuel.'
     cannot_find_type: 'Impossible de trouver le type pour certains éléments'
     cannot_upload_file: 'Impossible de charger le fichier. Il est possible qu''il soit trop lourd ou son format incorrect.'
+  ui_element_name: 'Nom de l''UI Elément (visible par vous uniquement)'
