@@ -50,7 +50,7 @@ class ModalController extends AbstractController
     public function formAction(Request $request): Response
     {
         // Check request
-        $data = $request->query->get('data') ?? null;
+        $data = $request->get('data') ?? null;
         if (empty($data)) {
             throw $this->createNotFoundException();
         }

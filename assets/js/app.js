@@ -321,9 +321,11 @@ class MbizRichEditorFields {
                 }
             }
         };
-        xhr.open('GET', this.formRoute + '?data=' + encodeURIComponent(JSON.stringify(uiElement)));
+        var params = 'data=' + encodeURIComponent(JSON.stringify(uiElement));
+        xhr.open('POST', this.formRoute, true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.send();
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(params);
     }
 
     /**
