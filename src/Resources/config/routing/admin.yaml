@@ -1,6 +1,6 @@
 monsieurbiz_sylius_rich_editor_admin_modal_form:
     path: /monsieurbiz_sylius_rich_editor/modal/edit
-    methods: [GET]
+    methods: [POST]
     defaults:
         _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:formAction
     condition: "request.isXmlHttpRequest()"
