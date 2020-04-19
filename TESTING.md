@@ -1,47 +1,55 @@
 # Testing
 
+## Requirements
+
+You'll need:
+
+- docker
+- symfony CLI
+- composer
+- npm and yarn
+
 ## Installation
 
-1. To be able to run yarn build correctly, create symlink for `node_modules` :
+You can change the environment by setting the `APP_ENV` (`export APP_ENV=test` as example).
 
-    ```bash
-    ln -s tests/Application/node_modules node_modules
-    ```
+From the plugin root directory, run the following commands:
 
-2. From the plugin root directory, run the following commands:
-
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && bin/console assets:install public -e test)
-    $ (cd tests/Application && bin/console doctrine:database:drop --force -e test --if-exists)
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
-    ```
+```bash
+make install
+```
 
 To be able to setup the plugin's database, remember to configure your database credentials in `tests/Application/.env` 
 and `tests/Application/.env.test`. You can also add custom configuration in `tests/Application/.env.test.local`.
 
+If you want to run the Sylius app as well, go to the "Opening Sylius with the plugin" section below.
+
 ## Usage
+
+### Some help
+
+```bash
+make help
+```
 
 ### Running plugin tests
 
   - PHPUnit
 
     ```bash
-    $ vendor/bin/phpunit
+    make phpunit
     ```
 
   - PHPSpec
 
     ```bash
-    $ vendor/bin/phpspec run
+    make phpunit
     ```
     
   - PHPStan
   
     ```bash
-    $ vendor/bin/phpstan analyse src
+    make phpstan
     ```
 
 ### Opening Sylius with the plugin
@@ -49,13 +57,11 @@ and `tests/Application/.env.test`. You can also add custom configuration in `tes
 - Using `test` environment:
 
     ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e test)
-    $ (cd tests/Application && bin/console server:run -d public -e test)
+    APP_ENV=test make bazinga
     ```
     
 - Using `dev` environment:
 
     ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
-    $ (cd tests/Application && bin/console server:run -d public -e dev)
+    APP_ENV=dev make bazinga
     ```
