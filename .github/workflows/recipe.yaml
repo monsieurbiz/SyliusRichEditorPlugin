@@ -1,0 +1,70 @@
+name: Flex Recipe
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron:  '0 0 * * *'
+
+jobs:
+
+  recipe:
+
+    runs-on: ubuntu-latest
+
+    env:
+      SYMFONY_ENDPOINT: http://127.0.0.1/
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.2]
+
+    steps:
+      - name: Setup PHP
+        run: |
+          sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
+          echo "date.timezone=UTC" >> /tmp/timezone.ini
+          sudo mv /tmp/timezone.ini /etc/php/${{ matrix.php }}/cli/conf.d/timezone.ini
+          echo ${{ matrix.php }} > .php-version
+
+      - uses: actions/checkout@v2
+        with:
+          path: plugin
+
+      # Run the server at the start so it can download the recipes!
+      - name: Run standalone symfony flex server
+        run: |
+          echo ${{ github.token }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+          docker run --rm --name flex -d -v $PWD/plugin/recipe:/var/www/flex/var/repo/private/monsieurbiz/sylius-rich-editor-plugin -p 80:80 docker.pkg.github.com/monsieurbiz/docker/symfony-flex-server:latest contrib official
+          docker ps
+
+      - uses: actions/cache@v1
+        id: cache-composer
+        with:
+          path: /home/runner/.composer/cache
+          key: composer-php:${{ matrix.php }}-${{ github.sha }}
+          restore-keys: composer-php:${{ matrix.php }}-
+
+      - run: mkdir -p /home/runner/.composer/cache
+        if: steps.cache-composer.outputs.cache-hit != 'true'
+
+      - name: Composer Github Auth
+        run: composer config -g github-oauth.github.com ${{ github.token }}
+
+      - name: Install Sylius-Standard
+        run: |
+          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius
+
+      - name: Install plugin
+        working-directory: ./sylius
+        run: |
+          composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
+          composer config extra.symfony.allow-contrib true
+          composer config secure-http false
+          composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
+
+      - name: Show flex server logs
+        run: docker logs --tail 100 flex
