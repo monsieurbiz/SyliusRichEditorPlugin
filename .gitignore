@@ -6,6 +6,7 @@
 !/etc/build/.gitignore
 
 /tests/Application/yarn.lock
+/tests/Application/package-lock.json
 
 /behat.yml
 /phpspec.yml
