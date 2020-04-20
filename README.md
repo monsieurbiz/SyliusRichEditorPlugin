@@ -36,14 +36,14 @@ return [
 ];
 ```
 
-Then create the config file in `config/packages/monsieur_biz_sylius_rich_editor.yaml` :
+Then create the config file in `config/packages/monsieurbiz_sylius_rich_editor.yaml` :
 
 ```yaml
 imports:
   - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
 ```
 
-Finally import the routes in `config/routes.yaml` : 
+Finally import the routes in `config/routes/monsieurbiz_sylius_rich_editor.yaml` : 
 
 ```yaml
 monsieur_biz_rich_editor_plugin:
@@ -51,7 +51,6 @@ monsieur_biz_rich_editor_plugin:
 ```
 
 ## Use the Rich Editor
-
 
 ### Update your form type
 
