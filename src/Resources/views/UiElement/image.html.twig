@@ -6,6 +6,8 @@
         alt
         title
 #}
+{% if element.image is defined %}
 <p>
-    <img src="{{ element.image }}" alt="{{ element.alt }}" title="{{ element.title }}" />
+    <img src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
 </p>
+{% endif %}
