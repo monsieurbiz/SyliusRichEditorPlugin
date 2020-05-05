@@ -15,19 +15,26 @@ final class RichEditorConstraints
      *
      * @param array $options
      * @param string $fieldName
+     * @param bool $required
      * @return array
      */
-    public static function getImageConstraints(array $options, string $fieldName) {
+    public static function getImageConstraints(array $options, string $fieldName, bool $required = true) {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
             return [];
         }
 
+        if (!$required) {
+            return [
+                new Assert\Image([]),
+            ];
+        }
+
         // No image set yet, we require file
         return [
             new Assert\NotBlank([]),
-            new Assert\Image([])
+            new Assert\Image([]),
         ];
     }
 
@@ -38,13 +45,22 @@ final class RichEditorConstraints
      *
      * @param array $options
      * @param string $fieldName
+     * @param bool $required
      * @return array
      */
-    public static function getVideoConstraints(array $options, string $fieldName) {
+    public static function getVideoConstraints(array $options, string $fieldName, bool $required = true) {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
             return [];
+        }
+
+        if (!$required) {
+            return [
+                new Assert\File([
+                    'mimeTypes' => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-msvideo', 'video/x-flv']
+                ]),
+            ];
         }
 
         // No video set yet, we require file
