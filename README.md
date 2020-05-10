@@ -238,12 +238,13 @@ Here is an example of possible translation for the GMap element :
 
 ```yaml
 monsieurbiz_richeditor_plugin:
-    gmap:
-      title: 'GMap Element'
-      short_description: 'Include a GMap'
-      description: 'An element with a GMap URL'
-      field:
-        gmap_link: 'GMap Link'
+    ui_element:
+        gmap:
+            title: 'GMap Element'
+            short_description: 'Include a GMap'
+            description: 'An element with a GMap URL'
+            field:
+                gmap_link: 'GMap Link'
 ```
 
 ### Create the template to render it 
