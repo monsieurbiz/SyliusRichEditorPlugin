@@ -6,6 +6,12 @@ monsieurbiz_richeditor_plugin:
       description: 'An element with a text content'
       field:
         content: 'Content'
+    title:
+      title: 'Title Element'
+      short_description: 'A title element'
+      description: 'An element containing the title you want'
+      field:
+        content: 'Content'
     image:
       title: 'Image Element'
       short_description: 'An element with an image, an alternative text and a title..'
