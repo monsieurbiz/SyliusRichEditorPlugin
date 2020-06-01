@@ -37,6 +37,13 @@ class ImageType extends AbstractType
                     new Assert\NotBlank([])
                 ],
             ])
+            ->add('link', FormTextType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.link',
+                'constraints' => [
+                    new Assert\Url([])
+                ],
+            ])
         ;
     }
 }

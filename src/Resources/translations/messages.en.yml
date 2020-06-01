@@ -9,12 +9,13 @@ monsieurbiz_richeditor_plugin:
     image:
       title: 'Image Element'
       short_description: 'Short description of image element'
-      description: 'An element with an image, an alternative text and a title'
+      description: 'An element with an image, an alternative text and a title. A link can be added on it.'
       field:
         current_image: 'Current image'
         image: 'Image'
         alt: 'Alternative text'
         title: 'Title'
+        link: 'Link'
     quote:
       title: 'Quote Element'
       short_description: 'Short description of quote element'

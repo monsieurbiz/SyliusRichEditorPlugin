@@ -9,12 +9,13 @@ monsieurbiz_richeditor_plugin:
     image:
       title: 'Lame Image'
       short_description: 'Description courte lame image'
-      description: 'Une lame contenant une image avec un champ alternatif et un titre'
+      description: 'Une lame contenant une image avec un champ alternatif et un titre. Un lien peut également être mis sur l''image'
       field:
         current_image: 'Image actuelle'
         image: 'Image'
         alt: 'Texte alternatif'
         title: 'Titre'
+        link: 'Lien'
     quote:
       title: 'Lame Citation'
       short_description: 'Description courte lame citation'

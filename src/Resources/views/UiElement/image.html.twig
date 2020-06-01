@@ -8,6 +8,12 @@
 #}
 {% if element.image is defined %}
 <p>
-    <img src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+    {% if element.link is defined %}
+        <a href="{{ element.link }}">
+            <img src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+        </a>
+    {% else %}
+        <img src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+    {% endif %}
 </p>
 {% endif %}
