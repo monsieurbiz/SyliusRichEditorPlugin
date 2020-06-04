@@ -1,0 +1,20 @@
+monsieurbiz_sylius_rich_editor_shop_partial_taxon_product:
+    path: /taxon-product/{taxon}/{count}
+    requirements:
+        taxon: .+
+        count: ^[0-9]+$
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.product:indexAction
+        _sylius:
+            count: $count
+            template: $template
+            repository:
+                method: createShopListQueryBuilder
+                arguments:
+                    channel: "expr:service('sylius.context.channel').getChannel()"
+                    taxon: "expr:notFoundOnNull(service('sylius.repository.taxon').findOneByCode($taxon))"
+                    locale: "expr:service('sylius.context.locale').getLocaleCode()"
+                    sorting: "expr:service('request_stack').getCurrentRequest().get('sorting', [])"
+                    includeAllDescendants: "expr:parameter('sylius_shop.product_grid.include_all_descendants')"
+

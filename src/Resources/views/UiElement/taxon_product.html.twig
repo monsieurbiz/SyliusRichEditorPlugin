@@ -10,3 +10,5 @@
 {% if element.title is not empty %}
     <div class="ui center aligned huge header">{{ element.title }}</div>
 {% endif %}
+
+{{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_taxon_product', {'taxon': element.taxon, 'count': element.number_of_products, 'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_carousel.html.twig'})) }}
