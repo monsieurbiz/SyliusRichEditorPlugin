@@ -579,7 +579,7 @@ class MbizRichEditorFields {
                 <div class="${this.classes.draggableItemContent}">
                     <div class="${this.classes.draggableItemInfos}">
                         <h2 class="${this.classes.draggableItemTitle}">${uiElementMetaData.title}</h2>
-                        <p>${uiElementMetaData.description}</p>
+                        <p>${uiElementMetaData.short_description}</p>
                     </div>
                     <div class="${this.classes.draggableItemActions}">
                         <button class="${this.classes.draggableItemButton} ${this.classes.updateButton}" type="button" data-tooltip="${this.translations.edit}">${this.translations.edit}</button>
