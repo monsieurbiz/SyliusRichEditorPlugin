@@ -50,6 +50,10 @@ class TaxonProductType extends AbstractType
                     new Assert\GreaterThan(0),
                 ],
             ])
+            ->add('title', FormTextType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.taxon_product.field.title',
+            ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $taxonCode = $data['taxon'] ?? '';

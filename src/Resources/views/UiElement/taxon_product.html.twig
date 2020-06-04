@@ -4,4 +4,9 @@
     element fields :
         taxon
         number_of_products
+        title
 #}
+
+{% if element.title is not empty %}
+    <div class="ui center aligned huge header">{{ element.title }}</div>
+{% endif %}
