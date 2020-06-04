@@ -16,10 +16,10 @@
         <div class="column">
             {% if element.first_link is not empty %}
                 <a href="{{ element.first_link }}">
-                    <img src="{{ element.first_image }}" alt="{{ element.first_alt|default('') }}" title="{{ element.first_title|default('') }}" />
+                    <img class="ui fluid image" src="{{ element.first_image }}" alt="{{ element.first_alt|default('') }}" title="{{ element.first_title|default('') }}" />
                 </a>
             {% else %}
-                <img src="{{ element.first_image }}" alt="{{ element.first_alt|default('') }}" title="{{ element.first_title|default('') }}" />
+                <img class="ui fluid image" src="{{ element.first_image }}" alt="{{ element.first_alt|default('') }}" title="{{ element.first_title|default('') }}" />
             {% endif %}
         </div>
     {% endif %}
@@ -27,10 +27,10 @@
         <div class="column">
             {% if element.second_link is not empty %}
                 <a href="{{ element.second_link }}">
-                    <img src="{{ element.second_image }}" alt="{{ element.second_alt|default('') }}" title="{{ element.second_title|default('') }}" />
+                    <img class="ui fluid image" src="{{ element.second_image }}" alt="{{ element.second_alt|default('') }}" title="{{ element.second_title|default('') }}" />
                 </a>
             {% else %}
-                <img src="{{ element.second_image }}" alt="{{ element.second_alt|default('') }}" title="{{ element.second_title|default('') }}" />
+                <img class="ui fluid image" src="{{ element.second_image }}" alt="{{ element.second_alt|default('') }}" title="{{ element.second_title|default('') }}" />
             {% endif %}
         </div>
     {% endif %}
