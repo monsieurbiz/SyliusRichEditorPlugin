@@ -7,7 +7,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\EventListener\Admin;
 use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory;
 use Sonata\BlockBundle\Event\BlockEvent;
 use Sonata\BlockBundle\Model\Block;
-use \Twig_Environment;
+use Twig\Environment;
 
 class AppBlock
 {
@@ -17,21 +17,21 @@ class AppBlock
     /** @var UiElementFactory */
     private $uiElementFactory;
 
-    /** @var Twig_Environment */
-    private $twigEnv;
+    /** @var Environment */
+    private $environment;
 
     /**
      * AppBlock constructor.
      *
      * @param UiElementFactory $uiElementFactory
      * @param string $template
-     * @param Twig_Environment $twigEnv
+     * @param Environment $environment
      */
-    public function __construct(UiElementFactory $uiElementFactory, string $template, Twig_Environment $twigEnv)
+    public function __construct(UiElementFactory $uiElementFactory, string $template, Environment $environment)
     {
         $this->template = $template;
         $this->uiElementFactory = $uiElementFactory;
-        $this->twigEnv = $twigEnv;
+        $this->environment = $environment;
     }
 
     /**
@@ -43,7 +43,7 @@ class AppBlock
         $block->setId(uniqid('', true));
         $block->setSettings(array_replace($event->getSettings(), [
             'template' => $this->template,
-            'attr' => ['ui_elements' => $this->uiElementFactory->getUiElements(), 'debug' => $this->twigEnv->isDebug()]
+            'attr' => ['ui_elements' => $this->uiElementFactory->getUiElements(), 'debug' => $this->environment->isDebug()]
         ]));
         $block->setType('sonata.block.service.template');
 
