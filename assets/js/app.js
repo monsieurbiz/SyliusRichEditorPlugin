@@ -52,7 +52,7 @@ class MbizRichEditorFields {
             updateButton: 'mbiz-rich-editor-update-button',
             toggleButton: 'mbiz-rich-editor-toggle-button',
             closeButton: 'mbiz-rich-editor-close-button',
-            renderedModal: 'mbiz-rich-editor-rendred-modal',
+            renderedModal: 'mbiz-rich-editor-rendered-modal',
         };
         this.events = {
             uiElementsBuilt: new Event('uiElementsBuilt'),
@@ -349,6 +349,7 @@ class MbizRichEditorFields {
             closeLabel: this.translations.close,
             onOpen: function() {
                 _self.initWysiwyg(modal.modalBoxContent);
+                monsieurBizRichInitAutoComplete();
             },
         });
 

@@ -3,6 +3,7 @@
         debug: {{ settings.attr.debug|number_format }},
         templateRender: 'sylius',
         querySelector: '[data-component="rich-editor"]',
+        autoCompleteSelector: '.mbiz-rich-editor-rendered-modal .sylius-autocomplete',
         containerSelector: '#wrapper',
         formRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_form') | escape('js') }}',
         submitRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_submit') | escape('js') }}',
@@ -34,6 +35,14 @@
         input.parentElement.remove();
         fileInput.style.display = 'inline';
         fileInput.name = inputName;
+    }
+
+    // JQuery dependency to init autocomplete with Sylius
+    function monsieurBizRichInitAutoComplete() {
+        let autocompleteSelector = $(monsieurbizRichEditorPluginConfig.autoCompleteSelector);
+        if (autocompleteSelector.length > 0) {
+            autocompleteSelector.autoComplete();
+        }
     }
 </script>
 
