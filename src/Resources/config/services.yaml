@@ -42,3 +42,11 @@ services:
   # UiElement Factory using classes in config
   MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface:
     alias: MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory
+
+  # Add JS for plugin
+  monsieurbiz_sylius_rich_editor.block_event_listener.layout.javascripts:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+      - '@@MonsieurBizSyliusRichEditorPlugin/Shop/js.html.twig'
+    tags:
+      - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
