@@ -43,6 +43,13 @@ monsieurbiz_richeditor_plugin:
       field:
         author: 'Auteur'
         content: 'Contenu'
+    taxon_product:
+      title: 'Lame produits de taxon'
+      short_description: 'Une lame les produits d''un taxon'
+      description: 'Une lame les produits d''un taxon avec une limite de nombre de produits'
+      field:
+        taxon: 'Taxon'
+        number_of_products: 'Nombre de produits'
     video:
       title: 'Lame vidéo'
       short_description: 'Une lame contenant une vidéo et une image de fond'

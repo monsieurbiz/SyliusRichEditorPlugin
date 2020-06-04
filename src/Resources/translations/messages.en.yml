@@ -43,6 +43,13 @@ monsieurbiz_richeditor_plugin:
       field:
         author: 'Author'
         content: 'Content'
+    taxon_product:
+      title: 'Taxon''s product'
+      short_description: 'An element with products of a taxon'
+      description: 'An element with products of a taxon with a limited number of product'
+      field:
+        taxon: 'Taxon'
+        number_of_products: 'Number of products'
     video:
       title: 'Video Element'
       short_description: 'Element with a video and a background video image'
