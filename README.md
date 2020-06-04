@@ -123,6 +123,10 @@ The plugin contains some simple elements
 
 ![The image element](screenshots/image.png)
 
+### Double Image element
+
+![The double image element](screenshots/double_image.png)
+
 ### Quote element
 
 ![The quote element](screenshots/quote.png)
@@ -134,6 +138,28 @@ The plugin contains some simple elements
 ### Video element
 
 ![The video element](screenshots/video.png)
+
+### Title element
+
+![The title element](screenshots/title.png)
+
+### Taxon Product element
+
+![The taxon product element](screenshots/taxon_product.png)
+
+It will be displayed as a carousel
+
+### Products element
+
+![The products element](screenshots/products.png)
+
+It will be displayed as a carousel
+
+## Carousel view
+
+It uses the Slick carousel used by Sylius. You can customize the templates if you want another one.
+
+![An example of a carousel](screenshots/carousel.png)
 
 ## Create your own elements
 
