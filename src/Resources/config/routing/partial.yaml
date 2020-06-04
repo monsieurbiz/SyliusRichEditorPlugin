@@ -5,18 +5,18 @@ monsieurbiz_sylius_rich_editor_shop_partial_taxon_product:
         count: ^[0-9]+$
     methods: [GET]
     defaults:
-        _controller: sylius.controller.product:indexAction
+        _controller: monsieur_biz_sylius_rich_editor.controller.product:indexAction
         _sylius:
-            count: $count
             template: $template
             repository:
-                method: createShopListQueryBuilder
+                method: createProductListByTaxonCode
                 arguments:
                     channel: "expr:service('sylius.context.channel').getChannel()"
                     taxon: "expr:notFoundOnNull(service('sylius.repository.taxon').findOneByCode($taxon))"
                     locale: "expr:service('sylius.context.locale').getLocaleCode()"
                     sorting: "expr:service('request_stack').getCurrentRequest().get('sorting', [])"
                     includeAllDescendants: "expr:parameter('sylius_shop.product_grid.include_all_descendants')"
+                    count: $count
 
 monsieurbiz_sylius_rich_editor_shop_partial_products:
     path: /list-products/{products}
@@ -28,7 +28,7 @@ monsieurbiz_sylius_rich_editor_shop_partial_products:
         _sylius:
             template: $template
             repository:
-                method: createProductListByCodeQueryBuilder
+                method: createProductListByProductCodes
                 arguments:
                     products: $products
                     channel: "expr:service('sylius.context.channel').getChannel()"

@@ -1,7 +1,3 @@
-{% set products = products.query.result %}
-{% set number_of_products = app.request.attributes.get('count') %}
-{% set products = products|slice(0, number_of_products) %}
-
 {#<div class="ui center aligned huge header">{{ taxon.name }}</div>#}
 <div class="ui hidden divider"></div>
 

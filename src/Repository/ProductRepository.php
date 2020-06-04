@@ -4,13 +4,21 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Repository;
 
-use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as SyliusProductRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Core\Model\TaxonInterface;
 
 class ProductRepository extends SyliusProductRepository
 {
-    public function createProductListByCodeQueryBuilder(string $products, ChannelInterface $channel, string $locale): QueryBuilder
+    /**
+     * Get available products depending on a list of codes
+     *
+     * @param string $products
+     * @param ChannelInterface $channel
+     * @param string $locale
+     * @return array
+     */
+    public function createProductListByProductCodes(string $products, ChannelInterface $channel, string $locale): array
     {
         // Add translation
         $queryBuilder = $this->createQueryBuilder('o')
@@ -33,6 +41,32 @@ class ProductRepository extends SyliusProductRepository
             ->setParameter('productCodes', explode(',', $products))
         ;
 
-        return $queryBuilder;
+        return $queryBuilder->getQuery()->getResult();
+    }
+
+    /**
+     * Get product list from Taxon
+     *
+     * @param ChannelInterface $channel
+     * @param TaxonInterface $taxon
+     * @param string $locale
+     * @param array $sorting
+     * @param bool $includeAllDescendants
+     * @param int $count
+     * @return array
+     */
+    public function createProductListByTaxonCode(
+        ChannelInterface $channel,
+        TaxonInterface $taxon,
+        string $locale,
+        array $sorting = [],
+        bool $includeAllDescendants = false,
+        string $count
+    ): array {
+        $queryBuilder = parent::createShopListQueryBuilder($channel, $taxon, $locale, $sorting, $includeAllDescendants);
+        $queryBuilder->setMaxResults((int) $count);
+
+        return $queryBuilder->getQuery()->getResult();
+
     }
 }
