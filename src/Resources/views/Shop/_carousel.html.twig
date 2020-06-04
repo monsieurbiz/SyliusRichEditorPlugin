@@ -7,7 +7,7 @@
 
 {% if products|length > 0 %}
     <div class="carousel-wrapper">
-        <div class="carousel">
+        <div class="carousel-content">
             {% for product in products %}
                 <div class="carousel-item">
                     {% include '@SyliusShop/Product/_box.html.twig' %}
@@ -25,3 +25,4 @@
         </div>
     </div>
 {% endif %}
+
