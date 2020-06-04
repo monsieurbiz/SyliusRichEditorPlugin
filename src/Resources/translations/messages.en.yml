@@ -44,12 +44,19 @@ monsieurbiz_richeditor_plugin:
         author: 'Author'
         content: 'Content'
     taxon_product:
-      title: 'Taxon''s product'
+      title: 'Taxon''s product Element'
       short_description: 'An element with products of a taxon'
-      description: 'An element with products of a taxon with a limited number of product. If it''s defined a title will be display above the list'
+      description: 'An element with products of a taxon with a limited number of product. If a title is defined, it will be display above the list'
       field:
         taxon: 'Taxon'
         number_of_products: 'Number of products'
+        title: 'Title'
+    products:
+      title: 'Products Element'
+      short_description: 'An element with a list of products'
+      description: 'An element with a list of products. If a title is defined, it will be display above the list'
+      field:
+        products: 'Products'
         title: 'Title'
     video:
       title: 'Video Element'

@@ -1,0 +1,13 @@
+{#
+    UI Element template
+    type: products
+    element fields :
+        products
+        title
+#}
+
+{% if element.title is not empty %}
+    <div class="ui center aligned huge header">{{ element.title }}</div>
+{% endif %}
+
+{#{{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_products', {'taxon': element.products, 'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_carousel.html.twig'})) }}#}
