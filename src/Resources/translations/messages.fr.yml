@@ -51,6 +51,7 @@ monsieurbiz_richeditor_plugin:
         taxon: 'Taxon'
         number_of_products: 'Nombre de produits'
         title: 'Titre'
+        button_label: 'Label du bouton'
     products:
       title: 'Lame produits'
       short_description: 'Une lame contenant une liste de produits.'

@@ -34,3 +34,17 @@ monsieurbiz_sylius_rich_editor_shop_partial_products:
                     channel: "expr:service('sylius.context.channel').getChannel()"
                     locale: "expr:service('sylius.context.locale').getLocaleCode()"
 
+monsieurbiz_sylius_rich_editor_shop_partial_taxon_button:
+    path: /taxon-button/{taxon}/
+    requirements:
+        taxon: .+
+    methods: [GET]
+    defaults:
+        _controller: sylius.controller.taxon:showAction
+        _sylius:
+            label: $label
+            template: $template
+            repository:
+                method: findOneByCode
+                arguments:
+                    code: $taxon

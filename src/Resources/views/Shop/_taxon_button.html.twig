@@ -1,0 +1,5 @@
+<p align="center">
+    <a href="{{ path('sylius_shop_product_index', {'slug': taxon.slug, '_locale': taxon.translation.locale}) }}" class="ui primary button massive">
+        {{ app.request.query.get('label') }}
+    </a>
+</p>

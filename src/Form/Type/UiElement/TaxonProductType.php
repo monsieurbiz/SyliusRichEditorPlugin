@@ -54,6 +54,10 @@ class TaxonProductType extends AbstractType
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.taxon_product.field.title',
             ])
+            ->add('button_label', FormTextType::class, [
+                'required' => false,
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.taxon_product.field.button_label',
+            ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
                 $data = $event->getData();
                 $taxonCode = $data['taxon'] ?? '';

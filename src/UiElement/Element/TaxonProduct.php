@@ -13,7 +13,7 @@ class TaxonProduct extends AbstractUiElement
 
     public function getFields(): array
     {
-        return ['taxon', 'number_of_products', 'title'];
+        return ['taxon', 'number_of_products', 'title', 'button_label'];
     }
 
     public function getFormClass(): string
