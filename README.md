@@ -143,6 +143,14 @@ The plugin contains some simple elements
 
 ![The title element](screenshots/title.png)
 
+### Button link element
+
+![The title element](screenshots/button_link.png)
+
+### Separator element
+
+![The title element](screenshots/separator.png)
+
 ### Taxon Product element
 
 ![The taxon product element](screenshots/taxon_product.png)
