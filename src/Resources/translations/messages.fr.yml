@@ -66,6 +66,12 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Vidéo'
         image: 'Image de fond'
+    separator:
+      title: 'Lame Séparateur'
+      short_description: 'Une lame permettant de faire séparateur'
+      description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
+      field:
+        hidden: 'Séparateur caché'
   file:
     change: 'Changer de fichier'
   form:

@@ -66,6 +66,12 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
+    separator:
+      title: 'Separator Element'
+      short_description: 'A separator element'
+      description: 'A separator element. The separator can be a hidden one.'
+      field:
+        hidden: 'Hidden separator'
   file:
     change: 'Change file'
   form:
