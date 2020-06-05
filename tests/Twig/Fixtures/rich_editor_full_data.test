@@ -16,7 +16,8 @@ return array(
                      "fields": {
                        "image": "/medias/toto.jpg",
                        "alt": "Toto",
-                       "title": "Photo de Toto"
+                       "title": "Photo de Toto",
+                       "link": ""
                      }
                    },
                    {
@@ -40,8 +41,8 @@ return array(
     Mon texte
 </p>
 <p>
-    <img src="/medias/toto.jpg" alt="Toto" title="Photo de Toto" />
-</p>
+            <img class="ui fluid image" src="/medias/toto.jpg" alt="Toto" title="Photo de Toto" />
+    </p>
 <blockquote>
     Citation de Baudelaire
     <br />— <cite>Baudelaire</cite>

@@ -52,7 +52,7 @@ class ProductRepository extends SyliusProductRepository
      * @param string $locale
      * @param array $sorting
      * @param bool $includeAllDescendants
-     * @param int $count
+     * @param string $count
      * @return array
      */
     public function createProductListByTaxonCode(
