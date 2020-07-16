@@ -5,6 +5,8 @@
         label
         link
 #}
-<p align="center">
-    <a href="{{ element.link }}" class="ui primary button massive">{{ element.label }}</a>
-</p>
+{% if element is not empty %}
+    <p align="center">
+        <a href="{{ element.link }}" class="ui primary button massive">{{ element.label }}</a>
+    </p>
+{% endif %}

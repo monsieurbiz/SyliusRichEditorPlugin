@@ -4,4 +4,4 @@
     element fields :
         hidden
 #}
-<div class="ui {% if element.hidden is not empty %}hidden{% endif %} divider"></div>
+<div class="ui {% if element is not empty and element.hidden is not empty %}hidden{% endif %} divider"></div>
