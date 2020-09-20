@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
@@ -9,9 +18,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractUiElement implements UiElementInterface
 {
-    const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
+    public const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
 
-    protected $type = '';
+    protected string $type = '';
 
     /**
      * @var TranslatorInterface
@@ -20,6 +29,7 @@ abstract class AbstractUiElement implements UiElementInterface
 
     /**
      * AbstractUiElement constructor.
+     *
      * @param TranslatorInterface $translator
      */
     public function __construct(TranslatorInterface $translator)
@@ -38,13 +48,10 @@ abstract class AbstractUiElement implements UiElementInterface
     public function getType(): string
     {
         if (empty($this->type)) {
-            $reflection = new \ReflectionClass(get_class($this));
-            throw new UndefinedUiElementTypeException(sprintf(
-                'Please add a type to your UI Element in class "%s". You can try to add this property `protected $type = \'%s\';`',
-                $reflection->getName(),
-                strtolower($reflection->getShortName()) // @TODO we can improve it with snakeCaseToCamelCaseNameConverter
-            ));
+            $reflection = new \ReflectionClass(static::class);
+            throw new UndefinedUiElementTypeException(sprintf('Please add a type to your UI Element in class "%s". You can try to add this property `protected $type = \'%s\';`', $reflection->getName(), strtolower($reflection->getShortName()) /* @TODO we can improve it with snakeCaseToCamelCaseNameConverter */));
         }
+
         return $this->type;
     }
 
@@ -66,6 +73,7 @@ abstract class AbstractUiElement implements UiElementInterface
     private function getTranslation(string $key): string
     {
         $translationKey = sprintf('%s.%s.%s', self::TRANSLATION_PREFIX, $this->getType(), $key);
+
         return $this->getTranslator()->trans($translationKey) ?? $translationKey;
     }
 

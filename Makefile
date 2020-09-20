@@ -1,97 +1,141 @@
 .DEFAULT_GOAL := help
+SHELL=/bin/bash
+APP_DIR=tests/Application
+SYMFONY=cd ${APP_DIR} && symfony
+COMPOSER=symfony composer
+CONSOLE=${SYMFONY} console
+export COMPOSE_PROJECT_NAME=rich-editor
+COMPOSE=docker-compose
+YARN=cd ${APP_DIR} && yarn
+PHPSTAN=symfony run vendor/bin/phpstan
+PHPUNIT=symfony run vendor/bin/phpunit
+PHPSPEC=symfony run vendor/bin/phpspec
 
-APP_ENV ?= dev
-SYMFONY_ARGS ?=
-COMPOSER_ARGS ?= --prefer-source
-DOCKER_INTERACTIVE_ARGS ?= -ti
-
+###
 ### DEVELOPMENT
-# ¯¯¯¯¯¯¯¯¯¯¯¯¯
+### ¯¯¯¯¯¯¯¯¯¯¯
 
-requirements: .php-version node_modules
+install: platform sylius ## Install the plugin
+.PHONY: install
 
-bazinga: requirements stop clean serve init npm.build ## 🎉 Setup everything by doing what has to be done.
+up: docker.up server.start ## Up the project (start docker, start symfony server)
+stop: server.stop docker.stop ## Stop the project (stop docker, stop symfony server)
+down: server.stop docker.down ## Down the project (removes docker containers, stop symfony server)
 
-install: requirements composer.init npm.init npm.build ## Install the plugin without Sylius app
+reset: docker.down ## Stop docker and remove dependencies
+	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
+	rm -rf vendor composer.lock
+.PHONY: reset
 
-serve: ## Serve the DEV app
-	${MAKE} docker.start || true
-	symfony local:server:start -d --dir=tests/Application/ ${SYMFONY_ARGS} || true
+dependencies: vendor node_modules ## Setup the dependencies
+.PHONY: dependencies
 
-stop: ## Stop the DEV app
-	symfony local:server:stop --dir=tests/Application/
-	${MAKE} docker.stop || true
-
-docker.start: ## Up docker containers
-	docker run -d --rm --name richeditor_database -v richeditor_database:/var/lib/mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=1 -p 3306:3306 mysql:5.5
-
-docker.stop: ## Down docker containers
-	docker stop richeditor_database
-
-docker.logs: ## Logs of docker containers
-	docker logs -f richeditor_database
-
-server.logs: ## Logs of the symfony server
-	symfony local:server:log --dir=tests/Application/
-
-init: composer.init sylius.init npm.init ## Init all (composer, sylius, plugin)
-
-composer.init: ## Init composer dependencies
-	symfony composer install ${COMPOSER_ARGS}
-
-# 	docker run --rm ${DOCKER_INTERACTIVE_ARGS} -v ${PWD}:/app:rw -w /app/tests/Application -u node node:latest bash -c "yarn install; yarn build"
-sylius.init: requirements db.reset ## Init the DEV Sylius app
-	cd tests/Application && \
-	npm install && \
-	npm run build
-	symfony php tests/Application/bin/console assets:install public --symlink
-	symfony php tests/Application/bin/console sylius:install:assets
-
-db.reset: ## Reset the database
-	symfony php tests/Application/bin/console doctrine:database:create --if-not-exists --no-interaction
-	symfony php tests/Application/bin/console doctrine:schema:update --force --no-interaction
-	symfony php tests/Application/bin/console sylius:fixtures:load --no-interaction
-
-npm.init: ## Init npm (plugin & sylius)
-	npm install
-
-npm.build: ## Build JS files from sources (plugin & sylius)
-	npm run build
-
-npm.watch: ## Watch JS files for this plugin only
-	npm run watch
-
-clean: sylius.clean ## Clean all generated stuff
-	rm -rf ./{package-lock.json,yarn.lock,composer.lock,vendor}
-
-sylius.clean: ## Clean all generated stuff in sylius only
-	cd tests/Application/ && \
-	rm -rf ./{package-lock.json,yarn.lock,composer.lock,node_modules} && \
-	mkdir node_modules
-
-phpunit: ## Run phpunit
-	./vendor/bin/phpunit
-
-phpspec: ## Run phpspec
-	./vendor/bin/phpspec run
-
-phpstan: ## Run phpstan
-	./vendor/bin/phpstan analyse src
-
-.php-version:
+.php-version: .php-version.dist
 	cp .php-version.dist .php-version
+	(cd ${APP_DIR} && ln -sf ../../.php-version)
 
-node_modules:
-	ln -sf tests/Application/node_modules node_modules
+vendor: composer.lock ## Install the PHP dependencies using composer
+	${COMPOSER} install --prefer-source
 
-### OTHERS
-# ¯¯¯¯¯¯¯¯
+composer.lock: composer.json
+	${COMPOSER} update --prefer-source
 
-.PHONY: help
+yarn.install: ${APP_DIR}/yarn.lock
+
+${APP_DIR}/yarn.lock:
+	${YARN} install
+	ln -sf ${APP_DIR}/node_modules node_modules
+	${YARN} encore dev
+
+node_modules: ${APP_DIR}/node_modules ## Install the Node dependencies using yarn
+
+${APP_DIR}/node_modules: yarn.install
+
+###
+### TESTS
+### ¯¯¯¯¯
+
+test.composer: ## Validate composer.json
+	${COMPOSER} validate --strict
+
+test.phpstan: ## Run PHPStan
+	${PHPSTAN} analyse -c phpstan.neon src/
+
+test.phpunit: ## Run PHPUnit
+	${PHPUNIT}
+
+test.phpspec: ## Run PHPSpec
+	${PHPSPEC} run
+
+test.phpcs: ## Run PHP CS Fixer in dry-run
+	${COMPOSER} run -- phpcs --dry-run -v
+
+test.phpcs.fix: ## Run PHP CS Fixer and fix issues if possible
+	${COMPOSER} run -- phpcs -v
+
+test.container: ## Lint the symfony container
+	${CONSOLE} lint:container
+
+test.yaml: ## Lint the symfony Yaml files
+	${CONSOLE} lint:yaml ../../recipes ../../src/Resources/config
+
+test.schema: ## Validate MySQL Schema
+	${CONSOLE} doctrine:schema:validate
+
+test.twig: ## Validate Twig templates
+	${CONSOLE} lint:twig -e prod --no-debug templates/ ../../src/Resources/views/
+
+###
+### SYLIUS
+### ¯¯¯¯¯¯
+
+sylius: dependencies sylius.database sylius.fixtures ## Install Sylius
+.PHONY: sylius
+
+sylius.database: ## Setup the database
+	${CONSOLE} doctrine:database:drop --if-exists --force
+	${CONSOLE} doctrine:database:create --if-not-exists
+	${CONSOLE} doctrine:schema:update --force
+
+sylius.fixtures: ## Run the fixtures
+	${CONSOLE} sylius:fixtures:load -n default
+
+###
+### PLATFORM
+### ¯¯¯¯¯¯¯¯
+
+platform: .php-version up ## Setup the platform tools
+.PHONY: platform
+
+docker.pull: ## Pull the docker images
+	cd ${APP_DIR} && ${COMPOSE} pull
+
+docker.up: ## Start the docker containers
+	cd ${APP_DIR} && ${COMPOSE} up -d
+.PHONY: docker.up
+
+docker.stop: ## Stop the docker containers
+	cd ${APP_DIR} && ${COMPOSE} stop
+.PHONY: docker.stop
+
+docker.down: ## Stop and remove the docker containers
+	cd ${APP_DIR} && ${COMPOSE} down
+.PHONY: docker.down
+
+server.start: ## Run the local webserver using Symfony
+	${SYMFONY} local:server:start -d
+
+server.stop: ## Stop the local webserver
+	${SYMFONY} local:server:stop
+
+###
+### HELP
+### ¯¯¯¯
+
+help: SHELL=/bin/bash
 help: ## Dislay this help
-	@IFS=$$'\n'; for line in `grep -h -E '^[a-zA-Z_#-]+:?.*?## .*$$' $(MAKEFILE_LIST)`; do if [ "$${line:0:2}" = "##" ]; then \
-	echo $$line | awk 'BEGIN {FS = "## "}; {printf "\n\033[33m%s\033[0m\n", $$2}'; else \
-	echo $$line | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'; fi; \
+	@IFS=$$'\n'; for line in `grep -h -E '^[a-zA-Z_#-]+:?.*?##.*$$' $(MAKEFILE_LIST)`; do if [ "$${line:0:2}" = "##" ]; then \
+	echo $$line | awk 'BEGIN {FS = "## "}; {printf "\033[33m    %s\033[0m\n", $$2}'; else \
+	echo $$line | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m%s\n", $$1, $$2}'; fi; \
 	done; unset IFS;
-
-
+.PHONY: help

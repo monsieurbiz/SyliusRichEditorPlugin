@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Factory;
@@ -13,7 +22,7 @@ final class UiElementFactory implements UiElementFactoryInterface
     /**
      * @var UiElementRegistryInterface
      */
-    private $uiElementRegistry;
+    private UiElementRegistryInterface $uiElementRegistry;
 
     /**
      * UiElementFactory constructor.
@@ -37,8 +46,9 @@ final class UiElementFactory implements UiElementFactoryInterface
     /**
      * @param string $type
      *
-     * @return UiElementInterface
      * @throws UiElementNotFoundException
+     *
+     * @return UiElementInterface
      */
     public function getUiElementByType(string $type): UiElementInterface
     {

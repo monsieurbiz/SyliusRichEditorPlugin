@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
@@ -7,10 +16,10 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Twig\Environment;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class RichEditorExtension extends AbstractExtension
 {
@@ -56,15 +65,16 @@ final class RichEditorExtension extends AbstractExtension
     /**
      * @param string $content
      *
-     * @return string
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
+     *
+     * @return string
      */
     public function renderRichEditorField(string $content)
     {
         $elements = json_decode($content, true);
-        if (!is_array($elements)) {
+        if (!\is_array($elements)) {
             return $content;
         }
 

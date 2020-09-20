@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Repository;
@@ -11,11 +20,12 @@ use Sylius\Component\Core\Model\TaxonInterface;
 class ProductRepository extends SyliusProductRepository
 {
     /**
-     * Get available products depending on a list of codes
+     * Get available products depending on a list of codes.
      *
      * @param string $products
      * @param ChannelInterface $channel
      * @param string $locale
+     *
      * @return array
      */
     public function createProductListByProductCodes(string $products, ChannelInterface $channel, string $locale): array
@@ -45,7 +55,7 @@ class ProductRepository extends SyliusProductRepository
     }
 
     /**
-     * Get product list from Taxon
+     * Get product list from Taxon.
      *
      * @param ChannelInterface $channel
      * @param TaxonInterface $taxon
@@ -53,6 +63,7 @@ class ProductRepository extends SyliusProductRepository
      * @param array $sorting
      * @param bool $includeAllDescendants
      * @param string $count
+     *
      * @return array
      */
     public function createProductListByTaxonCode(
@@ -67,6 +78,5 @@ class ProductRepository extends SyliusProductRepository
         $queryBuilder->setMaxResults((int) $count);
 
         return $queryBuilder->getQuery()->getResult();
-
     }
 }

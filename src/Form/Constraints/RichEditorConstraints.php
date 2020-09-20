@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints;
@@ -11,14 +20,16 @@ final class RichEditorConstraints
     /**
      * Return constraint depending on data
      * If user created the element, the field is required
-     * If it's an edition and it contains a filename, we don't flag it as required
+     * If it's an edition and it contains a filename, we don't flag it as required.
      *
      * @param array $options
      * @param string $fieldName
      * @param bool $required
+     *
      * @return array
      */
-    public static function getImageConstraints(array $options, string $fieldName, bool $required = true) {
+    public static function getImageConstraints(array $options, string $fieldName, bool $required = true)
+    {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
@@ -41,14 +52,16 @@ final class RichEditorConstraints
     /**
      * Return constraint depending on data
      * If user created the element, the field is required
-     * If it's an edition and it contains a filename, we don't flag it as required
+     * If it's an edition and it contains a filename, we don't flag it as required.
      *
      * @param array $options
      * @param string $fieldName
      * @param bool $required
+     *
      * @return array
      */
-    public static function getVideoConstraints(array $options, string $fieldName, bool $required = true) {
+    public static function getVideoConstraints(array $options, string $fieldName, bool $required = true)
+    {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
         if (isset($data[$fieldName])) {
@@ -58,7 +71,7 @@ final class RichEditorConstraints
         if (!$required) {
             return [
                 new Assert\File([
-                    'mimeTypes' => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-msvideo', 'video/x-flv']
+                    'mimeTypes' => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-msvideo', 'video/x-flv'],
                 ]),
             ];
         }
@@ -67,7 +80,7 @@ final class RichEditorConstraints
         return [
             new Assert\NotBlank([]),
             new Assert\File([
-                'mimeTypes' => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-msvideo', 'video/x-flv']
+                'mimeTypes' => ['video/mpeg', 'video/mp4', 'video/quicktime', 'video/x-ms-wmv', 'video/x-msvideo', 'video/x-flv'],
             ]),
         ];
     }
