@@ -7,13 +7,15 @@
         title
 #}
 
-{% if element.title is not empty %}
-    <div class="ui center aligned huge header">{{ element.title }}</div>
-{% endif %}
+{% if element is not empty %}
+    {% if element.title is not empty %}
+        <div class="ui center aligned huge header">{{ element.title }}</div>
+    {% endif %}
 
-{{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_taxon_product', {'taxon': element.taxon, 'count': element.number_of_products, 'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_carousel.html.twig'})) }}
+    {{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_taxon_product', {'taxon': element.taxon, 'count': element.number_of_products, 'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_carousel.html.twig'})) }}
 
-{% if element.button_label is not empty %}
-    <div class="ui hidden divider"></div>
-    {{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_taxon_button', {'taxon': element.taxon, 'label': element.button_label,'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_taxon_button.html.twig'})) }}
+    {% if element.button_label is not empty %}
+        <div class="ui hidden divider"></div>
+        {{ render(url('monsieurbiz_sylius_rich_editor_shop_partial_taxon_button', {'taxon': element.taxon, 'label': element.button_label,'template': '@MonsieurBizSyliusRichEditorPlugin/Shop/_taxon_button.html.twig'})) }}
+    {% endif %}
 {% endif %}

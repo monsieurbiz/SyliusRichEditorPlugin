@@ -4,6 +4,8 @@
     element fields :
         content
 #}
+{% if element is not empty %}
 <p>
     {{ element.content | raw | nl2br }}
 </p>
+{% endif %}

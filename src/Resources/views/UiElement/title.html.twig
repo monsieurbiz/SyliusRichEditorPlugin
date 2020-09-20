@@ -4,4 +4,6 @@
     element fields :
         content
 #}
-<div class="ui huge header">{{ element.content }}</div>
+{% if element is not empty %}
+    <div class="ui huge header">{{ element.content }}</div>
+{% endif %}

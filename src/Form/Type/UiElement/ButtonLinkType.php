@@ -16,14 +16,14 @@ class ButtonLinkType extends AbstractType
         $builder
             ->add('label', FormTextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.button.field.label',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.button_link.field.label',
                 'constraints' => [
                     new Assert\NotBlank([])
                 ],
             ])
             ->add('link', FormTextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.button.field.link',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.button_link.field.link',
                 'constraints' => [
                     new Assert\Url([]),
                     new Assert\NotBlank([])
