@@ -1,31 +1,16 @@
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
+
 <script type="text/javascript">
-    var monsieurbizRichEditorPluginConfig = {
-        debug: {{ settings.attr.debug|number_format }},
-        templateRender: 'sylius',
-        querySelector: '[data-component="rich-editor"]',
-        autoCompleteSelector: '.mbiz-rich-editor-rendered-modal .sylius-autocomplete',
-        containerSelector: '#wrapper',
-        formRoute: '{{ '' | escape('js') }}',
-        submitRoute: '{{ '' | escape('js') }}',
-        translations: {
-            move: '{{ 'monsieurbiz_richeditor_plugin.form.move' | trans | escape('js') }}',
-            close: '{{ 'monsieurbiz_richeditor_plugin.form.close' | trans | escape('js') }}',
-            edit: '{{ 'monsieurbiz_richeditor_plugin.form.edit' | trans | escape('js') }}',
-            delete: '{{ 'monsieurbiz_richeditor_plugin.form.delete' | trans | escape('js') }}',
-            confirm_delete: '{{ 'monsieurbiz_richeditor_plugin.form.confirm_delete' | trans | escape('js') }}',
-            apply_changes: '{{ 'monsieurbiz_richeditor_plugin.form.apply_changes' | trans | escape('js') }}',
-            cancel_changes: '{{ 'monsieurbiz_richeditor_plugin.form.cancel_changes' | trans | escape('js') }}',
-            placeholder: '{{ 'monsieurbiz_richeditor_plugin.form.placeholder' | trans | escape('js') }}',
-            new: '{{ 'monsieurbiz_richeditor_plugin.action.new' | trans | escape('js') }}',
-            preview: '{{ 'monsieurbiz_richeditor_plugin.action.preview' | trans | escape('js') }}',
-        },
-        errorsTranslations: {
-            cannotParseJson: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_parse_json' | trans | escape('js') }}',
-            cannotFindType: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_find_type' | trans | escape('js') }}',
-            cannotUploadFile: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_upload_file' | trans | escape('js') }}',
-        },
-        uiElements: {},
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+        let editors = document.querySelectorAll('[data-component="rich-editor"]');
+        editors.forEach(function (editor) {
+            let config = new MonsieurBizRichEditorConfig(
+                editor
+            );
+            editor.manager = new MonsieurBizRichEditorManager(config, editor);
+        });
+    });
 
     function monsieurBizRichEditorRemoveFile(inputName) {
         let input = document.querySelector('input[name="' + inputName + '"]');
@@ -46,5 +31,3 @@
     }
 </script>
 
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
