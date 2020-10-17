@@ -66,6 +66,9 @@ final class RichEditorExtension extends AbstractExtension
         ];
     }
 
+    /**
+     * @return array|TwigFunction[]
+     */
     public function getFunctions()
     {
         return [
@@ -116,6 +119,11 @@ final class RichEditorExtension extends AbstractExtension
         return $html;
     }
 
+    /**
+     * List available Ui Elements in JSON
+     *
+     * @return string
+     */
     public function listUiElements(): string
     {
         return (string) json_encode($this->uiElementRegistry);
