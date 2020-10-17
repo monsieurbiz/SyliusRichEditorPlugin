@@ -1,9 +1,0 @@
---TEST--
-"mbiz_rich_editor_render" filter with empty data
---TEMPLATE--
-{{ data|mbiz_rich_editor_render }}
---DATA--
-return array(
-    'data' => '{}',
-)
---EXPECT--
