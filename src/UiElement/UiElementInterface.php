@@ -61,7 +61,7 @@ interface UiElementInterface extends \JsonSerializable
 
     /**
      * @throws \InvalidArgumentException
-     * 
+     *
      * @return string
      */
     public function getFrontRenderTemplate(): string;
