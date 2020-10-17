@@ -13,19 +13,31 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\DependencyInjection;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class MonsieurBizSyliusRichEditorExtension extends Extension
 {
-    public const EXTENSION_CONFIG_NAME = 'monsieur_biz_sylius_rich_editor';
-
-    public function load(array $configs, ContainerBuilder $container): void
+    /**
+     * {@inheritdoc}
+     */
+    public function load(array $config, ContainerBuilder $container): void
     {
-        $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
-        foreach ($config as $name => $value) {
-            $container->setParameter(self::EXTENSION_CONFIG_NAME . '.' . $name, $value);
-        }
+        $configuration = $this->getConfiguration([], $container);
+        $config = $this->processConfiguration(/** @scrutinizer ignore-type */ $configuration, $config);
+        $container->setParameter('monsieurbiz.richeditor.config.ui_elements', $config['ui_elements']);
+
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('services.yaml');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlias()
+    {
+        return str_replace(['rich_editor', 'monsieur_biz'], ['richeditor', 'monsieurbiz'], parent::getAlias());
     }
 }

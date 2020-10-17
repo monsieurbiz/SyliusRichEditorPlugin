@@ -16,7 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-abstract class AbstractUiElement implements UiElementInterface
+abstract class AbstractUiElement
 {
     public const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
 
@@ -80,11 +80,11 @@ abstract class AbstractUiElement implements UiElementInterface
     public function jsonSerialize(): array
     {
         return [
-            'short_description' => $this->getShortDescription(),
+//            'short_description' => $this->getShortDescription(),
             'description' => $this->getDescription(),
             'title' => $this->getTitle(),
-            'image' => $this->getImage(),
-            'fields' => $this->getFields(),
+//            'image' => $this->getImage(),
+//            'fields' => $this->getFields(),
         ];
     }
 

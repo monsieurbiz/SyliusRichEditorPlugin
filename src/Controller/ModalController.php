@@ -111,7 +111,8 @@ class ModalController extends AbstractController
         }
 
         // Create and validate form
-        $data = $request->request->get($uiElement->getType());
+        $data = [];
+//        $data = $request->request->get($uiElement->getType());
         $form = $this->createForm($uiElement->getFormClass(), $data);
         $form->handleRequest($request);
         if (!$form->isSubmitted()) {
@@ -135,25 +136,25 @@ class ModalController extends AbstractController
 
         // Create object with UiElement data
         $element = new \stdClass();
-        $element->type = $uiElement->getType();
-        $element->fields = new \stdClass();
-        foreach ($uiElement->getFields() as $field) {
-            // If file, upload it and retrieve the path
-            if (($file = $request->files->get($uiElementType)) && isset($file[$field])) {
-                $element->fields->{$field} = $this->uploadAndReturnPath($file[$field]);
-            // Value in form exists, we take it
-            } elseif (($value = $request->request->get($uiElementType)) && isset($value[$field])) {
-                // Allow array if choices inputs
-                if (\is_array($value[$field])) {
-                    $element->fields->{$field} = $value[$field];
-                } else {
-                    $element->fields->{$field} = (string) $value[$field];
-                }
-                // Value is not set, set an empty one
-            } else {
-                $element->fields->{$field} = '';
-            }
-        }
+//        $element->type = $uiElement->getType();
+//        $element->fields = new \stdClass();
+//        foreach ($uiElement->getFields() as $field) {
+//            // If file, upload it and retrieve the path
+//            if (($file = $request->files->get($uiElementType)) && isset($file[$field])) {
+//                $element->fields->{$field} = $this->uploadAndReturnPath($file[$field]);
+//            // Value in form exists, we take it
+//            } elseif (($value = $request->request->get($uiElementType)) && isset($value[$field])) {
+//                // Allow array if choices inputs
+//                if (\is_array($value[$field])) {
+//                    $element->fields->{$field} = $value[$field];
+//                } else {
+//                    $element->fields->{$field} = (string) $value[$field];
+//                }
+//                // Value is not set, set an empty one
+//            } else {
+//                $element->fields->{$field} = '';
+//            }
+//        }
 
         return new JsonResponse(['element' => $element]);
     }
@@ -174,7 +175,7 @@ class ModalController extends AbstractController
 
         // Move the file to the directory where brochures are stored
         $file = $file->move(
-            $this->getParameter('monsieur_biz_sylius_rich_editor.upload_directory'),
+            $this->getParameter('monsieurbiz_sylius_richeditor.upload_directory'),
             $newFilename
         );
 

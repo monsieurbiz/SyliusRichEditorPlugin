@@ -90,7 +90,7 @@ final class RichEditorExtension extends AbstractExtension
                 continue;
             }
 
-            $template = $uiElement->getTemplate();
+            $template = $uiElement->getFrontRenderTemplate();
 
             $event = new RenderUiElementEvent($uiElement, $element);
             $this->eventDispatcher->dispatch($event);

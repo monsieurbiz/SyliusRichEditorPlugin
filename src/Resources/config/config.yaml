@@ -1,8 +1,19 @@
 imports:
   - { resource: "services.yaml" }
 
-monsieur_biz_sylius_rich_editor:
+monsieurbiz_sylius_richeditor:
   upload_directory: '%kernel.project_dir%/public/media/rich-editor'
+  ui_elements:
+    monsieurbiz.text:
+      title: 'monsieurbiz_sylius_richeditor.ui_element.monsieurbiz.text.title'
+      description: 'monsieurbiz_sylius_richeditor.ui_element.monsieurbiz.text.description'
+      icon: font
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
+      templates:
+        admin_form: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminForm.html.twig'
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Text/frontRender.html.twig'
 
 sylius_resource:
   resources:
@@ -17,4 +28,4 @@ sylius_resource:
 #            blocks:
 #                monsieurbiz_rich_editor_app:
 #                    template: '@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
-                    
+
