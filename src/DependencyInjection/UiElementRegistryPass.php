@@ -13,28 +13,77 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\DependencyInjection;
 
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Reference;
 
 final class UiElementRegistryPass implements CompilerPassInterface
 {
-    public const UI_ELEMENT_SERVICE_TAG = 'monsieurbiz_rich_editor.ui_element';
-
     /**
      * {@inheritdoc}
      */
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->has('monsieurbiz_rich_editor.registry')) {
+        // Get required parameters and definitions in order to populate the DI
+        try {
+            $uiElements = $container->getParameter('monsieurbiz.richeditor.config.ui_elements');
+            $registry = $container->findDefinition('monsieurbiz.richeditor.registry');
+            $metadataRegistry = $container->findDefinition('monsieurbiz.richeditor.metadata_registry');
+        } catch (InvalidArgumentException $exception) {
             return;
         }
 
-        $uiElementRegistry = $container->findDefinition('monsieurbiz_rich_editor.registry');
+        foreach ($uiElements as $code => $configuration) {
+            $metadataRegistry->addMethodCall('addFromCodeAndConfiguration', [$code, $configuration]);
+            $metadata = Metadata::fromCodeAndConfiguration($code, $configuration);
 
-        $taggedServices = $container->findTaggedServiceIds(self::UI_ELEMENT_SERVICE_TAG);
-        foreach (array_keys($taggedServices) as $id) {
-            $uiElementRegistry->addMethodCall('addUiElement', [new Reference($id)]);
+            $id = $metadata->getServiceId('richeditor');
+
+            $class = $metadata->getClass('ui_element');
+            $this->validateUiElementResource($class);
+
+            $container->setDefinition($id, new Definition($class, [
+                $this->getMetadataDefinition($metadata),
+            ]));
+
+            $aliases = [
+                UiElementInterface::class . ' $' . $metadata->getCamelCasedCode() . 'UiElement' => $id,
+                UiElement::class . ' $' . $metadata->getCamelCasedCode() . 'UiElement' => $id,
+            ];
+            if (UiElement::class !== $class) {
+                $aliases[$class . ' $' . $metadata->getCamelCasedCode() . 'UiElement'] = $id;
+            }
+            $container->addAliases($aliases);
+
+            $registry->addMethodCall('addUiElement', [new Reference($id)]);
         }
+    }
+
+    private function validateUiElementResource(string $class): void
+    {
+        if (!\in_array(UiElementInterface::class, class_implements($class), true)) {
+            throw new InvalidArgumentException(sprintf('Class "%s" must implement "%s" to be registered as a UiElement resource.', $class, UiElementInterface::class));
+        }
+    }
+
+    /**
+     * @param Metadata $metadata
+     *
+     * @return Definition
+     */
+    private function getMetadataDefinition(Metadata $metadata): Definition
+    {
+        $metadataDefinition = new Definition(Metadata::class);
+        $metadataDefinition
+            ->setFactory([new Reference('monsieurbiz.richeditor.metadata_registry'), 'get'])
+            ->setArguments([$metadata->getCode()])
+        ;
+
+        return $metadataDefinition;
     }
 }
