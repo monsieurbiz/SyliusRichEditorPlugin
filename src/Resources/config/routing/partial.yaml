@@ -1,11 +1,11 @@
-monsieurbiz_sylius_rich_editor_shop_partial_taxon_product:
+monsieurbiz_richeditor_shop_partial_taxon_product:
     path: /taxon-product/{taxon}/{count}
     requirements:
         taxon: .+
         count: ^[0-9]+$
     methods: [GET]
     defaults:
-        _controller: monsieur_biz_sylius_rich_editor.controller.product:indexAction
+        _controller: monsieurbiz_richeditor.controller.product:indexAction
         _sylius:
             template: $template
             repository:
@@ -18,13 +18,13 @@ monsieurbiz_sylius_rich_editor_shop_partial_taxon_product:
                     includeAllDescendants: "expr:parameter('sylius_shop.product_grid.include_all_descendants')"
                     count: $count
 
-monsieurbiz_sylius_rich_editor_shop_partial_products:
+monsieurbiz_richeditor_shop_partial_products:
     path: /list-products/{products}
     requirements:
         products: .+
     methods: [GET]
     defaults:
-        _controller: monsieur_biz_sylius_rich_editor.controller.product:indexAction
+        _controller: monsieurbiz_richeditor.controller.product:indexAction
         _sylius:
             template: $template
             repository:
@@ -34,7 +34,7 @@ monsieurbiz_sylius_rich_editor_shop_partial_products:
                     channel: "expr:service('sylius.context.channel').getChannel()"
                     locale: "expr:service('sylius.context.locale').getLocaleCode()"
 
-monsieurbiz_sylius_rich_editor_shop_partial_taxon_button:
+monsieurbiz_richeditor_shop_partial_taxon_button:
     path: /taxon-button/{taxon}/
     requirements:
         taxon: .+

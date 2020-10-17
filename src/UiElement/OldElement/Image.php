@@ -11,18 +11,20 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType;
 
-class Quote extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class Image extends AbstractUiElement
 {
-    protected string $type = 'quote';
+    protected string $type = 'image';
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/quote.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/image.svg';
     }
 
     /**
@@ -30,11 +32,11 @@ class Quote extends AbstractUiElement
      */
     public function getFields(): array
     {
-        return ['author', 'content'];
+        return ['image', 'alt', 'title', 'link'];
     }
 
     public function getFormClass(): string
     {
-        return QuoteType::class;
+        return ImageType::class;
     }
 }

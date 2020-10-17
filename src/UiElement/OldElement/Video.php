@@ -11,18 +11,20 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType;
 
-class Title extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class Video extends AbstractUiElement
 {
-    protected string $type = 'title';
+    protected string $type = 'video';
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/text.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/video.svg';
     }
 
     /**
@@ -30,11 +32,11 @@ class Title extends AbstractUiElement
      */
     public function getFields(): array
     {
-        return ['content'];
+        return ['video', 'image'];
     }
 
     public function getFormClass(): string
     {
-        return TitleType::class;
+        return VideoType::class;
     }
 }

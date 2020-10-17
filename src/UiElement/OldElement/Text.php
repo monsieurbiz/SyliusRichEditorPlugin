@@ -11,18 +11,20 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType;
 
-class Image extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class Text extends AbstractUiElement
 {
-    protected string $type = 'image';
+    protected string $type = 'text';
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/image.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/text.svg';
     }
 
     /**
@@ -30,11 +32,11 @@ class Image extends AbstractUiElement
      */
     public function getFields(): array
     {
-        return ['image', 'alt', 'title', 'link'];
+        return ['content'];
     }
 
     public function getFormClass(): string
     {
-        return ImageType::class;
+        return TextType::class;
     }
 }

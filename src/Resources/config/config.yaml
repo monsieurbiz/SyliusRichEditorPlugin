@@ -17,7 +17,7 @@ monsieurbiz_sylius_richeditor:
 
 sylius_resource:
   resources:
-    monsieur_biz_sylius_rich_editor.product:
+    monsieurbiz_richeditor.product:
       classes:
         model: '%sylius.model.product.class%'
         repository: MonsieurBiz\SyliusRichEditorPlugin\Repository\ProductRepository
@@ -26,6 +26,6 @@ sylius_resource:
 #    events:
 #        sylius.admin.layout.javascripts:
 #            blocks:
-#                monsieurbiz_rich_editor_app:
+#                monsieurbiz_richeditor_app:
 #                    template: '@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
 

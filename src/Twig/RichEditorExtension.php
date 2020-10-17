@@ -120,7 +120,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * List available Ui Elements in JSON
+     * List available Ui Elements in JSON.
      *
      * @return string
      */
