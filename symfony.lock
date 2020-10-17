@@ -797,6 +797,9 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
+    },
     "symfony/http-foundation": {
         "version": "v4.4.13"
     },
@@ -1064,6 +1067,9 @@
     },
     "symplify/smart-file-system": {
         "version": "8.3.11"
+    },
+    "symplify/symplify-kernel": {
+        "version": "8.3.36"
     },
     "textalk/websocket": {
         "version": "1.4.0"
