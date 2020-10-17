@@ -45,11 +45,11 @@ services:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
 
   monsieurbiz.richeditor.metadata_registry:
-    class: MonsieurBiz\SyliusRichEditor\UiElement\Metadata\Registry
+    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
 
-  MonsieurBiz\SyliusRichEditor\UiElement\Metadata\RegistryInterface: '@monsieurbiz.richeditor.metadata_registry'
+  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\RegistryInterface: '@monsieurbiz.richeditor.metadata_registry'
 
   monsieurbiz.richeditor.registry:
-    class: MonsieurBiz\SyliusRichEditor\UiElement\Registry
+    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Registry
 
-  MonsieurBiz\SyliusRichEditor\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
+  MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
