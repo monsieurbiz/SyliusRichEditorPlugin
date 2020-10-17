@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
-
 interface UiElementInterface extends \JsonSerializable
 {
     /**
@@ -43,21 +41,27 @@ interface UiElementInterface extends \JsonSerializable
     public function getIcon(): string;
 
     /**
-     * @throws UndefinedUiElementTypeException
+     * @throws \InvalidArgumentException
      */
     public function getFormClass(): string;
 
     /**
+     * @throws \InvalidArgumentException
+     *
      * @return string
      */
     public function getAdminFormTemplate(): string;
 
     /**
+     * @throws \InvalidArgumentException
+     *
      * @return string
      */
     public function getAdminRenderTemplate(): string;
 
     /**
+     * @throws \InvalidArgumentException
+     * 
      * @return string
      */
     public function getFrontRenderTemplate(): string;

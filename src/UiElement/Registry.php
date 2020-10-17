@@ -60,4 +60,12 @@ final class Registry implements RegistryInterface
     {
         return $this->uiElements;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize()
+    {
+        return $this->uiElements;
+    }
 }

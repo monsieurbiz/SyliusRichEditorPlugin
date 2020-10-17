@@ -14,19 +14,20 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
-use MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 final class RichEditorExtension extends AbstractExtension
 {
     /**
-     * @var UiElementFactoryInterface
+     * @var RegistryInterface
      */
-    private $uiElementFactory;
+    private $uiElementRegistry;
 
     /**
      * @var Environment
@@ -41,13 +42,16 @@ final class RichEditorExtension extends AbstractExtension
     /**
      * RichEditorExtension constructor.
      *
-     * @param UiElementFactoryInterface $uiElementFactory
+     * @param RegistryInterface $uiElementRegistry
      * @param Environment $twig
      * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(UiElementFactoryInterface $uiElementFactory, Environment $twig, EventDispatcherInterface $eventDispatcher)
-    {
-        $this->uiElementFactory = $uiElementFactory;
+    public function __construct(
+        RegistryInterface $uiElementRegistry,
+        Environment $twig,
+        EventDispatcherInterface $eventDispatcher
+    ) {
+        $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
         $this->eventDispatcher = $eventDispatcher;
     }
@@ -58,7 +62,17 @@ final class RichEditorExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('mbiz_rich_editor_render', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
+        ];
+    }
+
+    /**
+     * @return array|TwigFunction[]
+     */
+    public function getFunctions()
+    {
+        return [
+            new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements']),
         ];
     }
 
@@ -80,13 +94,13 @@ final class RichEditorExtension extends AbstractExtension
 
         $html = '';
         foreach ($elements as $element) {
-            if (!isset($element['type'])) {
+            if (!isset($element['code'])) {
                 continue;
             }
 
             try {
-                $uiElement = $this->uiElementFactory->getUiElementByType($element['type']);
-            } catch (UndefinedUiElementTypeException $exception) {
+                $uiElement = $this->uiElementRegistry->getUiElement($element['code']);
+            } catch (UiElementNotFoundException $exception) {
                 continue;
             }
 
@@ -103,5 +117,15 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         return $html;
+    }
+
+    /**
+     * List available Ui Elements in JSON
+     *
+     * @return string
+     */
+    public function listUiElements(): string
+    {
+        return (string) json_encode($this->uiElementRegistry);
     }
 }

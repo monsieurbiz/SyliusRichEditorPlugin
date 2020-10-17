@@ -15,7 +15,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 
-interface RegistryInterface
+interface RegistryInterface extends \JsonSerializable
 {
     /**
      * @param UiElementInterface $uiElement

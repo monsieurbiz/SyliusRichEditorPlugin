@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
-
 final class UiElement implements UiElementInterface
 {
     /**
@@ -22,66 +20,88 @@ final class UiElement implements UiElementInterface
      */
     private MetadataInterface $metadata;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setMetadata(MetadataInterface $metadata): void
     {
         $this->metadata = $metadata;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCode(): string
     {
         return $this->metadata->getCode();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTitle(): string
     {
         return $this->metadata->getParameter('title');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getDescription(): string
     {
         return $this->metadata->getParameter('description');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getIcon(): string
     {
         return $this->metadata->getParameter('icon');
     }
 
     /**
-     * @throws UndefinedUiElementTypeException
+     * {@inheritdoc}
      */
     public function getFormClass(): string
     {
         return $this->metadata->getClass('form');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAdminFormTemplate(): string
     {
         return $this->metadata->getTemplate('admin_form');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAdminRenderTemplate(): string
     {
         return $this->metadata->getTemplate('admin_render');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFrontRenderTemplate(): string
     {
         return $this->metadata->getTemplate('front_render');
     }
 
     /**
-     * Specify data which should be serialized to JSON.
-     *
-     * @see https://php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed data which can be serialized by <b>json_encode</b>,
-     *               which is a value of any type other than a resource
-     *
-     * @since 5.4.0
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {
-        // TODO: Implement jsonSerialize() method.
+        return [
+            'code' => $this->getCode(),
+            'description' => $this->getDescription(),
+            'icon' => $this->getIcon(),
+            'title' => $this->getTitle(),
+        ];
     }
 }

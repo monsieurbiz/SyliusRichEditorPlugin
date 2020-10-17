@@ -112,7 +112,7 @@ You will have the input display as a zone in which you can drag and drop some el
 In your template, to display the content of the rich editor as HTML, you have to call the twig filter : 
 
 ```twig
-{{ content | mbiz_rich_editor_render }}
+{{ content | monsieurbiz_richeditor_render_element }}
 ```
 
 ## Available elements
