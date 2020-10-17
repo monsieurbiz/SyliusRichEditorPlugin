@@ -11,14 +11,16 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType;
 
-class Text extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class Title extends AbstractUiElement
 {
-    protected string $type = 'text';
+    protected string $type = 'title';
 
     public function getImage(): string
     {
@@ -35,6 +37,6 @@ class Text extends AbstractUiElement
 
     public function getFormClass(): string
     {
-        return TextType::class;
+        return TitleType::class;
     }
 }

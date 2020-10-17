@@ -11,25 +11,27 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TaxonProductType;
 
-class ButtonLink extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class TaxonProduct extends AbstractUiElement
 {
-    protected string $type = 'button_link';
+    protected string $type = 'taxon_product';
 
     /**
      * {@inheritdoc}
      */
     public function getFields(): array
     {
-        return ['label', 'link'];
+        return ['taxon', 'number_of_products', 'title', 'button_label'];
     }
 
     public function getFormClass(): string
     {
-        return ButtonLinkType::class;
+        return TaxonProductType::class;
     }
 }

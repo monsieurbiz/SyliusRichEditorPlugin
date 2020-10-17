@@ -11,18 +11,20 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType;
 
-class Video extends AbstractUiElement
+/**
+ * @deprecated since 2.0
+ */
+class Quote extends AbstractUiElement
 {
-    protected string $type = 'video';
+    protected string $type = 'quote';
 
     public function getImage(): string
     {
-        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/video.svg';
+        return '/bundles/monsieurbizsyliusricheditorplugin/images/ui_elements/quote.svg';
     }
 
     /**
@@ -30,11 +32,11 @@ class Video extends AbstractUiElement
      */
     public function getFields(): array
     {
-        return ['video', 'image'];
+        return ['author', 'content'];
     }
 
     public function getFormClass(): string
     {
-        return VideoType::class;
+        return QuoteType::class;
     }
 }

@@ -11,11 +11,13 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * @deprecated since 2.0
+ */
 abstract class AbstractUiElement
 {
     public const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
@@ -49,7 +51,7 @@ abstract class AbstractUiElement
     {
         if (empty($this->type)) {
             $reflection = new \ReflectionClass(static::class);
-            throw new UndefinedUiElementTypeException(sprintf('Please add a type to your UI Element in class "%s". You can try to add this property `protected $type = \'%s\';`', $reflection->getName(), strtolower($reflection->getShortName()) /* @TODO we can improve it with snakeCaseToCamelCaseNameConverter */));
+            throw new \Exception(sprintf('Please add a type to your UI Element in class "%s". You can try to add this property `protected $type = \'%s\';`', $reflection->getName(), strtolower($reflection->getShortName()) /* @TODO we can improve it with snakeCaseToCamelCaseNameConverter */));
         }
 
         return $this->type;
@@ -80,11 +82,11 @@ abstract class AbstractUiElement
     public function jsonSerialize(): array
     {
         return [
-//            'short_description' => $this->getShortDescription(),
+            //            'short_description' => $this->getShortDescription(),
             'description' => $this->getDescription(),
             'title' => $this->getTitle(),
-//            'image' => $this->getImage(),
-//            'fields' => $this->getFields(),
+            //            'image' => $this->getImage(),
+            //            'fields' => $this->getFields(),
         ];
     }
 

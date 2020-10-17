@@ -11,11 +11,13 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element;
+namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\DoubleImageType;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
 
+/**
+ * @deprecated since 2.0
+ */
 class DoubleImage extends AbstractUiElement
 {
     protected string $type = 'double_image';
