@@ -15,10 +15,9 @@ services:
     resource: '../../*'
     exclude: '../../{Entity,Migrations,Tests,Kernel.php}'
 
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element\:
-    resource: '../../UiElement/Element/*'
-    tags: ['monsieurbiz_rich_editor.ui_element']
-
+#  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element\:
+#    resource: '../../UiElement/Element/*'
+#    tags: ['monsieurbiz_rich_editor.ui_element']
 
   # Controllers are imported separately to make sure services can be injected
   # as action arguments even if you don't extend any base controller class
