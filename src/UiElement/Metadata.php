@@ -37,6 +37,9 @@ final class Metadata implements MetadataInterface
         $this->parameters = $parameters;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public static function fromCodeAndConfiguration(string $code, array $parameters): self
     {
         return new self($code, $parameters);
