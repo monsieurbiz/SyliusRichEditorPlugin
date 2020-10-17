@@ -17,9 +17,21 @@ use MonsieurBiz\SyliusRichEditorPlugin\UiElement\MetadataInterface;
 
 interface RegistryInterface
 {
+    /**
+     * @param string $code
+     *
+     * @return MetadataInterface
+     */
     public function get(string $code): MetadataInterface;
 
+    /**
+     * @param MetadataInterface $metadata
+     */
     public function add(MetadataInterface $metadata): void;
 
+    /**
+     * @param string $code
+     * @param array $configuration
+     */
     public function addFromCodeAndConfiguration(string $code, array $configuration): void;
 }

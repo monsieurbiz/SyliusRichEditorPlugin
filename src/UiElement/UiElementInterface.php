@@ -17,14 +17,29 @@ use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException
 
 interface UiElementInterface extends \JsonSerializable
 {
+    /**
+     * @param MetadataInterface $metadata
+     */
     public function setMetadata(MetadataInterface $metadata): void;
 
+    /**
+     * @return string
+     */
     public function getCode(): string;
 
+    /**
+     * @return string
+     */
     public function getTitle(): string;
 
+    /**
+     * @return string
+     */
     public function getDescription(): string;
 
+    /**
+     * @return string
+     */
     public function getIcon(): string;
 
     /**
@@ -32,9 +47,18 @@ interface UiElementInterface extends \JsonSerializable
      */
     public function getFormClass(): string;
 
+    /**
+     * @return string
+     */
     public function getAdminFormTemplate(): string;
 
+    /**
+     * @return string
+     */
     public function getAdminRenderTemplate(): string;
 
+    /**
+     * @return string
+     */
     public function getFrontRenderTemplate(): string;
 }

@@ -15,25 +15,75 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 interface MetadataInterface
 {
+    /**
+     * @param string $code
+     * @param array $parameters
+     *
+     * @return MetadataInterface
+     */
     public static function fromCodeAndConfiguration(string $code, array $parameters): self;
 
+    /**
+     * @return string
+     */
     public function getCode(): string;
 
+    /**
+     * @return string
+     */
     public function getCamelCasedCode(): string;
 
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
     public function getParameter(string $name);
 
+    /**
+     * @param string $name
+     *
+     * @return bool
+     */
     public function hasParameter(string $name): bool;
 
+    /**
+     * @return array
+     */
     public function getParameters(): array;
 
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
     public function getClass(string $name): string;
 
+    /**
+     * @param string $name
+     *
+     * @return bool
+     */
     public function hasClass(string $name): bool;
 
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
     public function getTemplate(string $name): string;
 
+    /**
+     * @param string $name
+     *
+     * @return bool
+     */
     public function hasTemplate(string $name): bool;
 
+    /**
+     * @param string $serviceName
+     *
+     * @return string
+     */
     public function getServiceId(string $serviceName): string;
 }

@@ -45,7 +45,7 @@ final class Configuration implements ConfigurationInterface
     {
         /** @scrutinizer ignore-call */
         $rootNode
-                ->children()
+            ->children()
                 ->scalarNode('upload_directory')->end()
                 ->arrayNode('ui_elements')
                     ->useAttributeAsKey('code', false)

@@ -33,6 +33,9 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
         $loader->load('services.yaml');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAlias()
     {
         return str_replace(['rich_editor', 'monsieur_biz'], ['richeditor', 'monsieurbiz'], parent::getAlias());
