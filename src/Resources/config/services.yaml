@@ -16,7 +16,7 @@ services:
       - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
 
   # Add JS for plugin
-  monsieurbiz_sylius_rich_editor.block_event_listener.layout.javascripts:
+  monsieurbiz_richeditor.block_event_listener.layout.javascripts:
     class: Sylius\Bundle\UiBundle\Block\BlockEventListener
     arguments:
       - '@@MonsieurBizSyliusRichEditorPlugin/Shop/js.html.twig'

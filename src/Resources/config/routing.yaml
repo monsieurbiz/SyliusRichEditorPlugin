@@ -1,7 +1,7 @@
-monsieur_biz_sylius_rich_editor_admin:
+monsieurbiz_richeditor_admin:
   resource: "routing/admin.yaml"
   prefix: /admin
 
-monsieur_biz_sylius_rich_editor_shop_partial:
+monsieurbiz_richeditor_admin_shop_partial:
   resource: "routing/partial.yaml"
   prefix: /_partial
