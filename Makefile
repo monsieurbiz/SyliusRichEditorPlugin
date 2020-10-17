@@ -7,9 +7,9 @@ CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=rich-editor
 COMPOSE=docker-compose
 YARN=cd ${APP_DIR} && yarn
-PHPSTAN=symfony run vendor/bin/phpstan
-PHPUNIT=symfony run vendor/bin/phpunit
-PHPSPEC=symfony run vendor/bin/phpspec
+PHPSTAN=symfony php vendor/bin/phpstan
+PHPUNIT=symfony php vendor/bin/phpunit
+PHPSPEC=symfony php vendor/bin/phpspec
 
 ###
 ### DEVELOPMENT
