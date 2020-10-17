@@ -1,12 +1,1 @@
-monsieurbiz_sylius_rich_editor_admin_modal_form:
-    path: /monsieurbiz_sylius_rich_editor/modal/edit
-    methods: [POST]
-    defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:formAction
-    condition: "request.isXmlHttpRequest()"
-
-monsieurbiz_sylius_rich_editor_admin_modal_submit:
-    path: /monsieurbiz_sylius_rich_editor/modal/submit
-    methods: [POST]
-    defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:submitAction
+## Add admin routes here

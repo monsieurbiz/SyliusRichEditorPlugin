@@ -5,8 +5,8 @@
         querySelector: '[data-component="rich-editor"]',
         autoCompleteSelector: '.mbiz-rich-editor-rendered-modal .sylius-autocomplete',
         containerSelector: '#wrapper',
-        formRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_form') | escape('js') }}',
-        submitRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_submit') | escape('js') }}',
+        formRoute: '{{ '' | escape('js') }}',
+        submitRoute: '{{ '' | escape('js') }}',
         translations: {
             move: '{{ 'monsieurbiz_richeditor_plugin.form.move' | trans | escape('js') }}',
             close: '{{ 'monsieurbiz_richeditor_plugin.form.close' | trans | escape('js') }}',
@@ -24,7 +24,7 @@
             cannotFindType: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_find_type' | trans | escape('js') }}',
             cannotUploadFile: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_upload_file' | trans | escape('js') }}',
         },
-        uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
+        uiElements: {},
     };
 
     function monsieurBizRichEditorRemoveFile(inputName) {
