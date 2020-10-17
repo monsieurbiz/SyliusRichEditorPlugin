@@ -22,12 +22,7 @@ final class UiElement implements UiElementInterface
      */
     private MetadataInterface $metadata;
 
-    /**
-     * UiElement constructor.
-     *
-     * @param MetadataInterface $metadata
-     */
-    public function __construct(MetadataInterface $metadata)
+    public function setMetadata(MetadataInterface $metadata): void
     {
         $this->metadata = $metadata;
     }

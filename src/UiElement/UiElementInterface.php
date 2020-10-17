@@ -17,7 +17,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException
 
 interface UiElementInterface extends \JsonSerializable
 {
-    public function __construct(MetadataInterface $metadata);
+    public function setMetadata(MetadataInterface $metadata): void;
 
     public function getCode(): string;
 
