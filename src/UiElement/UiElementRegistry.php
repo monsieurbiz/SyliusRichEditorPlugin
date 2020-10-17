@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
@@ -11,10 +21,10 @@ final class UiElementRegistry implements UiElementRegistryInterface
     /**
      * @var UiElementInterface[]
      */
-    private $uiElements = [];
+    private array $uiElements = [];
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function addUiElement(UiElementInterface $uiElement): void
     {
@@ -24,15 +34,15 @@ final class UiElementRegistry implements UiElementRegistryInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function hasUiElement(string $type): bool
     {
-        return array_key_exists($type, $this->uiElements);
+        return \array_key_exists($type, $this->uiElements);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getUiElement(string $type): UiElementInterface
     {
@@ -44,7 +54,7 @@ final class UiElementRegistry implements UiElementRegistryInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getUiElements(): array
     {

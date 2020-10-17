@@ -10,3 +10,11 @@ sylius_resource:
       classes:
         model: '%sylius.model.product.class%'
         repository: MonsieurBiz\SyliusRichEditorPlugin\Repository\ProductRepository
+
+#sylius_ui:
+#    events:
+#        sylius.admin.layout.javascripts:
+#            blocks:
+#                monsieurbiz_rich_editor_app:
+#                    template: '@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
+                    

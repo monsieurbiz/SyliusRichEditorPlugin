@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
@@ -42,9 +52,10 @@ class ModalController extends AbstractController
     }
 
     /**
-     * Generate the form and render the edit markup
+     * Generate the form and render the edit markup.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function formAction(Request $request): Response
@@ -79,9 +90,10 @@ class ModalController extends AbstractController
     }
 
     /**
-     * Validate submitted data and return an UI Element JSON if everything is OK
+     * Validate submitted data and return an UI Element JSON if everything is OK.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function submitAction(Request $request): Response
@@ -117,6 +129,7 @@ class ModalController extends AbstractController
                     }
                 }
             }
+
             return new JsonResponse(['errors' => $errors], Response::HTTP_NOT_ACCEPTABLE);
         }
 
@@ -131,12 +144,12 @@ class ModalController extends AbstractController
             // Value in form exists, we take it
             } elseif (($value = $request->request->get($uiElementType)) && isset($value[$field])) {
                 // Allow array if choices inputs
-                if (is_array($value[$field])) {
+                if (\is_array($value[$field])) {
                     $element->fields->{$field} = $value[$field];
                 } else {
                     $element->fields->{$field} = (string) $value[$field];
                 }
-            // Value is not set, set an empty one
+                // Value is not set, set an empty one
             } else {
                 $element->fields->{$field} = '';
             }
@@ -146,9 +159,10 @@ class ModalController extends AbstractController
     }
 
     /**
-     * Upload file in folder in config and return the path from public folder
+     * Upload file in folder in config and return the path from public folder.
      *
      * @param UploadedFile $file
+     *
      * @return mixed
      */
     private function uploadAndReturnPath(UploadedFile $file)
@@ -166,8 +180,7 @@ class ModalController extends AbstractController
 
         // Generate path from public folder
         $relativePath = str_replace($this->getParameter('kernel.project_dir'), '', $file->getPathname());
-        $relativePath = str_replace('/public', '', $relativePath);
 
-        return $relativePath;
+        return str_replace('/public', '', $relativePath);
     }
 }

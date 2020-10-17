@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Application;
@@ -23,9 +32,9 @@ trait MonofonyPluginTrait
     /**
      * Returns the plugin's container extension.
      *
-     * @return ExtensionInterface|null The container extension
-     *
      * @throws \LogicException
+     *
+     * @return ExtensionInterface|null The container extension
      */
     public function getContainerExtension(): ?ExtensionInterface
     {
@@ -34,7 +43,7 @@ trait MonofonyPluginTrait
 
             if (null !== $extension) {
                 if (!$extension instanceof ExtensionInterface) {
-                    throw new \LogicException(sprintf('Extension %s must implement %s.', get_class($extension), ExtensionInterface::class));
+                    throw new \LogicException(sprintf('Extension %s must implement %s.', \get_class($extension), ExtensionInterface::class));
                 }
 
                 // check naming convention for Sylius Plugins
@@ -42,10 +51,7 @@ trait MonofonyPluginTrait
                 $expectedAlias = Container::underscore($basename);
 
                 if ($expectedAlias !== $extension->getAlias()) {
-                    throw new \LogicException(sprintf(
-                        'Users will expect the alias of the default extension of a plugin to be the underscored version of the plugin name ("%s"). You can override "Bundle::getContainerExtension()" if you want to use "%s" or another alias.',
-                        $expectedAlias, $extension->getAlias()
-                    ));
+                    throw new \LogicException(sprintf('Users will expect the alias of the default extension of a plugin to be the underscored version of the plugin name ("%s"). You can override "Bundle::getContainerExtension()" if you want to use "%s" or another alias.', $expectedAlias, $extension->getAlias()));
                 }
 
                 $this->containerExtension = $extension;
