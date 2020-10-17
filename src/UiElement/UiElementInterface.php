@@ -13,29 +13,28 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-use Symfony\Contracts\Translation\TranslatorInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 
-/** @TODO : Implements JsonSerializable */
 interface UiElementInterface extends \JsonSerializable
 {
-    public function __construct(TranslatorInterface $translator);
+    public function __construct(MetadataInterface $metadata);
 
-    public function getType(): string;
-
-    public function getShortDescription(): string;
-
-    public function getDescription(): string;
+    public function getCode(): string;
 
     public function getTitle(): string;
 
-    public function getImage(): string;
+    public function getDescription(): string;
+
+    public function getIcon(): string;
 
     /**
-     * @return array<string>
+     * @throws UndefinedUiElementTypeException
      */
-    public function getFields(): array;
-
     public function getFormClass(): string;
 
-    public function getTemplate(): string;
+    public function getAdminFormTemplate(): string;
+
+    public function getAdminRenderTemplate(): string;
+
+    public function getFrontRenderTemplate(): string;
 }
