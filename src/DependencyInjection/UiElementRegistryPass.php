@@ -42,7 +42,7 @@ final class UiElementRegistryPass implements CompilerPassInterface
             $metadataRegistry->addMethodCall('addFromCodeAndConfiguration', [$code, $configuration]);
             $metadata = Metadata::fromCodeAndConfiguration($code, $configuration);
 
-            $id = $metadata->getServiceId('richeditor');
+            $id = $metadata->getServiceId('richeditor.ui_element');
 
             $class = $metadata->getClass('ui_element');
             $this->validateUiElementResource($class);
