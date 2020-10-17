@@ -1,16 +1,24 @@
 // import { exec, init } from 'pell'
 
 global.MonsieurBizRichEditorConfig = class {
-  constructor(input) {
+  constructor(input, uielements) {
     this.input = input;
+    this.uielements = uielements;
+  }
+
+  findUiElementByCode(code) {
+    if (this.uielements[code] === undefined) {
+      return null;
+    }
+    return this.uielements[code];
   }
 };
 
 global.MonsieurBizRichEditorUiElement = class {
-  constructor(config, code) {
+  constructor(config, code, data) {
     this.config = config;
     this.code = code;
-    this.data = {};
+    this.data = data;
   }
 
   toJSON() {
@@ -18,6 +26,22 @@ global.MonsieurBizRichEditorUiElement = class {
       code: this.code,
       data: this.data
     };
+  }
+
+  get uielement() {
+    return this.config.findUiElementByCode(this.code);
+  }
+
+  get title() {
+    return this.uielement.title;
+  }
+
+  get description() {
+    return this.uielement.description;
+  }
+
+  get icon() {
+    return this.uielement.icon;
   }
 
   get manager() {
@@ -44,15 +68,24 @@ global.MonsieurBizRichEditorManager = class {
   constructor(config) {
     this.config = config;
     try {
-      this.uiElements = JSON.parse(this.input.value);
+      this.initUiElements(JSON.parse(this.input.value));
     } catch (e) {
       this.uiElements = [];
     }
     this.write();
   }
 
-  static init() {
-    window.dispatchEvent(new Event('monsieurbiz_richeditor_init'));
+  initUiElements(stack) {
+    this.uiElements = [];
+    for (let element in stack) {
+      if (null !== this.config.findUiElementByCode(element.code)) {
+        this.uiElements.put(new MonsieurBizRichEditorUiElement(
+          this.config,
+          element.code,
+          element.data
+        ));
+      }
+    }
   }
 
   get input() {
@@ -64,7 +97,7 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   create(position, code) {
-    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code);
+    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code, {});
     this.uiElements.splice(position, 0, uiElement);
     this.write();
     return uiElement;

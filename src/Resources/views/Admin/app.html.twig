@@ -4,9 +4,18 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
+        let uielements = {
+            "monsieurbiz.text":{
+                "code":"monsieurbiz.text",
+                "description":"monsieurbiz_sylius_richeditor.ui_element.monsieurbiz.text.description",
+                "icon":"font",
+                "title":"monsieurbiz_sylius_richeditor.ui_element.monsieurbiz.text.title"
+            }
+        };
         editors.forEach(function (editor) {
             let config = new MonsieurBizRichEditorConfig(
-                editor
+                editor,
+                uielements
             );
             editor.manager = new MonsieurBizRichEditorManager(config, editor);
         });
