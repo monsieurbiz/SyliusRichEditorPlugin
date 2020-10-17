@@ -55,7 +55,7 @@ final class Metadata implements MetadataInterface
      */
     public function getCamelCasedCode(): string
     {
-        return preg_replace_callback('/\.([a-z])/i', function($match) {
+        return (string) preg_replace_callback('/\.([a-z])/i', function($match) {
             return strtoupper($match[1]);
         }, $this->getCode());
     }

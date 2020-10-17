@@ -80,11 +80,11 @@ abstract class AbstractUiElement
     public function jsonSerialize(): array
     {
         return [
-            'short_description' => $this->getShortDescription(),
+//            'short_description' => $this->getShortDescription(),
             'description' => $this->getDescription(),
             'title' => $this->getTitle(),
-            'image' => $this->getImage(),
-            'fields' => $this->getFields(),
+//            'image' => $this->getImage(),
+//            'fields' => $this->getFields(),
         ];
     }
 
