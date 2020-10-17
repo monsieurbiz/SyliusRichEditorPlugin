@@ -16,7 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use Webmozart\Assert\Assert;
 
-final class UiElementRegistry implements UiElementRegistryInterface
+final class Registry implements RegistryInterface
 {
     /**
      * @var UiElementInterface[]
@@ -28,29 +28,29 @@ final class UiElementRegistry implements UiElementRegistryInterface
      */
     public function addUiElement(UiElementInterface $uiElement): void
     {
-        Assert::keyNotExists($this->uiElements, $uiElement->getType(), 'UiElement with type "%s" is already registered.');
+        Assert::keyNotExists($this->uiElements, $uiElement->getCode(), 'UiElement with code "%s" is already registered.');
 
-        $this->uiElements[$uiElement->getType()] = $uiElement;
+        $this->uiElements[$uiElement->getCode()] = $uiElement;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasUiElement(string $type): bool
+    public function hasUiElement(string $code): bool
     {
-        return \array_key_exists($type, $this->uiElements);
+        return \array_key_exists($code, $this->uiElements);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUiElement(string $type): UiElementInterface
+    public function getUiElement(string $code): UiElementInterface
     {
-        if (!$this->hasUiElement($type)) {
-            throw new UiElementNotFoundException($type);
+        if (!$this->hasUiElement($code)) {
+            throw new UiElementNotFoundException($code);
         }
 
-        return $this->uiElements[$type];
+        return $this->uiElements[$code];
     }
 
     /**

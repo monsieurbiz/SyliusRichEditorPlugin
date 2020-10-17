@@ -15,7 +15,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 
-interface UiElementRegistryInterface
+interface RegistryInterface
 {
     /**
      * @param UiElementInterface $uiElement
@@ -23,20 +23,20 @@ interface UiElementRegistryInterface
     public function addUiElement(UiElementInterface $uiElement): void;
 
     /**
-     * @param string $type
+     * @param string $code
      *
      * @return bool
      */
-    public function hasUiElement(string $type): bool;
+    public function hasUiElement(string $code): bool;
 
     /**
-     * @param string $type
+     * @param string $code
      *
      * @throws UiElementNotFoundException
      *
      * @return UiElementInterface
      */
-    public function getUiElement(string $type): UiElementInterface;
+    public function getUiElement(string $code): UiElementInterface;
 
     /**
      * @return UiElementInterface[]

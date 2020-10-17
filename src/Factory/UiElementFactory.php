@@ -14,23 +14,23 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Factory;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistryInterface;
 
 final class UiElementFactory implements UiElementFactoryInterface
 {
     /**
-     * @var UiElementRegistryInterface
+     * @var RegistryInterface
      */
-    private UiElementRegistryInterface $uiElementRegistry;
+    private RegistryInterface $uiElementRegistry;
 
     /**
      * UiElementFactory constructor.
      *
-     * @param UiElementRegistryInterface $uiElementRegistry
+     * @param RegistryInterface $uiElementRegistry
      */
     public function __construct(
-        UiElementRegistryInterface $uiElementRegistry
+        RegistryInterface $uiElementRegistry
     ) {
         $this->uiElementRegistry = $uiElementRegistry;
     }
