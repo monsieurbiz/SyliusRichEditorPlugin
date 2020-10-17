@@ -71,7 +71,7 @@ final class Registry implements RegistryInterface
      *
      * @since 5.4.0
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize()
     {
         return $this->uiElements;
     }

@@ -118,6 +118,6 @@ final class RichEditorExtension extends AbstractExtension
 
     public function listUiElements(): string
     {
-        return json_encode($this->uiElementRegistry);
+        return (string) json_encode($this->uiElementRegistry);
     }
 }

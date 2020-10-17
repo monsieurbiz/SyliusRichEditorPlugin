@@ -80,7 +80,7 @@ final class UiElement implements UiElementInterface
      *
      * @since 5.4.0
      */
-    public function jsonSerialize(): array
+    public function jsonSerialize()
     {
         return [
             'code' => $this->getCode(),
