@@ -39,17 +39,17 @@ final class UiElement implements UiElementInterface
 
     public function getTitle(): string
     {
-        // TODO: Implement getTitle() method.
+        return $this->metadata->getParameter('title');
     }
 
     public function getDescription(): string
     {
-        // TODO: Implement getDescription() method.
+        return $this->metadata->getParameter('description');
     }
 
     public function getIcon(): string
     {
-        // TODO: Implement getIcon() method.
+        return $this->metadata->getParameter('icon');
     }
 
     /**
@@ -57,22 +57,22 @@ final class UiElement implements UiElementInterface
      */
     public function getFormClass(): string
     {
-        // TODO: Implement getFormClass() method.
+        return $this->metadata->getClass('form');
     }
 
     public function getAdminFormTemplate(): string
     {
-        // TODO: Implement getAdminFormTemplate() method.
+        return $this->metadata->getTemplate('admin_form');
     }
 
     public function getAdminRenderTemplate(): string
     {
-        // TODO: Implement getAdminRenderTemplate() method.
+        return $this->metadata->getTemplate('admin_render');
     }
 
     public function getFrontRenderTemplate(): string
     {
-        // TODO: Implement getFrontRenderTemplate() method.
+        return $this->metadata->getTemplate('front_render');
     }
 
     /**
