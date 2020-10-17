@@ -16,7 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UndefinedUiElementTypeException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-abstract class AbstractUiElement implements UiElementInterface
+abstract class AbstractUiElement
 {
     public const TRANSLATION_PREFIX = 'monsieurbiz_richeditor_plugin.ui_element';
 
