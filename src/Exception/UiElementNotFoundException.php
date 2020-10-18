@@ -13,15 +13,17 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Exception;
 
-final class UiElementNotFoundException extends \Exception
+use Exception;
+
+final class UiElementNotFoundException extends Exception
 {
     /**
      * UiElementNotFoundException constructor.
      *
-     * @param string $type
-     * @param \Exception|null $previous
+     * @param string $code
+     * @param Exception|null $previous
      */
-    public function __construct(string $code, ?\Exception $previous = null)
+    public function __construct(string $code, ?Exception $previous = null)
     {
         parent::__construct(sprintf('UiElement with code "%s" could not be found!', $code), 0, $previous);
     }
