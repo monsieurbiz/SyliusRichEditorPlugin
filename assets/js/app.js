@@ -67,6 +67,10 @@ global.MonsieurBizRichEditorUiElement = class {
     return this.config.input.manager;
   }
 
+  edit() {
+    this.manager.editUiElement(this);
+  }
+
   up() {
     this.manager.moveUp(this);
   }
@@ -147,16 +151,12 @@ global.MonsieurBizRichEditorManager = class {
 
   drawUiElements() {
     // Elements
-    const elements = [];
-    this.uiElements.forEach(function (element, i) {
-      elements.push(this.getNewButton(i));
-      elements.push(this.getUiElement(element, i));
-    }.bind(this));
     let elementsContainer = this.container.querySelector('.js-uie-container');
     elementsContainer.innerHTML = '';
-    elements.forEach(function(element) {
-      elementsContainer.append(element);
-    });
+    this.uiElements.forEach(function (element, position) {
+      elementsContainer.append(this.getNewButton(position));
+      elementsContainer.append(this.getUiElement(element, position));
+    }.bind(this));
     elementsContainer.append(this.getNewButton(this.uiElements.length));
   }
 
@@ -176,7 +176,10 @@ global.MonsieurBizRichEditorManager = class {
 
   getUiElement(element, position) {
     let elementWrapper = document.createElement('div');
-    elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {'title': element.title});
+    elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {
+      'title': element.title,
+      'icon': element.icon
+    });
     let uiElement = elementWrapper.firstElementChild;
     uiElement.element = element;
     uiElement.position = position;
@@ -199,6 +202,9 @@ global.MonsieurBizRichEditorManager = class {
         this.closest('.js-uie-element').element.down();
       });
     }
+    uiElement.querySelector('.js-uie-edit').addEventListener('click', function () {
+      this.closest('.js-uie-element').element.edit();
+    });
     return uiElement;
   }
 
@@ -210,10 +216,13 @@ global.MonsieurBizRichEditorManager = class {
     button.position = position;
     button.manager = this;
     button.addEventListener('click', function (e) {
-      console.log(e.currentTarget.manager);
-      console.log(e.currentTarget.element);
-      console.log(e.currentTarget.position);
-      debugger;
+      let button = e.currentTarget;
+      button.manager.loadUiElementCreateForm(button.element, function (progress) {
+        if (this.status === 200) {
+          let data = JSON.parse(this.responseText);
+          button.manager.openNewPanel(data['form_html'], button.element, button.position)
+        }
+      });
     });
     return button;
   }
@@ -232,7 +241,128 @@ global.MonsieurBizRichEditorManager = class {
     for (let elementCode in this.config.uielements) {
       cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
     }
+    this.newPanel.close();
     this.selectionPanel.open();
+  }
+
+  drawNewForm(formHtml, position) {
+    let form = document.createElement('div');
+    form.innerHTML = formHtml;
+    this.newPanel.dialog.innerHTML = '';
+    this.newPanel.dialog.append(form);
+
+    // Form submit
+    let formElement = form.querySelector('form');
+    formElement.manager = this;
+    formElement.position = position;
+    formElement.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const myForm = e.currentTarget;
+      myForm.manager.submitUiElementForm(myForm, function() {
+        if (this.status === 200) {
+          let data = JSON.parse(this.responseText);
+          if (data.error) {
+            this.form.manager.drawNewForm(data.form_html, this.form.position);
+            this.form.innerHTML = data.form_html;
+          } else {
+            this.form.manager.create(data.code, data.data, this.form.position);
+            this.form.manager.newPanel.close();
+            this.form.manager.selectionPanel.close();
+          }
+        }
+      });
+      return false;
+    });
+
+    // Buttons
+    let cancelButton = form.querySelector('.js-uie-cancel');
+    cancelButton.panel = this.newPanel;
+    cancelButton.addEventListener('click', function (e) {
+      e.currentTarget.panel.close();
+    });
+    let saveButton = form.querySelector('.js-uie-save');
+    saveButton.panel = this.newPanel;
+    saveButton.addEventListener('click', function (e) {
+      e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
+        new Event('submit', { cancelable: true })
+      );
+    });
+  }
+
+  openNewPanel(formHtml, element, position) {
+    this.newPanel.dialog.manager = this;
+    this.newPanel.dialog.position = position;
+
+    // Fill the panel with the form
+    this.drawNewForm(formHtml, position);
+
+    this.newPanel.open();
+  }
+
+  editUiElement(uiElement) {
+    this.loadUiElementEditForm(uiElement, function (progress) {
+      if (this.status === 200) {
+        let data = JSON.parse(this.responseText);
+        uiElement.manager.openEditPanel(data['form_html'], uiElement)
+      }
+    });
+  }
+
+  drawEditForm(formHtml, uiElement) {
+    let form = document.createElement('div');
+    form.innerHTML = formHtml;
+
+    let formContainer = this.editPanel.dialog.querySelector('.js-uie-content');
+    formContainer.innerHTML = '';
+    formContainer.append(form);
+
+    // Form submit
+    let formElement = form.querySelector('form');
+    formElement.manager = this;
+    formElement.uiElement = uiElement;
+    formElement.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const myForm = e.currentTarget;
+      myForm.manager.submitUiElementForm(myForm, function () {
+        if (this.status === 200) {
+          let data = JSON.parse(this.responseText);
+          if (data.error) {
+            this.form.manager.drawEditForm(data.form_html, this.form.uiElement);
+          } else {
+            this.form.uiElement.data = data.data;
+            this.form.manager.write();
+            this.form.manager.editPanel.close();
+          }
+        }
+      });
+      return false;
+    });
+
+    // Buttons
+    let cancelButton = form.querySelector('.js-uie-cancel');
+    cancelButton.panel = this.editPanel;
+    cancelButton.addEventListener('click', function (e) {
+      e.currentTarget.panel.close();
+    });
+    let saveButton = form.querySelector('.js-uie-save');
+    saveButton.panel = this.editPanel;
+    saveButton.addEventListener('click', function (e) {
+      e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
+        new Event('submit', { cancelable: true })
+      );
+    });
+  }
+
+  openEditPanel(formHtml, uiElement) {
+    this.editPanel.dialog.manager = this;
+    this.editPanel.dialog.uiElement = uiElement;
+
+    // Fill the panel with the form
+    this.drawEditForm(formHtml, uiElement);
+
+    this.editPanel.open();
   }
 
   write() {
@@ -240,8 +370,8 @@ global.MonsieurBizRichEditorManager = class {
     this.drawUiElements();
   }
 
-  create(code, position) {
-    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code, {});
+  create(code, data, position) {
+    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code, data);
     this.uiElements.splice(position, 0, uiElement);
     this.write();
     return uiElement;
@@ -253,7 +383,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position-1,0, uiElement);
+    this.uiElements.splice(position-1, 0, uiElement);
     this.write();
   }
 
@@ -263,7 +393,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position+1,0, uiElement);
+    this.uiElements.splice(position+1, 0, uiElement);
     this.write();
   }
 
@@ -273,4 +403,31 @@ global.MonsieurBizRichEditorManager = class {
     this.write();
   }
 
+  loadUiElementCreateForm(element, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    let url = this.config.createElementFormUrl;
+    req.open("get", url.replace('__CODE__', element.code), true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    req.send();
+  }
+
+  loadUiElementEditForm(element, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    let url = this.config.editElementFormUrl;
+    req.open("post", url.replace('__CODE__', element.code), true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.send(new URLSearchParams({data: JSON.stringify(element.data)}).toString());
+  }
+
+  submitUiElementForm(form, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    req.form = form;
+    req.open("post", form.action, true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    req.send(new FormData(form));
+  }
 };

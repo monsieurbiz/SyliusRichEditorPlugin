@@ -18,7 +18,7 @@
         <div
             class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
             <h3 class="header uie-m-n">
-                <i class="file alternate outline icon"></i>
+                <i class="{{icon}} icon"></i>
                 {{title}}
             </h3>
             <div class="ui small basic icon buttons sm:uie-mt-xs">
@@ -72,14 +72,12 @@
         </div>
 
         <div class="uie-panels__new js-uie-panels-new">
-            PANEL HERE
         </div>
     </div>
 </div>
 
 <div class="uie-panels js-uie-panels-edit">
-    <div class="uie-panels__content">
-        PANEL HERE
+    <div class="uie-panels__content js-uie-content">
     </div>
 </div>
 
@@ -99,7 +97,7 @@
                 '{{ url("monsieurbiz_richeditor_admin_form_create", {"code": "__CODE__"})|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}'
             );
-            editor.manager = new MonsieurBizRichEditorManager(config, editor);
+            editor.manager = new MonsieurBizRichEditorManager(config);
         });
     });
 

@@ -1,26 +1,36 @@
 {% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
 
-
-<div class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
-    <h2 class="header">
-        <i class="{{ uiElement.icon | escape('html_attr') }} icon"></i>
-        {% if isEdition %}
-            {{ 'monsieurbiz_richeditor_plugin.form.edit_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
-        {% else %}
-            {{ 'monsieurbiz_richeditor_plugin.form.add_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
-        {% endif %}
-    </h2>
-    <div class="sm:uie-mt-xs">
-        <button class="ui button js-uie-cancel" type="button">
-            <i class="ban icon"></i>
-            {{ 'monsieurbiz_richeditor_plugin.form.cancel' | trans }}
-        </button>
-        <button class="ui primary button js-uie-save" type="button">
-            <i class="save outline icon"></i>
-            {{ 'monsieurbiz_richeditor_plugin.form.save' | trans }}
-        </button>
+<div class="content">
+    <div class="ui stackable two column grid">
+        <div class="column">
+            <h2 class="ui header">
+                <i class="{{ uiElement.icon | escape('html_attr') }} circular icon"></i>
+                <div class="content">
+                    {% if isEdition %}
+                        {{ 'monsieurbiz_richeditor_plugin.form.edit_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
+                    {% else %}
+                        {{ 'monsieurbiz_richeditor_plugin.form.add_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
+                    {% endif %}
+                    <div class="sub header">{{ uiElement.description | trans }}</div>
+                </div>
+            </h2>
+        </div>
+        <div class="middle aligned column">
+            <div class="ui right floated buttons">
+                <div class="sm:uie-mt-xs">
+                    <button class="ui button js-uie-cancel" type="button">
+                        <i class="ban icon"></i>
+                        {{ 'monsieurbiz_richeditor_plugin.form.cancel' | trans }}
+                    </button>
+                    <button class="ui primary button js-uie-save" type="button">
+                        <i class="save outline icon"></i>
+                        {{ 'monsieurbiz_richeditor_plugin.form.save' | trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="ui form">
-    {{ form(form, {'action': path('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition})}) }}
+<div class="ui segment form">
+    {{ form(form, {'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition})}) }}
 </div>
