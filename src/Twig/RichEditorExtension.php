@@ -112,7 +112,7 @@ final class RichEditorExtension extends AbstractExtension
 
             $html .= $this->twig->render($template, [
                 'uiElement' => $uiElement,
-                'element' => $element['fields'],
+                'element' => $element['data'],
             ]);
         }
 
