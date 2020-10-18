@@ -22,5 +22,5 @@
     </div>
 </div>
 <div class="ui form">
-    {{ form(form, {'action': path('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition})}) }}
+    {{ form(form, {'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition})}) }}
 </div>

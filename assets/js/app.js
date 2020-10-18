@@ -250,18 +250,25 @@ global.MonsieurBizRichEditorManager = class {
     form.innerHTML = formHtml;
     this.newPanel.dialog.innerHTML = '';
     this.newPanel.dialog.append(form);
-    this.newPanel.dialog.form = form;
+
+    // Form submit
+    form.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      debugger;
+    });
 
     // Buttons
     let cancelButton = form.querySelector('.js-uie-cancel');
-    cancelButton.dialog = this.newPanel;
+    cancelButton.panel = this.newPanel;
     cancelButton.addEventListener('click', function (e) {
-      e.currentTarget.dialog.close();
+      e.currentTarget.panel.close();
     });
     let saveButton = form.querySelector('.js-uie-save');
-    saveButton.dialog = this.newPanel;
+    saveButton.panel = this.newPanel;
     saveButton.addEventListener('click', function (e) {
-      debugger;
+      e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
+        new Event('submit')
+      );
     });
 
     this.newPanel.open();
@@ -287,18 +294,25 @@ global.MonsieurBizRichEditorManager = class {
     let formContainer = this.editPanel.dialog.querySelector('.js-uie-content');
     formContainer.innerHTML = '';
     formContainer.append(form);
-    this.editPanel.dialog.form = form;
+
+    // Form submit
+    form.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      debugger;
+    });
 
     // Buttons
     let cancelButton = form.querySelector('.js-uie-cancel');
-    cancelButton.dialog = this.editPanel;
+    cancelButton.panel = this.editPanel;
     cancelButton.addEventListener('click', function (e) {
-      e.currentTarget.dialog.close();
+      e.currentTarget.panel.close();
     });
     let saveButton = form.querySelector('.js-uie-save');
-    saveButton.dialog = this.editPanel;
+    saveButton.panel = this.editPanel;
     saveButton.addEventListener('click', function (e) {
-      debugger;
+      e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
+        new Event('submit')
+      );
     });
 
     this.editPanel.open();
