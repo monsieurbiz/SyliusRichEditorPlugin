@@ -35,9 +35,8 @@ monsieurbiz_richeditor_plugin:
         second_alt: 'Image 2 - Texte alternatif'
         second_title: 'Image 2 - Titre'
         second_link: 'Image 2 - Lien'
-    quote:
+    monsieurbiz.quote:
       title: 'Lame Citation'
-      short_description: 'Une lame contenant un auteur et un contenu'
       description: 'Une lame contenant un auteur et un contenu'
       field:
         author: 'Auteur'

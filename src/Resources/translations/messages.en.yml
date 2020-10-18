@@ -35,9 +35,8 @@ monsieurbiz_richeditor_plugin:
         second_alt: 'Image #2 - Alternative text'
         second_title: 'Image #2 - Title'
         second_link: 'Image #2 - Link'
-    quote:
+    monsieurbiz.quote:
       title: 'Quote Element'
-      short_description: 'An element with an author and a content'
       description: 'An element with an author and a content'
       field:
         author: 'Author'
