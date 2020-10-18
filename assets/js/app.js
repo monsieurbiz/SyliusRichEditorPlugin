@@ -267,7 +267,7 @@ global.MonsieurBizRichEditorManager = class {
     saveButton.panel = this.newPanel;
     saveButton.addEventListener('click', function (e) {
       e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-        new Event('submit')
+        new Event('submit', { cancelable: true })
       );
     });
 
@@ -311,7 +311,7 @@ global.MonsieurBizRichEditorManager = class {
     saveButton.panel = this.editPanel;
     saveButton.addEventListener('click', function (e) {
       e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-        new Event('submit')
+        new Event('submit', { cancelable: true })
       );
     });
 
