@@ -1,2 +1,6 @@
+parameters:
+    env(SYLIUS_ADMIN_ROUTING_PATH_NAME): admin
+    sylius_admin.path_name: '%env(resolve:SYLIUS_ADMIN_ROUTING_PATH_NAME)%' # 1.7 compatibility, introduced in 1.8 for admin routes
+
 imports:
     - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
