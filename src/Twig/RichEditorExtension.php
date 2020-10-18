@@ -72,7 +72,7 @@ final class RichEditorExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements']),
+            new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
         ];
     }
 

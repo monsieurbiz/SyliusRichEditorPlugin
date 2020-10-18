@@ -86,20 +86,7 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
-        let uielements = {
-            "monsieurbiz.text":{
-                "code":"monsieurbiz.text",
-                "description":"Description simple",
-                "icon":"font",
-                "title":"Texte simple"
-            },
-            "monsieurbiz.text2":{
-                "code":"monsieurbiz.text2",
-                "description":"Description simple 2",
-                "icon":"font",
-                "title":"Texte simple 2"
-            }
-        };
+        let uielements = {{ monsieurbiz_richeditor_list_elements() }};
         editors.forEach(function (editor) {
             let config = new MonsieurBizRichEditorConfig(
                 editor,

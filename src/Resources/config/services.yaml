@@ -8,6 +8,9 @@ services:
     resource: '../../Controller'
     tags: ['controller.service_arguments']
 
+  MonsieurBiz\SyliusRichEditorPlugin\Twig\:
+    resource: '../../Twig'
+
   # Add template with JS and CSS in admin
   MonsieurBiz\SyliusRichEditorPlugin\EventListener\Admin\AppBlock:
     arguments:
