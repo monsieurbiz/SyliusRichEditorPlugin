@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FormController extends AbstractController
 {
-
     /** @var RegistryInterface */
     private $uiElementRegistry;
 
@@ -30,16 +29,17 @@ class FormController extends AbstractController
      *
      * @param RegistryInterface $uiElementRegistry
      */
-    public function __construct(RegistryInterface $uiElementRegistry) {
+    public function __construct(RegistryInterface $uiElementRegistry)
+    {
         $this->uiElementRegistry = $uiElementRegistry;
     }
 
     /**
-     * Generate the form for an element
+     * Generate the form for an element.
      *
      * @param Request $request
-     *
      * @param string $code
+     *
      * @return Response
      */
     public function viewAction(Request $request, string $code): Response
@@ -55,7 +55,7 @@ class FormController extends AbstractController
         $data = [];
         if ($request->isMethod('post') && ($data = $request->get('data'))) {
             $data = json_decode($data, true);
-            if (!is_array($data)) {
+            if (!\is_array($data)) {
                 throw $this->createNotFoundException();
             }
         }
@@ -67,7 +67,7 @@ class FormController extends AbstractController
             'form' => $form->createView(),
             'uiElement' => $uiElement,
             'data' => $data,
-            'isEdit' => $request->isMethod('post')
+            'isEdit' => $request->isMethod('post'),
         ]);
     }
 }
