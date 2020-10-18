@@ -147,16 +147,12 @@ global.MonsieurBizRichEditorManager = class {
 
   drawUiElements() {
     // Elements
-    const elements = [];
-    this.uiElements.forEach(function (element, i) {
-      elements.push(this.getNewButton(i));
-      elements.push(this.getUiElement(element, i));
-    }.bind(this));
     let elementsContainer = this.container.querySelector('.js-uie-container');
     elementsContainer.innerHTML = '';
-    elements.forEach(function(element) {
-      elementsContainer.append(element);
-    });
+    this.uiElements.forEach(function (element, position) {
+      elementsContainer.append(this.getNewButton(position));
+      elementsContainer.append(this.getUiElement(element, position));
+    }.bind(this));
     elementsContainer.append(this.getNewButton(this.uiElements.length));
   }
 
@@ -253,7 +249,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position-1,0, uiElement);
+    this.uiElements.splice(position-1, 0, uiElement);
     this.write();
   }
 
@@ -263,7 +259,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position+1,0, uiElement);
+    this.uiElements.splice(position+1, 0, uiElement);
     this.write();
   }
 
