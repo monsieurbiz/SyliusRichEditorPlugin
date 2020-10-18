@@ -67,6 +67,10 @@ global.MonsieurBizRichEditorUiElement = class {
     return this.config.input.manager;
   }
 
+  edit() {
+    this.manager.editUiElement(this);
+  }
+
   up() {
     this.manager.moveUp(this);
   }
@@ -195,6 +199,9 @@ global.MonsieurBizRichEditorManager = class {
         this.closest('.js-uie-element').element.down();
       });
     }
+    uiElement.querySelector('.js-uie-edit').addEventListener('click', function () {
+      this.closest('.js-uie-element').element.edit();
+    });
     return uiElement;
   }
 
@@ -206,10 +213,13 @@ global.MonsieurBizRichEditorManager = class {
     button.position = position;
     button.manager = this;
     button.addEventListener('click', function (e) {
-      console.log(e.currentTarget.manager);
-      console.log(e.currentTarget.element);
-      console.log(e.currentTarget.position);
-      debugger;
+      let button = e.currentTarget;
+      button.manager.loadUiElementCreateForm(button.element, function (progress) {
+        if (this.status === 200) {
+          let data = JSON.parse(this.responseText);
+          button.manager.openNewPanel(data['form_html'], button.element, button.position)
+        }
+      });
     });
     return button;
   }
@@ -229,6 +239,69 @@ global.MonsieurBizRichEditorManager = class {
       cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
     }
     this.selectionPanel.open();
+  }
+
+  openNewPanel(formHtml, element, position) {
+    this.newPanel.dialog.manager = this;
+    this.newPanel.dialog.position = position;
+
+    // Fill the panel with the form
+    let form = document.createElement('div');
+    form.innerHTML = formHtml;
+    this.newPanel.dialog.innerHTML = '';
+    this.newPanel.dialog.append(form);
+    this.newPanel.dialog.form = form;
+
+    // Buttons
+    let cancelButton = form.querySelector('.js-uie-cancel');
+    cancelButton.dialog = this.newPanel;
+    cancelButton.addEventListener('click', function (e) {
+      e.currentTarget.dialog.close();
+    });
+    let saveButton = form.querySelector('.js-uie-save');
+    saveButton.dialog = this.newPanel;
+    saveButton.addEventListener('click', function (e) {
+      debugger;
+    });
+
+    this.newPanel.open();
+  }
+
+  editUiElement(uiElement) {
+    this.loadUiElementEditForm(uiElement, function (progress) {
+      if (this.status === 200) {
+        let data = JSON.parse(this.responseText);
+        uiElement.manager.openEditPanel(data['form_html'], uiElement)
+      }
+    });
+  }
+
+  openEditPanel(formHtml, uiElement) {
+    this.editPanel.dialog.manager = this;
+    this.editPanel.dialog.uiElement = uiElement;
+
+    // Fill the panel with the form
+    let form = document.createElement('div');
+    form.innerHTML = formHtml;
+
+    let formContainer = this.editPanel.dialog.querySelector('.js-uie-content');
+    formContainer.innerHTML = '';
+    formContainer.append(form);
+    this.editPanel.dialog.form = form;
+
+    // Buttons
+    let cancelButton = form.querySelector('.js-uie-cancel');
+    cancelButton.dialog = this.editPanel;
+    cancelButton.addEventListener('click', function (e) {
+      e.currentTarget.dialog.close();
+    });
+    let saveButton = form.querySelector('.js-uie-save');
+    saveButton.dialog = this.editPanel;
+    saveButton.addEventListener('click', function (e) {
+      debugger;
+    });
+
+    this.editPanel.open();
   }
 
   write() {
@@ -267,6 +340,25 @@ global.MonsieurBizRichEditorManager = class {
     let position = this.uiElements.indexOf(uiElement);
     this.uiElements.splice(position, 1);
     this.write();
+  }
+
+  loadUiElementCreateForm(element, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    let url = this.config.createElementFormUrl;
+    req.open("get", url.replace('__CODE__', element.code), true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    req.send();
+  }
+
+  loadUiElementEditForm(element, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    let url = this.config.editElementFormUrl;
+    req.open("post", url.replace('__CODE__', element.code), true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    req.send(new URLSearchParams({data: JSON.stringify(element.data)}).toString());
   }
 
 };
