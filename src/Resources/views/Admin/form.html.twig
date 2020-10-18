@@ -3,11 +3,11 @@
 
 <div class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
     <h2 class="header">
-        <i class="{{ uiElement.icon }} icon"></i>
-        {% if isEdit %}
-            {{ 'monsieurbiz_richeditor_plugin.form.edit_element' | trans({'%uiElement%': uiElement.title | trans}) }}
+        <i class="{{ uiElement.icon | escape('html_attr') }} icon"></i>
+        {% if isEdition %}
+            {{ 'monsieurbiz_richeditor_plugin.form.edit_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
         {% else %}
-            {{ 'monsieurbiz_richeditor_plugin.form.add_element' | trans({'%uiElement%': uiElement.title | trans}) }}
+            {{ 'monsieurbiz_richeditor_plugin.form.add_element' | trans({'%uiElementTitle%': uiElement.title | trans}) }}
         {% endif %}
     </h2>
     <div class="sm:uie-mt-xs">
