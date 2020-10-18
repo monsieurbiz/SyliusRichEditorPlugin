@@ -21,8 +21,8 @@ final class UiElementNotFoundException extends \Exception
      * @param string $type
      * @param \Exception|null $previous
      */
-    public function __construct(string $type, ?\Exception $previous = null)
+    public function __construct(string $code, ?\Exception $previous = null)
     {
-        parent::__construct(sprintf('UiElement with type "%s" could not be found!', $type), 0, $previous);
+        parent::__construct(sprintf('UiElement with code "%s" could not be found!', $code), 0, $previous);
     }
 }
