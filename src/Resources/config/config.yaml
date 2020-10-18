@@ -16,7 +16,7 @@ monsieurbiz_sylius_richeditor:
     monsieurbiz.quote:
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
       description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
-      icon: quote
+      icon: quote left
       classes:
         form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
       templates:
