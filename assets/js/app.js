@@ -10,7 +10,9 @@ global.MonsieurBizRichEditorConfig = class {
     buttonAddHtml,
     elementHtml,
     elementCardHtml,
-    deletionConfirmation
+    deletionConfirmation,
+    createElementFormUrl,
+    editElementFormUrl
   ) {
     this.input = input;
     this.uielements = uielements;
@@ -19,6 +21,8 @@ global.MonsieurBizRichEditorConfig = class {
     this.elementHtml = elementHtml;
     this.elementCardHtml = elementCardHtml;
     this.deletionConfirmation = deletionConfirmation;
+    this.createElementFormUrl = createElementFormUrl;
+    this.editElementFormUrl = editElementFormUrl;
   }
 
   findUiElementByCode(code) {

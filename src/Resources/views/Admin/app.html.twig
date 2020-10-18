@@ -108,7 +108,9 @@
                 document.getElementById('monsieurbiz-rich-editor-button-add').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element-card').innerHTML,
-                '{{ "sure?"|trans|e('js') }}'
+                '{{ "sure?"|trans|e('js') }}',
+                '{{ url("monsieurbiz_richeditor_admin_form_create", {"code": "__CODE__"})|e('js') }}',
+                '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}'
             );
             editor.manager = new MonsieurBizRichEditorManager(config, editor);
         });
