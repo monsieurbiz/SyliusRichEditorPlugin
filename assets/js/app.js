@@ -1,4 +1,5 @@
 // import { exec, init } from 'pell'
+import Mustache from 'mustache';
 
 global.MonsieurBizRichEditorConfig = class {
   constructor(input, uielements) {

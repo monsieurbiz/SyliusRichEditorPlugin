@@ -25,6 +25,7 @@
     "sass-loader": "^7.3.1"
   },
   "dependencies": {
+    "mustache": "^4.0.1",
     "pell": "^1.0.6"
   }
 }
