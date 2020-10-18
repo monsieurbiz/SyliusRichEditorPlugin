@@ -65,11 +65,14 @@ class FormController extends AbstractController
         // Create form depending on UI Element with data
         $form = $this->createForm($uiElement->getFormClass(), $data);
 
-        return $this->render($uiElement->getAdminFormTemplate(), [
-            'form' => $form->createView(),
-            'uiElement' => $uiElement,
-            'data' => $data,
-            'isEdition' => (int) $isEdition,
+        return new JsonResponse([
+            'code' => $uiElement->getCode(),
+            'form_html' => $this->renderView($uiElement->getAdminFormTemplate(), [
+                'form' => $form->createView(),
+                'uiElement' => $uiElement,
+                'data' => $data,
+                'isEdition' => (int) $isEdition,
+            ]),
         ]);
     }
 
