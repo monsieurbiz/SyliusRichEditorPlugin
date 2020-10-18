@@ -1,8 +1,7 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
-    text:
+    monsieurbiz.text:
       title: 'Text Element'
-      short_description: 'An element with a text content'
       description: 'An element with a text content'
       field:
         content: 'Content'
@@ -93,6 +92,10 @@ monsieurbiz_richeditor_plugin:
     current_image: 'Current image'
     current_video: 'Current video'
     current_file: 'Current file'
+    add_element: 'Add %uiElementTitle%'
+    edit_element: 'Edit %uiElementTitle%'
+    cancel: 'Cancel'
+    save: 'Save'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'

@@ -1,1 +1,13 @@
-## Add admin routes here
+monsieurbiz_richeditor_admin_form_create:
+    path: /monsieurbiz_richeditor/form/{code}
+    methods: [GET]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
+    condition: "request.isXmlHttpRequest()"
+
+monsieurbiz_richeditor_admin_form_edit:
+    path: /monsieurbiz_richeditor/form/{code}
+    methods: [POST]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
+    condition: "request.isXmlHttpRequest()"

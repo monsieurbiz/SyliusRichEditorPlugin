@@ -1,6 +1,6 @@
 monsieurbiz_richeditor_admin:
   resource: "routing/admin.yaml"
-  prefix: /admin
+  prefix: /%sylius_admin.path_name%
 
 monsieurbiz_richeditor_admin_shop_partial:
   resource: "routing/partial.yaml"

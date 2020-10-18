@@ -28,7 +28,7 @@ class TextType extends AbstractType
         $builder
             ->add('content', WysiwygType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.text.field.content',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.field.content',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
