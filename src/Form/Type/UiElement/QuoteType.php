@@ -29,14 +29,14 @@ class QuoteType extends AbstractType
         $builder
             ->add('author', FormTextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.quote.field.author',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.field.author',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
             ])
             ->add('content', WysiwygType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.quote.field.content',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.field.content',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],

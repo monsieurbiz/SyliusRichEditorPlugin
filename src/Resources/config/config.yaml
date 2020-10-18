@@ -13,6 +13,15 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Text/frontRender.html.twig'
+    monsieurbiz.quote:
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
+      icon: quote
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Text/frontRender.html.twig'
 
 sylius_resource:
   resources:
