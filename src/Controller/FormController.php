@@ -69,7 +69,7 @@ class FormController extends AbstractController
             'form' => $form->createView(),
             'uiElement' => $uiElement,
             'data' => $data,
-            'isEdition' => $isEdition,
+            'isEdition' => (int) $isEdition,
         ]);
     }
 
