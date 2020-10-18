@@ -309,9 +309,22 @@ global.MonsieurBizRichEditorManager = class {
     formContainer.append(form);
 
     // Form submit
-    form.querySelector('form').addEventListener('submit', function(e) {
+    let formElement = form.querySelector('form');
+    formElement.manager = this;
+    formElement.uiElement = uiElement;
+    formElement.addEventListener('submit', function (e) {
       e.preventDefault();
-      debugger;
+
+      const myForm = e.currentTarget;
+      myForm.manager.submitUiElementForm(myForm, function () {
+        if (this.status === 200) {
+          let data = JSON.parse(this.responseText);
+          this.form.uiElement.data = data.data;
+          this.form.manager.write();
+          this.form.manager.editPanel.close();
+        }
+      });
+      return false;
     });
 
     // Buttons
