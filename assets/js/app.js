@@ -238,6 +238,7 @@ global.MonsieurBizRichEditorManager = class {
     for (let elementCode in this.config.uielements) {
       cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
     }
+    this.newPanel.close();
     this.selectionPanel.open();
   }
 
