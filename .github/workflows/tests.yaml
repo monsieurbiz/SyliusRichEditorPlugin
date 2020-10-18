@@ -35,7 +35,7 @@ jobs:
       - name: Install symfony CLI
         run: |
           curl https://get.symfony.com/cli/installer | bash
-          echo "::add-path::${HOME}/.symfony/bin"
+          echo "${HOME}/.symfony/bin" >> $GITHUB_PATH
 
       - uses: actions/cache@v1
         id: cache-composer
