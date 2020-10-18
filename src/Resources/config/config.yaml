@@ -12,7 +12,7 @@ monsieurbiz_sylius_richeditor:
         form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
-        front_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Text/frontRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
     monsieurbiz.quote:
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
       description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
@@ -21,7 +21,7 @@ monsieurbiz_sylius_richeditor:
         form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
-        front_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Text/frontRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/quote.html.twig'
 
 sylius_resource:
   resources:
