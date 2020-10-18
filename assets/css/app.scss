@@ -4,427 +4,183 @@
 
 @charset "UTF-8";
 
-
-// Vendor
-// --------------------------------------------------------------------------
-
-// Tingle
-@import '~tingle.js/dist/tingle.css';
-
-.tingle-modal__close {
-    width: 1.2rem;
-    height: 1.2rem;
-}
-
-.tingle-modal-box__content {
-    padding: 1.5rem;
-
-    > h1 {
-        margin: -1.5rem -1.5rem 1.5rem;
-        padding: 1.25rem 1.5rem;
-        font-size: 20px;
-        border-bottom: 1px solid rgba(34, 36, 38, .15);
-    }
-
-    form {
-        .field {
-            clear: both;
-            margin: 0 0 1em;
-
-            label {
-                display: block;
-                margin: 0 0 .5rem;
-                font-weight: 400;
-                font-size: 13px;
-                color: rgba(0, 0, 0, .8);
-            }
-
-            input[type="text"],
-            select,
-            textarea {
-                display: inline-block;
-                vertical-align: top;
-                width: 100%;
-                font-family: inherit;
-                margin: 0;
-                outline: 0;
-                appearance: none;
-                line-height: 1.3em;
-                padding: .7em 1em;
-                font-size: 1em;
-                background:#fff;
-                border: 1px solid rgba(34, 36, 38, .15);
-                color:rgba(0, 0, 0, .87);
-                border-radius: 4px;
-                transition: color .1s ease, border-color .1s ease;
-
-                &:focus {
-                    border-color: rgba(26, 187, 156, .4);
-                }
-
-                &[hidden="true"] {
-                    display: none;
-                }
-            }
-
-            textarea {
-                min-height: 200px;
-            }
-        }
-    }
-}
-
-.tingle-modal-box__footer {
-    padding: 1.25rem 1.5rem;
-    background: #f9fafb;
-    border-top: 1px solid rgba(34, 36, 38, .15);
-}
-
-// Dragula
-.gu-mirror {
-    position: fixed !important;
-    margin: 0 !important;
-    z-index: 200 !important;
-    opacity: .8;
-}
-
-.gu-hide {
-    display: none !important;
-}
-
-.gu-unselectable {
-    user-select: none !important;
-}
-
-.gu-transit {
-    opacity: .2;
-}
-
-// Pell
-@import '~pell/src/pell';
-
-.pell {
+html.is-disabled {
     overflow: hidden;
-    border-radius: 4px;
 }
 
-// Sylius
-.pushable > .pusher {
-    overflow: visible !important;
+/* Panels */
+
+.uie-panels {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    display: none;
+    padding: 0.714rem 0 0.714rem 5%;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-
-// Placeholders
-// --------------------------------------------------------------------------
-
-%text-hide {
-    color: transparent;
-    font: 0/0 a;
-    text-shadow: none;
-    background-color: transparent;
-    border: 0;
+.uie-panels::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.85);
+    content: "";
 }
 
-%btn-unstyled {
-    padding: 0;
-    background: none;
-    border: 0;
-    cursor: pointer;
+.uie-panels[aria-hidden=false] {
+    display: block;
 }
 
-
-// Dropable container
-// --------------------------------------------------------------------------
-
-.mbiz-rich-editor-dropable-container {
-    position: sticky;
-    top: 56px;
-    z-index: 100;
-    width: calc(100% + calc(12px * 2));
-    max-height: 0;
-    margin: -8px -12px 0;
-    background: #fff;
-    border-bottom: 1px solid rgba(34, 36, 38, .1);
-    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .03);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-100%);
-    transition: max-height .5s ease, opacity .3s ease, visibility .3s ease, transform .5s ease;
-
-    &.is-expanded {
-        max-height: 150px;
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-        z-index: 100;
-    }
-
-    .mbiz-rich-editor-close-button {
-        @extend %text-hide;
-        @extend %btn-unstyled;
-
-        position: absolute;
-        top: 100%;
-        right: 20px;
-        z-index: 10;
-        width: 30px;
-        height: 30px;
-        background: #fff;
-        border: 1px solid rgba(34, 36, 38, .1);
-        border-width: 0 1px 1px;
-        box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .03);
-
-        &::before,
-        &::after {
-            position: absolute;
-            top: calc(50% - calc(2px / 2));
-            left: calc(50% - calc(40% / 2) - 3px);
-            width: 40%;
-            height: 2px;
-            background: #333;
-            transform: rotate(-45deg);
-            content: "";
-        }
-
-        &::after {
-            left: calc(50% - 2px);
-            transform: rotate(45deg);
-        }
-    }
+.uie-panels[aria-hidden=false]::before {
+    animation: fadeOut 0.2s ease-out;
 }
 
-.mbiz-rich-editor-dropable-container-inner {
-    display: flex;
-    width: 100%;
-    max-height: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    transition: max-height .5s ease;
-
-    .is-expanded & {
-        max-height: 150px;
-    }
-
-    > * {
-        margin: 1em !important;
-        min-width: 300px;
-    }
-}
-
-
-// Draggable container
-// --------------------------------------------------------------------------
-
-.mbiz-rich-editor-draggable-container {
+.uie-panels__content {
     position: relative;
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
-    padding: 1em;
-    background: #fafafa;
-    border: 1px solid rgba(34, 36, 38, .1);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .03);
-
-    &:empty {
-        min-height: 200px;
-
-        &::before {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            padding: 20px;
-            color: rgba(0, 0, 0, .3);
-            font-weight: bold;
-            font-size: 20px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            content: attr(data-placeholder);
-        }
-    }
-
-    > * + * {
-        margin: 1em 0 0;
-    }
-}
-
-
-// Draggable item
-// --------------------------------------------------------------------------
-
-.mbiz-rich-editor-draggable-item {
-    position: relative;
-    display: flex;
-    flex: 1 1 auto;
-    padding: 12px;
+    width: 100%;
+    height: 100%;
+    padding: 1.714rem;
     background: #fff;
-    border: 1px solid rgba(34, 36, 38, .1);
-    border-radius: 4px;
-    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .03);
-
-    &.gu-mirror {
-        width: 600px !important;
-        height: 142px !important;
-        cursor: grabbing;
-    }
-
-    .mbiz-rich-editor-dropable-container & {
-        flex: 1;
-        padding-left: 32px;
-        background: #eee;
-    }
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-right-width: 0;
+    border-radius: 0.286rem 0 0 0.286rem;
+    box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.2), 1px 3px 15px 2px rgba(0, 0, 0, 0.2);
 }
 
-.mbiz-rich-editor-draggable-item-handler {
-    @extend %text-hide;
-    @extend %btn-unstyled;
+[aria-hidden=false] .uie-panels__content {
+    animation: slideFromRight 0.3s ease-out;
+}
 
-    position: relative;
+.uie-panels__new {
+    position: absolute;
+    top: 1.143rem;
+    right: 0;
+    bottom: 1.143rem;
+    left: calc(1.143rem + 2rem);
+    z-index: 10;
+    display: none;
+    padding: 1.714rem;
+    background: #fff;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-right-width: 0;
+    border-radius: 0.286rem 0 0 0.286rem;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+}
+
+.uie-panels__new[aria-hidden=false] {
     display: block;
-    flex: 0 0 auto;
-    width: 58px;
-    height: 116px;
-    margin: 0 0 0 -12px;
-    padding: 0 24px;
-    cursor: grab;
-
-    &::before,
-    &::after {
-        position: absolute;
-        top: calc(50% - calc(30% / 2));
-        left: 24px;
-        width: 3px;
-        height: 30%;
-        background: rgba(0, 0, 0, .4);
-        border-radius: 2px;
-        content: "";
-    }
-
-    &::after {
-        right: 24px;
-        left: auto;
-    }
-
-    .gu-mirror & {
-        cursor: grabbing;
-    }
-
-    .mbiz-rich-editor-dropable-container & {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        z-index: 1;
-
-        &::before,
-        &::after {
-            left: 12px;
-        }
-
-        &::after {
-            left: 18px;
-        }
-    }
 }
 
-.mbiz-rich-editor-draggable-item-inner {
-    display: flex;
-    flex: 1 1 auto;
-    align-items: center;
-    padding: 12px;
-    background: #eee;
-    border: 1px solid rgba(34, 36, 38, .1);
-    border-radius: 4px;
-
-    .mbiz-rich-editor-dropable-container & {
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-    }
+.uie-panels__new[aria-hidden=false]>* {
+    animation: appear 0.4s ease-out;
 }
 
-.mbiz-rich-editor-draggable-item-img {
-    flex: 0 0 auto;
-    width: 90px;
-    height: 90px;
-    margin: 0 12px 0 0;
-
-    img {
-        display: block;
-        max-width: 100%;
-        height: auto;
+@keyframes fadeOut {
+    from {
+        opacity: 0;
     }
 
-    .mbiz-rich-editor-dropable-container & {
-        width: 70px;
-        height: 70px;
-    }
-}
-
-.mbiz-rich-editor-draggable-item-content {
-    display: flex;
-    flex: 1 1 auto;
-    align-items: center;
-    justify-content: space-between;
-
-    .mbiz-rich-editor-dropable-container & {
-        font-size: 13px;
-    }
-}
-
-.mbiz-rich-editor-draggable-item-title {
-    margin: 0 0 6px;
-    font-size: 18px;
-    font-weight: 700;
-
-    .mbiz-rich-editor-dropable-container & {
-        font-size: 16px;
-    }
-}
-
-.mbiz-rich-editor-draggable-item-actions {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    margin: 0 0 0 24px;
-
-    > * + * {
-        margin: 0 0 0 12px;
-    }
-
-    .mbiz-rich-editor-dropable-container & {
-        display: none;
-    }
-}
-
-.mbiz-rich-editor-draggable-item-button {
-    @extend %text-hide;
-    @extend %btn-unstyled;
-
-    display: block;
-    width: 48px;
-    height: 48px;
-    font-family: sans-serif;
-    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23555' d='M12.9 6.86l4.24 4.24-9.9 9.9H3v-4.24l9.9-9.9zm1.41-1.42l2.12-2.12a1 1 0 011.42 0l2.83 2.83a1 1 0 010 1.41L18.56 9.7 14.3 5.44z'/%3E%3C/svg%3E%0A") 50% 50%/50% auto no-repeat;
-    opacity: .8;
-    transition: opacity .2s ease;
-    cursor: pointer;
-
-    .gu-mirror & {
-        pointer-events: none;
-    }
-
-    &:focus,
-    &:hover {
+    to {
         opacity: 1;
     }
+}
 
-    &.mbiz-rich-editor-delete-button {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23555' d='M20 7v14a1 1 0 01-1 1H5a1 1 0 01-1-1V7H2V5h20v2h-2zm-9 3v7h2v-7h-2zM7 2h10v2H7V2z'/%3E%3C/svg%3E");
+@keyframes slideFromRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateX(1rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Overload */
+
+.uie-cards {
+    max-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: opacity 0.1s ease-out;
+}
+
+.is-active .uie-cards {
+    opacity: 0;
+}
+
+.uie-card {
+    min-height: 6rem !important;
+    cursor: pointer;
+}
+
+.uie-card .content {
+    padding-top: 1.5rem !important;
+}
+
+.is-active .uie-heading {
+    transform: rotate(90deg) translateY(-0.6rem) scale(0.7);
+    transform-origin: left top 0;
+}
+
+/* Utilities */
+
+.uie-flex {
+    display: flex !important;
+}
+
+.uie-flex-cross-center {
+    align-items: center !important;
+}
+
+.uie-flex-main-between {
+    justify-content: space-between !important;
+}
+
+.uie-w-full {
+    width: 100% !important;
+}
+
+.uie-m-n {
+    margin: 0 !important;
+}
+
+.uie-mb-sm {
+    margin-bottom: 1rem !important;
+}
+
+.uie-mb-md {
+    margin-bottom: 2rem !important;
+}
+
+@media (max-width: 700px) {
+    .sm\:uie-flex-column {
+        flex-direction: column !important;
+    }
+
+    .sm\:uie-mt-xs {
+        margin-top: 1rem !important;
     }
 }
