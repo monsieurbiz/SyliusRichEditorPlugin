@@ -53,7 +53,8 @@ class FormController extends AbstractController
 
         // Check data in post
         $data = [];
-        if ($request->isMethod('post') && ($data = $request->get('data'))) {
+        $isEdition = $request->isMethod('post');
+        if ($isEdition && ($data = $request->get('data'))) {
             $data = json_decode($data, true);
             if (!\is_array($data)) {
                 throw $this->createNotFoundException();
@@ -67,7 +68,7 @@ class FormController extends AbstractController
             'form' => $form->createView(),
             'uiElement' => $uiElement,
             'data' => $data,
-            'isEdit' => $request->isMethod('post'),
+            'isEdition' => $isEdition,
         ]);
     }
 }
