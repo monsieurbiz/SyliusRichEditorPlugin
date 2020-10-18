@@ -241,11 +241,7 @@ global.MonsieurBizRichEditorManager = class {
     this.selectionPanel.open();
   }
 
-  openNewPanel(formHtml, element, position) {
-    this.newPanel.dialog.manager = this;
-    this.newPanel.dialog.position = position;
-
-    // Fill the panel with the form
+  drawNewForm(formHtml, position) {
     let form = document.createElement('div');
     form.innerHTML = formHtml;
     this.newPanel.dialog.innerHTML = '';
@@ -262,9 +258,14 @@ global.MonsieurBizRichEditorManager = class {
       myForm.manager.submitUiElementForm(myForm, function() {
         if (this.status === 200) {
           let data = JSON.parse(this.responseText);
-          this.form.manager.create(data.code, data.data, this.form.position);
-          this.form.manager.newPanel.close();
-          this.form.manager.selectionPanel.close();
+          if (data.error) {
+            this.form.manager.drawNewForm(data.form_html, this.form.position);
+            this.form.innerHTML = data.form_html;
+          } else {
+            this.form.manager.create(data.code, data.data, this.form.position);
+            this.form.manager.newPanel.close();
+            this.form.manager.selectionPanel.close();
+          }
         }
       });
       return false;
@@ -283,6 +284,14 @@ global.MonsieurBizRichEditorManager = class {
         new Event('submit', { cancelable: true })
       );
     });
+  }
+
+  openNewPanel(formHtml, element, position) {
+    this.newPanel.dialog.manager = this;
+    this.newPanel.dialog.position = position;
+
+    // Fill the panel with the form
+    this.drawNewForm(formHtml, position);
 
     this.newPanel.open();
   }
@@ -296,11 +305,7 @@ global.MonsieurBizRichEditorManager = class {
     });
   }
 
-  openEditPanel(formHtml, uiElement) {
-    this.editPanel.dialog.manager = this;
-    this.editPanel.dialog.uiElement = uiElement;
-
-    // Fill the panel with the form
+  drawEditForm(formHtml, uiElement) {
     let form = document.createElement('div');
     form.innerHTML = formHtml;
 
@@ -319,9 +324,13 @@ global.MonsieurBizRichEditorManager = class {
       myForm.manager.submitUiElementForm(myForm, function () {
         if (this.status === 200) {
           let data = JSON.parse(this.responseText);
-          this.form.uiElement.data = data.data;
-          this.form.manager.write();
-          this.form.manager.editPanel.close();
+          if (data.error) {
+            this.form.manager.drawEditForm(data.form_html, this.form.uiElement);
+          } else {
+            this.form.uiElement.data = data.data;
+            this.form.manager.write();
+            this.form.manager.editPanel.close();
+          }
         }
       });
       return false;
@@ -340,6 +349,14 @@ global.MonsieurBizRichEditorManager = class {
         new Event('submit', { cancelable: true })
       );
     });
+  }
+
+  openEditPanel(formHtml, uiElement) {
+    this.editPanel.dialog.manager = this;
+    this.editPanel.dialog.uiElement = uiElement;
+
+    // Fill the panel with the form
+    this.drawEditForm(formHtml, uiElement);
 
     this.editPanel.open();
   }
