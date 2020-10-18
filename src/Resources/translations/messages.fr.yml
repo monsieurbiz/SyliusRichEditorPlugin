@@ -92,8 +92,8 @@ monsieurbiz_richeditor_plugin:
     current_image: 'Image actuelle'
     current_video: 'Video actuelle'
     current_file: 'Fichier actuel'
-    add_element: 'Ajouter %uiElement%'
-    edit_element: 'Éditer %uiElement%'
+    add_element: 'Ajouter %uiElementTitle%'
+    edit_element: 'Éditer %uiElementTitle%'
     cancel: 'Annuler'
     save: 'Sauvegarder'
   action:
