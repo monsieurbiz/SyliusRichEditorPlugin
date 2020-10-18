@@ -49,6 +49,7 @@ final class UiElementRegistryPass implements CompilerPassInterface
 
             $uiElementDefinition = $container->setDefinition($id, new Definition($class));
             $uiElementDefinition->addMethodCall('setMetadata', [$this->getMetadataDefinition($metadata)]);
+            $uiElementDefinition->addMethodCall('setTranslator', [new Reference('translator')]);
 
             $aliases = [
                 UiElementInterface::class . ' $' . $metadata->getCamelCasedCode() . 'UiElement' => $id,

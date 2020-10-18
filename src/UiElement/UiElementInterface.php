@@ -13,12 +13,19 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 interface UiElementInterface extends \JsonSerializable
 {
     /**
      * @param MetadataInterface $metadata
      */
     public function setMetadata(MetadataInterface $metadata): void;
+
+    /**
+     * @param TranslatorInterface $translator
+     */
+    public function setTranslator(TranslatorInterface $translator): void;
 
     /**
      * @return string

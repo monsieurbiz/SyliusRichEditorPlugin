@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use Symfony\Contracts\Translation\TranslatorInterface;
+
 final class UiElement implements UiElementInterface
 {
     /**
@@ -21,11 +23,24 @@ final class UiElement implements UiElementInterface
     private MetadataInterface $metadata;
 
     /**
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
+
+    /**
      * {@inheritdoc}
      */
     public function setMetadata(MetadataInterface $metadata): void
     {
         $this->metadata = $metadata;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTranslator(TranslatorInterface $translator): void
+    {
+        $this->translator = $translator;
     }
 
     /**
@@ -99,9 +114,9 @@ final class UiElement implements UiElementInterface
     {
         return [
             'code' => $this->getCode(),
-            'description' => $this->getDescription(),
+            'description' => $this->translator->trans($this->getDescription()),
             'icon' => $this->getIcon(),
-            'title' => $this->getTitle(),
+            'title' => $this->translator->trans($this->getTitle()),
         ];
     }
 }
