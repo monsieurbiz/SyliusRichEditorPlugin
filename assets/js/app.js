@@ -185,12 +185,20 @@ global.MonsieurBizRichEditorManager = class {
         this.closest('.js-uie-element').element.delete();
       }
     });
-    uiElement.querySelector('.js-uie-up').addEventListener('click', function () {
-      this.closest('.js-uie-element').element.up();
-    });
-    uiElement.querySelector('.js-uie-down').addEventListener('click', function () {
-      this.closest('.js-uie-element').element.down();
-    });
+    if (position === 0) {
+      uiElement.querySelector('.js-uie-up').remove();
+    } else {
+      uiElement.querySelector('.js-uie-up').addEventListener('click', function () {
+        this.closest('.js-uie-element').element.up();
+      });
+    }
+    if (position === (this.uiElements.length - 1)) {
+      uiElement.querySelector('.js-uie-down').remove();
+    } else {
+      uiElement.querySelector('.js-uie-down').addEventListener('click', function () {
+        this.closest('.js-uie-element').element.down();
+      });
+    }
     return uiElement;
   }
 
