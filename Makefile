@@ -35,10 +35,18 @@ dependencies: vendor node_modules ## Setup the dependencies
 	(cd ${APP_DIR} && ln -sf ../../.php-version)
 
 vendor: composer.lock ## Install the PHP dependencies using composer
+ifdef GITHUB_ACTIONS
+	${COMPOSER} install --prefer-dist
+else
 	${COMPOSER} install --prefer-source
+endif
 
 composer.lock: composer.json
+ifdef GITHUB_ACTIONS
+	${COMPOSER} update --prefer-dist
+else
 	${COMPOSER} update --prefer-source
+endif
 
 yarn.install: ${APP_DIR}/yarn.lock
 
