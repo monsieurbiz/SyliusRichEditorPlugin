@@ -1,12 +1,12 @@
 monsieurbiz_richeditor_admin_form_create:
-    path: /monsieurbiz_sylius_rich_editor/form/{code}
+    path: /monsieurbiz_richeditor/form/{code}
     methods: [GET]
     defaults:
         _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
     condition: "request.isXmlHttpRequest()"
 
 monsieurbiz_richeditor_admin_form_edit:
-    path: /monsieurbiz_sylius_rich_editor/form/{code}
+    path: /monsieurbiz_richeditor/form/{code}
     methods: [POST]
     defaults:
         _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
