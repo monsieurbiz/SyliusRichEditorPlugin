@@ -1,0 +1,26 @@
+{% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
+
+
+<div class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
+    <h2 class="header">
+        <i class="{{ uiElement.icon }} icon"></i>
+        {% if isEdit %}
+            {{ 'monsieurbiz_richeditor_plugin.form.edit_element' | trans({'%uiElement%': uiElement.title | trans}) }}
+        {% else %}
+            {{ 'monsieurbiz_richeditor_plugin.form.add_element' | trans({'%uiElement%': uiElement.title | trans}) }}
+        {% endif %}
+    </h2>
+    <div class="sm:uie-mt-xs">
+        <button class="ui button js-uie-cancel" type="button">
+            <i class="ban icon"></i>
+            {{ 'monsieurbiz_richeditor_plugin.form.cancel' | trans }}
+        </button>
+        <button class="ui primary button js-uie-save" type="button">
+            <i class="save outline icon"></i>
+            {{ 'monsieurbiz_richeditor_plugin.form.save' | trans }}
+        </button>
+    </div>
+</div>
+<div class="ui form">
+    {{ form(form) }}
+</div>
