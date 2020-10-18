@@ -11,3 +11,13 @@ monsieurbiz_richeditor_admin_form_edit:
     defaults:
         _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
     condition: "request.isXmlHttpRequest()"
+
+monsieurbiz_richeditor_admin_form_submit:
+    path: /monsieurbiz_richeditor/submit/{code}/{isEdition}
+    methods: [POST]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:submitAction
+        isEdition: 0
+    requirements:
+        isEdition:  1|0
+    condition: "request.isXmlHttpRequest()"
