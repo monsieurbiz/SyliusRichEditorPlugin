@@ -83,12 +83,33 @@
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
+
+        let wysiwyg = new MonsieurBizRichEditorWysiwyg({
+            actions: [
+                'bold',
+                'italic',
+                'underline',
+                'ulist',
+                'olist',
+                'heading1',
+                'heading2',
+                {
+                    name: 'heading3',
+                    icon: '<b>H<sub>3</sub></b>',
+                    title: 'Heading 3',
+                    result: () => exec('formatBlock', '<h3>')
+                },
+                'link'
+            ]
+        });
+
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
         editors.forEach(function (editor) {
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
+                wysiwyg,
                 document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-button-add').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
