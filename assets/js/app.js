@@ -176,7 +176,10 @@ global.MonsieurBizRichEditorManager = class {
 
   getUiElement(element, position) {
     let elementWrapper = document.createElement('div');
-    elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {'title': element.title});
+    elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {
+      'title': element.title,
+      'icon': element.icon
+    });
     let uiElement = elementWrapper.firstElementChild;
     uiElement.element = element;
     uiElement.position = position;
