@@ -1,11 +1,49 @@
-// import { exec, init } from 'pell'
+import pell from 'pell';
 import Dialog from 'a11y-dialog-component';
 import Mustache from 'mustache';
+
+global.MonsieurBizRichEditorWysiwyg = class {
+  constructor(config) {
+    this.config = config; // {actions: []}
+  }
+
+  load(container) {
+    const targets = container.querySelectorAll('textarea.wysiwyg-enabled');
+    for (let target of targets) {
+      this.setupEditor(target);
+    }
+  }
+
+  setupEditor(target) {
+    target.setAttribute('hidden', 'true');
+
+    // Create container
+    const wysiwygContainer = document.createElement('div');
+    wysiwygContainer.classList.add('pell');
+    target.parentNode.appendChild(wysiwygContainer);
+
+    // Init pell wysiwyg
+    const editor = pell.init({
+      element: wysiwygContainer,
+      onChange: html => {
+        target.textContent = html
+      },
+      defaultParagraphSeparator: 'p',
+      actions: this.config.actions,
+    });
+
+    // Populate wysiwyg with initial content
+    const initialContent = target.value;
+    editor.content.innerHTML = initialContent;
+  }
+
+};
 
 global.MonsieurBizRichEditorConfig = class {
   constructor(
     input,
     uielements,
+    wysiwyg,
     containerHtml,
     buttonAddHtml,
     elementHtml,
@@ -16,6 +54,7 @@ global.MonsieurBizRichEditorConfig = class {
   ) {
     this.input = input;
     this.uielements = uielements;
+    this.wysiwyg = wysiwyg;
     this.containerHtml = containerHtml;
     this.buttonAddHtml = buttonAddHtml;
     this.elementHtml = elementHtml;
@@ -231,6 +270,10 @@ global.MonsieurBizRichEditorManager = class {
     return this.config.input;
   }
 
+  get wysiwyg() {
+    return this.config.wysiwyg;
+  }
+
   openSelectionPanel(position) {
     this.selectionPanel.dialog.manager = this;
     this.selectionPanel.dialog.position = position;
@@ -251,6 +294,8 @@ global.MonsieurBizRichEditorManager = class {
     this.newPanel.dialog.innerHTML = '';
     this.newPanel.dialog.append(form);
 
+    this.wysiwyg.load(form);
+
     // Form submit
     let formElement = form.querySelector('form');
     formElement.manager = this;
@@ -259,12 +304,11 @@ global.MonsieurBizRichEditorManager = class {
       e.preventDefault();
 
       const myForm = e.currentTarget;
-      myForm.manager.submitUiElementForm(myForm, function() {
+      myForm.manager.submitUiElementForm(myForm, function () {
         if (this.status === 200) {
           let data = JSON.parse(this.responseText);
           if (data.error) {
             this.form.manager.drawNewForm(data.form_html, this.form.position);
-            this.form.innerHTML = data.form_html;
           } else {
             this.form.manager.create(data.code, data.data, this.form.position);
             this.form.manager.newPanel.close();
@@ -285,7 +329,7 @@ global.MonsieurBizRichEditorManager = class {
     saveButton.panel = this.newPanel;
     saveButton.addEventListener('click', function (e) {
       e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-        new Event('submit', { cancelable: true })
+        new Event('submit', {cancelable: true})
       );
     });
   }
@@ -316,6 +360,8 @@ global.MonsieurBizRichEditorManager = class {
     let formContainer = this.editPanel.dialog.querySelector('.js-uie-content');
     formContainer.innerHTML = '';
     formContainer.append(form);
+
+    this.wysiwyg.load(form);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -350,7 +396,7 @@ global.MonsieurBizRichEditorManager = class {
     saveButton.panel = this.editPanel;
     saveButton.addEventListener('click', function (e) {
       e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-        new Event('submit', { cancelable: true })
+        new Event('submit', {cancelable: true})
       );
     });
   }
@@ -383,7 +429,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position-1, 0, uiElement);
+    this.uiElements.splice(position - 1, 0, uiElement);
     this.write();
   }
 
@@ -393,7 +439,7 @@ global.MonsieurBizRichEditorManager = class {
       return;
     }
     this.uiElements.splice(position, 1);
-    this.uiElements.splice(position+1, 0, uiElement);
+    this.uiElements.splice(position + 1, 0, uiElement);
     this.write();
   }
 

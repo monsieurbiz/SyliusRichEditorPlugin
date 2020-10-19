@@ -8,6 +8,43 @@ html.is-disabled body {
     overflow: hidden;
 }
 
+/* WYSIWYG */
+
+.pell {
+    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.03);
+    border: 1px solid rgba(34, 36, 38, 0.1);
+    box-sizing: border-box;
+    border-radius: .28571429rem;
+}
+
+.pell-content {
+    box-sizing: border-box;
+    height: 300px;
+    outline: 0;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.pell-actionbar {
+    background-color: #FFF;
+    border-bottom: 1px solid rgba(10, 10, 10, 0.1);
+}
+
+.pell-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    outline: 0;
+    width: 30px;
+    vertical-align: bottom;
+}
+
+.pell-button-selected {
+    background-color: #F0F0F0;
+}
+
+
 /* Panels */
 
 .uie-panels {
@@ -81,7 +118,7 @@ html.is-disabled body {
     display: block;
 }
 
-.uie-panels__new[aria-hidden=false]>* {
+.uie-panels__new[aria-hidden=false] > * {
     animation: appear 0.4s ease-out;
 }
 
