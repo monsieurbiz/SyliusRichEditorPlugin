@@ -31,6 +31,11 @@ interface MetadataInterface
     /**
      * @return string
      */
+    public function getAlias(): ?string;
+
+    /**
+     * @return string
+     */
     public function getCamelCasedCode(): string;
 
     /**

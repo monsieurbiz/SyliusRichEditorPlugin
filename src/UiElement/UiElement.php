@@ -54,6 +54,14 @@ final class UiElement implements UiElementInterface
     /**
      * {@inheritdoc}
      */
+    public function getAlias(): ?string
+    {
+        return $this->metadata->getAlias();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getTitle(): string
     {
         return $this->metadata->getParameter('title');

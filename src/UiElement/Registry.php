@@ -31,6 +31,9 @@ final class Registry implements RegistryInterface
         Assert::keyNotExists($this->uiElements, $uiElement->getCode(), 'UiElement with code "%s" is already registered.');
 
         $this->uiElements[$uiElement->getCode()] = $uiElement;
+        if (null !== $uiElement->getAlias()) {
+            $this->uiElements[$uiElement->getAlias()] = $uiElement;
+        }
     }
 
     /**
