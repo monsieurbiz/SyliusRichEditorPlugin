@@ -56,6 +56,14 @@ final class Metadata implements MetadataInterface
     /**
      * {@inheritdoc}
      */
+    public function getAlias(): ?string
+    {
+        return $this->parameters['alias'] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getCamelCasedCode(): string
     {
         return (string) preg_replace_callback('/\.([a-z])/i', function($match) {

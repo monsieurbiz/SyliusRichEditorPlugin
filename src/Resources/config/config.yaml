@@ -5,6 +5,7 @@ monsieurbiz_sylius_richeditor:
   upload_directory: '%kernel.project_dir%/public/media/rich-editor'
   ui_elements:
     monsieurbiz.text:
+      alias: text
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
       description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.description'
       icon: font
@@ -14,6 +15,7 @@ monsieurbiz_sylius_richeditor:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
     monsieurbiz.quote:
+      alias: quote
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
       description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
       icon: quote left

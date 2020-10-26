@@ -35,6 +35,11 @@ interface UiElementInterface extends \JsonSerializable
     /**
      * @return string
      */
+    public function getAlias(): ?string;
+
+    /**
+     * @return string
+     */
     public function getTitle(): string;
 
     /**

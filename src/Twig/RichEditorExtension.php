@@ -95,7 +95,13 @@ final class RichEditorExtension extends AbstractExtension
         $html = '';
         foreach ($elements as $element) {
             if (!isset($element['code'])) {
-                continue;
+                if (!isset($element['type'], $element['fields'])) {
+                    continue;
+                }
+                $element = [
+                    'code' => $element['type'],
+                    'data' => $element['fields'],
+                ];
             }
 
             try {

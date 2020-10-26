@@ -54,6 +54,7 @@ final class Configuration implements ConfigurationInterface
                         ->children()
                             ->scalarNode('title')->isRequired()->cannotBeEmpty()->end()
                             ->scalarNode('description')->isRequired()->cannotBeEmpty()->end()
+                            ->scalarNode('alias')->end()
                             ->scalarNode('icon')->isRequired()->cannotBeEmpty()->end()
                             ->arrayNode('classes')
                                 ->addDefaultsIfNotSet()

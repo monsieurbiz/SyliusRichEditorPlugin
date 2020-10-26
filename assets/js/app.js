@@ -144,10 +144,17 @@ global.MonsieurBizRichEditorManager = class {
   initUiElements(stack) {
     this.uiElements = [];
     stack.forEach(function (element) {
-      if (null !== this.config.findUiElementByCode(element.code)) {
+      if (element.code === undefined && element.type !== undefined) {
+        element.code = element.type;
+        element.data = element.fields;
+        delete element.type;
+        delete element.fields;
+      }
+      let uiElement = this.config.findUiElementByCode(element.code);
+      if (null !== uiElement) {
         this.uiElements.push(new MonsieurBizRichEditorUiElement(
           this.config,
-          element.code,
+          uiElement.code,
           element.data
         ));
       }
@@ -184,8 +191,8 @@ global.MonsieurBizRichEditorManager = class {
     this.container = containerWrapper.firstElementChild;
     this.input.after(this.container);
 
-    // Redraw all elements then
-    this.drawUiElements();
+    // Redraw all elements then (using a write to keep compatibility)
+    this.write();
   }
 
   drawUiElements() {
