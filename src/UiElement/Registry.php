@@ -32,7 +32,8 @@ final class Registry implements RegistryInterface
 
         $this->uiElements[$uiElement->getCode()] = $uiElement;
         if (null !== $uiElement->getAlias()) {
-            $this->uiElements[$uiElement->getAlias()] = $uiElement;
+            $this->uiElements[$uiElement->getAlias()] = clone $uiElement;
+            $uiElement->ignore();
         }
     }
 
