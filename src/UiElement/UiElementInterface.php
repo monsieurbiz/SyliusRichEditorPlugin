@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use InvalidArgumentException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 interface UiElementInterface extends \JsonSerializable
@@ -53,26 +54,26 @@ interface UiElementInterface extends \JsonSerializable
     public function getIcon(): string;
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getFormClass(): string;
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return string
      */
     public function getAdminFormTemplate(): string;
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return string
      */
     public function getAdminRenderTemplate(): string;
 
     /**
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      *
      * @return string
      */
