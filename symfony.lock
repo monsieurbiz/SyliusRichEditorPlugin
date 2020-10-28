@@ -884,9 +884,6 @@
     "symfony/polyfill-php80": {
         "version": "v1.18.1"
     },
-    "symfony/polyfill-util": {
-        "version": "v1.18.1"
-    },
     "symfony/process": {
         "version": "v4.4.13"
     },
