@@ -77,4 +77,9 @@ interface UiElementInterface extends \JsonSerializable
      * @return string
      */
     public function getFrontRenderTemplate(): string;
+
+    /**
+     * Flag an element as ignored
+     */
+    public function ignore(): void;
 }

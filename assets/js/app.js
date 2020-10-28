@@ -289,6 +289,9 @@ global.MonsieurBizRichEditorManager = class {
     let cardsContainer = this.selectionPanel.dialog.querySelector('.js-uie-cards-container');
     cardsContainer.innerHTML = '';
     for (let elementCode in this.config.uielements) {
+      if (this.config.uielements[elementCode].ignored) {
+        continue;
+      }
       cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
     }
     this.newPanel.close();

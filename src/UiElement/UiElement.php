@@ -28,6 +28,11 @@ final class UiElement implements UiElementInterface
     private TranslatorInterface $translator;
 
     /**
+     * @var bool
+     */
+    private bool $ignored = false;
+
+    /**
      * {@inheritdoc}
      */
     public function setMetadata(MetadataInterface $metadata): void
@@ -115,6 +120,11 @@ final class UiElement implements UiElementInterface
         return $this->metadata->getTemplate('front_render');
     }
 
+    public function ignore(): void
+    {
+        $this->ignored = true;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -125,6 +135,7 @@ final class UiElement implements UiElementInterface
             'description' => $this->translator->trans($this->getDescription()),
             'icon' => $this->getIcon(),
             'title' => $this->translator->trans($this->getTitle()),
+            'ignored' => $this->ignored,
         ];
     }
 }
