@@ -34,6 +34,7 @@ class ImageType extends AbstractType
                 'required' => true,
                 'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
                 'attr' => ['data-image' => 'true'],
+                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
             ])
             ->add('alt', FormTextType::class, [
                 'required' => true,
