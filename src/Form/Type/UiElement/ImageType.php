@@ -36,14 +36,14 @@ class ImageType extends AbstractType
                 'attr' => ['data-image' => 'true'], // To be able to manage display in form
             ])
             ->add('alt', FormTextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.alt',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
             ])
             ->add('title', FormTextType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title',
                 'constraints' => [
                     new Assert\NotBlank([]),
