@@ -44,6 +44,16 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/video.html.twig'
+    monsieurbiz.button:
+      alias: button
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
+      icon: hand pointer
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/button.html.twig'
 
 sylius_resource:
   resources:
