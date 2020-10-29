@@ -14,8 +14,11 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -80,12 +83,13 @@ class FormController extends AbstractController
      * Validate submitted data and return an UI Element JSON if everything is OK.
      *
      * @param Request $request
+     * @param FileUploader $fileUploader
      * @param string $code
      * @param bool $isEdition
      *
      * @return Response
      */
-    public function submitAction(Request $request, string $code, bool $isEdition): Response
+    public function submitAction(Request $request, FileUploader $fileUploader, string $code, bool $isEdition): Response
     {
         // Find UI Element from type
         try {
@@ -95,11 +99,30 @@ class FormController extends AbstractController
         }
 
         // Create and validate form
-        $form = $this->createForm($uiElement->getFormClass());
+        $form = $this->createForm($uiElement->getFormClass(), $request->request->all()); // Put the request to manage file constraints
         $form->handleRequest($request);
         if (!$form->isSubmitted()) {
             throw $this->createNotFoundException();
         }
+
+        // Manage file upload on valid fields
+        $uploadedFiles = [];
+        /** @var Form $child */
+        foreach ($form as $child) {
+            if ($child->isValid() && $child->getData() instanceof UploadedFile) {
+                // Upload image selected by user
+                $uploadedFileName = $fileUploader->upload($child->getData());
+                $uploadedFiles[$child->getName()] = $uploadedFileName;
+            } elseif ($child->getConfig()->getType()->getInnerType() instanceof FileType) {
+                // Check if we have a string value for this fields which is the file path (During edition for example)
+                $postFormData = $request->request->get($form->getName());
+                $currentImage = $postFormData[$child->getName()] ?? null;
+                $uploadedFiles[$child->getName()] = $currentImage;
+            }
+        }
+
+        // Replace uploaded files in form data
+        $formData = array_merge($form->getData(), $uploadedFiles);
 
         // Generate form render with error display
         if (!$form->isValid()) {
@@ -109,7 +132,7 @@ class FormController extends AbstractController
                 'form_html' => $this->renderView($uiElement->getAdminFormTemplate(), [
                     'form' => $form->createView(),
                     'uiElement' => $uiElement,
-                    'data' => $form->getData(),
+                    'data' => $formData,
                     'isEdition' => (int) $isEdition,
                 ]),
             ]);
@@ -117,7 +140,7 @@ class FormController extends AbstractController
 
         return new JsonResponse([
             'code' => $uiElement->getCode(),
-            'data' => $form->getData(),
+            'data' => $formData,
         ]);
     }
 }
