@@ -27,7 +27,7 @@ class TitleType extends AbstractType
         $builder
             ->add('content', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.title.field.content',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.content',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],

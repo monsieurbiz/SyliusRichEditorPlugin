@@ -5,7 +5,7 @@ monsieurbiz_richeditor_plugin:
       description: 'An element with a text content'
       field:
         content: 'Content'
-    title:
+    monsieurbiz.title:
       title: 'Title Element'
       short_description: 'A title element'
       description: 'An element containing the title you want'
@@ -64,7 +64,7 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
-    separator:
+    monsieurbiz.separator:
       title: 'Separator Element'
       short_description: 'A separator element'
       description: 'A separator element. The separator can be a hidden one.'

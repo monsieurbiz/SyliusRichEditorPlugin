@@ -5,7 +5,7 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant un contenu texte'
       field:
         content: 'Contenu'
-    title:
+    monsieurbiz.title:
       title: 'Lame Titre'
       short_description: 'Une lame contenant un titre'
       description: 'Une lame contenant le titre de votre choix'
@@ -64,7 +64,7 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Vidéo'
         image: 'Image de fond'
-    separator:
+    monsieurbiz.separator:
       title: 'Lame Séparateur'
       short_description: 'Une lame permettant de faire séparateur'
       description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
