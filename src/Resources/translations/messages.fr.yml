@@ -11,7 +11,7 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant le titre de votre choix'
       field:
         content: 'Contenu'
-    image:
+    monsieurbiz.image:
       title: 'Lame Image'
       short_description: 'Une lame contenant une image avec un champ alternatif et un titre.'
       description: 'Une lame contenant une image avec un champ alternatif et un titre. Un lien peut également être mis sur l''image'
