@@ -126,6 +126,7 @@ class FormController extends AbstractController
 
         // Generate form render with error display
         if (!$form->isValid()) {
+            $request->request->add(['rich_editor_uploaded_files' => $formData]);
             return new JsonResponse([
                 'error' => true,
                 'code' => $uiElement->getCode(),
