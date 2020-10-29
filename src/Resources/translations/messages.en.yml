@@ -70,7 +70,7 @@ monsieurbiz_richeditor_plugin:
       description: 'A separator element. The separator can be a hidden one.'
       field:
         hidden: 'Hidden separator'
-    button_link:
+    monsieurbiz.button:
       title: 'Button Element'
       short_description: 'A button with a text and a link.'
       description: 'A button with a text and a link.'
