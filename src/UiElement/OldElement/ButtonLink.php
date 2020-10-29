@@ -34,4 +34,9 @@ class ButtonLink extends AbstractUiElement
     {
         return ButtonLinkType::class;
     }
+
+    public function getTemplate(): string
+    {
+        return '@MonsieurBizSyliusRichEditorPlugin/UiElement/button.html.twig';
+    }
 }
