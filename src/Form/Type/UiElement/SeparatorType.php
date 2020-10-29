@@ -28,7 +28,7 @@ class SeparatorType extends AbstractType
     {
         $builder
             ->add('hidden', CheckboxType::class, [
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.separator.field.hidden',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.hidden',
                 'required' => false,
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event): void {
