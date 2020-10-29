@@ -30,6 +30,7 @@ class FileUploader
 
     /**
      * FileUploader constructor.
+     *
      * @param string $targetPath
      * @param string $publicDirectory
      */
@@ -40,9 +41,10 @@ class FileUploader
     }
 
     /**
-     * Upload a file and return the path to it
+     * Upload a file and return the path to it.
      *
      * @param UploadedFile $file
+     *
      * @return mixed|string
      */
     public function upload(UploadedFile $file)
@@ -59,13 +61,11 @@ class FileUploader
         }
 
         // Generate path from public folder
-        $relativePath = str_replace($this->publicDirectory, '', $file->getPathname());
-
-        return $relativePath;
+        return str_replace($this->publicDirectory, '', $file->getPathname());
     }
 
     /**
-     * The directory to write the file
+     * The directory to write the file.
      *
      * @return string
      */
