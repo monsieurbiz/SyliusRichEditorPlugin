@@ -2,7 +2,7 @@ imports:
   - { resource: "services.yaml" }
 
 monsieurbiz_sylius_richeditor:
-  upload_directory: '%kernel.project_dir%/public/media/rich-editor'
+  upload_directory: '/media/rich-editor'
   ui_elements:
     monsieurbiz.text:
       alias: text
@@ -24,6 +24,16 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/quote.html.twig'
+    monsieurbiz.image:
+      alias: image
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
+      icon: file image
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image.html.twig'
 
 sylius_resource:
   resources:

@@ -30,14 +30,14 @@ class VideoType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.video.field.video',
                 'data_class' => null,
                 'required' => true,
-                'constraints' => RichEditorConstraints::getVideoConstraints($options, 'video'),
+                'constraints' => RichEditorConstraints::getVideoConstraints($options, $builder->getName(), 'video'),
                 'attr' => ['data-video' => 'true'],
             ])
             ->add('image', FileType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.video.field.image',
                 'data_class' => null,
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
+                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
                 'attr' => ['data-image' => 'true'],
             ])
         ;

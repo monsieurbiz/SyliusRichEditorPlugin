@@ -23,16 +23,17 @@ final class RichEditorConstraints
      * If it's an edition and it contains a filename, we don't flag it as required.
      *
      * @param array $options
+     * @param string $formName
      * @param string $fieldName
      * @param bool $required
      *
      * @return array
      */
-    public static function getImageConstraints(array $options, string $fieldName, bool $required = true)
+    public static function getImageConstraints(array $options, string $formName, string $fieldName, bool $required = true)
     {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
-        if (isset($data[$fieldName])) {
+        if (isset($data[$formName]) && isset($data[$formName][$fieldName])) {
             return [];
         }
 
@@ -55,12 +56,13 @@ final class RichEditorConstraints
      * If it's an edition and it contains a filename, we don't flag it as required.
      *
      * @param array $options
+     * @param string $formName
      * @param string $fieldName
      * @param bool $required
      *
      * @return array
      */
-    public static function getVideoConstraints(array $options, string $fieldName, bool $required = true)
+    public static function getVideoConstraints(array $options, string $formName, string $fieldName, bool $required = true)
     {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;

@@ -32,7 +32,7 @@ class DoubleImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.double_image.field.first_image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
+                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('first_alt', FormTextType::class, [
@@ -60,7 +60,7 @@ class DoubleImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.double_image.field.second_image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
+                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('second_alt', FormTextType::class, [

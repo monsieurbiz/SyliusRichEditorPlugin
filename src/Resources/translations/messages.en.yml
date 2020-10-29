@@ -11,7 +11,7 @@ monsieurbiz_richeditor_plugin:
       description: 'An element containing the title you want'
       field:
         content: 'Content'
-    image:
+    monsieurbiz.image:
       title: 'Image Element'
       short_description: 'An element with an image, an alternative text and a title..'
       description: 'An element with an image, an alternative text and a title. A link can be added on it.'

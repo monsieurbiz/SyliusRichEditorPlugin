@@ -29,29 +29,23 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('image', FileType::class, [
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.image',
-                'data_class' => null, // @TODO check to have the File original data class, and remove this line
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.image',
+                'data_class' => null,
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, 'image'),
-                'attr' => ['data-image' => 'true'],
+                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
+                'attr' => ['data-image' => 'true'], // To be able to manage display in form
             ])
             ->add('alt', FormTextType::class, [
-                'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.alt',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
+                'required' => false,
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.alt',
             ])
             ->add('title', FormTextType::class, [
-                'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.title',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
+                'required' => false,
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title',
             ])
             ->add('link', FormTextType::class, [
                 'required' => false,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.image.field.link',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link',
                 'constraints' => [
                     new Assert\Url([]),
                 ],

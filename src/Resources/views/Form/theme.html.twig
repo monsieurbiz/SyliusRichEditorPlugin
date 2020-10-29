@@ -1,25 +1,37 @@
 {% extends '@SyliusAdmin/Form/theme.html.twig' %}
 
 {% block file_widget %}
-    {% if form.vars.data is not empty %}
+
+    {# Retrieve current file in form vars, when editing an element, it's a string #}
+    {% set current_file_path = form.vars.data %}
+
+    {# Manage current uploaded files when users uploads files but the form is not completely valid #}
+    {% if app.request.get('rich_editor_uploaded_files') is not empty %}
+        {% set uploadedFiles = app.request.get('rich_editor_uploaded_files') %}
+        {% if attribute(uploadedFiles, form.vars.name) is defined %}
+            {% set current_file_path =  attribute(uploadedFiles, form.vars.name) %}
+        {% endif %}
+    {% endif %}
+
+    {% if current_file_path is not empty %}
         <div>
             {% if form.vars.attr['data-image'] is defined %}
                 <p>
                     <small>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</small><br />
-                    <img src="{{ form.vars.data }}" alt="" style="max-width: 300px;max-height: 300px;" />
+                    <img src="{{ current_file_path }}" alt="" style="max-width: 300px;max-height: 300px;" />
                 </p>
             {% elseif form.vars.attr['data-video'] is defined %}
                 <p>
                     <small>{{ 'monsieurbiz_richeditor_plugin.form.current_video' | trans }}</small><br />
                     <video width="100%" controls style="max-width: 300px;max-height: 300px;">
-                        <source src="{{ form.vars.data }}" type="video/{{ form.vars.data|split('.')|last }}">
+                        <source src="{{ current_file_path }}" type="video/{{ current_file_path|split('.')|last }}">
                     </video>
                 </p>
             {% else %}
                 <p>
                     <small>{{ 'monsieurbiz_richeditor_plugin.form.current_file' | trans }}</small><br />
-                    <a href="{{ form.vars.data }}" target="_blank" rel="noopener noreferrer">
-                        {{ form.vars.data }}
+                    <a href="{{ current_file_path }}" target="_blank" rel="noopener noreferrer">
+                        {{ current_file_path }}
                     </a>
                 </p>
             {% endif %}
@@ -27,7 +39,7 @@
                 {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
             </button>
 
-            <input type="hidden" name="{{ form.vars.full_name }}" value="{{ form.vars.data }}" />
+            <input type="hidden" name="{{ form.vars.full_name }}" value="{{ current_file_path }}" />
         </div>
         {{- form_widget(form, {'attr': {'style': 'display: none;'}, 'full_name': 'change_' ~ form.vars.full_name}) -}}
     {% else %}
