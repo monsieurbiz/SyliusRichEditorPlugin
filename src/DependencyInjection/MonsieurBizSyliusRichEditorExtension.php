@@ -28,6 +28,7 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
         $configuration = $this->getConfiguration([], $container);
         $config = $this->processConfiguration(/** @scrutinizer ignore-type */ $configuration, $config);
         $container->setParameter('monsieurbiz.richeditor.config.ui_elements', $config['ui_elements']);
+        $container->setParameter('monsieurbiz.richeditor.config.upload_directory', $config['upload_directory']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');
