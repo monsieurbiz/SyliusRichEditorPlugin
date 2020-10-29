@@ -57,7 +57,7 @@ monsieurbiz_richeditor_plugin:
       field:
         products: 'Produits'
         title: 'Titre'
-    video:
+    monsieurbiz.video:
       title: 'Lame vidéo'
       short_description: 'Une lame contenant une vidéo et une image de fond'
       description: 'Une lame contenant un fichier vidéo et un fichier image de fond qui s''affichera avant la lecture de la vidéo'

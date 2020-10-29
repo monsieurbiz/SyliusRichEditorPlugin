@@ -34,6 +34,16 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image.html.twig'
+    monsieurbiz.video:
+      alias: video
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.description'
+      icon: film
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/video.html.twig'
 
 sylius_resource:
   resources:

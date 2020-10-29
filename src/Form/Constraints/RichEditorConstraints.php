@@ -33,7 +33,7 @@ final class RichEditorConstraints
     {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
-        if (isset($data[$formName]) && isset($data[$formName][$fieldName])) {
+        if (isset($data[$formName], $data[$formName][$fieldName])) {
             return [];
         }
 
@@ -66,7 +66,7 @@ final class RichEditorConstraints
     {
         // If is edition we don't have constraint to avoid re-upload
         $data = $options['data'] ?? null;
-        if (isset($data[$formName]) && isset($data[$formName][$fieldName])) {
+        if (isset($data[$formName], $data[$formName][$fieldName])) {
             return [];
         }
 
