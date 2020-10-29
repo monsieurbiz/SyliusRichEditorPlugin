@@ -2,7 +2,7 @@ imports:
   - { resource: "services.yaml" }
 
 monsieurbiz_sylius_richeditor:
-  upload_directory: '%kernel.project_dir%/public/media/rich-editor'
+  upload_directory: '/media/rich-editor'
   ui_elements:
     monsieurbiz.text:
       alias: text
