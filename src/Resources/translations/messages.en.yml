@@ -57,7 +57,7 @@ monsieurbiz_richeditor_plugin:
       field:
         products: 'Products'
         title: 'Title'
-    video:
+    monsieurbiz.video:
       title: 'Video Element'
       short_description: 'Element with a video and a background video image'
       description: 'An element with a video file and a background image file rendering before you play the video'
