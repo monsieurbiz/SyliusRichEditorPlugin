@@ -125,8 +125,6 @@
     function monsieurBizRichEditorRemoveFile(inputName) {
         let input = document.querySelector('input[name="' + inputName + '"]');
         let fileInput = document.querySelector('input[name="change_' + inputName + '"]');
-        console.log(input);
-        console.log(fileInput);
         input.parentElement.remove();
         fileInput.style.display = 'inline';
         fileInput.name = inputName;
