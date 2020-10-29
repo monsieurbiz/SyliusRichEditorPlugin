@@ -18,6 +18,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,7 +108,7 @@ class FormController extends AbstractController
 
         // Manage file upload on valid fields
         $uploadedFiles = [];
-        /** @var Form $child */
+        /** @var FormInterface $child */
         foreach ($form as $child) {
             if ($child->isValid() && $child->getData() instanceof UploadedFile) {
                 // Upload image selected by user
