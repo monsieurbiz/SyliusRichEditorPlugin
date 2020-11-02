@@ -61,6 +61,12 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Libellé'
         link: 'Lien'
+    monsieurbiz.youtube:
+      title: 'Lame Youtube'
+      short_description: 'Une vidéo youtube.'
+      description: 'Une lame affichant une vidéo Youtube.'
+      field:
+        link: 'Lien Youtube'
     monsieurbiz.image_collection:
       title: 'Lame collection d''images'
       short_description: 'Une lame contenant une liste d''images.'

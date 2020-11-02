@@ -73,6 +73,7 @@ final class RichEditorExtension extends AbstractExtension
     {
         return [
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
+            new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
         ];
     }
 
@@ -133,5 +134,23 @@ final class RichEditorExtension extends AbstractExtension
     public function listUiElements(): string
     {
         return (string) json_encode($this->uiElementRegistry);
+    }
+
+    /**
+     * Convert Youtube link to embed URL
+     *
+     * @param string $url
+     * @return string
+     */
+    public function convertYoutubeEmbeddedLink(string $url): string
+    {
+        $reg = '/(?:https?:\/\/)?(?:www\.)?(?:youtu.be\/|youtube\.com\/(?:watch(?:\/|\/?\?(?:\S*&)?v=)|embed\/))([\w\d]+)/';
+        $isValid = (bool) preg_match($reg, $url, $matches);
+
+        if (!$isValid || !isset($matches[1])) {
+            return '';
+        }
+
+        return sprintf('https://www.youtube.com/embed/%s', $matches[1]);
     }
 }
