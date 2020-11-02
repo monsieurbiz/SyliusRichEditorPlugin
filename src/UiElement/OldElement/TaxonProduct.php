@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TaxonProductType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement\TaxonProductType;
 
 /**
  * @deprecated since 2.0
@@ -33,5 +33,10 @@ class TaxonProduct extends AbstractUiElement
     public function getFormClass(): string
     {
         return TaxonProductType::class;
+    }
+
+    public function getTemplate(): string
+    {
+        return '@MonsieurBizSyliusRichEditorPlugin/UiElement/OldElement/taxon_product.html.twig';
     }
 }

@@ -41,22 +41,6 @@ monsieurbiz_richeditor_plugin:
       field:
         author: 'Auteur'
         content: 'Contenu'
-    taxon_product:
-      title: 'Lame produits de taxon'
-      short_description: 'Une lame contenant les produits d''un taxon'
-      description: 'Une lame contenant les produits d''un taxon avec une limite de nombre de produits. Si le titre est défini, il sera affiché au dessus de la liste'
-      field:
-        taxon: 'Taxon'
-        number_of_products: 'Nombre de produits'
-        title: 'Titre'
-        button_label: 'Label du bouton'
-    products:
-      title: 'Lame produits'
-      short_description: 'Une lame contenant une liste de produits.'
-      description: 'Une lame contenant une liste de produits. Si le titre est défini, il sera affiché au dessus de la liste'
-      field:
-        products: 'Produits'
-        title: 'Titre'
     monsieurbiz.video:
       title: 'Lame vidéo'
       short_description: 'Une lame contenant une vidéo et une image de fond'

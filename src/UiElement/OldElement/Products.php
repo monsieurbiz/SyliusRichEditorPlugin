@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ProductsType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement\ProductsType;
 
 /**
  * @deprecated since 2.0
@@ -33,5 +33,10 @@ class Products extends AbstractUiElement
     public function getFormClass(): string
     {
         return ProductsType::class;
+    }
+
+    public function getTemplate(): string
+    {
+        return '@MonsieurBizSyliusRichEditorPlugin/UiElement/OldElement/products.html.twig';
     }
 }

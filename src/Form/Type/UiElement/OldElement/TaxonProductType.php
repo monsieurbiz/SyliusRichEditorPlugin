@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement;
 
 use Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonAutocompleteChoiceType;
 use Sylius\Component\Taxonomy\Factory\TaxonFactoryInterface;
@@ -23,6 +23,9 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @deprecated since 2.0
+ */
 class TaxonProductType extends AbstractType
 {
     /**
