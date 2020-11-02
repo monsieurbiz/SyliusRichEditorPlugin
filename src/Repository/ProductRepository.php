@@ -17,6 +17,9 @@ use Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository as SyliusProductRepo
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\TaxonInterface;
 
+/**
+ * @deprecated since 2.0
+ */
 class ProductRepository extends SyliusProductRepository
 {
     /**
