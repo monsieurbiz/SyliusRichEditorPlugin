@@ -137,9 +137,10 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * Convert Youtube link to embed URL
+     * Convert Youtube link to embed URL.
      *
      * @param string $url
+     *
      * @return string
      */
     public function convertYoutubeEmbeddedLink(string $url): string
