@@ -67,6 +67,8 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame affichant une vidéo Youtube.'
       field:
         link: 'Lien Youtube'
+        width: 'Largeur du lecteur'
+        height: 'Hauteur du lecteur'
     monsieurbiz.image_collection:
       title: 'Lame collection d''images'
       short_description: 'Une lame contenant une liste d''images.'
