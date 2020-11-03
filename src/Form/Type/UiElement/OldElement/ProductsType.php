@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductAutocompleteChoiceType;
@@ -24,6 +24,9 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @deprecated since 2.0
+ */
 class ProductsType extends AbstractType
 {
     /**
