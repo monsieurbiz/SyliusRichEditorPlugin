@@ -39,6 +39,7 @@ class YoutubeType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),
+                    new Assert\GreaterThan(0)
                 ],
             ])
             ->add('height', FormTextType::class, [
@@ -46,6 +47,7 @@ class YoutubeType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),
+                    new Assert\GreaterThan(0)
                 ],
             ])
         ;
