@@ -305,6 +305,7 @@ global.MonsieurBizRichEditorManager = class {
     this.newPanel.dialog.append(form);
 
     this.wysiwyg.load(form);
+    this.initUiCollectionForm(form);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -372,6 +373,7 @@ global.MonsieurBizRichEditorManager = class {
     formContainer.append(form);
 
     this.wysiwyg.load(form);
+    this.initUiCollectionForm(form);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -485,5 +487,9 @@ global.MonsieurBizRichEditorManager = class {
     req.open("post", form.action, true);
     req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     req.send(new FormData(form));
+  }
+
+  initUiCollectionForm(form) {
+    document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitUiCollectionForm', {'detail': form}));
   }
 };
