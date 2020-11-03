@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
+namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use Symfony\Component\Form\AbstractType;
@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @deprecated
+ * @deprecated since 2.0
  */
 class DoubleImageType extends AbstractType
 {

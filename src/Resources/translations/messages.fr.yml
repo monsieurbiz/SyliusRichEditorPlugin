@@ -21,20 +21,6 @@ monsieurbiz_richeditor_plugin:
         alt: 'Texte alternatif'
         title: 'Titre'
         link: 'Lien'
-    double_image:
-      title: 'Lame Image double'
-      short_description: 'Une lame contenant deux images avec un champ alternatif et un titre.'
-      description: 'Une lame contenant deux images avec un champ alternatif et un titre. Un lien peut également être mis sur chacune des images.'
-      field:
-        current_image: 'Image 1 - Image actuelle'
-        first_image: 'Image 1 - Image'
-        first_alt: 'Image 1 - Texte alternatif'
-        first_title: 'Image 1 - Titre'
-        first_link: 'Image 1 - Lien'
-        second_image: 'Image 2 - Image'
-        second_alt: 'Image 2 - Texte alternatif'
-        second_title: 'Image 2 - Titre'
-        second_link: 'Image 2 - Lien'
     monsieurbiz.quote:
       title: 'Lame Citation'
       description: 'Une lame contenant un auteur et un contenu'
