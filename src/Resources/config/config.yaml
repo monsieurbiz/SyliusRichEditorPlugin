@@ -95,6 +95,7 @@ monsieurbiz_sylius_richeditor:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
 
+# Deprecated since 2.0
 sylius_resource:
   resources:
     monsieurbiz_richeditor.product:
