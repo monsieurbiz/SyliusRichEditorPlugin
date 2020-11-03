@@ -490,6 +490,8 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   initUiCollectionForm(form) {
-    document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitUiCollectionForm', {'detail': form}));
+    document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitUiCollectionForm', {
+      'detail': {'form': form}
+    }));
   }
 };

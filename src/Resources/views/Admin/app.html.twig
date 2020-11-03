@@ -123,7 +123,7 @@
     });
 
     document.addEventListener('monsieurBizRichEditorInitUiCollectionForm', (e) => {
-        let form = e.detail;
+        let form = e.detail.form;
         $(form).find('[data-form-type="collection"]').CollectionForm();
     });
 
