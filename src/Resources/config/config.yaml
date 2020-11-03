@@ -74,6 +74,16 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/separator.html.twig'
+    monsieurbiz.youtube:
+      alias: youtube
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.description'
+      icon: youtube
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\YoutubeType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/youtube.html.twig'
     monsieurbiz.image_collection:
       alias: image_collection
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'

@@ -61,6 +61,14 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+    monsieurbiz.youtube:
+      title: 'Youtube Element'
+      short_description: 'A Youtube element.'
+      description: 'An element which displays a Youtube video.'
+      field:
+        link: 'Youtube link'
+        width: 'Iframe width'
+        height: 'Iframe height'
     monsieurbiz.image_collection:
       title: 'Image Collection Element'
       short_description: 'An element with multiple images.'

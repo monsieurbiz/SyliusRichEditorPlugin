@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -73,6 +74,7 @@ final class RichEditorExtension extends AbstractExtension
     {
         return [
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
+            new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
         ];
     }
 
@@ -133,5 +135,23 @@ final class RichEditorExtension extends AbstractExtension
     public function listUiElements(): string
     {
         return (string) json_encode($this->uiElementRegistry);
+    }
+
+    /**
+     * Convert Youtube link to embed URL.
+     *
+     * @param string $url
+     *
+     * @return string|null
+     */
+    public function convertYoutubeEmbeddedLink(string $url): ?string
+    {
+        $isValid = (bool) preg_match(YoutubeUrlValidator::YOUTUBE_REGEX_VALIDATOR, $url, $matches);
+
+        if (!$isValid || !isset($matches[1])) {
+            return null;
+        }
+
+        return sprintf('https://www.youtube.com/embed/%s', $matches[1]);
     }
 }
