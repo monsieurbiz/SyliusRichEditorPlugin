@@ -8,12 +8,12 @@
     {# Manage current uploaded files when users uploads files but the form is not completely valid #}
     {% if app.request.get('rich_editor_uploaded_files') is not empty %}
         {% set uploadedFiles = app.request.get('rich_editor_uploaded_files') %}
-        {% if attribute(uploadedFiles, form.vars.name) is defined %}
-            {% set current_file_path =  attribute(uploadedFiles, form.vars.name) %}
+        {% if attribute(uploadedFiles, form.vars.full_name) is defined %}
+            {% set current_file_path =  attribute(uploadedFiles, form.vars.full_name) %}
         {% endif %}
     {% endif %}
 
-    {% if current_file_path is not empty %}
+    {% if form.vars.valid and current_file_path is not empty %}
         <div>
             {% if form.vars.attr['data-image'] is defined %}
                 <p>

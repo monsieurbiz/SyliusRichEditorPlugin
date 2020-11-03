@@ -122,19 +122,16 @@
         });
     });
 
+    document.addEventListener('monsieurBizRichEditorInitUiCollectionForm', (e) => {
+        let form = e.detail.form;
+        $(form).find('[data-form-type="collection"]').CollectionForm();
+    });
+
     function monsieurBizRichEditorRemoveFile(inputName) {
         let input = document.querySelector('input[name="' + inputName + '"]');
         let fileInput = document.querySelector('input[name="change_' + inputName + '"]');
         input.parentElement.remove();
         fileInput.style.display = 'inline';
         fileInput.name = inputName;
-    }
-
-    // JQuery dependency to init autocomplete with Sylius
-    function monsieurBizRichInitAutoComplete() {
-        let autocompleteSelector = $(monsieurbizRichEditorPluginConfig.autoCompleteSelector);
-        if (autocompleteSelector.length > 0) {
-            autocompleteSelector.autoComplete();
-        }
     }
 </script>

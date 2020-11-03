@@ -20,6 +20,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @deprecated
+ */
 class DoubleImageType extends AbstractType
 {
     /**
@@ -32,7 +35,7 @@ class DoubleImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.double_image.field.first_image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
+                'constraints' => RichEditorConstraints::getImageConstraints($options['data'] ?? null, 'image'),
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('first_alt', FormTextType::class, [
@@ -60,7 +63,7 @@ class DoubleImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.double_image.field.second_image',
                 'data_class' => null, // @TODO check to have the File original data class, and remove this line
                 'required' => true,
-                'constraints' => RichEditorConstraints::getImageConstraints($options, $builder->getName(), 'image'),
+                'constraints' => RichEditorConstraints::getImageConstraints($options['data'] ?? null, 'image'),
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('second_alt', FormTextType::class, [

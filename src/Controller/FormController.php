@@ -26,7 +26,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FormController extends AbstractController
 {
-    /** @var RegistryInterface */
+    /**
+     * @var RegistryInterface
+     */
     private $uiElementRegistry;
 
     /**
@@ -100,34 +102,21 @@ class FormController extends AbstractController
         }
 
         // Create and validate form
-        $form = $this->createForm($uiElement->getFormClass(), $request->request->all()); // Put the request to manage file constraints
+        $form = $this->createForm($uiElement->getFormClass());
         $form->handleRequest($request);
         if (!$form->isSubmitted()) {
             throw $this->createNotFoundException();
         }
 
-        // Manage file upload on valid fields
-        $uploadedFiles = [];
-        /** @var FormInterface $child */
-        foreach ($form as $child) {
-            if ($child->isValid() && $child->getData() instanceof UploadedFile) {
-                // Upload image selected by user
-                $uploadedFileName = $fileUploader->upload($child->getData());
-                $uploadedFiles[$child->getName()] = $uploadedFileName;
-            } elseif ($child->getConfig()->getType()->getInnerType() instanceof FileType) {
-                // Check if we have a string value for this fields which is the file path (During edition for example)
-                $postFormData = $request->request->get($form->getName());
-                $currentImage = $postFormData[$child->getName()] ?? null;
-                $uploadedFiles[$child->getName()] = $currentImage;
-            }
-        }
-
-        // Replace uploaded files in form data
-        $formData = array_merge($form->getData(), $uploadedFiles);
+        // Convert uploaded files to string in form data if necessary, or retrieve current image path if edition
+        $formData = $this->processFormData($form, $fileUploader, $request->request->get($form->getName()));
 
         // Generate form render with error display
         if (!$form->isValid()) {
-            $request->request->add(['rich_editor_uploaded_files' => $formData]);
+            // Manage current uplodaded files to be sure the user will not loose it
+            $request->request->add(['rich_editor_uploaded_files' => $this->convertFormDataForRequest(
+                [$form->getName() => $formData]
+            )]);
 
             return new JsonResponse([
                 'error' => true,
@@ -145,5 +134,68 @@ class FormController extends AbstractController
             'code' => $uiElement->getCode(),
             'data' => $formData,
         ]);
+    }
+
+    /**
+     * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
+     *
+     * @param FormInterface $form
+     * @param FileUploader $fileUploader
+     * @param array|string $requestData
+     *
+     * @return array|mixed|string
+     */
+    private function processFormData(FormInterface $form, FileUploader $fileUploader, $requestData)
+    {
+        // No child, end of recursivity, return form value or uploaded file path
+        if (!\count($form->all())) {
+            if ($form->isValid() && $form->getData() instanceof UploadedFile) {
+                // Upload image selected by user
+                return $fileUploader->upload($form->getData());
+            }
+            if ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
+                // Check if we have a string value for this fields which is the file path (During edition for example)
+                return $requestData; // Will return the current filename string
+            }
+
+            return $form->getData();
+        }
+
+        $processedData = [];
+        foreach ($form as $child) {
+            $formData = $this->processFormData($child, $fileUploader, $requestData[$child->getName()] ?? []);
+            $processedData[$child->getName()] = $formData;
+        }
+
+        return $processedData;
+    }
+
+    /**
+     * Recursively convert multidimensional array to one dimension
+     * The key is the full input name (ex : `image_collection[images][0][image]`)
+     * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
+     *
+     * @param array $formData
+     * @param string $prefix
+     *
+     * @return array
+     */
+    private function convertFormDataForRequest(array $formData, string $prefix = ''): array
+    {
+        $items = [];
+
+        foreach ($formData as $key => $value) {
+            if (\is_array($value)) {
+                if (empty($prefix)) {
+                    $items = array_merge($items, $this->convertFormDataForRequest($value, sprintf('%s', $key)));
+                } else {
+                    $items = array_merge($items, $this->convertFormDataForRequest($value, sprintf('%s[%s]', $prefix, $key)));
+                }
+            } else {
+                $items[sprintf('%s[%s]', $prefix, $key)] = $value;
+            }
+        }
+
+        return $items;
     }
 }
