@@ -31,7 +31,7 @@ final class RichEditorConstraints
     public static function getImageConstraints(array $data, string $fieldName, bool $required = true)
     {
         // No constraint if current value is a string with the filepath
-        if (isset($data[$fieldName]) && is_string($data[$fieldName])) {
+        if (isset($data[$fieldName]) && \is_string($data[$fieldName])) {
             return [];
         }
 
@@ -62,7 +62,7 @@ final class RichEditorConstraints
     public static function getVideoConstraints(array $data, string $fieldName, bool $required = true)
     {
         // No constraint if current value is a string with the filepath
-        if (isset($data[$fieldName]) && is_string($data[$fieldName])) {
+        if (isset($data[$fieldName]) && \is_string($data[$fieldName])) {
             return [];
         }
 

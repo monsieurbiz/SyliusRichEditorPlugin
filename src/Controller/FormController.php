@@ -113,7 +113,6 @@ class FormController extends AbstractController
 
         // Generate form render with error display
         if (!$form->isValid()) {
-
             // Manage current uplodaded files to be sure the user will not loose it
             $request->request->add(['rich_editor_uploaded_files' => $this->convertFormDataForRequest(
                 [$form->getName() => $formData]
@@ -138,27 +137,28 @@ class FormController extends AbstractController
     }
 
     /**
-     * Build a new form data array with the uploaded file path instead of files, or current filenames on edition
+     * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
      * @param FormInterface $form
      * @param FileUploader $fileUploader
      * @param array|string $requestData
+     *
      * @return array|mixed|string
      */
     private function processFormData(FormInterface $form, FileUploader $fileUploader, $requestData)
     {
         // No child, end of recursivity, return form value or uploaded file path
-        if (!count($form->all())) {
+        if (!\count($form->all())) {
             if ($form->isValid() && $form->getData() instanceof UploadedFile) {
                 // Upload image selected by user
-                $uploadedFileName = $fileUploader->upload($form->getData());
-                return $uploadedFileName;
-            } elseif ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
+                return $fileUploader->upload($form->getData());
+            }
+            if ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
                 // Check if we have a string value for this fields which is the file path (During edition for example)
                 return $requestData; // Will return the current filename string
-            } else {
-                return $form->getData();
             }
+
+            return $form->getData();
         }
 
         $processedData = [];
@@ -173,10 +173,11 @@ class FormController extends AbstractController
     /**
      * Recursively convert multidimensional array to one dimension
      * The key is the full input name (ex : `image_collection[images][0][image]`)
-     * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files
+     * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
      *
      * @param array $formData
      * @param string $prefix
+     *
      * @return array
      */
     private function convertFormDataForRequest(array $formData, string $prefix = ''): array
@@ -184,7 +185,7 @@ class FormController extends AbstractController
         $items = [];
 
         foreach ($formData as $key => $value) {
-            if (is_array($value)) {
+            if (\is_array($value)) {
                 if (empty($prefix)) {
                     $items = array_merge($items, $this->convertFormDataForRequest($value, sprintf('%s', $key)));
                 } else {
