@@ -74,6 +74,16 @@ monsieurbiz_sylius_richeditor:
       templates:
         admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
         front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/separator.html.twig'
+    monsieurbiz.image_collection:
+      alias: image_collection
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.description'
+      icon: images
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageCollectionType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/UiElement/Admin/Text/adminRender.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
 
 sylius_resource:
   resources:

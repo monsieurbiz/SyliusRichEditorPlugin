@@ -77,6 +77,12 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Libellé'
         link: 'Lien'
+    monsieurbiz.image_collection:
+      title: 'Lame collection d''images'
+      short_description: 'Une lame contenant une liste d''images.'
+      description: 'Une lame contenant une liste d''images.'
+      field:
+        images: 'Liste d''images'
   file:
     change: 'Changer de fichier'
   form:
@@ -95,6 +101,7 @@ monsieurbiz_richeditor_plugin:
     edit_element: 'Éditer %uiElementTitle%'
     cancel: 'Annuler'
     save: 'Sauvegarder'
+    add_image: 'Ajouter une image'
   action:
     new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'

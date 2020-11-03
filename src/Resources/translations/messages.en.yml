@@ -77,6 +77,12 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+    monsieurbiz.image_collection:
+      title: 'Image Collection Element'
+      short_description: 'An element with multiple images.'
+      description: 'An element with multiple images. A link can be added on each image.'
+      field:
+        images: 'Images list'
   file:
     change: 'Change file'
   form:
@@ -95,6 +101,7 @@ monsieurbiz_richeditor_plugin:
     edit_element: 'Edit %uiElementTitle%'
     cancel: 'Cancel'
     save: 'Save'
+    add_image: 'Add Image'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
