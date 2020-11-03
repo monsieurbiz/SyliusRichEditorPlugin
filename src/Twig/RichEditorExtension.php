@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -145,8 +146,7 @@ final class RichEditorExtension extends AbstractExtension
      */
     public function convertYoutubeEmbeddedLink(string $url): ?string
     {
-        $reg = '/(?:https?:\/\/)?(?:www\.)?(?:youtu.be\/|youtube\.com\/(?:watch(?:\/|\/?\?(?:\S*&)?v=)|embed\/))([\w\d]+)/';
-        $isValid = (bool) preg_match($reg, $url, $matches);
+        $isValid = (bool) preg_match(YoutubeUrlValidator::YOUTUBE_REGEX_VALIDATOR, $url, $matches);
 
         if (!$isValid || !isset($matches[1])) {
             return null;

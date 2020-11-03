@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrl;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -32,6 +33,7 @@ class YoutubeType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank(),
+                    new YoutubeUrl(),
                 ],
             ])
             ->add('width', FormTextType::class, [
@@ -39,7 +41,7 @@ class YoutubeType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),
-                    new Assert\GreaterThan(0)
+                    new Assert\GreaterThan(0),
                 ],
             ])
             ->add('height', FormTextType::class, [
@@ -47,7 +49,7 @@ class YoutubeType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),
-                    new Assert\GreaterThan(0)
+                    new Assert\GreaterThan(0),
                 ],
             ])
         ;
