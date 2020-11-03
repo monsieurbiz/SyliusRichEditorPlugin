@@ -1,0 +1,11 @@
+{#
+    UI Element template
+    type: quote
+    element fields :
+        author
+        content
+#}
+<blockquote>
+    {{ element.content | raw | nl2br }}
+    <br />— <cite>{{ element.author }}</cite>
+</blockquote>
