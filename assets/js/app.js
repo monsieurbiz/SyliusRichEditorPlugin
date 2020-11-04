@@ -50,7 +50,8 @@ global.MonsieurBizRichEditorConfig = class {
     elementCardHtml,
     deletionConfirmation,
     createElementFormUrl,
-    editElementFormUrl
+    editElementFormUrl,
+    renderElementsUrl
   ) {
     this.input = input;
     this.uielements = uielements;
@@ -62,6 +63,7 @@ global.MonsieurBizRichEditorConfig = class {
     this.deletionConfirmation = deletionConfirmation;
     this.createElementFormUrl = createElementFormUrl;
     this.editElementFormUrl = editElementFormUrl;
+    this.renderElementsUrl = renderElementsUrl;
   }
 
   findUiElementByCode(code) {
@@ -204,6 +206,20 @@ global.MonsieurBizRichEditorManager = class {
       elementsContainer.append(this.getUiElement(element, position));
     }.bind(this));
     elementsContainer.append(this.getNewButton(this.uiElements.length));
+  }
+
+  renderUiElements() {
+    if (this.uiElements.length) {
+      this.loadUiElementsHtml(this.uiElements, function () {
+        if (this.status === 200) {
+          let renderedElements = JSON.parse(this.responseText);
+          renderedElements.forEach(function (content, position) {
+            let uiElement = this.ui_elements[position];
+            uiElement.manager.container.querySelectorAll('.js-uie-preview')[position].innerHTML = content;
+          }.bind(this));
+        }
+      });
+    }
   }
 
   getNewButton(position) {
@@ -426,6 +442,7 @@ global.MonsieurBizRichEditorManager = class {
   write() {
     this.input.value = JSON.stringify(this.uiElements);
     this.drawUiElements();
+    this.renderUiElements();
   }
 
   create(code, data, position) {
@@ -487,6 +504,17 @@ global.MonsieurBizRichEditorManager = class {
     req.open("post", form.action, true);
     req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     req.send(new FormData(form));
+  }
+
+  loadUiElementsHtml(uiElements, callback) {
+    let req = new XMLHttpRequest();
+    req.onload = callback;
+    req.open("post", this.config.renderElementsUrl, true);
+    req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    let data = new FormData();
+    data.append('ui_elements', JSON.stringify(uiElements));
+    req.ui_elements = uiElements;
+    req.send(data);
   }
 
   initUiCollectionForm(form) {
