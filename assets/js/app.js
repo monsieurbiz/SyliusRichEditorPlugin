@@ -136,11 +136,33 @@ global.MonsieurBizRichEditorManager = class {
    */
   constructor(config) {
     this.config = config;
-    try {
-      this.initUiElements(JSON.parse(this.input.value.trim()), function () {
-        this.initInterface();
-      }.bind(this));
-    } catch (e) {
+
+    let inputValue = this.input.value.trim();
+
+    let initInterfaceCallback = function () {
+      this.initInterface();
+    }.bind(this);
+
+    if (inputValue !== '') {
+      try {
+        this.initUiElements(JSON.parse(inputValue), initInterfaceCallback);
+      } catch (e) {
+        console.log(e);
+        try {
+          this.initUiElements(
+            [{
+              "code": "monsieurbiz.html",
+              "data": {
+                "content": inputValue
+              }
+            }],
+            initInterfaceCallback
+          );
+        } catch (e) {
+          this.uiElements = [];
+        }
+      }
+    } else {
       this.uiElements = [];
       this.initInterface();
     }
