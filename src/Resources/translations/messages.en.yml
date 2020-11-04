@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.html:
+      title: 'HTML Element'
+      description: 'An element with raw data'
+      field:
+        content: 'Contenu'
     monsieurbiz.text:
       title: 'Text Element'
       description: 'An element with a text content'

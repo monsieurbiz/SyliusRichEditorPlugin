@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.html:
+      title: 'Lame HTML'
+      description: 'Une lame contenant un contenu en brut'
+      field:
+        content: 'Contenu'
     monsieurbiz.text:
       title: 'Lame Texte'
       description: 'Une lame contenant un contenu texte'

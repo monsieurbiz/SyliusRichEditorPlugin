@@ -4,6 +4,16 @@ imports:
 monsieurbiz_sylius_richeditor:
   upload_directory: '/media/rich-editor'
   ui_elements:
+    monsieurbiz.html:
+      alias: html
+      title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.title'
+      description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
+      icon: html5
+      classes:
+        form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType
+      templates:
+        admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig'
+        front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig'
     monsieurbiz.text:
       alias: text
       title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
