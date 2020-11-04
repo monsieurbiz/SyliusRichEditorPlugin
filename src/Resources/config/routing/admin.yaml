@@ -21,3 +21,11 @@ monsieurbiz_richeditor_admin_form_submit:
     requirements:
         isEdition:  1|0
     condition: "request.isXmlHttpRequest()"
+
+
+monsieurbiz_richeditor_admin_form_render_elements:
+    path: /monsieurbiz_richeditor/render_elements
+    methods: [POST]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:renderElementsAction
+    condition: "request.isXmlHttpRequest()"

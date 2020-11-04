@@ -83,6 +83,47 @@ class FormController extends AbstractController
     }
 
     /**
+     * Render all UI elements in HTML
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function renderElementsAction(Request $request): Response
+    {
+        if ($uiElements = $request->get('ui_elements')) {
+            $uiElements = json_decode($uiElements, true);
+            if (!\is_array($uiElements)) {
+                throw $this->createNotFoundException();
+            }
+        }
+
+        $result = [];
+        foreach ($uiElements as $key => $value) {
+            $code = $value['code'] ?? null;
+            $data = $value['data'] ?? null;
+
+            if (null === $code || null === $data) {
+                continue;
+            }
+
+            // Find UI Element from type
+            try {
+                $uiElement = $this->uiElementRegistry->getUiElement($code);
+            } catch (UiElementNotFoundException $exception) {
+                continue;
+            }
+
+            // Render Ui Element with admin render template
+            $result[$key] = $this->renderView($uiElement->getAdminRenderTemplate(), [
+                'uiElement' => $uiElement,
+                'element' => $data,
+            ]);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
      *
      * @param Request $request
