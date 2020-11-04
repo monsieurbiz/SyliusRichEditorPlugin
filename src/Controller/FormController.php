@@ -83,9 +83,10 @@ class FormController extends AbstractController
     }
 
     /**
-     * Render all UI elements in HTML
+     * Render all UI elements in HTML.
      *
      * @param Request $request
+     *
      * @return Response
      */
     public function renderElementsAction(Request $request): Response
