@@ -147,7 +147,6 @@ global.MonsieurBizRichEditorManager = class {
       try {
         this.initUiElements(JSON.parse(inputValue), initInterfaceCallback);
       } catch (e) {
-        console.log(e);
         try {
           this.initUiElements(
             [{
