@@ -11,14 +11,6 @@ services:
   MonsieurBiz\SyliusRichEditorPlugin\Twig\:
     resource: '../../Twig'
 
-  # Add JS for plugin
-  monsieurbiz_richeditor.block_event_listener.layout.javascripts:
-    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
-    arguments:
-      - '@@MonsieurBizSyliusRichEditorPlugin/Shop/js.html.twig'
-    tags:
-      - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
-
   monsieurbiz.richeditor.metadata_registry:
     class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
 
