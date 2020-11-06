@@ -13,9 +13,11 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormInterface;
@@ -83,16 +85,61 @@ class FormController extends AbstractController
     }
 
     /**
+     * Render all UI elements in HTML.
+     *
+     * @param Request $request
+     * @param EventDispatcherInterface $eventDispatcher
+     *
+     * @return Response
+     */
+    public function renderElementsAction(Request $request, EventDispatcherInterface $eventDispatcher): Response
+    {
+        if ($uiElements = $request->get('ui_elements')) {
+            $uiElements = json_decode($uiElements, true);
+            if (!\is_array($uiElements)) {
+                throw $this->createNotFoundException();
+            }
+        }
+
+        $result = [];
+        foreach ($uiElements as $uiElementIndex => $uiElementData) {
+            if (!isset($uiElementData['code'])) {
+                continue;
+            }
+
+            try {
+                $uiElement = $this->uiElementRegistry->getUiElement($uiElementData['code']);
+            } catch (UiElementNotFoundException $exception) {
+                continue;
+            }
+
+            $template = $uiElement->getAdminRenderTemplate();
+
+            $event = new RenderUiElementEvent($uiElement, $uiElementData);
+            $eventDispatcher->dispatch($event);
+            $uiElement = $event->getElement();
+
+            $result[$uiElementIndex] = $this->renderView($template, [
+                'uiElement' => $uiElement,
+                'element' => $uiElementData['data'],
+            ]);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
      *
      * @param Request $request
+     * @param EventDispatcherInterface $eventDispatcher
      * @param FileUploader $fileUploader
      * @param string $code
      * @param bool $isEdition
      *
      * @return Response
      */
-    public function submitAction(Request $request, FileUploader $fileUploader, string $code, bool $isEdition): Response
+    public function submitAction(Request $request, EventDispatcherInterface $eventDispatcher, FileUploader $fileUploader, string $code, bool $isEdition): Response
     {
         // Find UI Element from type
         try {
@@ -130,9 +177,20 @@ class FormController extends AbstractController
             ]);
         }
 
+        $template = $uiElement->getAdminRenderTemplate();
+        $event = new RenderUiElementEvent($uiElement, $formData);
+        $eventDispatcher->dispatch($event);
+        $element = $event->getElement();
+
+        $previewHtml = $this->renderView($template, [
+            'uiElement' => $element,
+            'element' => $formData,
+        ]);
+
         return new JsonResponse([
             'code' => $uiElement->getCode(),
             'data' => $formData,
+            'previewHtml' => $previewHtml,
         ]);
     }
 
