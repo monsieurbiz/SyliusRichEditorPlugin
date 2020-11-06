@@ -21,20 +21,6 @@ monsieurbiz_richeditor_plugin:
         alt: 'Alternative text'
         title: 'Title'
         link: 'Link'
-    double_image:
-      title: 'Double Image Element'
-      short_description: 'An element with two images, an alternative text and a title'
-      description: 'An element with two images, an alternative text and a title. A link can be added on each image.'
-      field:
-        current_image: 'Current image'
-        first_image: 'Image #1 - Image'
-        first_alt: 'Image #1 - Alternative text'
-        first_title: 'Image #1 - Title'
-        first_link: 'Image #1 - Link'
-        second_image: 'Image #2 - Image'
-        second_alt: 'Image #2 - Alternative text'
-        second_title: 'Image #2 - Title'
-        second_link: 'Image #2 - Link'
     monsieurbiz.quote:
       title: 'Quote Element'
       description: 'An element with an author and a content'

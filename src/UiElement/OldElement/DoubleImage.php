@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\OldElement;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\DoubleImageType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\OldElement\DoubleImageType;
 
 /**
  * @deprecated since 2.0
@@ -41,5 +41,10 @@ class DoubleImage extends AbstractUiElement
     public function getFormClass(): string
     {
         return DoubleImageType::class;
+    }
+
+    public function getTemplate(): string
+    {
+        return '@MonsieurBizSyliusRichEditorPlugin/UiElement/OldElement/double_image.html.twig';
     }
 }
