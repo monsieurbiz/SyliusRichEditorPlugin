@@ -75,10 +75,11 @@ global.MonsieurBizRichEditorConfig = class {
 };
 
 global.MonsieurBizRichEditorUiElement = class {
-  constructor(config, code, data) {
+  constructor(config, code, data, previewHtml) {
     this.config = config;
     this.code = code;
     this.data = data;
+    this.previewHtml = previewHtml;
   }
 
   toJSON() {
@@ -136,31 +137,42 @@ global.MonsieurBizRichEditorManager = class {
   constructor(config) {
     this.config = config;
     try {
-      this.initUiElements(JSON.parse(this.input.value.trim()));
+      this.initUiElements(JSON.parse(this.input.value.trim()), function () {
+        this.initInterface();
+      }.bind(this));
     } catch (e) {
       this.uiElements = [];
+      this.initInterface();
     }
-    this.initInterface();
   }
 
-  initUiElements(stack) {
+  initUiElements(stack, initInterfaceCallback) {
     this.uiElements = [];
-    stack.forEach(function (element) {
-      if (element.code === undefined && element.type !== undefined) {
-        element.code = element.type;
-        element.data = element.fields;
-        delete element.type;
-        delete element.fields;
+    this.requestUiElementsHtml(stack, function () {
+      // this = req
+      if (this.status === 200) {
+        let renderedElements = JSON.parse(this.responseText);
+        renderedElements.forEach(function (elementHtml, position) {
+          let element = stack[position];
+          if (element.code === undefined && element.type !== undefined) {
+            element.code = element.type;
+            element.data = element.fields;
+            delete element.type;
+            delete element.fields;
+          }
+          let uiElement = this.config.findUiElementByCode(element.code);
+          if (null !== uiElement) {
+            this.uiElements.push(new MonsieurBizRichEditorUiElement(
+              this.config,
+              uiElement.code,
+              element.data,
+              elementHtml
+            ));
+          }
+        }.bind(this.manager));
+        initInterfaceCallback();
       }
-      let uiElement = this.config.findUiElementByCode(element.code);
-      if (null !== uiElement) {
-        this.uiElements.push(new MonsieurBizRichEditorUiElement(
-          this.config,
-          uiElement.code,
-          element.data
-        ));
-      }
-    }.bind(this));
+    });
   }
 
   initInterface() {
@@ -208,20 +220,6 @@ global.MonsieurBizRichEditorManager = class {
     elementsContainer.append(this.getNewButton(this.uiElements.length));
   }
 
-  renderUiElements() {
-    if (this.uiElements.length) {
-      this.loadUiElementsHtml(this.uiElements, function () {
-        if (this.status === 200) {
-          let renderedElements = JSON.parse(this.responseText);
-          renderedElements.forEach(function (content, position) {
-            let uiElement = this.ui_elements[position];
-            uiElement.manager.container.querySelectorAll('.js-uie-preview')[position].innerHTML = content;
-          }.bind(this));
-        }
-      });
-    }
-  }
-
   getNewButton(position) {
     let buttonWrapper = document.createElement('div');
     buttonWrapper.innerHTML = Mustache.render(this.config.buttonAddHtml, {'position': position});
@@ -240,7 +238,8 @@ global.MonsieurBizRichEditorManager = class {
     let elementWrapper = document.createElement('div');
     elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {
       'title': element.title,
-      'icon': element.icon
+      'icon': element.icon,
+      'preview': element.previewHtml
     });
     let uiElement = elementWrapper.firstElementChild;
     uiElement.element = element;
@@ -337,7 +336,7 @@ global.MonsieurBizRichEditorManager = class {
           if (data.error) {
             this.form.manager.drawNewForm(data.form_html, this.form.position);
           } else {
-            this.form.manager.create(data.code, data.data, this.form.position);
+            this.form.manager.create(data.code, data.data, data.previewHtml, this.form.position);
             this.form.manager.newPanel.close();
             this.form.manager.selectionPanel.close();
           }
@@ -406,6 +405,7 @@ global.MonsieurBizRichEditorManager = class {
             this.form.manager.drawEditForm(data.form_html, this.form.uiElement);
           } else {
             this.form.uiElement.data = data.data;
+            this.form.uiElement.previewHtml = data.previewHtml;
             this.form.manager.write();
             this.form.manager.editPanel.close();
           }
@@ -442,11 +442,10 @@ global.MonsieurBizRichEditorManager = class {
   write() {
     this.input.value = JSON.stringify(this.uiElements);
     this.drawUiElements();
-    this.renderUiElements();
   }
 
-  create(code, data, position) {
-    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code, data);
+  create(code, data, previewHtml, position) {
+    let uiElement = new MonsieurBizRichEditorUiElement(this.config, code, data, previewHtml);
     this.uiElements.splice(position, 0, uiElement);
     this.write();
     return uiElement;
@@ -506,14 +505,15 @@ global.MonsieurBizRichEditorManager = class {
     req.send(new FormData(form));
   }
 
-  loadUiElementsHtml(uiElements, callback) {
+  requestUiElementsHtml(uiElements, callback) {
     let req = new XMLHttpRequest();
     req.onload = callback;
     req.open("post", this.config.renderElementsUrl, true);
     req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     let data = new FormData();
     data.append('ui_elements', JSON.stringify(uiElements));
-    req.ui_elements = uiElements;
+    req.uiElements = uiElements;
+    req.manager = this;
     req.send(data);
   }
 
