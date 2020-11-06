@@ -33,6 +33,12 @@ final class Metadata implements MetadataInterface
      */
     private function __construct(string $code, array $parameters)
     {
+        if (!isset($parameters['classes'], $parameters['templates'])) {
+            throw new \InvalidArgumentException("Classes and Templates must be specified in parameters.");
+        }
+        if (substr_count($code, '.') !== 1) {
+            throw new \InvalidArgumentException('The Code should contain one dot (.).');
+        }
         $this->code = $code;
         $this->parameters = $parameters;
     }
@@ -144,6 +150,7 @@ final class Metadata implements MetadataInterface
      */
     public function getServiceId(string $serviceName): string
     {
-        return sprintf('%s.%s', $serviceName, $this->code);
+        $code = explode('.', $this->code);
+        return sprintf('%s.%s.%s', $code[0], $serviceName, $code[1]);
     }
 }
