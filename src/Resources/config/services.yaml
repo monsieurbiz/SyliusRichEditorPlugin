@@ -11,13 +11,6 @@ services:
   MonsieurBiz\SyliusRichEditorPlugin\Twig\:
     resource: '../../Twig'
 
-  # Add template with JS and CSS in admin
-  MonsieurBiz\SyliusRichEditorPlugin\EventListener\Admin\AppBlock:
-    arguments:
-      $template: '@@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
-    tags:
-      - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
-
   # Add JS for plugin
   monsieurbiz_richeditor.block_event_listener.layout.javascripts:
     class: Sylius\Bundle\UiBundle\Block\BlockEventListener

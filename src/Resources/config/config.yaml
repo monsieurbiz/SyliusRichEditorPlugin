@@ -1,5 +1,6 @@
 imports:
   - { resource: "services.yaml" }
+  - { resource: "sylius/ui.yaml" }
 
 monsieurbiz_sylius_richeditor:
   upload_directory: '/media/rich-editor'
