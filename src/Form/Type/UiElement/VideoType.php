@@ -37,7 +37,7 @@ class VideoType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.image',
                 'data_class' => null,
-                'required' => true,
+                'required' => false,
                 'attr' => ['data-image' => 'true'],
             ])
         ;
@@ -50,7 +50,7 @@ class VideoType extends AbstractType
 
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image');
+            $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image', false);
             $event->getForm()->add('image', FileType::class, $options);
         });
     }
