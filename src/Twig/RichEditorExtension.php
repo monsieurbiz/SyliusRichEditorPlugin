@@ -13,11 +13,9 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
-use MonsieurBiz\SyliusRichEditorPlugin\Event\RenderUiElementEvent;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -36,25 +34,17 @@ final class RichEditorExtension extends AbstractExtension
     private $twig;
 
     /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
      * RichEditorExtension constructor.
      *
      * @param RegistryInterface $uiElementRegistry
      * @param Environment $twig
-     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         RegistryInterface $uiElementRegistry,
-        Environment $twig,
-        EventDispatcherInterface $eventDispatcher
+        Environment $twig
     ) {
         $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -113,10 +103,6 @@ final class RichEditorExtension extends AbstractExtension
             }
 
             $template = $uiElement->getFrontRenderTemplate();
-
-            $event = new RenderUiElementEvent($uiElement, $element);
-            $this->eventDispatcher->dispatch($event);
-            $element = $event->getElement();
 
             $html .= $this->twig->render($template, [
                 'uiElement' => $uiElement,
