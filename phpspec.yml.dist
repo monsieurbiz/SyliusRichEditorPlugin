@@ -2,3 +2,5 @@ suites:
     main:
         namespace: MonsieurBiz\SyliusRichEditorPlugin
         psr4_prefix: MonsieurBiz\SyliusRichEditorPlugin
+        src_path: src
+        spec_path: tests
