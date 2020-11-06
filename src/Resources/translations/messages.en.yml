@@ -4,7 +4,7 @@ monsieurbiz_richeditor_plugin:
       title: 'HTML Element'
       description: 'An element with raw data'
       field:
-        content: 'Contenu'
+        content: 'Content'
     monsieurbiz.text:
       title: 'Text Element'
       description: 'An element with a text content'
