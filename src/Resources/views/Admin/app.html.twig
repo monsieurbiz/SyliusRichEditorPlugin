@@ -116,7 +116,9 @@
                 '{{ "monsieurbiz_richeditor_plugin.form.confirm_delete" |trans|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_create", {"code": "__CODE__"})|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}',
-                '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}'
+                '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}',
+                'monsieurbiz.html',
+                'content'
             );
             editor.manager = new MonsieurBizRichEditorManager(config);
         });

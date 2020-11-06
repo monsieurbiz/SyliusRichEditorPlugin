@@ -51,7 +51,9 @@ global.MonsieurBizRichEditorConfig = class {
     deletionConfirmation,
     createElementFormUrl,
     editElementFormUrl,
-    renderElementsUrl
+    renderElementsUrl,
+    defaultUiElement,
+    defaultUIElementDataField
   ) {
     this.input = input;
     this.uielements = uielements;
@@ -64,6 +66,8 @@ global.MonsieurBizRichEditorConfig = class {
     this.createElementFormUrl = createElementFormUrl;
     this.editElementFormUrl = editElementFormUrl;
     this.renderElementsUrl = renderElementsUrl;
+    this.defaultUiElement = defaultUiElement;
+    this.defaultUIElementDataField = defaultUIElementDataField;
   }
 
   findUiElementByCode(code) {
@@ -147,19 +151,15 @@ global.MonsieurBizRichEditorManager = class {
       try {
         this.initUiElements(JSON.parse(inputValue), initInterfaceCallback);
       } catch (e) {
-        try {
-          this.initUiElements(
-            [{
-              "code": "monsieurbiz.html",
-              "data": {
-                "content": inputValue
-              }
-            }],
-            initInterfaceCallback
-          );
-        } catch (e) {
-          this.uiElements = [];
-        }
+        this.initUiElements(
+          [{
+            "code": this.config.defaultUiElement,
+            "data": {
+              [this.config.defaultUIElementDataField]: inputValue
+            }
+          }],
+          initInterfaceCallback
+        );
       }
     } else {
       this.uiElements = [];
