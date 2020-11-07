@@ -335,11 +335,8 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   drawNewForm(formHtml, position) {
-    let form = document.createElement('div');
-    form.innerHTML = formHtml;
-    this.newPanel.dialog.innerHTML = '';
-    this.newPanel.dialog.append(form);
-
+    this.newPanel.dialog.innerHTML = formHtml;
+    let form = this.newPanel.dialog;
     this.wysiwyg.load(form);
     this.initUiCollectionForm(form);
 
