@@ -106,7 +106,10 @@ html.is-disabled body {
     left: calc(1.143rem + 2rem);
     z-index: 10;
     display: none;
+    flex-direction: column;
+    // height: 100%;
     padding: 1.714rem;
+    overflow: hidden;
     background: #fff;
     border: 1px solid rgba(34, 36, 38, 0.15);
     border-right-width: 0;
@@ -115,11 +118,17 @@ html.is-disabled body {
 }
 
 .uie-panels__new[aria-hidden=false] {
-    display: block;
+    display: flex;
 }
 
 .uie-panels__new[aria-hidden=false] > * {
     animation: appear 0.4s ease-out;
+}
+
+.uie-panels__inner {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 @keyframes fadeOut {
