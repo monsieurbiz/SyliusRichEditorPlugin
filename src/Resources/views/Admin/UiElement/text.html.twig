@@ -4,4 +4,6 @@
     element fields :
         content
 #}
-{{ element.content | raw }}
+{% if element is not empty and element.content is not empty %}
+    {{ element.content | raw }}
+{% endif %}

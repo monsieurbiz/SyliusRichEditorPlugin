@@ -1,11 +1,13 @@
 <p align="center">
     <a href="https://monsieurbiz.com" target="_blank">
-        <img src="https://monsieurbiz.com/logo.png" width="250px" />
+        <img src="https://monsieurbiz.com/logo.png" width="250px" alt="Monsieur Biz logo" />
     </a>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" width="200px" />
+    <a href="https://monsieurbiz.com/agence-web-experte-sylius" target="_blank">
+        <img src="https://demo.sylius.com/assets/shop/img/logo.png" width="200px" alt="Sylius logo" />
     </a>
+    <br/>
+    <img src="https://monsieurbiz.com/assets/images/sylius_badge_extension-artisan.png" width="100" alt="Monsieur Biz is a Sylius Extension Artisan partner">
 </p>
 
 <h1 align="center">Rich Editor</h1>
