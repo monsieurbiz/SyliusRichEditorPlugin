@@ -101,7 +101,7 @@ class FormController extends AbstractController
         $result = [];
         foreach ($uiElements as $uiElementIndex => $uiElementData) {
             $result[$uiElementIndex] = '';
-            
+
             if (!isset($uiElementData['code'])) {
                 continue;
             }
