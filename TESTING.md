@@ -4,64 +4,53 @@
 
 You'll need:
 
-- docker
-- symfony CLI
-- composer
-- npm and yarn
+- PHP 7.4 minimum.
+- docker, for the database.
+- symfony CLI, to run the local server.
+- composer, to install PHP dependencies.
+- npm and yarn, to install ui dependencies and build the JS/CSS files.
 
 ## Installation
-
-You can change the environment by setting the `APP_ENV` (`export APP_ENV=test` as example).
-
-From the plugin root directory, run the following commands:
 
 ```bash
 make install
 ```
 
-To be able to setup the plugin's database, remember to configure your database credentials in `tests/Application/.env` 
-and `tests/Application/.env.test`. You can also add custom configuration in `tests/Application/.env.test.local`.
-
-If you want to run the Sylius app as well, go to the "Opening Sylius with the plugin" section below.
+This will run a Sylius app (the one in `tests/Application/`) with the plugin
+installed and all Sylius' sample data. It uses the symfony binary.
 
 ## Usage
 
-### Some help
+### List all available commands
 
 ```bash
 make help
 ```
 
-### Running plugin tests
+### Running minimum plugin tests
 
   - PHPUnit
 
     ```bash
-    make phpunit
+    make test.phpunit
     ```
+
+  - PHP CS fixer
+
+    ```bash
+    make test.phpcs
+    ```
+    
+    > Tip: You can fix your code with `make test.phpcs.fix`!
 
   - PHPSpec
 
     ```bash
-    make phpunit
+    make test.phpspec
     ```
     
   - PHPStan
   
     ```bash
-    make phpstan
-    ```
-
-### Opening Sylius with the plugin
-
-- Using `test` environment:
-
-    ```bash
-    APP_ENV=test make bazinga
-    ```
-    
-- Using `dev` environment:
-
-    ```bash
-    APP_ENV=dev make bazinga
+    make test.phpstan
     ```
