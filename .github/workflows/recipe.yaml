@@ -51,6 +51,9 @@ jobs:
       - run: mkdir -p /home/runner/.composer/cache
         if: steps.cache-composer.outputs.cache-hit != 'true'
 
+      - name: Composer v1
+        run: sudo composer self-update --1 
+
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
