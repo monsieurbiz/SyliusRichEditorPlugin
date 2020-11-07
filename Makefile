@@ -64,6 +64,8 @@ ${APP_DIR}/node_modules: yarn.install
 ### TESTS
 ### ¯¯¯¯¯
 
+test.all: test.composer test.phpstan test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig ## Run all tests in once
+
 test.composer: ## Validate composer.json
 	${COMPOSER} validate --strict
 

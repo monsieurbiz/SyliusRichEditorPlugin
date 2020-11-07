@@ -1,28 +1,28 @@
 services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-    public: false
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-  MonsieurBiz\SyliusRichEditorPlugin\Controller\:
-    resource: '../../Controller'
-    tags: ['controller.service_arguments']
+    MonsieurBiz\SyliusRichEditorPlugin\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
 
-  MonsieurBiz\SyliusRichEditorPlugin\Twig\:
-    resource: '../../Twig'
+    MonsieurBiz\SyliusRichEditorPlugin\Twig\:
+        resource: '../../Twig'
 
-  monsieurbiz.richeditor.metadata_registry:
-    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
+    monsieurbiz.richeditor.metadata_registry:
+        class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
 
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\RegistryInterface: '@monsieurbiz.richeditor.metadata_registry'
+    MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\RegistryInterface: '@monsieurbiz.richeditor.metadata_registry'
 
-  monsieurbiz.richeditor.registry:
-    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Registry
+    monsieurbiz.richeditor.registry:
+        class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Registry
 
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
+    MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
 
-  # File uploader
-  MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader:
-    arguments:
-      $targetPath: '%monsieurbiz.richeditor.config.upload_directory%'
-      $publicDirectory: '%env(DOCUMENT_ROOT)%'
+    # File uploader
+    MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader:
+        arguments:
+            $targetPath: '%monsieurbiz.richeditor.config.upload_directory%'
+            $publicDirectory: '%kernel.project_dir%/public'

@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of Monsieur Biz' Rich Editor plugin for Sylius.
+ *
+ * (c) Monsieur Biz <sylius@monsieurbiz.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace spec\MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use InvalidArgumentException;
@@ -9,8 +20,8 @@ use PhpSpec\ObjectBehavior;
 
 class MetadataSpec extends ObjectBehavior
 {
-    const CODE = 'app.amigo';
-    const PARAMETERS = [
+    public const CODE = 'app.amigo';
+    public const PARAMETERS = [
         'alias' => 'amigo',
         'title' => 'amigo.title',
         'description' => 'amigo.description',
@@ -24,13 +35,13 @@ class MetadataSpec extends ObjectBehavior
         ],
     ];
 
-    function it_is_initializable()
+    public function it_is_initializable(): void
     {
         $this->shouldHaveType(Metadata::class);
         $this->shouldHaveType(MetadataInterface::class);
     }
 
-    function let()
+    public function let(): void
     {
         $this->beConstructedThrough('fromCodeAndConfiguration', [
             self::CODE,
@@ -38,10 +49,11 @@ class MetadataSpec extends ObjectBehavior
         ]);
     }
 
-    function it_gives_you_a_singleton()
+    public function it_gives_you_a_singleton(): void
     {
         $this::fromCodeAndConfiguration('app.yep', self::PARAMETERS)
-            ->shouldReturnAnInstanceOf(MetadataInterface::class);
+            ->shouldReturnAnInstanceOf(MetadataInterface::class)
+        ;
 
         $this->shouldThrow(InvalidArgumentException::class)->during(
              'fromCodeAndConfiguration',
@@ -59,30 +71,30 @@ class MetadataSpec extends ObjectBehavior
          );
     }
 
-    function it_gives_back_the_code()
+    public function it_gives_back_the_code(): void
     {
         $this->getCode()->shouldReturn('app.amigo');
         $this->getCamelCasedCode()->shouldReturn('appAmigo');
     }
 
-    function it_gives_back_the_alias()
+    public function it_gives_back_the_alias(): void
     {
         $this->getAlias()->shouldReturn('amigo');
     }
 
-    function it_gives_back_any_parameter()
+    public function it_gives_back_any_parameter(): void
     {
         $this->getParameter('alias')->shouldReturn('amigo');
         $this->getParameter('description')->shouldReturn('amigo.description');
         $this->getParameter('templates')->shouldReturn(self::PARAMETERS['templates']);
     }
 
-    function it_gives_back_all_parameters()
+    public function it_gives_back_all_parameters(): void
     {
         $this->getParameters()->shouldReturn(self::PARAMETERS);
     }
 
-    function it_gives_back_any_class_name()
+    public function it_gives_back_any_class_name(): void
     {
         $this->getClass('form')->shouldReturn('MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType');
         $this->shouldThrow(InvalidArgumentException::class)->during(
@@ -91,13 +103,13 @@ class MetadataSpec extends ObjectBehavior
         );
     }
 
-    function it_tells_you_if_a_class_is_available()
+    public function it_tells_you_if_a_class_is_available(): void
     {
         $this->hasClass('form')->shouldReturn(true);
         $this->hasClass('nope')->shouldReturn(false);
     }
 
-    function it_gives_back_any_template()
+    public function it_gives_back_any_template(): void
     {
         $this->getTemplate('admin_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig');
         $this->getTemplate('front_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig');
@@ -107,15 +119,14 @@ class MetadataSpec extends ObjectBehavior
         );
     }
 
-    function it_tells_you_if_a_template_is_available()
+    public function it_tells_you_if_a_template_is_available(): void
     {
         $this->hasTemplate('admin_render')->shouldReturn(true);
         $this->hasTemplate('nope')->shouldReturn(false);
     }
 
-    function it_gives_its_service_name()
+    public function it_gives_its_service_name(): void
     {
         $this->getServiceId('foo')->shouldReturn('app.foo.amigo');
     }
-
 }
