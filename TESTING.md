@@ -29,28 +29,30 @@ make help
 
 ### Running minimum plugin tests
 
-  - PHPUnit
+- PHPUnit
 
     ```bash
     make test.phpunit
     ```
 
-  - PHP CS fixer
+- PHP CS fixer
 
     ```bash
     make test.phpcs
     ```
-    
+
     > Tip: You can fix your code with `make test.phpcs.fix`!
 
-  - PHPSpec
+- PHPSpec
 
     ```bash
     make test.phpspec
     ```
-    
-  - PHPStan
-  
+
+- PHPStan
+
     ```bash
     make test.phpstan
     ```
+
+> Tip: You can run all tests with `make test.all`!
