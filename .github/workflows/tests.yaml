@@ -54,6 +54,8 @@ jobs:
 
       - run: make test.composer
 
+      - run: make test.phpcs
+
       - run: make test.phpunit
 
       - run: make test.phpstan
