@@ -42,14 +42,15 @@ Then create the config file in `config/packages/monsieurbiz_sylius_rich_editor.y
 
 ```yaml
 imports:
-  - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
+    - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
 ```
 
 Finally import the routes in `config/routes/monsieurbiz_sylius_rich_editor.yaml` : 
 
 ```yaml
-monsieur_biz_rich_editor_plugin:
-    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing.yaml"
+monsieurbiz_richeditor_admin:
+    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
+    prefix: /%sylius_admin.path_name%
 ```
 
 ## Use the Rich Editor
