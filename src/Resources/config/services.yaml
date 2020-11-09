@@ -1,52 +1,28 @@
 services:
-  # Default configuration for services in *this* file
-  _defaults:
-    # Automatically injects dependencies in your services
-    autowire: true
-    # Automatically registers your services as commands, event subscribers, etc.
-    autoconfigure: true
-    # Allows optimizing the container by removing unused services; this also means
-    # fetching services directly from the container via $container->get() won't work
-    public: false
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-  # Makes classes in src/ available to be used as services;
-  # this creates a service per class whose id is the fully-qualified class name
-  MonsieurBiz\SyliusRichEditorPlugin\:
-    resource: '../../*'
-    exclude: '../../{Entity,Migrations,Tests,Kernel.php}'
+    MonsieurBiz\SyliusRichEditorPlugin\Controller\:
+        resource: '../../Controller'
+        tags: ['controller.service_arguments']
 
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\Element\:
-    resource: '../../UiElement/Element/*'
-    tags: ['monsieurbiz_rich_editor.ui_element']
+    MonsieurBiz\SyliusRichEditorPlugin\Twig\:
+        resource: '../../Twig'
 
-  # Registry
-  monsieurbiz_rich_editor.registry:
-    class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistry
+    monsieurbiz.richeditor.metadata_registry:
+        class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
 
-  MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementRegistryInterface:
-    alias: monsieurbiz_rich_editor.registry
+    MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\RegistryInterface: '@monsieurbiz.richeditor.metadata_registry'
 
-  # Controllers are imported separately to make sure services can be injected
-  # as action arguments even if you don't extend any base controller class
-  MonsieurBiz\SyliusRichEditorPlugin\Controller\:
-    resource: '../../Controller'
-    tags: ['controller.service_arguments']
+    monsieurbiz.richeditor.registry:
+        class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Registry
 
-  # Add template with JS and CSS in admin
-  MonsieurBiz\SyliusRichEditorPlugin\EventListener\Admin\AppBlock:
-    arguments:
-      $template: '@@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
-    tags:
-      - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
+    MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
 
-  # UiElement Factory using classes in config
-  MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactoryInterface:
-    alias: MonsieurBiz\SyliusRichEditorPlugin\Factory\UiElementFactory
-
-  # Add JS for plugin
-  monsieurbiz_sylius_rich_editor.block_event_listener.layout.javascripts:
-    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
-    arguments:
-      - '@@MonsieurBizSyliusRichEditorPlugin/Shop/js.html.twig'
-    tags:
-      - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
+    # File uploader
+    MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader:
+        arguments:
+            $targetPath: '%monsieurbiz.richeditor.config.upload_directory%'
+            $publicDirectory: '%kernel.project_dir%/public'

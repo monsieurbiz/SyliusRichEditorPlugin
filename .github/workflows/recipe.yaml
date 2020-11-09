@@ -4,7 +4,6 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
   schedule:
     - cron:  '0 0 * * *'
 
@@ -20,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [7.2]
+        php: [7.4]
 
     steps:
       - name: Setup PHP
@@ -38,7 +37,7 @@ jobs:
       - name: Run standalone symfony flex server
         run: |
           echo ${{ github.token }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-          docker run --rm --name flex -d -v $PWD/plugin/recipe:/var/www/flex/var/repo/private/monsieurbiz/sylius-rich-editor-plugin -p 80:80 docker.pkg.github.com/monsieurbiz/docker/symfony-flex-server:latest contrib official
+          docker run --rm --name flex -d -v $PWD/plugin/recipes:/var/www/flex/var/repo/private/monsieurbiz/sylius-rich-editor-plugin -p 80:80 docker.pkg.github.com/monsieurbiz/docker/symfony-flex-server:latest contrib official
           docker ps
 
       - uses: actions/cache@v1
@@ -50,6 +49,9 @@ jobs:
 
       - run: mkdir -p /home/runner/.composer/cache
         if: steps.cache-composer.outputs.cache-hit != 'true'
+
+      - name: Composer v1
+        run: sudo composer self-update --1 
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}

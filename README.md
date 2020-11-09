@@ -17,7 +17,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/?branch=master)
 
 
-This plugin add a rich editor on fields to be able to drag and drop elements and edit it.
+This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
 
 ![Example of rich editor field](screenshots/demo.gif)
 
@@ -56,168 +56,103 @@ monsieur_biz_rich_editor_plugin:
 
 ### Update your form type
 
-To make a field use the rich editor, you have to use `RichEditorType` on it.
+To make a field use the rich editor, you must use the `RichEditorType` type for it.  
+We have an example of implementation in the [test application](/tests/Application/src/Form/Extension/ProductTypeExtension.php).
 
-Here is a simple example with the description field of the `ProductTranslationType` form : 
+If your field has some data already, like some previous text before installing this plugin, 
+then we will convert it for you as an HTML Element which contains… HTML.
 
-```php
-<?php
+![Example of a rich editor field](screenshots/form_field.png)
 
-// [...]
-
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilderInterface;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\RichEditorType;
-
-final class ProductTranslationType extends AbstractResourceType
-{
-    // [...]
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('name', TextType::class, [
-                'label' => 'sylius.form.product.name',
-            ])
-            ->add('slug', TextType::class, [
-                'label' => 'sylius.form.product.slug',
-            ])
-            ->add('description', RichEditorType::class, [
-                'required' => false,
-                'label' => 'sylius.form.product.description',
-            ])
-            ->add('metaKeywords', TextType::class, [
-                'required' => false,
-                'label' => 'sylius.form.product.meta_keywords',
-            ])
-            ->add('metaDescription', TextType::class, [
-                'required' => false,
-                'label' => 'sylius.form.product.meta_description',
-            ])
-        ;
-    }
-
-    // [...]
-}
-```
-
-You will have the input display as a zone in which you can drag and drop some elements : 
-
-![The product description field with rich editor](screenshots/form_field.png)
+This way you will be able to use our plugin right away without risking any data lost!
 
 ### Call twig render
 
-In your template, to display the content of the rich editor as HTML, you have to call the twig filter : 
+To display the content of the rich editor field you must call the twig filter:
 
 ```twig
-{{ content | mbiz_rich_editor_render }}
+{{ content | monsieurbiz_richeditor_render_element }}
 ```
+
+You can see an example in the [test application](/tests/Application/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
 
 ## Available elements
 
-The plugin contains some simple elements
+The plugin already contains some simple elements.
 
-### Image element
+### HTML Element
 
-![The image element](screenshots/image.png)
-
-### Double Image element
-
-![The double image element](screenshots/double_image.png)
-
-### Quote element
-
-![The quote element](screenshots/quote.png)
+![The HTML element](screenshots/html.png)
 
 ### Text element
 
 ![The text element](screenshots/text.png)
 
+### Quote element
+
+![The quote element](screenshots/quote.png)
+
+### Image element
+
+![The image element](screenshots/image.png)
+
 ### Video element
 
 ![The video element](screenshots/video.png)
+
+### Button element
+
+![The button element](screenshots/button.png)
 
 ### Title element
 
 ![The title element](screenshots/title.png)
 
-### Button link element
-
-![The title element](screenshots/button_link.png)
-
 ### Separator element
 
-![The title element](screenshots/separator.png)
+![The separator element](screenshots/separator.png)
 
-### Taxon Product element
+### Youtube element
 
-![The taxon product element](screenshots/taxon_product.png)
+![The Youtube element](screenshots/youtube.png)
 
-It will be displayed as a carousel
+### Image collection element
 
-### Products element
+![The Image collection element](screenshots/image_collection.png)
 
-![The products element](screenshots/products.png)
+## Example of a rich product description
 
-It will be displayed as a carousel
+### Admin form with preview
 
-## Carousel view
+![Admin full form](screenshots/full_back.png)
 
-It uses the Slick carousel used by Sylius. You can customize the templates if you want another one.
+### Front display
 
-![An example of a carousel](screenshots/carousel.png)
+![Front full display](screenshots/full_front.png)
 
 ## Create your own elements
 
 In this example, we will add a Google Maps element.
 
-### Create the UiElement class
+### Define your UiElement
 
-Your element NEEDS to implement the `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface` interface.
+Define your UiElement in your configuration folder, let's say in `config/packages/monsieurbiz_sylius_richeditor_plugin.yaml` as example.
 
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace App\UiElement;
-
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement;
-use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
-use App\Form\Type\UiElement\GmapType;
-
-class Gmap extends AbstractUiElement implements UiElementInterface
-{
-    protected $type = 'gmap';
-
-    // We have an image for our element, if you don't specify it, we will use a default one
-    public function getImage(): string
-    {
-        return '/assets/shop/images/ui_elements/gmap.svg';
-    }
-    
-    public function getFields(): array
-    {
-        return [
-            'gmap_link',
-        ];
-    }
-
-    public function getFormClass(): string
-    {
-        return GmapType::class;
-    }
-}
+```yaml
+monsieurbiz_sylius_richeditor:
+    ui_elements:
+        app.google_maps:
+            title: 'app.ui_element.google_maps.title'
+            description: 'app.ui_element.google_maps.description'
+            icon: map pin
+            classes:
+                form: App\Form\Type\UiElement\GoogleMapsType
+            templates:
+                admin_render: '/Admin/UiElement/google_maps.html.twig'
+                front_render: '/Shop/UiElement/google_maps.html.twig'
 ```
 
-You can use the trait `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\YoutubeVideoTrait` which gives you access to
-the method `getVideoIframeURLFromPublicURL(string $url)` in your UiElement.
-
-### Create the UiElement form type
+### Create the Form Type we use in admin to fill your UiElement
 
 ```php
 <?php
@@ -229,18 +164,18 @@ namespace App\Form\Type\UiElement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class GmapType extends AbstractType
+class GoogleMapsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gmap_link', TextType::class, [
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.gmap.field.gmap_link',
+            ->add('link', TextType::class, [
+                'label' => 'app.ui_element.google_maps.link',
                 'required' => true,
                 'constraints' => [
-                    new NotBlank(),
+                    new Assert\NotBlank(),
                 ],
             ])
         ;
@@ -248,66 +183,48 @@ class GmapType extends AbstractType
 }
 ```
 
-### Declare your class as UI Element
-
-Use your `services.yaml` for that:
-
-```
-App\UiElement\Gmap:
-    tags: ['monsieurbiz_rich_editor.ui_element']
-```
-
-You can also use a resource for all your UiElements, example:
-
-```
-App\UiElement\:
-    resource: '../../UiElement/'
-    tags: ['monsieurbiz_rich_editor.ui_element']
-```
-
-### Add translations
-
-Don't forget to add the translations. Keys are autogenerated by the plugin or you can customize it in overriding the 
-`AbstractUiElement` methods in your element.
+### Add your translations of course
 
 Here is an example of possible translation for the GMap element : 
 
 ```yaml
-monsieurbiz_richeditor_plugin:
+app:
     ui_element:
-        gmap:
-            title: 'GMap Element'
-            short_description: 'Include a GMap'
-            description: 'An element with a GMap URL'
-            field:
-                gmap_link: 'GMap Link'
+        google_maps:
+            title: 'Google Maps Element'
+            short_description: 'Include a Google Maps'
+            description: 'An element with a Google Maps link'
+            link: 'Link'
 ```
 
-### Create the template to render it 
+### Create the templates to render it in front and in admin
 
-The plugin will try to find a template in `@MonsieurBizSyliusRichEditorPlugin/UiElement/gmap.html.twig`.  
-You can provide a custom path in overriding the `AbstractUiElement::getTemplate` method in your element.
+You have to create a template for the front and also for the admin's preview.
 
-Here is an example of simple render for this element : 
+Here is an example of a simple template for this our which can be used in front and admin:
 
 ```twig
-<iframe id="gmap_canvas" src="{{ element.gmap_link }}" scrolling="no" marginheight="0" marginwidth="0" width="600" height="500" frameborder="0"></iframe>
+<iframe id="gmap_canvas" src="{{ element.link }}" scrolling="no" marginheight="0" marginwidth="0" width="600" height="500" frameborder="0"></iframe>
 ```
 
-> Tip! You can access the UiElement itself via the `uiElement` variable in your template!  
-> Very useful if you use the `YoutubeVideoTrait` as example: `{{ uiElement.getVideoIframeURLFromPublicURL(element.video_url) }}`.
 
 ### The result !
 
-#### The element is on the toolbar
+#### The element is in the UI Elements list
 
-![The GMap element](screenshots/gmap_element.png)
+![The Google Maps element](screenshots/gmap_element.png)
 
-#### You have a form in the modal to edit it
+#### You now have a form to edit it (your form!)
 
-![The GMap form](screenshots/gmap_form.png)
+![The Google Maps form](screenshots/gmap_form.png)
 
-#### It will use your template to render it
+#### And we use your templates to render your UiElement
+
+In admin : 
+
+![The GMap display](screenshots/gmap_render_admin.png)
+
+In front : 
 
 ![The GMap display](screenshots/gmap_render.png)
 

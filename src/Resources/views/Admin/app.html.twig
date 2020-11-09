@@ -1,50 +1,139 @@
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
+
+<script id="monsieurbiz-rich-editor-button-add" type="x-tmpl-mustache">
+{% verbatim %}
+<div class="ui horizontal divider">
+    <button data-position="{{position}}" class="tiny ui basic button uie-m-n js-uie-add" type="button">
+        <i class="plus square icon"></i>
+        Add element
+    </button>
+</div>
+{% endverbatim %}
+</script>
+
+<script id="monsieurbiz-rich-editor-ui-element" type="x-tmpl-mustache">
+{% verbatim %}
+    <div class="ui segment js-uie-element">
+        <div
+            class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
+            <h3 class="header uie-m-n">
+                <i class="{{icon}} icon"></i>
+                {{title}}
+            </h3>
+            <div class="ui small basic icon buttons sm:uie-mt-xs">
+                <button class="ui button js-uie-delete" type="button">
+                    <i class="trash alternate outline icon"></i>
+                </button>
+                <button class="ui button js-uie-edit" type="button">
+                    <i class="pencil alternate icon"></i>
+                </button>
+                <button class="ui button js-uie-up" type="button">
+                    <i class="arrow up icon"></i>
+                </button>
+                <button class="ui button js-uie-down" type="button">
+                    <i class="arrow down icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="ui fluid js-uie-preview">{{{preview}}}</div>
+    </div>
+{% endverbatim %}
+</script>
+
+<script id="monsieurbiz-rich-editor-ui-elements-container" type="x-tmpl-mustache">
+{% verbatim %}
+    <div class="ui container">
+        <div class="ui segment js-uie-container">
+        </div>
+    </div>
+{% endverbatim %}
+</script>
+
+<script id="monsieurbiz-rich-editor-ui-element-card" type="x-tmpl-mustache">
+{% verbatim %}
+<button class="card uie-card js-uie-new" type="button">
+    <div class="content">
+        <h3 class="header">
+            <i class="{{icon}} icon"></i>
+            {{title}}
+        </h3>
+    </div>
+</button>
+{% endverbatim %}
+</script>
+
+<div class="uie-panels js-uie-panels">
+    <div class="uie-panels__content js-uie-panels-selector">
+        <h2 class="ui header uie-heading uie-mb-md" id="uie-heading">{{ "Select an UI Element"|trans }}</h2>
+
+        <div class="ui cards uie-cards js-uie-cards-container">
+        </div>
+
+        <div class="uie-panels__new js-uie-panels-new">
+        </div>
+    </div>
+</div>
+
+<div class="uie-panels js-uie-panels-edit">
+    <div class="uie-panels__content js-uie-content">
+    </div>
+</div>
+
 <script type="text/javascript">
-    var monsieurbizRichEditorPluginConfig = {
-        debug: {{ settings.attr.debug|number_format }},
-        templateRender: 'sylius',
-        querySelector: '[data-component="rich-editor"]',
-        autoCompleteSelector: '.mbiz-rich-editor-rendered-modal .sylius-autocomplete',
-        containerSelector: '#wrapper',
-        formRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_form') | escape('js') }}',
-        submitRoute: '{{ path('monsieurbiz_sylius_rich_editor_admin_modal_submit') | escape('js') }}',
-        translations: {
-            move: '{{ 'monsieurbiz_richeditor_plugin.form.move' | trans | escape('js') }}',
-            close: '{{ 'monsieurbiz_richeditor_plugin.form.close' | trans | escape('js') }}',
-            edit: '{{ 'monsieurbiz_richeditor_plugin.form.edit' | trans | escape('js') }}',
-            delete: '{{ 'monsieurbiz_richeditor_plugin.form.delete' | trans | escape('js') }}',
-            confirm_delete: '{{ 'monsieurbiz_richeditor_plugin.form.confirm_delete' | trans | escape('js') }}',
-            apply_changes: '{{ 'monsieurbiz_richeditor_plugin.form.apply_changes' | trans | escape('js') }}',
-            cancel_changes: '{{ 'monsieurbiz_richeditor_plugin.form.cancel_changes' | trans | escape('js') }}',
-            placeholder: '{{ 'monsieurbiz_richeditor_plugin.form.placeholder' | trans | escape('js') }}',
-            new: '{{ 'monsieurbiz_richeditor_plugin.action.new' | trans | escape('js') }}',
-            preview: '{{ 'monsieurbiz_richeditor_plugin.action.preview' | trans | escape('js') }}',
-        },
-        errorsTranslations: {
-            cannotParseJson: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_parse_json' | trans | escape('js') }}',
-            cannotFindType: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_find_type' | trans | escape('js') }}',
-            cannotUploadFile: '{{ 'monsieurbiz_richeditor_plugin.error.cannot_upload_file' | trans | escape('js') }}',
-        },
-        uiElements: {{ settings.attr.ui_elements | json_encode | raw }},
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+
+        let wysiwyg = new MonsieurBizRichEditorWysiwyg({
+            actions: [
+                'bold',
+                'italic',
+                'underline',
+                'ulist',
+                'olist',
+                'heading1',
+                'heading2',
+                {
+                    name: 'heading3',
+                    icon: '<b>H<sub>3</sub></b>',
+                    title: 'Heading 3',
+                    result: () => exec('formatBlock', '<h3>')
+                },
+                'link'
+            ]
+        });
+
+        let editors = document.querySelectorAll('[data-component="rich-editor"]');
+        let uielements = {{ monsieurbiz_richeditor_list_elements() }};
+        editors.forEach(function (editor) {
+            let config = new MonsieurBizRichEditorConfig(
+                editor,
+                uielements,
+                wysiwyg,
+                document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-button-add').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-ui-element-card').innerHTML,
+                '{{ "monsieurbiz_richeditor_plugin.form.confirm_delete" |trans|e('js') }}',
+                '{{ url("monsieurbiz_richeditor_admin_form_create", {"code": "__CODE__"})|e('js') }}',
+                '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}',
+                '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}',
+                'monsieurbiz.html',
+                'content'
+            );
+            editor.manager = new MonsieurBizRichEditorManager(config);
+        });
+    });
+
+    document.addEventListener('monsieurBizRichEditorInitUiCollectionForm', (e) => {
+        let form = e.detail.form;
+        $(form).find('[data-form-type="collection"]').CollectionForm();
+    });
 
     function monsieurBizRichEditorRemoveFile(inputName) {
         let input = document.querySelector('input[name="' + inputName + '"]');
         let fileInput = document.querySelector('input[name="change_' + inputName + '"]');
-        console.log(input);
-        console.log(fileInput);
         input.parentElement.remove();
         fileInput.style.display = 'inline';
         fileInput.name = inputName;
     }
-
-    // JQuery dependency to init autocomplete with Sylius
-    function monsieurBizRichInitAutoComplete() {
-        let autocompleteSelector = $(monsieurbizRichEditorPluginConfig.autoCompleteSelector);
-        if (autocompleteSelector.length > 0) {
-            autocompleteSelector.autoComplete();
-        }
-    }
 </script>
-
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}

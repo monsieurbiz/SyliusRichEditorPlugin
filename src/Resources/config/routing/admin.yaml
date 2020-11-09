@@ -1,12 +1,31 @@
-monsieurbiz_sylius_rich_editor_admin_modal_form:
-    path: /monsieurbiz_sylius_rich_editor/modal/edit
-    methods: [POST]
+monsieurbiz_richeditor_admin_form_create:
+    path: /monsieurbiz_richeditor/form/{code}
+    methods: [GET]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:formAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
     condition: "request.isXmlHttpRequest()"
 
-monsieurbiz_sylius_rich_editor_admin_modal_submit:
-    path: /monsieurbiz_sylius_rich_editor/modal/submit
+monsieurbiz_richeditor_admin_form_edit:
+    path: /monsieurbiz_richeditor/form/{code}
     methods: [POST]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\ModalController:submitAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
+    condition: "request.isXmlHttpRequest()"
+
+monsieurbiz_richeditor_admin_form_submit:
+    path: /monsieurbiz_richeditor/submit/{code}/{isEdition}
+    methods: [POST]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:submitAction
+        isEdition: 0
+    requirements:
+        isEdition:  1|0
+    condition: "request.isXmlHttpRequest()"
+
+
+monsieurbiz_richeditor_admin_form_render_elements:
+    path: /monsieurbiz_richeditor/render_elements
+    methods: [POST]
+    defaults:
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:renderElementsAction
+    condition: "request.isXmlHttpRequest()"

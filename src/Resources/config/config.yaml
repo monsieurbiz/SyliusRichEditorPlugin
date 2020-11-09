@@ -1,12 +1,4 @@
 imports:
-  - { resource: "services.yaml" }
-
-monsieur_biz_sylius_rich_editor:
-  upload_directory: '%kernel.project_dir%/public/media/rich-editor'
-
-sylius_resource:
-  resources:
-    monsieur_biz_sylius_rich_editor.product:
-      classes:
-        model: '%sylius.model.product.class%'
-        repository: MonsieurBiz\SyliusRichEditorPlugin\Repository\ProductRepository
+    - { resource: "services.yaml" }
+    - { resource: "sylius/ui.yaml" }
+    - { resource: "richeditor.yaml" }

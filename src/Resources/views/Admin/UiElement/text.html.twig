@@ -1,0 +1,9 @@
+{#
+    UI Element template
+    type: text
+    element fields :
+        content
+#}
+{% if element is not empty and element.content is not empty %}
+    {{ element.content | raw }}
+{% endif %}

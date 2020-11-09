@@ -1,0 +1,103 @@
+monsieurbiz_sylius_richeditor:
+    upload_directory: '/media/rich-editor'
+    ui_elements:
+        monsieurbiz.html:
+            alias: html
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
+            icon: html5
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig'
+        monsieurbiz.text:
+            alias: text
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.description'
+            icon: font
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
+        monsieurbiz.quote:
+            alias: quote
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
+            icon: quote left
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/quote.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/quote.html.twig'
+        monsieurbiz.image:
+            alias: image
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
+            icon: file image
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image.html.twig'
+        monsieurbiz.video:
+            alias: video
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.description'
+            icon: film
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/video.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/video.html.twig'
+        monsieurbiz.button:
+            alias: button
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
+            icon: hand pointer
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/button.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/button.html.twig'
+        monsieurbiz.title:
+            alias: title
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
+            icon: heading
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+        monsieurbiz.separator:
+            alias: separator
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.description'
+            icon: minus
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\SeparatorType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/separator.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/separator.html.twig'
+        monsieurbiz.youtube:
+            alias: youtube
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.description'
+            icon: youtube
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\YoutubeType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/youtube.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/youtube.html.twig'
+        monsieurbiz.image_collection:
+            alias: image_collection
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.description'
+            icon: images
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageCollectionType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image_collection.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
