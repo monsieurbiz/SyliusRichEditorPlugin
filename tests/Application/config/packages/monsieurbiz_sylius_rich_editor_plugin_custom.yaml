@@ -1,0 +1,12 @@
+monsieurbiz_sylius_richeditor:
+    ui_elements:
+        app.google_maps:
+            title: 'app.ui_element.google_maps.title'
+            description: 'app.ui_element.google_maps.description'
+            icon: map pin
+            classes:
+                form: App\Form\Type\UiElement\GoogleMapsType
+                ui_element: App\UiElement\GoogleMapsUiElement
+            templates:
+                admin_render: '/Admin/UiElement/google_maps.html.twig'
+                front_render: '/Shop/UiElement/google_maps.html.twig'
