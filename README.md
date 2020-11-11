@@ -148,10 +148,16 @@ monsieurbiz_sylius_richeditor:
             icon: map pin
             classes:
                 form: App\Form\Type\UiElement\GoogleMapsType
+                #ui_element: App\UiElement\MyUiElement
             templates:
                 admin_render: '/Admin/UiElement/google_maps.html.twig'
                 front_render: '/Shop/UiElement/google_maps.html.twig'
 ```
+
+You can use your own Ui Element object if needed. Be sure to implement the
+`\MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface` interface.  
+A trait is there for you 🤗 as well. This is very useful when you need to do some custom work in your templates, it's like
+having a helper around. The Ui Element is then available via the `ui_element` variable in your templates.
 
 ### Create the Form Type we use in admin to fill your UiElement
 

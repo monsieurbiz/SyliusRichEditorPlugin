@@ -115,7 +115,7 @@ class FormController extends AbstractController
             $template = $uiElement->getAdminRenderTemplate();
 
             $result[$uiElementIndex] = $this->renderView($template, [
-                'uiElement' => $uiElement,
+                'ui_element' => $uiElement,
                 'element' => $uiElementData['data'],
             ]);
         }
@@ -174,7 +174,7 @@ class FormController extends AbstractController
         $template = $uiElement->getAdminRenderTemplate();
 
         $previewHtml = $this->renderView($template, [
-            'uiElement' => $uiElement,
+            'ui_element' => $uiElement,
             'element' => $formData,
         ]);
 

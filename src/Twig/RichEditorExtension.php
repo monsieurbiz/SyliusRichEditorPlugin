@@ -105,7 +105,7 @@ final class RichEditorExtension extends AbstractExtension
             $template = $uiElement->getFrontRenderTemplate();
 
             $html .= $this->twig->render($template, [
-                'uiElement' => $uiElement,
+                'ui_element' => $uiElement,
                 'element' => $element['data'],
             ]);
         }
