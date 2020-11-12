@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class YoutubeUrlValidator extends ConstraintValidator
 {
-    public const YOUTUBE_REGEX_VALIDATOR = '/(?:https?:\/\/)?(?:www\.)?(?:youtu.be\/|youtube\.com\/(?:watch(?:\/|\/?\?(?:\S*&)?v=)|embed\/))([\w\d]+)/';
+    public const YOUTUBE_REGEX_VALIDATOR = '`^(?:https?://)?(?:www\.)?(?:youtu.be/|youtube\.com/(?:watch(?:/|/?\?(?:\S*&)?v=)|embed/))([\w\d]+)$`';
 
     public function validate($value, Constraint $constraint): void
     {
