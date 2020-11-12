@@ -17,6 +17,9 @@ use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
 use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -71,9 +74,9 @@ final class RichEditorExtension extends AbstractExtension
     /**
      * @param string $content
      *
-     * @throws \Twig\Error\LoaderError
-     * @throws \Twig\Error\RuntimeError
-     * @throws \Twig\Error\SyntaxError
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      *
      * @return string
      */
@@ -84,33 +87,61 @@ final class RichEditorExtension extends AbstractExtension
             return $content;
         }
 
+        return $this->renderElements($elements);
+    }
+
+    /**
+     * @param array $elements
+     *
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     *
+     * @return string
+     */
+    private function renderElements(array $elements): string
+    {
         $html = '';
         foreach ($elements as $element) {
-            if (!isset($element['code'])) {
-                if (!isset($element['type'], $element['fields'])) {
-                    continue;
-                }
-                $element = [
-                    'code' => $element['type'],
-                    'data' => $element['fields'],
-                ];
-            }
-
             try {
-                $uiElement = $this->uiElementRegistry->getUiElement($element['code']);
-            } catch (UiElementNotFoundException $exception) {
+                $html .= $this->renderElement($element);
+            } catch (UiElementNotFoundException $e) {
                 continue;
             }
-
-            $template = $uiElement->getFrontRenderTemplate();
-
-            $html .= $this->twig->render($template, [
-                'ui_element' => $uiElement,
-                'element' => $element['data'],
-            ]);
         }
 
         return $html;
+    }
+
+    /**
+     * @param array $element
+     *
+     * @throws UiElementNotFoundException
+     * @throws LoaderError [twig.render] When the template cannot be found
+     * @throws SyntaxError [twig.render] When an error occurred during compilation
+     * @throws RuntimeError [twig.render] When an error occurred during rendering
+     *
+     * @return string
+     */
+    private function renderElement(array $element): string
+    {
+        if (!isset($element['code'])) {
+            if (!isset($element['type'], $element['fields'])) {
+                throw new UiElementNotFoundException('unknown');
+            }
+            $element = [
+                'code' => $element['type'],
+                'data' => $element['fields'],
+            ];
+        }
+
+        $uiElement = $this->uiElementRegistry->getUiElement($element['code']);
+        $template = $uiElement->getFrontRenderTemplate();
+
+        return $this->twig->render($template, [
+            'ui_element' => $uiElement,
+            'element' => $element['data'],
+        ]);
     }
 
     /**
