@@ -458,7 +458,7 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   write() {
-    this.input.value = JSON.stringify(this.uiElements);
+    this.input.value = (this.uiElements.length > 0) ? JSON.stringify(this.uiElements) : '';
     this.drawUiElements();
   }
 
