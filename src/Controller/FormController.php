@@ -198,16 +198,7 @@ class FormController extends AbstractController
     {
         // No child, end of recursivity, return form value or uploaded file path
         if (!\count($form->all())) {
-            if ($form->isValid() && $form->getData() instanceof UploadedFile) {
-                // Upload image selected by user
-                return $fileUploader->upload($form->getData());
-            }
-            if ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
-                // Check if we have a string value for this fields which is the file path (During edition for example)
-                return $requestData; // Will return the current filename string
-            }
-
-            return $form->getData();
+            return $this->processFormDataWithoutChild($form, $fileUploader, $requestData);
         }
 
         $processedData = [];
@@ -217,6 +208,27 @@ class FormController extends AbstractController
         }
 
         return $processedData;
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param FileUploader $fileUploader
+     * @param array|string $requestData
+     *
+     * @return array|mixed|string
+     */
+    private function processFormDataWithoutChild(FormInterface $form, FileUploader $fileUploader, $requestData)
+    {
+        if ($form->isValid() && $form->getData() instanceof UploadedFile) {
+            // Upload image selected by user
+            return $fileUploader->upload($form->getData());
+        }
+        if ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
+            // Check if we have a string value for this fields which is the file path (During edition for example)
+            return $requestData; // Will return the current filename string
+        }
+
+        return $form->getData();
     }
 
     /**
