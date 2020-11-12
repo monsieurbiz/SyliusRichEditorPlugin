@@ -143,6 +143,8 @@ global.MonsieurBizRichEditorManager = class {
 
     let inputValue = this.input.value.trim();
 
+    this.tags = this.input.dataset.tags.length === 0 ? [] : this.input.dataset.tags.split(',');
+
     let initInterfaceCallback = function () {
       this.initInterface();
     }.bind(this);
@@ -325,10 +327,19 @@ global.MonsieurBizRichEditorManager = class {
     let cardsContainer = this.selectionPanel.dialog.querySelector('.js-uie-cards-container');
     cardsContainer.innerHTML = '';
     for (let elementCode in this.config.uielements) {
-      if (this.config.uielements[elementCode].ignored) {
+      if (this.config.uielements[elementCode].ignored) { // duplicates using aliases
         continue;
       }
-      cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
+      if (this.tags.length > 0) {
+        for (let tagIndex in this.tags) {
+          if (0 <= this.config.uielements[elementCode].tags.indexOf(this.tags[tagIndex])) {
+            cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
+            break;
+          }
+        }
+      } else {
+        cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
+      }
     }
     this.newPanel.close();
     this.selectionPanel.open();

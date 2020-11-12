@@ -154,4 +154,12 @@ final class Metadata implements MetadataInterface
 
         return sprintf('%s.%s.%s', $code[0], $serviceName, $code[1]);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags(): array
+    {
+        return $this->parameters['tags'] ?? [];
+    }
 }

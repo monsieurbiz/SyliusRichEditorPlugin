@@ -136,6 +136,7 @@ trait UiElementTrait
             'icon' => $this->getIcon(),
             'title' => $this->translator->trans($this->getTitle()),
             'ignored' => $this->ignored,
+            'tags' => $this->metadata->getTags(),
         ];
     }
 }

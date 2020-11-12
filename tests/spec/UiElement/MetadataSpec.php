@@ -129,4 +129,21 @@ class MetadataSpec extends ObjectBehavior
     {
         $this->getServiceId('foo')->shouldReturn('app.foo.amigo');
     }
+
+    public function it_gives_empty_tags(): void
+    {
+        $this->getTags()->shouldReturn([]);
+    }
+
+    public function it_gives_tags(): void
+    {
+        $parameters = self::PARAMETERS;
+        $tags = ['foo', 'bar'];
+        $parameters['tags'] = $tags;
+        $this->beConstructedThrough('fromCodeAndConfiguration', [
+            self::CODE,
+            $parameters,
+        ]);
+        $this->getTags()->shouldReturn($tags);
+    }
 }
