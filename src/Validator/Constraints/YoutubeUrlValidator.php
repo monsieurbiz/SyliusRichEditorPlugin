@@ -16,7 +16,6 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class YoutubeUrlValidator extends ConstraintValidator
 {
@@ -28,17 +27,7 @@ class YoutubeUrlValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, YoutubeUrl::class);
         }
 
-        if (null === $value || '' === $value) {
-            return;
-        }
-
-        if (!\is_string($value)) {
-            throw new UnexpectedValueException($value, 'string');
-        }
-
-        $isValid = (bool) preg_match(self::YOUTUBE_REGEX_VALIDATOR, $value, $matches);
-
-        if (!$isValid || !isset($matches[1])) {
+        if (!preg_match(self::YOUTUBE_REGEX_VALIDATOR, (string) $value)) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ string }}', $value)
                 ->addViolation()
