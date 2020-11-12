@@ -47,7 +47,7 @@ final class UiElementRegistryPass implements CompilerPassInterface
             $class = $metadata->getClass('ui_element');
             $this->validateUiElementResource($class);
 
-            $uiElementDefinition = $container->setDefinition($id, new Definition($class));
+            $uiElementDefinition = $container->setDefinition($id, (new Definition($class))->setAutowired(true));
             $uiElementDefinition->addMethodCall('setMetadata', [$this->getMetadataDefinition($metadata)]);
             $uiElementDefinition->addMethodCall('setTranslator', [new Reference('translator')]);
 
