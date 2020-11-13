@@ -91,4 +91,9 @@ interface MetadataInterface
      * @return string
      */
     public function getServiceId(string $serviceName): string;
+
+    /**
+     * @return array
+     */
+    public function getTags(): array;
 }

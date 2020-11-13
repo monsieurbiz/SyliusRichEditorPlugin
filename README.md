@@ -77,6 +77,33 @@ To display the content of the rich editor field you must call the twig filter:
 
 You can see an example in the [test application](/tests/Application/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
 
+### Filter the elements
+
+If you want to filter the elements which are available for your field, you can use the `tags` option when you build your form.  
+As example:
+
+```php
+$builder->add('description', RichEditorType::class, [
+    'required' => false,
+    'label' => 'sylius.form.product.description',
+    'tags' => ['product'],
+]);
+```
+
+In that example, only the Ui Elements with the tag `product` will be available.  
+Don't worry, you can add this filter afterwards, we won't remove the already present Ui Elements of your field. But we
+won't allow to add more if they don't have one of the allowed tags!
+
+#### Example of setting tags to an Ui Element using yaml
+
+```yaml
+monsieurbiz_sylius_richeditor:
+    ui_elements:
+        app.my_element:
+            # … 
+            tags: ['product']
+```
+
 ## Available elements
 
 The plugin already contains some simple elements.
@@ -152,6 +179,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '/Admin/UiElement/google_maps.html.twig'
                 front_render: '/Shop/UiElement/google_maps.html.twig'
+            tags: []
 ```
 
 You can use your own Ui Element object if needed. Be sure to implement the
