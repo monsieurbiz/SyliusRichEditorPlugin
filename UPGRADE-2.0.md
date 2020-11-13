@@ -7,6 +7,13 @@ In the 2.x we improved two things:
 - the javascript: it now works everywhere.
 - the UiElements: their definition has changed.
 
+You should change the contents of `config/routes/monsieurbiz_sylius_rich_editor.yaml` to the following:
+```yaml
+monsieurbiz_richeditor_admin:
+    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
+    prefix: /%sylius_admin.path_name%
+```
+
 For the JavaScript you should have nothing to do, the bundle system will take care of it.
 
 For the UiElements you will need to do some changes:
