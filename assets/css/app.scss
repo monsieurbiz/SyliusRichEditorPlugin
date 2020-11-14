@@ -92,6 +92,7 @@ html.is-disabled body {
     border-right-width: 0;
     border-radius: 0.286rem 0 0 0.286rem;
     box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.2), 1px 3px 15px 2px rgba(0, 0, 0, 0.2);
+    overflow-y: scroll;
 }
 
 [aria-hidden=false] .uie-panels__content {
