@@ -14,6 +14,9 @@ monsieurbiz_richeditor_admin:
     prefix: /%sylius_admin.path_name%
 ```
 
+The name of the Twig function changed from `mbiz_rich_editor_render` to `monsieurbiz_richeditor_render_element`,
+so make sure to update your templates.
+
 For the JavaScript you should have nothing to do, the bundle system will take care of it.
 
 For the UiElements you will need to do some changes:
