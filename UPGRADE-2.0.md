@@ -24,6 +24,6 @@ For the UiElements you will need to do some changes:
 
 ## Removed Product and Taxon elements
 
-We removed Product and Taxon elements because we want to keep a very simple plugin for the Rich Editor.  
-These elements will be available later in another plugin which will add many UI Elements for your store.  
-But actually you have to implements its manually in your project if you need.
+We removed Product and Taxon elements because we want to keep it simple for this plugin.  
+These elements will be provided later in another plugin, which will be dedicated to fancy Ui Elements.  
+Today you'll have to implement them manually on your project if you need them.
