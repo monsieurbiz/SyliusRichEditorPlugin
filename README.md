@@ -13,7 +13,7 @@
 <h1 align="center">Rich Editor</h1>
 
 [![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt)
-[![Build Status](https://travis-ci.com/monsieurbiz/SyliusRichEditorPlugin.svg?branch=master)](https://travis-ci.com/monsieurbiz/SyliusRichEditorPlugin)
+[![Build Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Tests)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/?branch=master)
 
 
