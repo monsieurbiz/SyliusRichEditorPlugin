@@ -53,6 +53,11 @@ monsieurbiz_richeditor_admin:
     prefix: /%sylius_admin.path_name%
 ```
 
+And install the assets
+```yaml
+bin/console asset:install
+```
+
 ## Use the Rich Editor
 
 ### Update your form type
