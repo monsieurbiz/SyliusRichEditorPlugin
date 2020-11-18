@@ -1,7 +1,7 @@
 # Upgrade from v1 to v2
 
 ## Routing config
-The contents of `config/routes/monsieurbiz_sylius_rich_editor.yaml` changed:
+The file `config/routes/monsieurbiz_sylius_rich_editor.yaml` was renamed to `config/routes/monsieurbiz_sylius_rich_editor_plugin.yaml`. The content changed as well:
 ```diff
 @@ -1,2 +1,3 @@
 -monsieur_biz_rich_editor_plugin:
@@ -10,6 +10,9 @@ The contents of `config/routes/monsieurbiz_sylius_rich_editor.yaml` changed:
 +    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
 +    prefix: /%sylius_admin.path_name%
 ```
+
+## Package config
+The file `config/packages/monsieurbiz_sylius_rich_editor.yaml` was renamed to `config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml`.
 
 ## Twig function
 
