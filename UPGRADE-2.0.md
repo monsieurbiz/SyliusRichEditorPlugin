@@ -12,13 +12,17 @@ The contents of `config/routes/monsieurbiz_sylius_rich_editor.yaml` changed:
 ```
 
 ## Twig function
+
 The name of the Twig function changed from `mbiz_rich_editor_render` to `monsieurbiz_richeditor_render_element`,
 so make sure to update your templates.
 
 ## JavaScript
-The JavaScript was refactored, now it works everywhere. You shouldn't have to change anything, the bundle system will take care of it.
+
+The JavaScript was refactored, now it works everywhere. You shouldn't have to change anything, the bundle system will take care of it.  
+But if you made some changes to the previous JS, you'll have to apply them on the new JS. It is a complete rewrite.
 
 ## UI elements
+
 The definition of UI elements has changed, you'll have to change some things:
 
 - Removing the old UIElements objects
