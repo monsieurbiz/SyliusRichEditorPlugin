@@ -1,0 +1,94 @@
+monsieurbiz_richeditor_plugin:
+  ui_element:
+    monsieurbiz.html:
+      title: 'HTML'
+      description: 'Een element met HTML-code'
+      field:
+        content: 'Inhoud'
+    monsieurbiz.text:
+      title: 'Tekst'
+      description: 'Een element met tekstinhoud'
+      field:
+        content: 'Inhoud'
+    monsieurbiz.title:
+      title: 'Titel'
+      short_description: 'Een element met een titel'
+      description: 'Een element met de gewenste titel'
+      field:
+        content: 'Inhoud'
+    monsieurbiz.image:
+      title: 'Afbeelding'
+      short_description: 'Een element met een afbeelding, een alternatieve tekst en een titel.'
+      description: 'Een element met een afbeelding, een alternatieve tekst en een titel. Er kan een link aan worden toegevoegd.'
+      field:
+        current_image: 'Huidige afbeelding'
+        image: 'Afbeelding'
+        alt: 'Alternatieve tekst'
+        title: 'Titel'
+        link: 'Link'
+    monsieurbiz.quote:
+      title: 'Citaat'
+      description: 'Een element met een auteur en inhoud'
+      field:
+        author: 'Auteur'
+        content: 'Inhoud'
+    monsieurbiz.video:
+      title: 'Video'
+      short_description: 'Element met een video en een videobeeld op de achtergrond'
+      description: 'Een element met een videobestand en een achtergrondafbeelding die getoond wordt voordat u de video afspeelt'
+      field:
+        video: 'Video'
+        image: 'Achtergrondafbeelding'
+    monsieurbiz.separator:
+      title: 'Scheiding'
+      short_description: 'Een scheidingselement'
+      description: 'Een scheidingselement dat optioneel verborgen kan zijn.'
+      field:
+        hidden: 'Verborgen scheidingselement'
+    monsieurbiz.button:
+      title: 'Knop'
+      short_description: 'Een knop met tekst en een link.'
+      description: 'Een knop met tekst en een link.'
+      field:
+        label: 'Label'
+        link: 'Link'
+    monsieurbiz.youtube:
+      title: 'YouTube-video'
+      short_description: 'Een YouTube-element.'
+      description: 'Een element dat een YouTube-video weergeeft.'
+      field:
+        link: 'YouTube-link'
+        width: 'Breedte van de iframe'
+        height: 'Hoogte van de iframe'
+    monsieurbiz.image_collection:
+      title: 'Galerij'
+      short_description: 'Een element met meerdere afbeeldingen.'
+      description: 'Een element met meerdere afbeeldingen. Aan elke afbeelding kan een link worden toegevoegd.'
+      field:
+        images: 'Lijst van afbeeldingen'
+  file:
+    change: 'Bestand aanpassen'
+  form:
+    move: 'Verplaatsen'
+    edit: 'Bewerken'
+    delete: 'Verwijderen'
+    close: 'Sluiten'
+    confirm_delete: 'Weet u zeker dat u dit element wilt verwijderen?'
+    apply_changes: 'Pas wijzigingen toe'
+    cancel_changes: 'Annuleer wijzigingen'
+    placeholder: 'Versleep elementen binnen dit gebied'
+    current_image: 'Huidige afbeelding'
+    current_video: 'Huidige video'
+    current_file: 'Huidig bestand'
+    add_element: 'Voeg %uiElementTitle% toe'
+    edit_element: 'Bewerk %uiElementTitle%'
+    cancel: 'Annuleren'
+    save: 'Opslaan'
+    add_image: 'Voeg afbeelding toe'
+  action:
+    new: 'Schakel tussen beschikbare widgets'
+    preview: 'Voorbeeld'
+  error:
+    cannot_parse_json: 'Kan de huidige inhoud niet parseren'
+    cannot_find_type: 'Kan type niet vinden voor sommige UI-elementen'
+    cannot_upload_image: 'Kan de afbeelding niet uploaden. Het bestand is mogelijk te groot of heeft een onjuist formaat.'
