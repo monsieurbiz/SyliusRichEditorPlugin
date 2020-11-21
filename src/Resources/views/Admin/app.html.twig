@@ -134,9 +134,10 @@
         });
     });
 
-    document.addEventListener('monsieurBizRichEditorInitUiCollectionForm', (e) => {
+    document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
         let form = e.detail.form;
         $(form).find('[data-form-type="collection"]').CollectionForm();
+        $(form).find('.sylius-autocomplete').autoComplete();
     });
 
     function monsieurBizRichEditorRemoveFile(inputName) {

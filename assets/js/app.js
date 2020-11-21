@@ -208,16 +208,13 @@ global.MonsieurBizRichEditorManager = class {
       labelledby: 'uie-heading',
       enableAutoFocus: false,
       closingSelector: '.js-uie-panels-close',
-      onOpen: this.onOpenPanel,
     });
     this.newPanel = new Dialog('.js-uie-panels-new', {
       helperSelector: '.js-uie-panels-selector',
       enableAutoFocus: false,
-      onOpen: this.onOpenPanel,
     });
     this.editPanel = new Dialog('.js-uie-panels-edit', {
       enableAutoFocus: false,
-      onOpen: this.onOpenPanel,
     });
   }
 
@@ -350,7 +347,7 @@ global.MonsieurBizRichEditorManager = class {
     this.newPanel.dialog.innerHTML = formHtml;
     let form = this.newPanel.dialog;
     this.wysiwyg.load(form);
-    this.initUiCollectionForm(form);
+    this.dispatchInitFormEvent(form);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -414,7 +411,7 @@ global.MonsieurBizRichEditorManager = class {
     let form = this.editPanel.dialog;
 
     this.wysiwyg.load(form);
-    this.initUiCollectionForm(form);
+    this.dispatchInitFormEvent(form);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -543,15 +540,9 @@ global.MonsieurBizRichEditorManager = class {
     req.send(data);
   }
 
-  initUiCollectionForm(form) {
-    document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitUiCollectionForm', {
+  dispatchInitFormEvent(form) {
+    document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitForm', {
       'detail': {'form': form}
     }));
-  }
-
-  onOpenPanel(dialog) {
-    dialog.querySelectorAll('.sylius-autocomplete').forEach(function (e) {
-      $(e).autoComplete();
-    })
   }
 };
