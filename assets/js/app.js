@@ -409,12 +409,8 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   drawEditForm(formHtml, uiElement) {
-    let form = document.createElement('div');
-    form.innerHTML = formHtml;
-
-    let formContainer = this.editPanel.dialog.querySelector('.js-uie-content');
-    formContainer.innerHTML = '';
-    formContainer.append(form);
+    this.editPanel.dialog.querySelector('.js-uie-content').innerHTML = formHtml;
+    let form = this.editPanel.dialog;
 
     this.wysiwyg.load(form);
     this.initUiCollectionForm(form);
