@@ -175,6 +175,7 @@ html.is-disabled body {
 
 .is-active .uie-cards {
     opacity: 0;
+    pointer-events: none;
 }
 
 .uie-card {
