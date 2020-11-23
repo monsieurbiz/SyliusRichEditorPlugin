@@ -207,6 +207,7 @@ global.MonsieurBizRichEditorManager = class {
     this.selectionPanel = new Dialog('.js-uie-panels', {
       labelledby: 'uie-heading',
       enableAutoFocus: false,
+      closingSelector: '.js-uie-panels-close',
     });
     this.newPanel = new Dialog('.js-uie-panels-new', {
       helperSelector: '.js-uie-panels-selector',
