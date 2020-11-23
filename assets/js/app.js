@@ -205,17 +205,14 @@ global.MonsieurBizRichEditorManager = class {
 
   initUiPanelsInterface() {
     this.selectionPanel = new Dialog('.js-uie-panels', {
-      backdropSelector: '.js-uie-panels',
       labelledby: 'uie-heading',
       enableAutoFocus: false,
     });
     this.newPanel = new Dialog('.js-uie-panels-new', {
-      backdropSelector: '.js-uie-panels-new',
       helperSelector: '.js-uie-panels-selector',
       enableAutoFocus: false,
     });
     this.editPanel = new Dialog('.js-uie-panels-edit', {
-      backdropSelector: '.js-uie-panels-edit',
       enableAutoFocus: false,
     });
   }
