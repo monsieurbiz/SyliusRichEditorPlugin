@@ -4,7 +4,7 @@
 <script id="monsieurbiz-rich-editor-button-add" type="x-tmpl-mustache">
 {% verbatim %}
 <div class="ui horizontal divider">
-    <button data-position="{{position}}" class="tiny ui basic button uie-m-n js-uie-add" type="button">
+    <button data-position="{{position}}" class="tiny ui basic button uie-m-0 js-uie-add" type="button">
         <i class="plus square icon"></i>
         Add element
     </button>
@@ -17,7 +17,7 @@
     <div class="ui segment js-uie-element">
         <div
             class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
-            <h3 class="header uie-m-n">
+            <h3 class="header uie-m-0">
                 <i class="{{icon}} icon"></i>
                 {{title}}
             </h3>
@@ -65,7 +65,17 @@
 
 <div class="uie-panels js-uie-panels">
     <div class="uie-panels__content js-uie-panels-selector">
-        <h2 class="ui header uie-heading uie-mb-md" id="uie-heading">{{ "Select an UI Element"|trans }}</h2>
+        <div class="uie-flex uie-flex-main-between uie-w-full uie-mb-md">
+            <h2 class="ui header uie-heading uie-m-0" id="uie-heading">
+                {{ 'monsieurbiz_richeditor_plugin.form.select_ui_element'|trans }}
+            </h2>
+            <div class="uie-ml-md">
+                <button class="ui button js-uie-panels-close" type="button">
+                    <i class="close icon"></i>
+                    {{ 'monsieurbiz_richeditor_plugin.form.close'|trans }}
+                </button>
+            </div>
+        </div>
 
         <div class="ui cards uie-cards js-uie-cards-container">
         </div>

@@ -85,6 +85,7 @@ monsieurbiz_richeditor_plugin:
     cancel: 'Cancel'
     save: 'Save'
     add_image: 'Add Image'
+    select_ui_element: 'Select an UI element'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
