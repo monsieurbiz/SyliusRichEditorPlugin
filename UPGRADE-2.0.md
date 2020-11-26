@@ -1,15 +1,32 @@
-# Upgrade from v1.X.X to 2.X.X
+# Upgrade from v1 to v2
 
-## Plugin Improvements
+## Routing config
+The file `config/routes/monsieurbiz_sylius_rich_editor.yaml` was renamed to `config/routes/monsieurbiz_sylius_rich_editor_plugin.yaml`. The content changed as well:
+```diff
+@@ -1,2 +1,3 @@
+-monsieur_biz_rich_editor_plugin:
+-    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing.yaml"
++monsieurbiz_richeditor_admin:
++    resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
++    prefix: /%sylius_admin.path_name%
+```
 
-In the 2.x we improved two things:
+## Package config
+The file `config/packages/monsieurbiz_sylius_rich_editor.yaml` was renamed to `config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml`.
 
-- the javascript: it now works everywhere.
-- the UiElements: their definition has changed.
+## Twig function
 
-For the JavaScript you should have nothing to do, the bundle system will take care of it.
+The name of the Twig function changed from `mbiz_rich_editor_render` to `monsieurbiz_richeditor_render_element`,
+so make sure to update your templates.
 
-For the UiElements you will need to do some changes:
+## JavaScript
+
+The JavaScript was refactored, now it works everywhere. You shouldn't have to change anything, the bundle system will take care of it.  
+But if you made some changes to the previous JS, you'll have to apply them on the new JS. It is a complete rewrite.
+
+## UI elements
+
+The definition of UI elements has changed, you'll have to change some things:
 
 - Removing the old UIElements objects
   extending `\MonsieurBiz\SyliusRichEditorPlugin\UiElement\AbstractUiElement`
