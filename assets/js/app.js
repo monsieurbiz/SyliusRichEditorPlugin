@@ -32,6 +32,17 @@ global.MonsieurBizRichEditorWysiwyg = class {
       actions: this.config.actions,
     });
 
+    editor.addEventListener('paste', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let tempContainer = document.createElement('div');
+      let clipboardData = e.clipboardData || window.clipboardData;
+      tempContainer.innerHTML = clipboardData.getData('Text');
+      let text = tempContainer.textContent || tempContainer.innerText || "";
+      pell.exec('insertText', text);
+      return true;
+    });
+
     // Populate wysiwyg with initial content
     const initialContent = target.value;
     editor.content.innerHTML = initialContent;
