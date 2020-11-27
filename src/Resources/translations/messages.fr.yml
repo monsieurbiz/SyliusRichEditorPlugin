@@ -16,6 +16,24 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant le titre de votre choix'
       field:
         content: 'Contenu'
+    monsieurbiz.h1:
+      title: '<h1> Lame Titre'
+      short_description: 'Une lame contenant un titre niveau 1'
+      description: 'Une lame contenant le titre de votre choix'
+      field:
+        content: 'Contenu'
+    monsieurbiz.h2:
+      title: '<h2> Lame Titre'
+      short_description: 'Une lame contenant un titre niveau 2'
+      description: 'Une lame contenant le titre de votre choix'
+      field:
+        content: 'Contenu'
+    monsieurbiz.h3:
+      title: '<h3> Lame Titre'
+      short_description: 'Une lame contenant un titre niveau 3'
+      description: 'Une lame contenant le titre de votre choix'
+      field:
+        content: 'Contenu'
     monsieurbiz.image:
       title: 'Lame Image'
       short_description: 'Une lame contenant une image avec un champ alternatif et un titre.'
