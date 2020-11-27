@@ -26,15 +26,9 @@ use Twig\TwigFunction;
 
 final class RichEditorExtension extends AbstractExtension
 {
-    /**
-     * @var RegistryInterface
-     */
-    private $uiElementRegistry;
+    private RegistryInterface $uiElementRegistry;
 
-    /**
-     * @var Environment
-     */
-    private $twig;
+    private Environment $twig;
 
     /**
      * RichEditorExtension constructor.
@@ -53,21 +47,24 @@ final class RichEditorExtension extends AbstractExtension
     /**
      * @return TwigFilter[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_get_elements', [$this, 'getRichEditorFieldElements'], ['is_safe' => ['html']]),
         ];
     }
 
     /**
      * @return array|TwigFunction[]
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
+            new TwigFunction('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -80,7 +77,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderRichEditorField(string $content)
+    public function renderRichEditorField(string $content): string
     {
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
@@ -88,6 +85,25 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         return $this->renderElements($elements);
+    }
+
+    /**
+     * @param string $content
+     *
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     *
+     * @return array
+     */
+    public function getRichEditorFieldElements(string $content): array
+    {
+        $elements = json_decode($content, true);
+        if (!\is_array($elements)) {
+            return [$elements];
+        }
+
+        return $elements;
     }
 
     /**
@@ -99,7 +115,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    private function renderElements(array $elements): string
+    public function renderElements(array $elements): string
     {
         $html = '';
         foreach ($elements as $element) {
@@ -123,7 +139,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    private function renderElement(array $element): string
+    public function renderElement(array $element): string
     {
         if (!isset($element['code'])) {
             if (!isset($element['type'], $element['fields'])) {

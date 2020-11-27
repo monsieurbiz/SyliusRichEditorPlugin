@@ -82,6 +82,28 @@ To display the content of the rich editor field you must call the twig filter:
 
 You can see an example in the [test application](/tests/Application/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
 
+### Custom rendering of elements
+
+You can also render your elements with some custom DOM around that. To do so, you have access to a twig filter that 
+gives you the elements list :
+
+```twig
+{% set elements = content|monsieurbiz_richeditor_get_elements %}
+```
+
+And then you can either render them all : 
+
+```twig
+{{ monsieurbiz_richeditor_render_elements(elements) }}
+```
+
+Or one buy one :
+```twig
+{% for element in elements %}
+    {{ monsieurbiz_richeditor_render_element(element) }}
+{% endfor %}
+```
+
 ### Filter the elements
 
 If you want to filter the elements which are available for your field, you can use the `tags` option when you build your form.  
