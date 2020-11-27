@@ -29,7 +29,6 @@ final class RichEditorExtension extends AbstractExtension
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
-
     private string $defaultElement;
 
     private string $defaultElementDataField;
