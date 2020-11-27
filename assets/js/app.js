@@ -7,6 +7,10 @@ global.MonsieurBizRichEditorWysiwyg = class {
     this.config = config; // {actions: []}
   }
 
+  exec() {
+    return pell.exec(...arguments);
+  }
+
   load(container) {
     const targets = container.querySelectorAll('textarea.wysiwyg-enabled');
     for (let target of targets) {
