@@ -71,6 +71,33 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+        monsieurbiz.h1:
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
+            icon: heading
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h1.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h1.html.twig'
+        monsieurbiz.h2:
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
+            icon: heading
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h2.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h2.html.twig'
+        monsieurbiz.h3:
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
+            icon: heading
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h3.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h3.html.twig'
         monsieurbiz.separator:
             alias: separator
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'

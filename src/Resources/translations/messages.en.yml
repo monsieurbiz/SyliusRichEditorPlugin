@@ -16,6 +16,24 @@ monsieurbiz_richeditor_plugin:
       description: 'An element containing the title you want'
       field:
         content: 'Content'
+    monsieurbiz.h1:
+      title: '<h1> Title Element'
+      short_description: 'Header level 1'
+      description: 'An element containing the title you want'
+      field:
+        content: 'Content'
+    monsieurbiz.h2:
+      title: '<h2> Title Element'
+      short_description: 'Header level 2'
+      description: 'An element containing the title you want'
+      field:
+        content: 'Content'
+    monsieurbiz.h3:
+      title: '<h3> Title Element'
+      short_description: 'Header level 3'
+      description: 'An element containing the title you want'
+      field:
+        content: 'Content'
     monsieurbiz.image:
       title: 'Image Element'
       short_description: 'An element with an image, an alternative text and a title..'

@@ -1,0 +1,9 @@
+{#
+    UI Element template
+    type: h2
+    element fields :
+        content
+#}
+{% if element is not empty %}
+    <h2 class="ui header">{{ element.content }}</h2>
+{% endif %}
