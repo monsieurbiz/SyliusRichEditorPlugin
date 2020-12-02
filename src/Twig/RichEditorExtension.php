@@ -30,18 +30,28 @@ final class RichEditorExtension extends AbstractExtension
 
     private Environment $twig;
 
+    private string $defaultElement;
+
+    private string $defaultElementDataField;
+
     /**
      * RichEditorExtension constructor.
      *
      * @param RegistryInterface $uiElementRegistry
      * @param Environment $twig
+     * @param string $monsieurbizRicheditorDefaultElement
+     * @param string $monsieurbizRicheditorDefaultElementDataField
      */
     public function __construct(
         RegistryInterface $uiElementRegistry,
-        Environment $twig
+        Environment $twig,
+        string $monsieurbizRicheditorDefaultElement,
+        string $monsieurbizRicheditorDefaultElementDataField
     ) {
         $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
+        $this->defaultElement = $monsieurbizRicheditorDefaultElement;
+        $this->defaultElementDataField = $monsieurbizRicheditorDefaultElementDataField;
     }
 
     /**
@@ -65,6 +75,8 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_get_elements', [$this, 'getRichEditorFieldElements'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_default_element', [$this, 'getDefaultElement'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_default_element_data_field', [$this, 'getDefaultElementDataField'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -100,7 +112,11 @@ final class RichEditorExtension extends AbstractExtension
     {
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
-            return [$elements];
+            // If the JSON decode failed, return a new UIElement with default configuration
+            return [
+                'type' => $this->getDefaultUiElement(),
+                'data' => $content,
+            ];
         }
 
         return $elements;
@@ -186,5 +202,15 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         return sprintf('https://www.youtube.com/embed/%s', $matches[1]);
+    }
+
+    public function getDefaultElement(): string
+    {
+        return $this->defaultElement;
+    }
+
+    public function getDefaultElementDataField(): string
+    {
+        return $this->defaultElementDataField;
     }
 }
