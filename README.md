@@ -77,7 +77,7 @@ This way you will be able to use our plugin right away without risking any data 
 To display the content of the rich editor field you must call the twig filter:
 
 ```twig
-{{ content | monsieurbiz_richeditor_render_element }}
+{{ content | monsieurbiz_richeditor_render_field }}
 ```
 
 You can see an example in the [test application](/tests/Application/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
