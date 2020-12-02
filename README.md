@@ -88,19 +88,19 @@ You can also render your elements with some custom DOM around that. To do so, yo
 gives you the elements list :
 
 ```twig
-{% set elements = content|monsieurbiz_richeditor_get_elements %}
+{% set elements = monsieurbiz_richeditor_get_elements(content) %}
 ```
 
 And then you can either render them all : 
 
 ```twig
-{{ monsieurbiz_richeditor_render_elements(elements) }}
+{{ elements|monsieurbiz_richeditor_render_elements }}
 ```
 
 Or one buy one :
 ```twig
 {% for element in elements %}
-    {{ monsieurbiz_richeditor_render_element(element) }}
+    {{ element|monsieurbiz_richeditor_render_element }}
 {% endfor %}
 ```
 

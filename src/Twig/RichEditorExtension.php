@@ -51,7 +51,8 @@ final class RichEditorExtension extends AbstractExtension
     {
         return [
             new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
-            new TwigFilter('monsieurbiz_richeditor_get_elements', [$this, 'getRichEditorFieldElements'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -63,8 +64,7 @@ final class RichEditorExtension extends AbstractExtension
         return [
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
-            new TwigFunction('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html']]),
-            new TwigFunction('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_elements', [$this, 'getRichEditorFieldElements'], ['is_safe' => ['html']]),
         ];
     }
 
