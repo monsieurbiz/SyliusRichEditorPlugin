@@ -29,6 +29,7 @@ final class RichEditorExtension extends AbstractExtension
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
+
     private string $defaultElement;
 
     private string $defaultElementDataField;
@@ -113,7 +114,7 @@ final class RichEditorExtension extends AbstractExtension
         if (!\is_array($elements)) {
             // If the JSON decode failed, return a new UIElement with default configuration
             return [
-                'type' => $this->getDefaultUiElement(),
+                'type' => $this->getDefaultElement(),
                 'data' => $content,
             ];
         }
