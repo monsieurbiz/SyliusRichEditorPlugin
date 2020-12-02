@@ -56,7 +56,7 @@ final class RichEditorExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
         ];
     }
 

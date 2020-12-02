@@ -16,7 +16,7 @@ The file `config/packages/monsieurbiz_sylius_rich_editor.yaml` was renamed to `c
 
 ## Twig function
 
-The name of the Twig function changed from `mbiz_rich_editor_render` to `monsieurbiz_richeditor_render_element`,
+The name of the Twig function changed from `mbiz_rich_editor_render` to `monsieurbiz_richeditor_render_field`,
 so make sure to update your templates.
 
 ## JavaScript
