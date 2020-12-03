@@ -97,7 +97,7 @@ And then you can either render them all :
 {{ elements|monsieurbiz_richeditor_render_elements }}
 ```
 
-Or one buy one :
+Or one by one :
 ```twig
 {% for element in elements %}
     {{ element|monsieurbiz_richeditor_render_element }}
