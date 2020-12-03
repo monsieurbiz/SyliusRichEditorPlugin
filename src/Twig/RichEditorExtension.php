@@ -29,6 +29,7 @@ final class RichEditorExtension extends AbstractExtension
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
+
     private string $defaultElement;
 
     private string $defaultElementDataField;
@@ -59,7 +60,7 @@ final class RichEditorExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderRichEditorField'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderField'], ['is_safe' => ['html']]),
             new TwigFilter('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html']]),
             new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html']]),
         ];
@@ -73,7 +74,7 @@ final class RichEditorExtension extends AbstractExtension
         return [
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
-            new TwigFunction('monsieurbiz_richeditor_get_elements', [$this, 'getRichEditorFieldElements'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_elements', [$this, 'getElements'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_default_element', [$this, 'getDefaultElement'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_default_element_data_field', [$this, 'getDefaultElementDataField'], ['is_safe' => ['html']]),
         ];
@@ -88,7 +89,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderRichEditorField(string $content): string
+    public function renderField(string $content): string
     {
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
@@ -107,7 +108,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return array
      */
-    public function getRichEditorFieldElements(string $content): array
+    public function getElements(string $content): array
     {
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
