@@ -114,7 +114,7 @@ final class RichEditorExtension extends AbstractExtension
             // If the JSON decode failed, return a new UIElement with default configuration
             return [
                 'type' => $this->getDefaultElement(),
-                'data' => [$this->getDefaultElementDataField()  => $content],
+                'data' => [$this->getDefaultElementDataField() => $content],
             ];
         }
 
