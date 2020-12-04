@@ -3,6 +3,10 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+    
+        bind:
+            string $monsieurbizRicheditorDefaultElement: '%monsieurbiz.richeditor.config.default_element%'
+            string $monsieurbizRicheditorDefaultElementDataField: '%monsieurbiz.richeditor.config.default_element_data_field%'
 
     MonsieurBiz\SyliusRichEditorPlugin\Controller\:
         resource: '../../Controller'

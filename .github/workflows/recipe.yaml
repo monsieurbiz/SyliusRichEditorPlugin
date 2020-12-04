@@ -44,14 +44,14 @@ jobs:
         id: cache-composer
         with:
           path: /home/runner/.composer/cache
-          key: composer-php:${{ matrix.php }}-${{ github.sha }}
-          restore-keys: composer-php:${{ matrix.php }}-
+          key: composer2-php:${{ matrix.php }}-${{ github.sha }}
+          restore-keys: composer2-php:${{ matrix.php }}-
 
       - run: mkdir -p /home/runner/.composer/cache
         if: steps.cache-composer.outputs.cache-hit != 'true'
 
-      - name: Composer v1
-        run: sudo composer self-update --1 
+      - name: Composer v2
+        run: sudo composer self-update --2 
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
