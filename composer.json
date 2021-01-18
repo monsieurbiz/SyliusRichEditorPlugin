@@ -8,8 +8,7 @@
         "php": "~7.4",
         "ext-json": "*",
         "ext-intl": "*",
-        "sylius/sylius": "^1.8",
-        "phpstan/phpstan-webmozart-assert": "^0.12.7"
+        "sylius/sylius": "^1.8"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -34,6 +33,7 @@
         "phpspec/phpspec": "^6.1",
         "phpstan/phpstan": "0.12.29",
         "phpstan/phpstan-doctrine": "0.12.16",
+        "phpstan/phpstan-webmozart-assert": "^0.12.7",
         "phpunit/phpunit": "^8.5",
         "psalm/plugin-mockery": "^0.3",
         "psr/event-dispatcher": "^1.0",
