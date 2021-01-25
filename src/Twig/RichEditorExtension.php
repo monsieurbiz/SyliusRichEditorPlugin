@@ -80,7 +80,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @param string $content
+     * @param string|null $content
      *
      * @throws LoaderError
      * @throws RuntimeError
@@ -88,8 +88,12 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderField(string $content): string
+    public function renderField(?string $content): string
     {
+        if (null === $content) {
+            return '';
+        }
+
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
             return $content;
@@ -99,16 +103,16 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @param string $content
-     *
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
+     * @param string|null $content
      *
      * @return array
      */
-    public function getElements(string $content): array
+    public function getElements(?string $content): array
     {
+        if (null === $content) {
+            return [];
+        }
+
         $elements = json_decode($content, true);
         if (!\is_array($elements)) {
             // If the JSON decode failed, return a new UIElement with default configuration
