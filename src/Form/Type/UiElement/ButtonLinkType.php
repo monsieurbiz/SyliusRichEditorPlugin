@@ -25,21 +25,30 @@ class ButtonLinkType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $required = $options['required'] ?? false;
+        if ($required) {
+            $constraintsLabel = [
+                new Assert\NotBlank([]),
+            ];
+            $constraintsLink = [
+                new Assert\Url([]),
+                new Assert\NotBlank([]),
+            ];
+        } else {
+            $constraintsLabel = [];
+            $constraintsLink = [];
+        }
+
         $builder
             ->add('label', FormTextType::class, [
-                'required' => true,
+                'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.label',
-                'constraints' => [
-                    new Assert\NotBlank([]),
-                ],
+                'constraints' => $constraintsLabel,
             ])
             ->add('link', FormTextType::class, [
-                'required' => true,
+                'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
-                'constraints' => [
-                    new Assert\Url([]),
-                    new Assert\NotBlank([]),
-                ],
+                'constraints' => $constraintsLink,
             ])
         ;
     }
