@@ -38,6 +38,10 @@ final class UiElementRegistryPass implements CompilerPassInterface
             return;
         }
 
+        if (!\is_array($uiElements)) {
+            return;
+        }
+
         foreach ($uiElements as $code => $configuration) {
             $metadataRegistry->addMethodCall('addFromCodeAndConfiguration', [$code, $configuration]);
             $metadata = Metadata::fromCodeAndConfiguration($code, $configuration);
