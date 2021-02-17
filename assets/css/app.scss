@@ -23,6 +23,13 @@ html.is-disabled body {
     outline: 0;
     overflow-y: auto;
     padding: 10px;
+
+    // These lines are here to avoid font-size style after removing EOL in the editor
+    // @see https://github.com/monsieurbiz/SyliusRichEditorPlugin/issues/132 
+    p, span {
+        font-size: unset !important;
+        line-height: unset !important;
+    }
 }
 
 .pell-actionbar {
