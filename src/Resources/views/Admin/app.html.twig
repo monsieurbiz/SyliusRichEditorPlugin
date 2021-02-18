@@ -113,7 +113,13 @@
                     title: 'Heading 3',
                     result: () => wysiwyg.exec('formatBlock', '<h3>')
                 },
-                'link'
+                'link',
+                {
+                    name: 'hr',
+                    icon: '<b>—</b>',
+                    title: 'Horizontal rule',
+                    result: () => wysiwyg.exec('insertHorizontalRule')
+                },
             ]
         });
 
