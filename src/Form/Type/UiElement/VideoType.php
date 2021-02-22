@@ -41,7 +41,7 @@ class VideoType extends AbstractType
                 'required' => false,
                 'attr' => ['data-image' => 'true'],
             ])
-            ->add('align', AlignmentType::class, [])
+            ->add('align', AlignmentType::class)
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {

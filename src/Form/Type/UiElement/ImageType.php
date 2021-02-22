@@ -52,7 +52,7 @@ class ImageType extends AbstractType
                     new Assert\Url([]),
                 ],
             ])
-            ->add('align', AlignmentType::class, [])
+            ->add('align', AlignmentType::class)
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {

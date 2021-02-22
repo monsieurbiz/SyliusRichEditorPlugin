@@ -51,7 +51,7 @@ class ButtonLinkType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,
             ])
-            ->add('align', AlignmentType::class, [])
+            ->add('align', AlignmentType::class)
         ;
     }
 }

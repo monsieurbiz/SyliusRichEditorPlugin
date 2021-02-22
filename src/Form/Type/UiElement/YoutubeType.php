@@ -53,7 +53,7 @@ class YoutubeType extends AbstractType
                     new Assert\GreaterThan(0),
                 ],
             ])
-            ->add('align', AlignmentType::class, [])
+            ->add('align', AlignmentType::class)
         ;
     }
 }
