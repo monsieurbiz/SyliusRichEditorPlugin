@@ -143,6 +143,14 @@
             );
             editor.manager = new MonsieurBizRichEditorManager(config);
         });
+
+        // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
+        $(document).on('collection-form-add', function(event, children) {
+            // It returns an array with one object : the new element
+            children.each(function (index, child) {
+                wysiwyg.load(child);
+            });
+        });
     });
 
     document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
