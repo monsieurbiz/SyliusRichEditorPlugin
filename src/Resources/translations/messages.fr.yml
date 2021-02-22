@@ -104,6 +104,13 @@ monsieurbiz_richeditor_plugin:
     save: 'Sauvegarder'
     add_image: 'Ajouter une image'
     select_ui_element: 'Choisissez un élément'
+    align:
+      label: 'Alignement'
+      default: 'Par défaut'
+      left: 'Gauche'
+      center: 'Centré'
+      right: 'Droite'
+      justify: 'Justifié'
   action:
     new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'

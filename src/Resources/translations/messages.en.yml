@@ -104,6 +104,13 @@ monsieurbiz_richeditor_plugin:
     save: 'Save'
     add_image: 'Add Image'
     select_ui_element: 'Select an UI element'
+    align:
+      label: 'Alignment'
+      default: 'Default'
+      left: 'Left'
+      center: 'Center'
+      right: 'Right'
+      justify: 'Justify'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
