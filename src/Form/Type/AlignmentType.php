@@ -19,8 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AlignmentType extends ChoiceType
 {
-
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults([
@@ -36,7 +35,7 @@ class AlignmentType extends ChoiceType
         $resolver->setAllowedTypes('show_justify', ['null', 'bool']);
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // Add justify choices depending on options
         if ($options['show_justify']) {

@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class TextType extends AbstractType
 {
