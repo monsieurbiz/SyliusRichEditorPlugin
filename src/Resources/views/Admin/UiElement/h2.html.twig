@@ -3,7 +3,9 @@
     type: h2
     element fields :
         content
+        align
 #}
+{% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if element is not empty %}
-    <h2 class="ui header">{{ element.content }}</h2>
+    <h2 class="ui header" style="text-align: {{align}};">{{ element.content }}</h2>
 {% endif %}

@@ -4,9 +4,11 @@
     element fields :
         author
         content
+        align
 #}
+{% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if element is not empty %}
-<blockquote>
+<blockquote style="text-align: {{align}};">
     {{ element.content | raw | nl2br }}
     <br />— <cite>{{ element.author }}</cite>
 </blockquote>
