@@ -3,5 +3,11 @@
     type: text
     element fields :
         content
+        align
 #}
-{{ element.content | raw }}
+{% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
+{% if element is not empty and element.content is not empty %}
+<div style="text-align: {{align}};">
+    {{ element.content | raw }}
+</div>
+{% endif %}

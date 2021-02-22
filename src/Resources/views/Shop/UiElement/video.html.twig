@@ -4,7 +4,11 @@
     element fields :
         video
         image
+        align
 #}
-<video width="100%" poster="{{ element.image }}" controls>
-    <source src="{{ element.video }}" type="video/{{ element.video|split('.')|last }}">
-</video>
+{% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
+<div style="text-align: {{align}};">
+    <video width="100%" poster="{{ element.image }}" controls>
+        <source src="{{ element.video }}" type="video/{{ element.video|split('.')|last }}">
+    </video>
+</div>
