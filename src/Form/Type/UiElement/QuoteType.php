@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
@@ -40,6 +41,9 @@ class QuoteType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
+            ])
+            ->add('align', AlignmentType::class, [
+                'show_justify' => true,
             ])
         ;
     }

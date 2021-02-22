@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
@@ -51,6 +52,7 @@ class ImageType extends AbstractType
                     new Assert\Url([]),
                 ],
             ])
+            ->add('align', AlignmentType::class)
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {

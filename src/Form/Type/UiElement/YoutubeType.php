@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrl;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
@@ -52,6 +53,7 @@ class YoutubeType extends AbstractType
                     new Assert\GreaterThan(0),
                 ],
             ])
+            ->add('align', AlignmentType::class)
         ;
     }
 }
