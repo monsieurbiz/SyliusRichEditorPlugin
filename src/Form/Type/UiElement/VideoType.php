@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class VideoType extends AbstractType
 {
@@ -40,6 +41,7 @@ class VideoType extends AbstractType
                 'required' => false,
                 'attr' => ['data-image' => 'true'],
             ])
+            ->add('align', AlignmentType::class, [])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {

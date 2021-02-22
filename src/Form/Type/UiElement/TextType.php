@@ -17,6 +17,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class TextType extends AbstractType
 {
@@ -32,6 +33,9 @@ class TextType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
+            ])
+            ->add('align', AlignmentType::class, [
+                'show_justify' => true,
             ])
         ;
     }

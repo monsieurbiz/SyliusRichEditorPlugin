@@ -21,6 +21,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class ImageType extends AbstractType
 {
@@ -51,6 +52,7 @@ class ImageType extends AbstractType
                     new Assert\Url([]),
                 ],
             ])
+            ->add('align', AlignmentType::class, [])
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {

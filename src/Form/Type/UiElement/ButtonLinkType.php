@@ -17,6 +17,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class ButtonLinkType extends AbstractType
 {
@@ -50,6 +51,7 @@ class ButtonLinkType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,
             ])
+            ->add('align', AlignmentType::class, [])
         ;
     }
 }

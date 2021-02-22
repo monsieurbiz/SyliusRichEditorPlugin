@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class TitleType extends AbstractType
 {
@@ -31,6 +32,9 @@ class TitleType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
+            ])
+            ->add('align', AlignmentType::class, [
+                'show_justify' => true,
             ])
         ;
     }

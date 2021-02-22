@@ -19,6 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 
 class YoutubeType extends AbstractType
 {
@@ -52,6 +53,7 @@ class YoutubeType extends AbstractType
                     new Assert\GreaterThan(0),
                 ],
             ])
+            ->add('align', AlignmentType::class, [])
         ;
     }
 }
