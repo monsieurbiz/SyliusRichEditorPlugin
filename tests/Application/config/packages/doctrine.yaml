@@ -1,1 +1,6 @@
-../../../../vendor/sylius/sylius/config/packages/doctrine.yaml
+doctrine:
+    dbal:
+        driver: 'pdo_mysql'
+        charset: utf8mb4
+
+        url: '%env(resolve:DATABASE_URL)%'
