@@ -33,7 +33,8 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Webmozart\Assert\Assert;
 
-final class Kernel extends BaseKernel
+/** @final */
+class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
@@ -51,6 +52,7 @@ final class Kernel extends BaseKernel
 
     public function registerBundles(): iterable
     {
+        /** @psalm-suppress UnresolvableInclude */
         $contents = require $this->getProjectDir() . '/config/bundles.php';
         foreach ($contents as $class => $envs) {
             if (isset($envs['all']) || isset($envs[$this->environment])) {
@@ -87,24 +89,6 @@ final class Kernel extends BaseKernel
         }
 
         return parent::getContainerBaseClass();
-    }
-
-    protected function getContainerLoader(ContainerInterface $container): LoaderInterface
-    {
-        Assert::isInstanceOf($container, ContainerBuilder::class);
-
-        $locator = new FileLocator($this, $this->getRootDir() . '/Resources');
-        $resolver = new LoaderResolver([
-            new XmlFileLoader($container, $locator),
-            new YamlFileLoader($container, $locator),
-            new IniFileLoader($container, $locator),
-            new PhpFileLoader($container, $locator),
-            new GlobFileLoader($container, $locator),
-            new DirectoryLoader($container, $locator),
-            new ClosureLoader($container),
-        ]);
-
-        return new DelegatingLoader($resolver);
     }
 
     private function isTestEnvironment(): bool

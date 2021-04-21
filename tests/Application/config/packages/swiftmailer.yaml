@@ -1,2 +1,1 @@
-swiftmailer:
-    url: '%env(MAILER_URL)%'
+../../../../vendor/sylius/sylius/config/packages/swiftmailer.yaml

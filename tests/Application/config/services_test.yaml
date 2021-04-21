@@ -1,2 +1,1 @@
-#imports:
-#    - { resource: "../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml" }
+../../../vendor/sylius/sylius/config/services_test.yaml

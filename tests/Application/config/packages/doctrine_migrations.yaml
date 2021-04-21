@@ -1,4 +1,1 @@
-doctrine_migrations:
-    storage:
-        table_storage:
-            table_name: sylius_migrations
+../../../../vendor/sylius/sylius/config/packages/doctrine_migrations.yaml
