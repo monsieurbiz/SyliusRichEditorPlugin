@@ -50,9 +50,6 @@ jobs:
       - name: Composer v2
         run: sudo composer self-update --2
 
-      - name: Validate composer.json
-        run: composer validate --strict
-              
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
