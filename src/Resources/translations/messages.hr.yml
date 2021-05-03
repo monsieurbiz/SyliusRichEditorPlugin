@@ -1,0 +1,120 @@
+monsieurbiz_richeditor_plugin:
+  ui_element:
+    monsieurbiz.html:
+      title: 'Neobrađeni HTML'
+      description: 'Element koji sadrži neobrađeni HTML.'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.text:
+      title: 'Tekst'
+      description: 'Element koji sadrži tekst.'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.title:
+      title: 'Naslov'
+      short_description: 'Element naslova.'
+      description: 'Element koji predstavlja naslov.'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.h1:
+      title: '<h1> naslov'
+      short_description: 'Naslov razine 1.'
+      description: 'Element koji predstavlja naslov prve razine (glavni naslov).'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.h2:
+      title: '<h2> naslov'
+      short_description: 'Naslov razine 2.'
+      description: 'Element koji predstavlja naslov druge razine (podnaslov).'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.h3:
+      title: '<h3> naslov'
+      short_description: 'Naslov razine 3.'
+      description: 'Element koji predstavlja naslov treće razine (pod-podnaslov).'
+      field:
+        content: 'Sadržaj'
+    monsieurbiz.image:
+      title: 'Slika'
+      short_description: 'Element koji sadrži sliku, alternativni tekst i naslov.'
+      description: 'Element koji sadrži sliku, alternativni tekst i naslov. Slika može biti link.'
+      field:
+        current_image: 'Trenutačna slika'
+        image: 'Slika'
+        alt: 'Alternativni tekst'
+        title: 'Naslov'
+        link: 'URL linka'
+    monsieurbiz.quote:
+      title: 'Citat'
+      description: 'Element s autorom i sadržajem.'
+      field:
+        author: 'Autor'
+        content: 'Sadržaj'
+    monsieurbiz.video:
+      title: 'Video'
+      short_description: 'Element s videom i uvodnom slikom.'
+      description: 'Element s video zapisom i uvodnom slikom koja se prikazuje do početka reprodukcije video zapisa.'
+      field:
+        video: 'Video'
+        image: 'Uvodna slika'
+    monsieurbiz.separator:
+      title: 'Razdjelnik'
+      short_description: 'Element koji razdvaja druge elemente.'
+      description: 'Vidljivi ili nevidljivi element koji se nalazi između dva druga elementa i tako ih razdvaja.'
+      field:
+        hidden: 'Skriveni razdjelnik'
+    monsieurbiz.button:
+      title: 'Gumb'
+      short_description: 'Gumb s tekstom i linkom.'
+      description: 'Gumb s tekstom i linkom.'
+      field:
+        label: 'Natpis na gumbu'
+        link: 'URL linka'
+    monsieurbiz.youtube:
+      title: 'YouTube video'
+      short_description: 'Element s YouTube videom.'
+      description: 'Element koji prikazuje YouTube video zapis.'
+      field:
+        link: 'URL YouTube videa'
+        width: 'Širina okvira'
+        height: 'Visina okvira'
+    monsieurbiz.image_collection:
+      title: 'Kolekcija slika'
+      short_description: 'Element s više slika.'
+      description: 'Element s više slika. Svaka slika može biti link.'
+      field:
+        images: 'Slike'
+  file:
+    change: 'Zamijeni datoteku'
+  form:
+    move: 'Premjesti'
+    edit: 'Uredi'
+    delete: 'Izbriši'
+    close: 'Zatvori'
+    confirm_delete: 'Jeste li sigurni da želite izbrisati ovaj element?'
+    apply_changes: 'Primijeni promjene'
+    cancel_changes: 'Odustani od promjene'
+    placeholder: 'Dovucite elemente na ovo područje'
+    current_image: 'Odabrana slika'
+    current_video: 'Odabrani video'
+    current_file: 'Odabrana datoteka'
+    add_element: 'Dodavanje %uiElementTitle%'
+    edit_element: 'Uređivanje %uiElementTitle%'
+    cancel: 'Odustani'
+    save: 'Spremi'
+    add_image: 'Dodaj sliku'
+    select_ui_element: 'Odaberite element'
+    align:
+      label: 'Poravnavanje'
+      default: 'Zadano'
+      left: 'Lijevo'
+      center: 'Sredina'
+      right: 'Desno'
+      justify: 'Obostrano'
+  action:
+    new: 'Prikaži dostupne elemente'
+    preview: 'Pregled'
+  error:
+    cannot_parse_json: 'Neuspješno čitanje trenutačnog sadržaja.'
+    cannot_find_type: 'Vrsta dijela elemenata nije podržana.'
+    cannot_upload_image: 'Neuspješno postavljanje slike. Možda je datoteka prevelika ili koristi nepodržani format.'
