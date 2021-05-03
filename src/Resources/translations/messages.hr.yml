@@ -29,9 +29,9 @@ monsieurbiz_richeditor_plugin:
       field:
         content: 'Sadržaj'
     monsieurbiz.h3:
-        title: '<h3> naslov'
-        short_description: 'Naslov razine 3.'
-        description: 'Element koji predstavlja naslov treće razine (pod-podnaslov).'
+      title: '<h3> naslov'
+      short_description: 'Naslov razine 3.'
+      description: 'Element koji predstavlja naslov treće razine (pod-podnaslov).'
       field:
         content: 'Sadržaj'
     monsieurbiz.image:
