@@ -52,7 +52,7 @@
 
 <script id="monsieurbiz-rich-editor-ui-element-card" type="x-tmpl-mustache">
 {% verbatim %}
-<button class="card uie-card js-uie-new" type="button">
+<div class="ui link card uie-card js-uie-new">
     <div class="content left aligned">
         <div class="header">
             <i class="{{icon}} icon"></i>
@@ -64,7 +64,12 @@
             {{/description}}
         </div>
     </div>
-</button>
+    <div class="extra content right aligned">
+        {{#tags}}
+        <span class="ui basic tiny label">{{.}}</span>
+        {{/tags}}
+    </div>
+</div>
 {% endverbatim %}
 </script>
 
