@@ -69,6 +69,7 @@ monsieurbiz_richeditor_plugin:
   file:
     change: 'Bestand aanpassen'
   form:
+    add: 'Voeg een element toe'
     move: 'Verplaatsen'
     edit: 'Bewerken'
     delete: 'Verwijderen'
