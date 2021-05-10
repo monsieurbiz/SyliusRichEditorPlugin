@@ -1,8 +1,1 @@
-framework:
-    default_locale: '%locale%'
-    translator:
-        paths:
-            - '%kernel.project_dir%/translations'
-        fallbacks:
-            - '%locale%'
-            - 'en'
+../../../../vendor/sylius/sylius/config/packages/translation.yaml

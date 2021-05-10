@@ -1,8 +1,1 @@
-framework:
-    translator: { fallbacks: ["%locale%"] }
-    secret: '%env(APP_SECRET)%'
-    form: true
-    csrf_protection: true
-    templating: { engines: ["twig"] }
-    session:
-        handler_id: ~
+../../../../vendor/sylius/sylius/config/packages/framework.yaml

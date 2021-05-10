@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "a11y-dialog-component": "^5.5.1",
+    "gulp": "^4.0.2",
     "mustache": "^4.0.1",
     "pell": "^1.0.6"
   }

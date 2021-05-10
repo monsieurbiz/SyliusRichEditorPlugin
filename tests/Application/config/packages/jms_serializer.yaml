@@ -1,4 +1,1 @@
-jms_serializer:
-    visitors:
-        xml:
-            format_output: '%kernel.debug%'
+../../../../vendor/sylius/sylius/config/packages/jms_serializer.yaml
