@@ -87,6 +87,7 @@ monsieurbiz_richeditor_plugin:
   file:
     change: 'Changer de fichier'
   form:
+    add: 'Ajouter un élément'
     move: 'Déplacer'
     edit: 'Éditer'
     delete: 'Supprimer'
