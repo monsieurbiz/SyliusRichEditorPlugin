@@ -87,7 +87,7 @@ monsieurbiz_richeditor_plugin:
   file:
     change: 'Zamijeni datoteku'
   form:
-    add: 'Dodati element'
+    add: 'Dodaj element'
     move: 'Premjesti'
     edit: 'Uredi'
     delete: 'Izbriši'
