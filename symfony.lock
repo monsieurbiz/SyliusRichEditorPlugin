@@ -22,6 +22,9 @@
             "src/Entity/.gitignore"
         ]
     },
+    "babdev/pagerfanta-bundle": {
+        "version": "v2.10.1"
+    },
     "behat/behat": {
         "version": "v3.7.0"
     },
@@ -143,6 +146,9 @@
     "doctrine/reflection": {
         "version": "1.2.1"
     },
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
+    },
     "egulias/email-validator": {
         "version": "2.1.20"
     },
@@ -154,6 +160,9 @@
     },
     "ergebnis/json-printer": {
         "version": "3.1.1"
+    },
+    "fakerphp/faker": {
+        "version": "v1.14.1"
     },
     "felixfbecker/advanced-json-rpc": {
         "version": "v3.1.1"
@@ -295,6 +304,9 @@
     },
     "laminas/laminas-eventmanager": {
         "version": "3.3.0"
+    },
+    "laminas/laminas-stdlib": {
+        "version": "3.4.0"
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.1.1"
@@ -668,6 +680,12 @@
     "sylius-labs/polyfill-symfony-event-dispatcher": {
         "version": "v1.0.0"
     },
+    "sylius-labs/polyfill-symfony-framework-bundle": {
+        "version": "v1.0.0"
+    },
+    "sylius-labs/polyfill-symfony-security": {
+        "version": "v1.0.0"
+    },
     "sylius/fixtures-bundle": {
         "version": "v1.6.1"
     },
@@ -889,6 +907,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.18.1"
+    },
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/process": {
         "version": "v4.4.13"
