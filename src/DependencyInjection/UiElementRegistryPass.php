@@ -75,7 +75,9 @@ final class UiElementRegistryPass implements CompilerPassInterface
      */
     private function validateUiElementResource(string $class): void
     {
-        if (!\in_array(UiElementInterface::class, class_implements($class), true)) {
+        $interfaces = (array) (class_implements($class) ?? []);
+
+        if (!\in_array(UiElementInterface::class, $interfaces, true)) {
             throw new InvalidArgumentException(sprintf('Class "%s" must implement "%s" to be registered as a UiElement resource.', $class, UiElementInterface::class));
         }
     }
