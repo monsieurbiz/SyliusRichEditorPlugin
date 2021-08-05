@@ -151,7 +151,7 @@ class FormController extends AbstractController
         }
 
         // Convert uploaded files to string in form data if necessary, or retrieve current image path if edition
-        $formData = $this->processFormData($form, $fileUploader, (string) $request->request->get($form->getName()));
+        $formData = $this->processFormData($form, $fileUploader, $request->request->get($form->getName()));
 
         // Generate form render with error display
         if (!$form->isValid()) {
