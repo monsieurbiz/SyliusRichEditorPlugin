@@ -2,3 +2,13 @@ imports:
     - { resource: "services.yaml" }
     - { resource: "sylius/ui.yaml" }
     - { resource: "richeditor.yaml" }
+
+knp_gaufrette:
+    adapters:
+        monsieurbiz_rich_editor_fixture_file:
+            local:
+                directory: '%sylius_core.public_dir%/media'
+                create: true
+    filesystems:
+        monsieurbiz_rich_editor_fixture_file:
+            adapter: 'monsieurbiz_rich_editor_fixture_file'

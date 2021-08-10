@@ -290,6 +290,41 @@ In front :
 
 ![The GMap display](screenshots/gmap_render.png)
 
+## File in fixtures management
+
+In some cases you will want to add UI elements to your content fixtures which are Rich Editor fields. If you need files in your UI elements, you can use a dedicated fixture. It is used as follows.   
+
+```yaml
+sylius_fixtures:
+    suites:
+        my_project:
+            fixtures:
+                my_files:
+                    name: monsieurbiz_rich_editor_file
+                    options:
+                        files:
+                            -   source_path: 'src/Resources/fixtures/bar1.png'
+                                target_path: 'image/foo/bar1.png'
+                            -   source_path: 'src/Resources/fixtures/file.pdf'
+                                target_path: 'baz/file.pdf'
+```
+
+The exemple below will copy files to `public/media/image/foo/bar1.png` and `public/media/foo/file.pdf`.
+
+Now you can use files in your content fixtures:
+
+```yaml
+description: |
+    [{
+        "code": "app.my_ui_element",
+        "data": {
+          "title": "My title",
+          "image": "/media/image/foo/bar1.png",
+          "file": "/media/baz/file.pdf"
+        }
+    }]
+```
+
 ## Contributing
 
 You can open an issue or a Pull Request if you want! 😘  
