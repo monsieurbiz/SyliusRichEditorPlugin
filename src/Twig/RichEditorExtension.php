@@ -59,9 +59,9 @@ final class RichEditorExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-            new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderField'], ['is_safe' => ['html']]),
-            new TwigFilter('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html']]),
-            new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html']]),
+            new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderField'], ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFilter('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html'], 'needs_context' => true]),
         ];
     }
 
@@ -81,6 +81,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
+     * @param array $context
      * @param string|null $content
      *
      * @throws LoaderError
@@ -89,7 +90,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderField(?string $content): string
+    public function renderField(array $context, ?string $content): string
     {
         if (null === $content) {
             return '';
@@ -100,7 +101,7 @@ final class RichEditorExtension extends AbstractExtension
             return $content;
         }
 
-        return $this->renderElements($elements);
+        return $this->renderElements($context, $elements);
     }
 
     /**
@@ -127,6 +128,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
+     * @param array $context
      * @param array $elements
      *
      * @throws LoaderError
@@ -135,12 +137,12 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderElements(array $elements): string
+    public function renderElements(array $context, array $elements): string
     {
         $html = '';
         foreach ($elements as $element) {
             try {
-                $html .= $this->renderElement($element);
+                $html .= $this->renderElement($context, $element);
             } catch (UiElementNotFoundException $e) {
                 continue;
             }
@@ -150,6 +152,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
+     * @param array $context
      * @param array $element
      *
      * @throws UiElementNotFoundException
@@ -159,7 +162,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string
      */
-    public function renderElement(array $element): string
+    public function renderElement(array $context, array $element): string
     {
         if (!isset($element['code'])) {
             if (!isset($element['type'], $element['fields'])) {
@@ -174,10 +177,12 @@ final class RichEditorExtension extends AbstractExtension
         $uiElement = $this->uiElementRegistry->getUiElement($element['code']);
         $template = $uiElement->getFrontRenderTemplate();
 
-        return $this->twig->render($template, [
+        $context = array_merge($context, [
             'ui_element' => $uiElement,
             'element' => $element['data'],
         ]);
+
+        return $this->twig->render($template, $context);
     }
 
     /**
