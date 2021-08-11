@@ -7,13 +7,20 @@ services:
         bind:
             string $monsieurbizRicheditorDefaultElement: '%monsieurbiz.richeditor.config.default_element%'
             string $monsieurbizRicheditorDefaultElementDataField: '%monsieurbiz.richeditor.config.default_element_data_field%'
+            Gaufrette\FilesystemInterface $filesystem: '@gaufrette.monsieurbiz_rich_editor_fixture_file_filesystem'
 
     MonsieurBiz\SyliusRichEditorPlugin\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
+        
+    MonsieurBiz\SyliusRichEditorPlugin\Fixture\:
+        resource: '../../Fixture'
 
     MonsieurBiz\SyliusRichEditorPlugin\Twig\:
         resource: '../../Twig'
+
+    MonsieurBiz\SyliusRichEditorPlugin\Uploader\:
+        resource: '../../Uploader'
 
     monsieurbiz.richeditor.metadata_registry:
         class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
