@@ -17,7 +17,7 @@ use Gaufrette\FilesystemInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
 
-final class FixtureFixtureFileUploader implements FixtureFileUploaderInterface
+final class FixtureFileUploader implements FixtureFileUploaderInterface
 {
     /**
      * @var FilesystemInterface
