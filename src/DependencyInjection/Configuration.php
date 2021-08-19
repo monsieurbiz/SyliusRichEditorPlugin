@@ -47,6 +47,7 @@ final class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('upload_directory')->end()
+                ->scalarNode('image_upload_directory')->end()
                 ->scalarNode('default_element')->defaultValue('monsieurbiz.html')->end()
                 ->scalarNode('default_element_data_field')->defaultValue('content')->end()
                 ->arrayNode('ui_elements')

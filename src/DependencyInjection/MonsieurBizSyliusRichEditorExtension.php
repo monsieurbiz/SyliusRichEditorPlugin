@@ -29,6 +29,7 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
         $config = $this->processConfiguration(/** @scrutinizer ignore-type */ $configuration, $config);
         $container->setParameter('monsieurbiz.richeditor.config.ui_elements', $config['ui_elements']);
         $container->setParameter('monsieurbiz.richeditor.config.upload_directory', $config['upload_directory']);
+        $container->setParameter('monsieurbiz.richeditor.config.image_upload_directory', $config['image_upload_directory']);
         $container->setParameter('monsieurbiz.richeditor.config.default_element', $config['default_element']);
         $container->setParameter('monsieurbiz.richeditor.config.default_element_data_field', $config['default_element_data_field']);
 
