@@ -23,26 +23,10 @@ class FileUploader
     public const FILE_TYPE_IMAGE = 'image';
     public const FILE_TYPE_VIDEO = 'video';
 
-    /**
-     * @var string
-     */
-    private $fileTargetPath;
+    private string $fileTargetPath;
+    private string $imageTargetPath;
+    private string $publicDirectory;
 
-    /**
-     * @var string
-     */
-    private $imageTargetPath;
-
-    /**
-     * @var string
-     */
-    private $publicDirectory;
-
-    /**
-     * @param string $fileTargetPath
-     * @param string $imageTargetPath
-     * @param string $publicDirectory
-     */
     public function __construct(string $fileTargetPath, string $imageTargetPath, string $publicDirectory)
     {
         $this->fileTargetPath = $fileTargetPath;
