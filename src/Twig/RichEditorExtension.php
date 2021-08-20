@@ -77,6 +77,7 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFunction('monsieurbiz_richeditor_get_elements', [$this, 'getElements'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_default_element', [$this, 'getDefaultElement'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_default_element_data_field', [$this, 'getDefaultElementDataField'], ['is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_current_file_path', [$this, 'getCurrentFilePath'], ['needs_context' => true, 'is_safe' => ['html']]),
         ];
     }
 
@@ -237,5 +238,29 @@ final class RichEditorExtension extends AbstractExtension
     public function getDefaultElementDataField(): string
     {
         return $this->defaultElementDataField;
+    }
+
+    /**
+     * @param array $context
+     *
+     * @return string|null
+     */
+    public function getCurrentFilePath(array $context): ?string
+    {
+        $form = $context['form'];
+        $app = $context['app'];
+        if (empty($form) || empty($app)) {
+            return null;
+        }
+
+        $path = $form->vars['data'];
+        if (!empty($app->getRequest()->get('rich_editor_uploaded_files'))) {
+            $uploadedFile = $app->getRequest()->get('rich_editor_uploaded_files');
+            if (null !== ($fullName = $uploadedFile['full_name'] ?? null)) {
+                return $fullName;
+            }
+        }
+
+        return $path;
     }
 }

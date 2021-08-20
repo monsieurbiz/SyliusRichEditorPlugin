@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
-use MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\FileType as NativeFileType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -222,9 +222,9 @@ class FormController extends AbstractController
     {
         if ($form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
-            return $fileUploader->upload($form->getData());
+            return $fileUploader->upload($form->getData(), $form->getConfig()->getOption('file-type'));
         }
-        if ($form->getConfig()->getType()->getInnerType() instanceof FileType && !empty($requestData)) {
+        if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)
             return $requestData; // Will return the current filename string
         }

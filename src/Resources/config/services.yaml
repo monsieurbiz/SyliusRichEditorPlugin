@@ -33,7 +33,8 @@ services:
     MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface: '@monsieurbiz.richeditor.registry'
 
     # File uploader
-    MonsieurBiz\SyliusRichEditorPlugin\Service\FileUploader:
+    MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploader:
         arguments:
-            $targetPath: '%monsieurbiz.richeditor.config.upload_directory%'
+            $fileTargetPath: '%monsieurbiz.richeditor.config.upload_directory%'
+            $imageTargetPath: '%monsieurbiz.richeditor.config.image_upload_directory%'
             $publicDirectory: '%kernel.project_dir%/public'
