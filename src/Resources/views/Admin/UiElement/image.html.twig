@@ -11,7 +11,7 @@
 {% if element.image is defined %}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 <p style="text-align: {{align}};">
-    {% if element.link is not empty %}
+    {% if element.link|default('') is not empty %}
         <a href="{{ element.link }}">
             <img class="ui fluid image" src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
         </a>
