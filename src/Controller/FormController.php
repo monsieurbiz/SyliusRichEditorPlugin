@@ -191,7 +191,7 @@ class FormController extends AbstractController
      *
      * @param FormInterface $form
      * @param FileUploader $fileUploader
-     * @param array|string $requestData
+     * @param mixed $requestData
      *
      * @return array|mixed|string
      */
