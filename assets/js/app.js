@@ -112,6 +112,10 @@ global.MonsieurBizRichEditorUiElement = class {
     return this.config.findUiElementByCode(this.code);
   }
 
+  get enabled() {
+    return this.uielement.enabled;
+  }
+
   get title() {
     return this.uielement.title;
   }
