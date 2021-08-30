@@ -10,3 +10,5 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '/Admin/UiElement/google_maps.html.twig'
                 front_render: '/Shop/UiElement/google_maps.html.twig'
+#        monsieurbiz.html:
+#            enabled: false

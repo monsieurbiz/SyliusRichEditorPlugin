@@ -131,6 +131,22 @@ monsieurbiz_sylius_richeditor:
             tags: ['product']
 ```
 
+### Deactivate an available element
+
+Here is what really happens when deactivating an Ui Element:
+- it's not displayed anymore in frontend
+- it's still editable in backend for old contents but you can't add a new one
+- if the element has an alias, the alias is treated the same way
+
+Define the overload of a proposed UiElement in your configuration folder, let's say in `config/packages/monsieurbiz_sylius_richeditor_plugin.yaml` as example.
+
+```yaml
+monsieurbiz_sylius_richeditor:
+    ui_elements:
+        monsieurbiz.youtube:
+            enabled: false
+```
+
 ## Available elements
 
 The plugin already contains some simple elements.

@@ -67,6 +67,14 @@ trait UiElementTrait
     /**
      * {@inheritdoc}
      */
+    public function isEnabled(): bool
+    {
+        return $this->metadata->isEnabled();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getTitle(): string
     {
         return $this->metadata->getParameter('title');
@@ -137,6 +145,7 @@ trait UiElementTrait
             'title' => $this->translator->trans($this->getTitle()),
             'ignored' => $this->ignored,
             'tags' => $this->metadata->getTags(),
+            'enabled' => $this->isEnabled(),
         ];
     }
 }
