@@ -145,6 +145,7 @@ trait UiElementTrait
             'title' => $this->translator->trans($this->getTitle()),
             'ignored' => $this->ignored,
             'tags' => $this->metadata->getTags(),
+            'enabled' => $this->isEnabled(),
         ];
     }
 }

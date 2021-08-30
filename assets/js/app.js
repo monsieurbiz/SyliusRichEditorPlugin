@@ -275,7 +275,8 @@ global.MonsieurBizRichEditorManager = class {
     elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {
       'title': element.title,
       'icon': element.icon,
-      'preview': element.previewHtml
+      'preview': element.previewHtml,
+      'disabled': !element.enabled
     });
     let uiElement = elementWrapper.firstElementChild;
     uiElement.element = element;
@@ -340,7 +341,10 @@ global.MonsieurBizRichEditorManager = class {
     let cardsContainer = this.selectionPanel.dialog.querySelector('.js-uie-cards-container');
     cardsContainer.innerHTML = '';
     for (let elementCode in this.config.uielements) {
-      if (this.config.uielements[elementCode].ignored) { // duplicates using aliases
+      if (
+        this.config.uielements[elementCode].ignored // duplicates using aliases
+        || !this.config.uielements[elementCode].enabled // avoid disabled elements to show up!
+      ) {
         continue;
       }
       if (this.tags.length > 0) {
