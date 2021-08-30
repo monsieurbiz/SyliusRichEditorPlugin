@@ -176,6 +176,11 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         $uiElement = $this->uiElementRegistry->getUiElement($element['code']);
+
+        if (!$uiElement->isEnabled()) {
+            return '';
+        }
+
         $template = $uiElement->getFrontRenderTemplate();
 
         $context = array_merge($context, [
