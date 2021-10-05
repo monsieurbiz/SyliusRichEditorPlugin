@@ -104,7 +104,13 @@ class FormController extends AbstractController
             $result[$uiElementIndex] = '';
 
             if (!isset($uiElementData['code'])) {
-                continue;
+                if (isset($uiElementData['type'], $uiElementData['fields'])) {
+                    $uiElementData['code'] = $uiElementData['type'];
+                    $uiElementData['data'] = $uiElementData['fields']; // @phpstan-ignore-line
+                    unset($uiElementData['type'], $uiElementData['fields']); // @phpstan-ignore-line
+                } else {
+                    continue;
+                }
             }
 
             try {
