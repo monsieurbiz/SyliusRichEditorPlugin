@@ -145,7 +145,8 @@
                 '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}',
                 '{{ monsieurbiz_richeditor_get_default_element() }}',
-                '{{ monsieurbiz_richeditor_get_default_element_data_field() }}'
+                '{{ monsieurbiz_richeditor_get_default_element_data_field() }}',
+                '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}'
             );
             editor.manager = new MonsieurBizRichEditorManager(config);
         });
