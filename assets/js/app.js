@@ -68,7 +68,8 @@ global.MonsieurBizRichEditorConfig = class {
     editElementFormUrl,
     renderElementsUrl,
     defaultUiElement,
-    defaultUIElementDataField
+    defaultUIElementDataField,
+    errorMessage
   ) {
     this.input = input;
     this.uielements = uielements;
@@ -83,6 +84,7 @@ global.MonsieurBizRichEditorConfig = class {
     this.renderElementsUrl = renderElementsUrl;
     this.defaultUiElement = defaultUiElement;
     this.defaultUIElementDataField = defaultUIElementDataField;
+    this.errorMessage = errorMessage;
   }
 
   findUiElementByCode(code) {
@@ -391,6 +393,9 @@ global.MonsieurBizRichEditorManager = class {
             this.form.manager.selectionPanel.close();
           }
         }
+        if (this.status !== 200) {
+          alert(this.form.manager.config.errorMessage);
+        }
       });
       return false;
     });
@@ -455,6 +460,9 @@ global.MonsieurBizRichEditorManager = class {
             this.form.manager.write();
             this.form.manager.editPanel.close();
           }
+        }
+        if (this.status !== 200) {
+          alert(this.config.errorMessage);
         }
       });
       return false;
