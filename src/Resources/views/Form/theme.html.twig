@@ -1,8 +1,7 @@
 {% extends '@SyliusAdmin/Form/theme.html.twig' %}
 
-
 {% block monsieurbiz_rich_editor_plugin_image_widget %}
-    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path() %}
+    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
     {% if form.vars.valid and current_file_path is not empty %}
         <div>
             <p>
@@ -21,7 +20,7 @@
 {% endblock %}
 
 {% block monsieurbiz_rich_editor_plugin_video_widget %}
-    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path() %}
+    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
     {% if form.vars.valid and current_file_path is not empty %}
         <div>
             <p>
@@ -43,7 +42,7 @@
 
 {% block file_widget %}
 
-    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path() %}
+    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
     {% if form.vars.valid and current_file_path is not empty %}
         <div>
             {% if form.vars.attr['data-image'] is defined %}

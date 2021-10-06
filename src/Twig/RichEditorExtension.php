@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -250,7 +251,7 @@ final class RichEditorExtension extends AbstractExtension
      *
      * @return string|null
      */
-    public function getCurrentFilePath(array $context): ?string
+    public function getCurrentFilePath(array $context, string $varName = 'full_name'): ?string
     {
         $form = $context['form'];
         $app = $context['app'];
@@ -261,7 +262,11 @@ final class RichEditorExtension extends AbstractExtension
         $path = $form->vars['data'];
         if (!empty($app->getRequest()->get('rich_editor_uploaded_files'))) {
             $uploadedFile = $app->getRequest()->get('rich_editor_uploaded_files');
-            if (null !== ($fullName = $uploadedFile['full_name'] ?? null)) {
+            if (null !== ($fullName = $uploadedFile[$varName] ?? null)) {
+                if ($fullName instanceof UploadedFile) {
+                    return null;
+                }
+
                 return $fullName;
             }
         }
