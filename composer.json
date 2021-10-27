@@ -44,6 +44,9 @@
         "symfony/flex": "^1.7",
         "symfony/web-profiler-bundle": "^4.4"
     },
+    "conflict": {
+        "doctrine/dbal": "^3"
+    },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
