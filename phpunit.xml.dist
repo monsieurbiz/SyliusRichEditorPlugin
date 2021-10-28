@@ -6,7 +6,7 @@
          bootstrap="tests/Application/config/bootstrap.php">
     <testsuites>
         <testsuite name="MonsieurBizSyliusRichEditorPlugin Test Suite">
-            <directory>tests</directory>
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
 
