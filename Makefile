@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
 APP_DIR=tests/Application
+SYLIUS_VERSION=1.10
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
@@ -15,7 +16,7 @@ PHPSPEC=symfony php vendor/bin/phpspec
 ### DEVELOPMENT
 ### ¯¯¯¯¯¯¯¯¯¯¯
 
-install: platform sylius ## Install the plugin
+install: application platform sylius ## Install the plugin
 .PHONY: install
 
 up: docker.up server.start ## Up the project (start docker, start symfony server)
@@ -24,6 +25,7 @@ down: server.stop docker.down ## Down the project (removes docker containers, st
 
 reset: docker.down ## Stop docker and remove dependencies
 	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
+	rm -rf ${APP_DIR}
 	rm -rf vendor composer.lock
 .PHONY: reset
 
@@ -32,7 +34,6 @@ dependencies: vendor node_modules ## Setup the dependencies
 
 .php-version: .php-version.dist
 	cp .php-version.dist .php-version
-	(cd ${APP_DIR} && ln -sf ../../.php-version)
 
 vendor: composer.lock ## Install the PHP dependencies using composer
 ifdef GITHUB_ACTIONS
@@ -59,6 +60,30 @@ ${APP_DIR}/yarn.lock:
 node_modules: ${APP_DIR}/node_modules ## Install the Node dependencies using yarn
 
 ${APP_DIR}/node_modules: yarn.install
+
+###
+### TEST APPLICATION
+### ¯¯¯¯¯
+
+application: ${APP_DIR} ${APP_DIR}/docker-compose.yaml ${APP_DIR}/.php-version apply_dist
+
+${APP_DIR}:
+	(${COMPOSER} create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
+	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
+	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev")
+	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
+
+${APP_DIR}/docker-compose.yaml:
+	rm -f ${APP_DIR}/docker-compose.yml
+	rm -f ${APP_DIR}/docker-compose.yaml
+	cp docker-compose.yaml.dist ${APP_DIR}/docker-compose.yaml
+.PHONY: ${APP_DIR}/docker-compose.yaml
+
+${APP_DIR}/.php-version: .php-version
+	(cd ${APP_DIR} && ln -sf ../../.php-version)
+
+apply_dist:
+	cp -Rv dist/* ${APP_DIR}
 
 ###
 ### TESTS
@@ -137,6 +162,10 @@ docker.stop: ## Stop the docker containers
 docker.down: ## Stop and remove the docker containers
 	cd ${APP_DIR} && ${COMPOSE} down
 .PHONY: docker.down
+
+docker.logs: ## Logs the docker containers
+	cd ${APP_DIR} && ${COMPOSE} logs
+.PHONY: docker.logs
 
 server.start: ## Run the local webserver using Symfony
 	${SYMFONY} local:server:start -d
