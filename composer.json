@@ -53,13 +53,6 @@
             "MonsieurBiz\\SyliusRichEditorPlugin\\": "src/"
         }
     },
-    "autoload-dev": {
-        "classmap": ["tests/Application/src/Kernel.php"],
-        "psr-4": {
-            "App\\": "tests/Application/src/",
-            "Tests\\MonsieurBiz\\SyliusRichEditorPlugin\\": "tests/"
-        }
-    },
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
