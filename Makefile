@@ -69,6 +69,7 @@ application: ${APP_DIR} ${APP_DIR}/docker-compose.yaml ${APP_DIR}/.php-version a
 
 ${APP_DIR}:
 	(${COMPOSER} create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
+	rm -f ${APP_DIR}/yarn.lock
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
 	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev")
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
