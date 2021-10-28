@@ -1,7 +1,0 @@
-app:
-    ui_element:
-        google_maps:
-            title: 'Google Maps Element'
-            short_description: 'Include a Google Maps'
-            description: 'An element with a Google Maps link'
-            link: 'Link'
