@@ -61,9 +61,9 @@ jobs:
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
-      - name: Install Sylius-Standard
+      - name: Create Sylius-Standard project without install
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius "${{ matrix.sylius }}"
+          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "${{ matrix.sylius }}"
 
       - name: Setup some requirements
         working-directory: ./sylius
@@ -73,10 +73,15 @@ jobs:
             composer config secure-http false
             composer config --unset platform.php
 
-      - name: Install plugin
+      - name: Require plugin without install
         working-directory: ./sylius
         run: |
-          composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
+          composer require --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev"
+
+      - name: Composer install
+        working-directory: ./sylius
+        run: |
+          composer install
 
       - name: Show flex server logs
         run: docker logs --tail 100 flex
