@@ -1,15 +1,14 @@
-name: Tests
+name: Security
 
 on:
   push:
-    branches: [ master ]
   pull_request:
   schedule:
     - cron:  '0 0 * * *'
 
 jobs:
 
-  php:
+  security:
 
     runs-on: ubuntu-latest
 
@@ -17,11 +16,6 @@ jobs:
       fail-fast: false
       matrix:
         php: ['7.4', '8.0']
-
-    env:
-      SYMFONY_ARGS: --no-tls
-      COMPOSER_ARGS: --prefer-dist
-      DOCKER_INTERACTIVE_ARGS: -t
 
     steps:
       - uses: actions/checkout@v2
@@ -31,11 +25,6 @@ jobs:
           sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
           echo "date.timezone=UTC" | sudo tee /etc/php/${{ matrix.php }}/cli/conf.d/timezone.ini
           echo "${{ matrix.php }}" > .php-version
-
-      - name: Install symfony CLI
-        run: |
-          curl https://get.symfony.com/cli/installer | bash
-          echo "${HOME}/.symfony/bin" >> $GITHUB_PATH
 
       - uses: actions/cache@v1
         id: cache-composer
@@ -53,22 +42,9 @@ jobs:
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
-      - run: make install
+      - uses: actions/checkout@v2
 
-      - run: make test.composer
+      - name: Install PHP dependencies
+        run: composer update --prefer-dist
 
-      - run: make test.phpcs
-
-      - run: make test.phpunit
-
-      - run: make test.phpstan
-
-      - run: make test.phpspec
-
-      - run: make test.yaml
-
-      - run: make test.twig
-
-      - run: make test.schema
-
-      - run: make test.container
+      - uses: symfonycorp/security-checker-action@v2
