@@ -6,6 +6,7 @@ SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
 export COMPOSE_PROJECT_NAME=rich-editor
+PLUGIN_NAME=sylius-${COMPOSE_PROJECT_NAME}-plugin
 COMPOSE=docker-compose
 YARN=yarn
 PHPSTAN=symfony php vendor/bin/phpstan
@@ -71,7 +72,7 @@ ${APP_DIR}:
 	(${COMPOSER} create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
 	rm -f ${APP_DIR}/yarn.lock
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
-	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev")
+	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/${PLUGIN_NAME}="*@dev")
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
 
 ${APP_DIR}/docker-compose.yaml:
