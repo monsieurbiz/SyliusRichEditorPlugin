@@ -9,9 +9,6 @@ export COMPOSE_PROJECT_NAME=rich-editor
 PLUGIN_NAME=sylius-${COMPOSE_PROJECT_NAME}-plugin
 COMPOSE=docker-compose
 YARN=yarn
-PHPSTAN=symfony php vendor/bin/phpstan
-PHPUNIT=symfony php vendor/bin/phpunit
-PHPSPEC=symfony php vendor/bin/phpspec
 
 ###
 ### DEVELOPMENT
@@ -66,14 +63,16 @@ ${APP_DIR}/node_modules: yarn.install
 ### TEST APPLICATION
 ### ¯¯¯¯¯
 
-application: ${APP_DIR} ${APP_DIR}/docker-compose.yaml ${APP_DIR}/.php-version apply_dist
+application: .php-version ${APP_DIR} ${APP_DIR}/docker-compose.yaml ${APP_DIR}/.php-version
 
 ${APP_DIR}:
 	(${COMPOSER} create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
 	rm -f ${APP_DIR}/yarn.lock
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
+	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
 	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/${PLUGIN_NAME}="*@dev")
-	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
+	$(MAKE) apply_dist
+	(cd ${APP_DIR} && ${COMPOSER} install)
 
 ${APP_DIR}/docker-compose.yaml:
 	rm -f ${APP_DIR}/docker-compose.yml
@@ -91,19 +90,22 @@ apply_dist:
 ### TESTS
 ### ¯¯¯¯¯
 
-test.all: test.composer test.phpstan test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig ## Run all tests in once
+test.all: test.composer test.phpstan test.phpmd test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig ## Run all tests in once
 
 test.composer: ## Validate composer.json
 	${COMPOSER} validate --strict
 
 test.phpstan: ## Run PHPStan
-	${PHPSTAN} analyse -c phpstan.neon src/
+	${COMPOSER} phpstan
+
+test.phpmd: ## Run PHPMD
+	${COMPOSER} phpmd || true
 
 test.phpunit: ## Run PHPUnit
-	${PHPUNIT}
+	${COMPOSER} phpunit
 
 test.phpspec: ## Run PHPSpec
-	${PHPSPEC} run
+	${COMPOSER} phpspec
 
 test.phpcs: ## Run PHP CS Fixer in dry-run
 	${COMPOSER} run -- phpcs --dry-run -v
