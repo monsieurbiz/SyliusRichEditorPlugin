@@ -33,6 +33,9 @@ dependencies: vendor node_modules ## Setup the dependencies
 .php-version: .php-version.dist
 	cp .php-version.dist .php-version
 
+php.ini: php.ini.dist
+	cp php.ini.dist php.ini
+
 vendor: composer.lock ## Install the PHP dependencies using composer
 ifdef GITHUB_ACTIONS
 	${COMPOSER} install --prefer-dist
@@ -63,15 +66,19 @@ ${APP_DIR}/node_modules: yarn.install
 ### TEST APPLICATION
 ### ¯¯¯¯¯
 
-application: .php-version ${APP_DIR} ${APP_DIR}/docker-compose.yaml ${APP_DIR}/.php-version
+application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml
 
 ${APP_DIR}:
 	(${COMPOSER} create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_VERSION}" ${APP_DIR})
+
+setup_application:
 	rm -f ${APP_DIR}/yarn.lock
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
 	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
 	(cd ${APP_DIR} && ${COMPOSER} require --no-scripts --no-progress --no-install --no-update monsieurbiz/${PLUGIN_NAME}="*@dev")
 	$(MAKE) apply_dist
+	$(MAKE) ${APP_DIR}/.php-version
+	$(MAKE) ${APP_DIR}/php.ini
 	(cd ${APP_DIR} && ${COMPOSER} install)
 
 ${APP_DIR}/docker-compose.yaml:
@@ -82,6 +89,9 @@ ${APP_DIR}/docker-compose.yaml:
 
 ${APP_DIR}/.php-version: .php-version
 	(cd ${APP_DIR} && ln -sf ../../.php-version)
+
+${APP_DIR}/php.ini: php.ini
+	(cd ${APP_DIR} && ln -sf ../../php.ini)
 
 apply_dist:
 	cp -Rv dist/* ${APP_DIR}
