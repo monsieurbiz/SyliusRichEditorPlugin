@@ -456,6 +456,9 @@
             "ref": "72ad834a0f4a99175beddb5e2d049136f4a50a67"
         }
     },
+    "pdepend/pdepend": {
+        "version": "2.10.1"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
@@ -500,6 +503,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpmd/phpmd": {
+        "version": "2.10.2"
     },
     "phpoption/phpoption": {
         "version": "1.7.5"
@@ -716,9 +722,6 @@
     "sylius/theme-bundle": {
         "version": "v1.5.1"
     },
-    "symfony/amqp-messenger": {
-        "version": "v5.3.7"
-    },
     "symfony/asset": {
         "version": "v4.4.13"
     },
@@ -773,9 +776,6 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v4.4.13"
-    },
-    "symfony/doctrine-messenger": {
-        "version": "v5.3.8"
     },
     "symfony/dom-crawler": {
         "version": "v5.1.5"
@@ -937,9 +937,6 @@
     },
     "symfony/proxy-manager-bridge": {
         "version": "v4.4.13"
-    },
-    "symfony/redis-messenger": {
-        "version": "v5.3.8"
     },
     "symfony/routing": {
         "version": "4.2",
