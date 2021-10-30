@@ -12,6 +12,7 @@
 /package-lock.json
 
 /.php-version
+/php.ini
 /.phpunit.result.cache
 /node_modules
 /yarn.lock
