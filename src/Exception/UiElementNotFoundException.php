@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -19,9 +19,6 @@ final class UiElementNotFoundException extends Exception
 {
     /**
      * UiElementNotFoundException constructor.
-     *
-     * @param string $code
-     * @param Exception|null $previous
      */
     public function __construct(string $code, ?Exception $previous = null)
     {

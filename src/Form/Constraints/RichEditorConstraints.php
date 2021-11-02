@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -21,10 +21,6 @@ final class RichEditorConstraints
      * Return constraint depending on data
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required.
-     *
-     * @param array $data
-     * @param string $fieldName
-     * @param bool $required
      *
      * @return array
      */
@@ -52,10 +48,6 @@ final class RichEditorConstraints
      * Return constraint depending on data
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required.
-     *
-     * @param array $data
-     * @param string $fieldName
-     * @param bool $required
      *
      * @return array
      */

@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -18,19 +18,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 interface UiElementInterface extends \JsonSerializable
 {
-    /**
-     * @param MetadataInterface $metadata
-     */
     public function setMetadata(MetadataInterface $metadata): void;
 
-    /**
-     * @param TranslatorInterface $translator
-     */
     public function setTranslator(TranslatorInterface $translator): void;
 
-    /**
-     * @return string
-     */
     public function getCode(): string;
 
     /**
@@ -38,24 +29,12 @@ interface UiElementInterface extends \JsonSerializable
      */
     public function getAlias(): ?string;
 
-    /**
-     * @return string
-     */
     public function getTitle(): string;
 
-    /**
-     * @return string
-     */
     public function getDescription(): string;
 
-    /**
-     * @return string
-     */
     public function getIcon(): string;
 
-    /**
-     * @return bool
-     */
     public function isEnabled(): bool;
 
     /**
@@ -65,22 +44,16 @@ interface UiElementInterface extends \JsonSerializable
 
     /**
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function getAdminFormTemplate(): string;
 
     /**
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function getAdminRenderTemplate(): string;
 
     /**
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function getFrontRenderTemplate(): string;
 

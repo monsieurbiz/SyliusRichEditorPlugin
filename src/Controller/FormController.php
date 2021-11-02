@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -33,8 +33,6 @@ class FormController extends AbstractController
 
     /**
      * FormController constructor.
-     *
-     * @param RegistryInterface $uiElementRegistry
      */
     public function __construct(RegistryInterface $uiElementRegistry)
     {
@@ -43,11 +41,6 @@ class FormController extends AbstractController
 
     /**
      * Generate the form for an element.
-     *
-     * @param Request $request
-     * @param string $code
-     *
-     * @return Response
      */
     public function viewAction(Request $request, string $code): Response
     {
@@ -84,10 +77,6 @@ class FormController extends AbstractController
 
     /**
      * Render all UI elements in HTML.
-     *
-     * @param Request $request
-     *
-     * @return Response
      */
     public function renderElementsAction(Request $request): Response
     {
@@ -132,13 +121,6 @@ class FormController extends AbstractController
 
     /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
-     *
-     * @param Request $request
-     * @param FileUploader $fileUploader
-     * @param string $code
-     * @param bool $isEdition
-     *
-     * @return Response
      */
     public function submitAction(Request $request, FileUploader $fileUploader, string $code, bool $isEdition): Response
     {
@@ -195,8 +177,6 @@ class FormController extends AbstractController
     /**
      * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
-     * @param FormInterface $form
-     * @param FileUploader $fileUploader
      * @param mixed $requestData
      *
      * @return array|mixed|string
@@ -218,8 +198,6 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param FormInterface $form
-     * @param FileUploader $fileUploader
      * @param array|string $requestData
      *
      * @return array|mixed|string
@@ -242,11 +220,6 @@ class FormController extends AbstractController
      * Recursively convert multidimensional array to one dimension
      * The key is the full input name (ex : `image_collection[images][0][image]`)
      * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
-     *
-     * @param array $formData
-     * @param string $prefix
-     *
-     * @return array
      */
     private function convertFormDataForRequest(array $formData, string $prefix = ''): array
     {

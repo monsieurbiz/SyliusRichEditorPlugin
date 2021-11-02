@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -20,11 +20,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileUploader
 {
     public const FILE_TYPE_DOCUMENT = 'document';
+
     public const FILE_TYPE_IMAGE = 'image';
+
     public const FILE_TYPE_VIDEO = 'video';
 
     private string $fileTargetPath;
+
     private string $imageTargetPath;
+
     private string $publicDirectory;
 
     public function __construct(string $fileTargetPath, string $imageTargetPath, string $publicDirectory)
@@ -36,11 +40,6 @@ class FileUploader
 
     /**
      * Upload a file and return the path to it.
-     *
-     * @param UploadedFile $file
-     * @param string|null $type
-     *
-     * @return string
      */
     public function upload(UploadedFile $file, ?string $type = null): string
     {
@@ -63,10 +62,6 @@ class FileUploader
 
     /**
      * The directory to write the file.
-     *
-     * @param string $type
-     *
-     * @return string
      */
     private function getTargetDirectory(string $type): string
     {
@@ -78,12 +73,6 @@ class FileUploader
         }
     }
 
-    /**
-     * @param File $file
-     * @param string $type
-     *
-     * @return string
-     */
     private function getFinalPath(File $file, string $type): string
     {
         switch ($type) {
