@@ -4,7 +4,7 @@
 /etc/build/*
 !/etc/build/.gitignore
 
-/tests/Application/*
+/tests/Application
 
 /behat.yml
 /phpspec.yml
