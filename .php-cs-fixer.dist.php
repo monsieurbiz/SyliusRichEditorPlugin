@@ -24,9 +24,7 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude(
         [
-            'tests/Application/var',
-            'tests/Application/bin',
-            'tests/Application/config',
+            'tests/Application',
         ]
     )
 ;
