@@ -100,7 +100,7 @@ apply_dist:
 ### TESTS
 ### ¯¯¯¯¯
 
-test.all: test.composer test.phpstan test.phpmd test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig ## Run all tests in once
+test.all: test.composer test.phpstan test.phpmd test.phpunit test.phpspec test.phpcs test.yaml test.schema test.twig test.container ## Run all tests in once
 
 test.composer: ## Validate composer.json
 	${COMPOSER} validate --strict
@@ -178,7 +178,7 @@ docker.down: ## Stop and remove the docker containers
 .PHONY: docker.down
 
 docker.logs: ## Logs the docker containers
-	cd ${APP_DIR} && ${COMPOSE} logs
+	cd ${APP_DIR} && ${COMPOSE} logs -f
 .PHONY: docker.logs
 
 server.start: ## Run the local webserver using Symfony
