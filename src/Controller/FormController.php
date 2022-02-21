@@ -214,7 +214,7 @@ class FormController extends AbstractController
             $processedData[$child->getName()] = $formData;
         }
 
-        return $processedData;
+        return $this->removeAssociativeArraysIndices($processedData);
     }
 
     /**
@@ -265,5 +265,25 @@ class FormController extends AbstractController
         }
 
         return $items;
+    }
+
+    /**
+     * Remove indices in associative arrays if they are all integers.
+     * This is "necessary" when we want to add a new item to a collection without overwriting an existing element.
+     * Especially because of JavaScript: `JSON.parse('{"1": "1", "0":"0"}');` = `{0: '0', 1: '1'}`.
+     */
+    private function removeAssociativeArraysIndices(array $data): array
+    {
+        $allKeysAreIntegers = true;
+        foreach ($data as $key => $value) {
+            if (!\is_int($key)) {
+                $allKeysAreIntegers = false;
+            }
+            if (\is_array($value)) {
+                $data[$key] = $this->removeAssociativeArraysIndices($value);
+            }
+        }
+
+        return $allKeysAreIntegers ? array_values($data) : $data;
     }
 }
