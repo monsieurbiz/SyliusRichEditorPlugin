@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SYMFONY_ENDPOINT: http://127.0.0.1/
+      SYMFONY_ENDPOINT: https://127.0.0.1/
 
     strategy:
       fail-fast: false
