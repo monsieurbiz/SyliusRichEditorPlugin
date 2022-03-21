@@ -65,6 +65,7 @@ jobs:
           composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
           composer config extra.symfony.allow-contrib true
           composer config secure-http false
+          composer config -n allow-plugins.monsieurbiz/sylius-rich-editor-plugin true
           composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
 
       - name: Show flex server logs
