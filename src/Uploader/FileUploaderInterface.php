@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -19,11 +19,6 @@ interface FileUploaderInterface
 {
     /**
      * Upload a file and return the path to it.
-     *
-     * @param UploadedFile $file
-     * @param string|null $type
-     *
-     * @return string
      */
     public function upload(UploadedFile $file, ?string $type = null): string;
 }
