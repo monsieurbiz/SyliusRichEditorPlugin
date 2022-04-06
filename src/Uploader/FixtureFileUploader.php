@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -19,23 +19,13 @@ use Webmozart\Assert\Assert;
 
 final class FixtureFileUploader implements FixtureFileUploaderInterface
 {
-    /**
-     * @var FilesystemInterface
-     */
     private FilesystemInterface $filesystem;
 
-    /**
-     * @param FilesystemInterface $filesystem
-     */
     public function __construct(FilesystemInterface $filesystem)
     {
         $this->filesystem = $filesystem;
     }
 
-    /**
-     * @param File $file
-     * @param string $target
-     */
     public function upload(File $file, string $target): void
     {
         Assert::isInstanceOf($file, File::class);
@@ -50,11 +40,6 @@ final class FixtureFileUploader implements FixtureFileUploaderInterface
         );
     }
 
-    /**
-     * @param string $path
-     *
-     * @return bool
-     */
     public function remove(string $path): bool
     {
         if ($this->filesystem->has($path)) {

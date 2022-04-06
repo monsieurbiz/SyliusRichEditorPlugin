@@ -1,1 +1,0 @@
-../../vendor/sylius/sylius/.eslintrc.js

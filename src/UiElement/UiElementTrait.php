@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -17,23 +17,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 trait UiElementTrait
 {
-    /**
-     * @var MetadataInterface
-     */
     protected MetadataInterface $metadata;
 
-    /**
-     * @var TranslatorInterface
-     */
     protected TranslatorInterface $translator;
 
-    /**
-     * @var bool
-     */
     protected bool $ignored = false;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function setMetadata(MetadataInterface $metadata): void
     {
@@ -41,7 +32,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function setTranslator(TranslatorInterface $translator): void
     {
@@ -49,7 +40,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getCode(): string
     {
@@ -57,7 +48,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAlias(): ?string
     {
@@ -65,7 +56,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function isEnabled(): bool
     {
@@ -73,7 +64,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getTitle(): string
     {
@@ -81,7 +72,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getDescription(): string
     {
@@ -89,7 +80,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getIcon(): string
     {
@@ -97,7 +88,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getFormClass(): string
     {
@@ -105,7 +96,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAdminFormTemplate(): string
     {
@@ -113,7 +104,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAdminRenderTemplate(): string
     {
@@ -121,7 +112,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getFrontRenderTemplate(): string
     {
@@ -134,7 +125,7 @@ trait UiElementTrait
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function jsonSerialize()
     {

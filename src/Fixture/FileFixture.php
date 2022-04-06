@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -21,22 +21,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 final class FileFixture extends AbstractFixture implements FixtureInterface
 {
-    /**
-     * @var FixtureFileUploaderInterface
-     */
     private FixtureFileUploaderInterface $uploader;
 
-    /**
-     * @param FixtureFileUploaderInterface $uploader
-     */
     public function __construct(FixtureFileUploaderInterface $uploader)
     {
         $this->uploader = $uploader;
     }
 
-    /**
-     * @param array $options
-     */
     public function load(array $options): void
     {
         foreach ($options['files'] as $data) {
@@ -45,17 +36,11 @@ final class FileFixture extends AbstractFixture implements FixtureInterface
         }
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'monsieurbiz_rich_editor_file';
     }
 
-    /**
-     * @param ArrayNodeDefinition $optionsNode
-     */
     protected function configureOptionsNode(ArrayNodeDefinition $optionsNode): void
     {
         /** @phpstan-ignore-next-line */

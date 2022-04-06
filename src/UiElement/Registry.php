@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -24,7 +24,7 @@ final class Registry implements RegistryInterface
     private array $uiElements = [];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function addUiElement(UiElementInterface $uiElement): void
     {
@@ -38,7 +38,7 @@ final class Registry implements RegistryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function hasUiElement(string $code): bool
     {
@@ -46,7 +46,7 @@ final class Registry implements RegistryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getUiElement(string $code): UiElementInterface
     {
@@ -58,7 +58,7 @@ final class Registry implements RegistryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getUiElements(): array
     {
@@ -66,7 +66,7 @@ final class Registry implements RegistryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function jsonSerialize()
     {

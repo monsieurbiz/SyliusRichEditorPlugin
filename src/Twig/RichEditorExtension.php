@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -30,17 +30,13 @@ final class RichEditorExtension extends AbstractExtension
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
+
     private string $defaultElement;
 
     private string $defaultElementDataField;
 
     /**
      * RichEditorExtension constructor.
-     *
-     * @param RegistryInterface $uiElementRegistry
-     * @param Environment $twig
-     * @param string $monsieurbizRicheditorDefaultElement
-     * @param string $monsieurbizRicheditorDefaultElementDataField
      */
     public function __construct(
         RegistryInterface $uiElementRegistry,
@@ -83,14 +79,9 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @param array $context
-     * @param string|null $content
-     *
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
-     *
-     * @return string
      */
     public function renderField(array $context, ?string $content): string
     {
@@ -106,11 +97,6 @@ final class RichEditorExtension extends AbstractExtension
         return $this->renderElements($context, $elements);
     }
 
-    /**
-     * @param string|null $content
-     *
-     * @return array
-     */
     public function getElements(?string $content): array
     {
         if (null === $content) {
@@ -130,14 +116,9 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @param array $context
-     * @param array $elements
-     *
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
-     *
-     * @return string
      */
     public function renderElements(array $context, array $elements): string
     {
@@ -154,15 +135,10 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @param array $context
-     * @param array $element
-     *
      * @throws UiElementNotFoundException
      * @throws LoaderError [twig.render] When the template cannot be found
      * @throws SyntaxError [twig.render] When an error occurred during compilation
      * @throws RuntimeError [twig.render] When an error occurred during rendering
-     *
-     * @return string
      */
     public function renderElement(array $context, array $element): string
     {
@@ -194,8 +170,6 @@ final class RichEditorExtension extends AbstractExtension
 
     /**
      * List available Ui Elements in JSON.
-     *
-     * @return string
      */
     public function listUiElements(): string
     {
@@ -204,10 +178,6 @@ final class RichEditorExtension extends AbstractExtension
 
     /**
      * Convert Youtube link to embed URL.
-     *
-     * @param string $url
-     *
-     * @return string|null
      */
     public function convertYoutubeEmbeddedLink(string $url): ?string
     {
@@ -220,10 +190,6 @@ final class RichEditorExtension extends AbstractExtension
 
     /**
      * Retrieve the Youtube ID from a Youtube link.
-     *
-     * @param string $url
-     *
-     * @return string|null
      */
     public function getYoutubeIdFromLink(string $url): ?string
     {
@@ -246,11 +212,6 @@ final class RichEditorExtension extends AbstractExtension
         return $this->defaultElementDataField;
     }
 
-    /**
-     * @param array $context
-     *
-     * @return string|null
-     */
     public function getCurrentFilePath(array $context, string $varName = 'full_name'): ?string
     {
         $form = $context['form'];

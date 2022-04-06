@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -17,21 +17,9 @@ use MonsieurBiz\SyliusRichEditorPlugin\UiElement\MetadataInterface;
 
 interface RegistryInterface
 {
-    /**
-     * @param string $code
-     *
-     * @return MetadataInterface
-     */
     public function get(string $code): MetadataInterface;
 
-    /**
-     * @param MetadataInterface $metadata
-     */
     public function add(MetadataInterface $metadata): void;
 
-    /**
-     * @param string $code
-     * @param array $configuration
-     */
     public function addFromCodeAndConfiguration(string $code, array $configuration): void;
 }

@@ -19,7 +19,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0']
+        php: ['7.4' ,'8.0']
+        sylius: ["~1.8.0", "~1.9.0", "~1.10.0"]
+        exclude:
+          - php: 8.0
+            sylius: "~1.8.0"
+          - php: 8.0
+            sylius: "~1.9.0"
 
     steps:
       - name: Setup PHP
@@ -46,8 +52,8 @@ jobs:
         id: cache-composer
         with:
           path: /home/runner/.composer/cache
-          key: composer2-php:${{ matrix.php }}-${{ github.sha }}
-          restore-keys: composer2-php:${{ matrix.php }}-
+          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
+          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
 
       - name: Composer v2
         run: sudo composer self-update --2
@@ -55,17 +61,27 @@ jobs:
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
-      - name: Install Sylius-Standard
+      - name: Create Sylius-Standard project without install
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress sylius/sylius-standard sylius
+          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "${{ matrix.sylius }}"
 
-      - name: Install plugin
+      - name: Setup some requirements
         working-directory: ./sylius
         run: |
-          composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
-          composer config extra.symfony.allow-contrib true
-          composer config secure-http false
-          composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
+            composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
+            composer config extra.symfony.allow-contrib true
+            composer config secure-http false
+            composer config --unset platform.php
+
+      - name: Require plugin without install
+        working-directory: ./sylius
+        run: |
+          composer require --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev"
+
+      - name: Composer install
+        working-directory: ./sylius
+        run: |
+          composer install
 
       - name: Show flex server logs
         run: docker logs --tail 100 flex

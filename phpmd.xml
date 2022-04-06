@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<ruleset name="Monsieur Biz' ruleset"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <!-- codesize -->
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
+        <properties>
+            <property name="reportLevel" value="5"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/NPathComplexity"/>
+    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity"/>
+    <rule ref="rulesets/codesize.xml/ExcessiveClassLength"/>
+    <rule ref="rulesets/codesize.xml/ExcessiveMethodLength"/>
+    <rule ref="rulesets/codesize.xml/ExcessiveParameterList"/>
+
+    <!-- cleancode -->
+    <rule ref="rulesets/cleancode.xml/BooleanArgumentFlag"/>
+    <rule ref="rulesets/cleancode.xml/ElseExpression"/>
+    <rule ref="rulesets/cleancode.xml/DuplicatedArrayKey"/>
+    <rule ref="rulesets/cleancode.xml/ErrorControlOperator"/>
+    <rule ref="rulesets/cleancode.xml/MissingImport"/>
+    <rule ref="rulesets/cleancode.xml/UndefinedVariable"/>
+
+    <!-- design -->
+    <rule ref="rulesets/design.xml/EvalExpression"/>
+    <rule ref="rulesets/design.xml/ExitExpression"/>
+    <rule ref="rulesets/design.xml/GotoStatement"/>
+    <rule ref="rulesets/design.xml/DepthOfInheritance"/>
+    <rule ref="rulesets/design.xml/DevelopmentCodeFragment">
+        <properties>
+            <property name="unwanted-functions" value="var_dump,print_r,debug_zval_dump,debug_print_backtrace,dump"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/design.xml/EmptyCatchBlock"/>
+    <rule ref="rulesets/design.xml/CountInLoopExpression"/>
+
+    <!-- naming -->
+    <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass"/>
+    <rule ref="rulesets/naming.xml/LongClassName"/>
+    <rule ref="rulesets/naming.xml/ShortClassName"/>
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id,em"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ShortMethodName"/>
+    <rule ref="rulesets/naming.xml/ConstantNamingConventions"/>
+    <rule ref="rulesets/naming.xml/BooleanGetMethodName"/>
+
+    <!-- unusedcode -->
+    <rule ref="rulesets/unusedcode.xml/UnusedFormalParameter"/>
+    <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable"/>
+    <rule ref="rulesets/unusedcode.xml/UnusedPrivateField"/>
+    <rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod"/>
+
+    <!-- controversial -->
+    <rule ref="rulesets/controversial.xml/CamelCaseClassName"/>
+    <rule ref="rulesets/controversial.xml/CamelCasePropertyName"/>
+    <rule ref="rulesets/controversial.xml/CamelCaseMethodName">
+        <properties>
+            <property name="allow-underscore-test" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="rulesets/controversial.xml/CamelCaseParameterName"/>
+    <rule ref="rulesets/controversial.xml/CamelCaseVariableName"/>
+</ruleset>

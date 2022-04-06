@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ImageType extends AbstractType
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -55,7 +55,7 @@ class ImageType extends AbstractType
             ->add('align', AlignmentType::class)
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
             $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image');

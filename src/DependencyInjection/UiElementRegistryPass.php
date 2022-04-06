@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\Reference;
 final class UiElementRegistryPass implements CompilerPassInterface
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function process(ContainerBuilder $container): void
     {
@@ -69,8 +69,6 @@ final class UiElementRegistryPass implements CompilerPassInterface
     }
 
     /**
-     * @param string $class
-     *
      * @throws InvalidArgumentException
      */
     private function validateUiElementResource(string $class): void
@@ -82,11 +80,6 @@ final class UiElementRegistryPass implements CompilerPassInterface
         }
     }
 
-    /**
-     * @param Metadata $metadata
-     *
-     * @return Definition
-     */
     private function getMetadataDefinition(Metadata $metadata): Definition
     {
         $metadataDefinition = new Definition(Metadata::class);

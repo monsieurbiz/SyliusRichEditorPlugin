@@ -12,9 +12,9 @@
 
 <h1 align="center">Rich Editor</h1>
 
-[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt)
-[![Build Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Tests)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/monsieurbiz/SyliusRichEditorPlugin/?branch=master)
+[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin?public)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt)
+[![Tests Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Tests?logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
+[![Security Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Security?label=security&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
 
 
 This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
@@ -38,14 +38,14 @@ return [
 ];
 ```
 
-Then create the config file in `config/packages/monsieurbiz_sylius_rich_editor.yaml` :
+Then create the config file in `config/packages/monsieurbiz_sylius_rich_editor_plugin.yaml` :
 
 ```yaml
 imports:
     - { resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/config.yaml" }
 ```
 
-Finally import the routes in `config/routes/monsieurbiz_sylius_rich_editor.yaml` : 
+Finally import the routes in `config/routes/monsieurbiz_sylius_rich_editor_plugin.yaml` : 
 
 ```yaml
 monsieurbiz_richeditor_admin:

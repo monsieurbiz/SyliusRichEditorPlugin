@@ -5,7 +5,7 @@
  *
  * (c) Monsieur Biz <sylius@monsieurbiz.com>
  *
- * For the full copyright and license information, please view the LICENSE
+ * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
 
@@ -15,21 +15,12 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 final class Metadata implements MetadataInterface
 {
-    /**
-     * @var string
-     */
     private string $code;
 
-    /**
-     * @var array
-     */
     private array $parameters;
 
     /**
      * Metadata constructor.
-     *
-     * @param string $code
-     * @param array $parameters
      */
     private function __construct(string $code, array $parameters)
     {
@@ -44,7 +35,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function fromCodeAndConfiguration(string $code, array $parameters): self
     {
@@ -52,7 +43,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getCode(): string
     {
@@ -60,7 +51,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAlias(): ?string
     {
@@ -68,17 +59,17 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getCamelCasedCode(): string
     {
-        return (string) preg_replace_callback('/\.([a-z])/i', function($match) {
+        return (string) preg_replace_callback('/\.([a-z])/i', function ($match) {
             return strtoupper($match[1]);
         }, $this->getCode());
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function isEnabled(): bool
     {
@@ -86,7 +77,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getParameter(string $name)
     {
@@ -98,7 +89,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function hasParameter(string $name): bool
     {
@@ -106,7 +97,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getParameters(): array
     {
@@ -114,7 +105,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getClass(string $name): string
     {
@@ -126,7 +117,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function hasClass(string $name): bool
     {
@@ -134,7 +125,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getTemplate(string $name): string
     {
@@ -146,7 +137,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function hasTemplate(string $name): bool
     {
@@ -154,7 +145,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getServiceId(string $serviceName): string
     {
@@ -164,7 +155,7 @@ final class Metadata implements MetadataInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getTags(): array
     {
