@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader
+class FileUploader implements FileUploaderInterface
 {
     public const FILE_TYPE_DOCUMENT = 'document';
 
