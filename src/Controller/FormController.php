@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploader;
+use MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploaderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType as NativeFileType;
 use Symfony\Component\Form\FormInterface;
@@ -122,7 +123,7 @@ class FormController extends AbstractController
     /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
      */
-    public function submitAction(Request $request, FileUploader $fileUploader, string $code, bool $isEdition): Response
+    public function submitAction(Request $request, FileUploaderInterface $fileUploader, string $code, bool $isEdition): Response
     {
         // Find UI Element from type
         try {
@@ -177,11 +178,13 @@ class FormController extends AbstractController
     /**
      * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
+     * @param FormInterface $form
+     * @param FileUploaderInterface $fileUploader
      * @param mixed $requestData
      *
      * @return array|mixed|string
      */
-    private function processFormData(FormInterface $form, FileUploader $fileUploader, $requestData)
+    private function processFormData(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
         // No child, end of recursivity, return form value or uploaded file path
         if (!\count($form->all())) {
@@ -198,11 +201,13 @@ class FormController extends AbstractController
     }
 
     /**
+     * @param FormInterface $form
+     * @param FileUploaderInterface $fileUploader
      * @param array|string $requestData
      *
      * @return array|mixed|string
      */
-    private function processFormDataWithoutChild(FormInterface $form, FileUploader $fileUploader, $requestData)
+    private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
         if ($form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user

@@ -38,3 +38,5 @@ services:
             $fileTargetPath: '%monsieurbiz.richeditor.config.upload_directory%'
             $imageTargetPath: '%monsieurbiz.richeditor.config.image_upload_directory%'
             $publicDirectory: '%kernel.project_dir%/public'
+
+    MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploaderInterface: '@MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploader'
