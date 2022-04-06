@@ -45,9 +45,6 @@
         "symfony/web-profiler-bundle": "^4.4",
         "phpmd/phpmd": "@stable"
     },
-    "conflict": {
-        "doctrine/dbal": "^3"
-    },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
