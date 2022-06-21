@@ -34,10 +34,6 @@ jobs:
           restore-keys: composer2-php:${{ matrix.php }}-
 
       - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
-        if: steps.cache-composer.outputs.cache-hit != 'true'
-
-      - name: Composer v2
-        run: sudo composer self-update --2
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
