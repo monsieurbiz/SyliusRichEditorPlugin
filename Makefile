@@ -68,6 +68,7 @@ setup_application:
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
 	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
 	(cd ${APP_DIR} && ${COMPOSER} config minimum-stability dev)
+	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
 	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
 	$(MAKE) ${APP_DIR}/.php-version
 	$(MAKE) ${APP_DIR}/php.ini

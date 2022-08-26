@@ -73,6 +73,7 @@ jobs:
       - name: Setup some requirements
         working-directory: ./sylius
         run: |
+            composer config --no-plugins allow-plugins true
             composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
             composer config extra.symfony.allow-contrib true
             composer config secure-http false
