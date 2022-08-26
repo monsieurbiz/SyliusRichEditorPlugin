@@ -222,6 +222,9 @@ global.MonsieurBizRichEditorManager = class {
   initInterface() {
     this.initUiElementsInterface();
     this.initUiPanelsInterface();
+    document.dispatchEvent(new CustomEvent('mbiz:rich-editor:init-interface-complete', {
+      'detail': {'editorManager': this}
+    }));
   }
 
   initUiPanelsInterface() {
@@ -496,6 +499,9 @@ global.MonsieurBizRichEditorManager = class {
   write() {
     this.input.value = (this.uiElements.length > 0) ? JSON.stringify(this.uiElements) : '';
     this.drawUiElements();
+    document.dispatchEvent(new CustomEvent('mbiz:rich-editor:write-complete', {
+      'detail': {'editorManager': this}
+    }));
   }
 
   create(code, data, previewHtml, position) {
