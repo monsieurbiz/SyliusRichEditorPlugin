@@ -37,8 +37,8 @@ jobs:
 
       - name: Install symfony CLI
         run: |
-          curl https://get.symfony.com/cli/installer | bash
-          echo "${HOME}/.symfony/bin" >> $GITHUB_PATH
+          curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
+          sudo apt install symfony-cli
 
       - uses: actions/cache@v1
         id: cache-composer
