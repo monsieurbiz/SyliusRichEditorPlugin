@@ -29,7 +29,7 @@ class YoutubeUrlValidator extends ConstraintValidator
 
         if (!preg_match(self::YOUTUBE_REGEX_VALIDATOR, (string) $value)) {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ string }}', $value)
+                ->setParameter('{{ string }}', (string) $value)
                 ->addViolation()
             ;
         }
