@@ -43,4 +43,4 @@ jobs:
       - name: Install PHP dependencies
         run: composer update --prefer-dist
 
-      - uses: symfonycorp/security-checker-action@v2
+      - uses: symfonycorp/security-checker-action@v3
