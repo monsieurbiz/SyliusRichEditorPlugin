@@ -13,7 +13,12 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-final class UiElement implements UiElementInterface, UiElementFormOptionsInterface
+use InvalidArgumentException;
+
+interface UiElementFormOptionsInterface
 {
-    use UiElementFormOptionsTrait;
+    /**
+     * @throws InvalidArgumentException
+     */
+    public function getFormOptions(): array;
 }

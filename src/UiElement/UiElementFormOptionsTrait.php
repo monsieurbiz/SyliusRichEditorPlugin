@@ -13,7 +13,15 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
-final class UiElement implements UiElementInterface, UiElementFormOptionsInterface
+trait UiElementFormOptionsTrait
 {
-    use UiElementFormOptionsTrait;
+    use UiElementTrait;
+
+    /**
+     * @inheritdoc
+     */
+    public function getFormOptions(): array
+    {
+        return $this->metadata->getParameter('form_options');
+    }
 }

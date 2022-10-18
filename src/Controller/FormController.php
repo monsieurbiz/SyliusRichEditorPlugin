@@ -15,6 +15,8 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementFormOptionsInterface;
+use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploaderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType as NativeFileType;
@@ -62,7 +64,7 @@ class FormController extends AbstractController
         }
 
         // Create form depending on UI Element with data
-        $form = $this->createForm($uiElement->getFormClass(), $data);
+        $form = $this->createForm($uiElement->getFormClass(), $data, $this->getFormOptions($uiElement));
 
         return new JsonResponse([
             'code' => $uiElement->getCode(),
@@ -132,7 +134,7 @@ class FormController extends AbstractController
         }
 
         // Create and validate form
-        $form = $this->createForm($uiElement->getFormClass());
+        $form = $this->createForm($uiElement->getFormClass(), null, $this->getFormOptions($uiElement));
         $form->handleRequest($request);
         if (!$form->isSubmitted()) {
             throw $this->createNotFoundException();
@@ -238,5 +240,10 @@ class FormController extends AbstractController
         }
 
         return $items;
+    }
+
+    private function getFormOptions(UiElementInterface $uiElement): array
+    {
+        return $uiElement instanceof UiElementFormOptionsInterface ? $uiElement->getFormOptions() : [];
     }
 }
