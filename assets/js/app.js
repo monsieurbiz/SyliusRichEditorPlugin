@@ -69,7 +69,8 @@ global.MonsieurBizRichEditorConfig = class {
     renderElementsUrl,
     defaultUiElement,
     defaultUIElementDataField,
-    errorMessage
+    errorMessage,
+    unallowedUiElementMessage
   ) {
     this.input = input;
     this.uielements = uielements;
@@ -85,6 +86,7 @@ global.MonsieurBizRichEditorConfig = class {
     this.defaultUiElement = defaultUiElement;
     this.defaultUIElementDataField = defaultUIElementDataField;
     this.errorMessage = errorMessage;
+    this.unallowedUiElementMessage = unallowedUiElementMessage;
   }
 
   findUiElementByCode(code) {
@@ -136,6 +138,10 @@ global.MonsieurBizRichEditorUiElement = class {
 
   edit() {
     this.manager.editUiElement(this);
+  }
+
+  copy(callback) {
+    this.manager.saveUiElementToClipboard(this, callback);
   }
 
   up() {
@@ -225,6 +231,11 @@ global.MonsieurBizRichEditorManager = class {
     document.dispatchEvent(new CustomEvent('mbiz:rich-editor:init-interface-complete', {
       'detail': {'editorManager': this}
     }));
+    document.addEventListener('mbiz:rich-editor:uielement:copied', function (e) {
+      this.container.querySelectorAll('.js-uie-paste').forEach(function (action) {
+        action.classList.remove('disabled');
+      }.bind(this));
+    }.bind(this));
   }
 
   initUiPanelsInterface() {
@@ -280,6 +291,19 @@ global.MonsieurBizRichEditorManager = class {
       );
     });
 
+    // Paste clipboard button
+    actions.querySelector('.js-uie-paste').position = position;
+    actions.querySelector('.js-uie-paste').manager = this;
+    actions.querySelector('.js-uie-paste').addEventListener('click', function (e) {
+      actions.querySelector('.js-uie-paste').manager.pasteUiElementFromClipboard(
+        actions.querySelector('.js-uie-paste').position
+      );
+    });
+    // Disabled?
+    if (!this.isClipboardEmpty()) {
+      actions.querySelector('.js-uie-paste').classList.remove('disabled');
+    }
+
     return actions;
   }
 
@@ -315,6 +339,16 @@ global.MonsieurBizRichEditorManager = class {
     }
     uiElement.querySelector('.js-uie-edit').addEventListener('click', function () {
       this.closest('.js-uie-element').element.edit();
+    });
+    uiElement.querySelector('.js-uie-copy').addEventListener('click', function (e) {
+      this.closest('.js-uie-element').element.copy(function () {
+        const button = e.currentTarget;
+        const originalText = button.dataset.tooltip;
+        button.dataset.tooltip = button.dataset.alternateText;
+        window.setTimeout(function () {
+          button.dataset.tooltip = originalText;
+        }, 1000);
+      });
     });
     return uiElement;
   }
@@ -579,6 +613,55 @@ global.MonsieurBizRichEditorManager = class {
     req.uiElements = uiElements;
     req.manager = this;
     req.send(data);
+  }
+
+  isClipboardEmpty() {
+    const clipboard = window.sessionStorage.getItem('monsieurBizRichEditorClipboard');
+    return null === clipboard || '' === clipboard;
+  }
+
+  saveUiElementToClipboard(uiElement, callback) {
+    window.sessionStorage.setItem('monsieurBizRichEditorClipboard', JSON.stringify(uiElement));
+    callback();
+    document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielement:copied', {}));
+  }
+
+  pasteUiElementFromClipboard(futurePosition) {
+    const clipboard = window.sessionStorage.getItem('monsieurBizRichEditorClipboard');
+    if (null !== clipboard) {
+      const pastedUiElement = JSON.parse(clipboard);
+      const manager = this;
+      manager.requestUiElementsHtml([pastedUiElement], function () {
+        if (this.status === 200) {
+          let renderedElements = JSON.parse(this.responseText);
+          const elementHtml = renderedElements.shift();
+          if (pastedUiElement.code === undefined && pastedUiElement.type !== undefined) {
+            pastedUiElement.code = pastedUiElement.type;
+            pastedUiElement.data = pastedUiElement.fields;
+            delete pastedUiElement.type;
+            delete pastedUiElement.fields;
+          }
+          let uiElement = manager.config.findUiElementByCode(pastedUiElement.code);
+          if (null !== uiElement) {
+            if (manager.tags.length > 0) {
+              let copy = false;
+              for (let tagIndex in manager.tags) {
+                if (0 <= manager.config.uielements[uiElement.code].tags.indexOf(manager.tags[tagIndex])) {
+                  copy = true;
+                }
+              }
+              if (copy) {
+                manager.create(uiElement.code, pastedUiElement.data, elementHtml, futurePosition);
+              } else {
+                alert(manager.config.unallowedUiElementMessage);
+              }
+            } else {
+              manager.create(uiElement.code, pastedUiElement.data, elementHtml, futurePosition);
+            }
+          }
+        }
+      });
+    }
   }
 
   dispatchInitFormEvent(form) {

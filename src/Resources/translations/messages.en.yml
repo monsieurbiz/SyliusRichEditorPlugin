@@ -114,6 +114,10 @@ monsieurbiz_richeditor_plugin:
       center: 'Center'
       right: 'Right'
       justify: 'Justify'
+    clipboard: 'Clipboard'
+    paste_from_clipboard: 'Paste from clipboard'
+    copied: 'Copied!'
+    copy: 'Copy'
   action:
     new: 'Toggle available widgets'
     preview: 'Preview'
@@ -122,5 +126,6 @@ monsieurbiz_richeditor_plugin:
     cannot_find_type: 'Cannot find type for some UI Elements'
     cannot_upload_image: 'Cannot upload the image. The file may be too large or have incorrect format.'
     ajax_error: 'There is a technical problem. Please contact your administrator.'
+    unallowed_uielement: 'Element not allowed here'
   ui:
     disabled: 'Disabled'

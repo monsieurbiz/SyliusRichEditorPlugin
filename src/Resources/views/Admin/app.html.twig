@@ -9,6 +9,10 @@
             <i class="plus square icon"></i>
             {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
         </a>
+        <a data-position="{{position}}" class="item js-uie-paste disabled" type="button">
+            <i class="paste icon"></i>
+            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.paste_from_clipboard"|trans }}{% verbatim %}
+        </a>
     </div>
 </div>
 {% endverbatim %}
@@ -36,6 +40,9 @@
                 </button>
                 <button class="ui button js-uie-down" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_down'|trans }}{% verbatim %}" data-inverted>
                     <i class="arrow down icon"></i>
+                </button>
+                <button class="ui button js-uie-copy" type="button" data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copy'|trans }}{% verbatim %}" data-inverted>
+                    <i class="copy icon"></i>
                 </button>
             </div>
         </div>
@@ -149,7 +156,8 @@
                 '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}',
                 '{{ monsieurbiz_richeditor_get_default_element() }}',
                 '{{ monsieurbiz_richeditor_get_default_element_data_field() }}',
-                '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}'
+                '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}',
+                '{{ 'monsieurbiz_richeditor_plugin.error.unallowed_uielement'|trans|e('js') }}'
             );
             editor.manager = new MonsieurBizRichEditorManager(config);
         });
