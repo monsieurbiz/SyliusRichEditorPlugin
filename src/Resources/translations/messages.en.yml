@@ -89,6 +89,8 @@ monsieurbiz_richeditor_plugin:
   form:
     add: 'Add an element'
     move: 'Move'
+    move_up: 'Move Up'
+    move_down: 'Move Down'
     edit: 'Edit'
     delete: 'Delete'
     close: 'Close'
