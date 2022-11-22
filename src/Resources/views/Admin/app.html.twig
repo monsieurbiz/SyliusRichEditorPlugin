@@ -1,13 +1,15 @@
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
 {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
 
-<script id="monsieurbiz-rich-editor-button-add" type="x-tmpl-mustache">
+<script id="monsieurbiz-rich-editor-actions" type="x-tmpl-mustache">
 {% verbatim %}
 <div class="ui horizontal divider">
-    <button data-position="{{position}}" class="tiny ui basic button uie-m-0 js-uie-add" type="button">
-        <i class="plus square icon"></i>
-        {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
-    </button>
+    <div class="ui compact tiny menu">
+        <a data-position="{{position}}" class="item js-uie-add" type="button">
+            <i class="plus square icon"></i>
+            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
+        </a>
+    </div>
 </div>
 {% endverbatim %}
 </script>
@@ -138,7 +140,7 @@
                 uielements,
                 wysiwyg,
                 document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
-                document.getElementById('monsieurbiz-rich-editor-button-add').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-actions').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element-card').innerHTML,
                 '{{ "monsieurbiz_richeditor_plugin.form.confirm_delete" |trans|e('js') }}',

@@ -60,7 +60,7 @@ global.MonsieurBizRichEditorConfig = class {
     uielements,
     wysiwyg,
     containerHtml,
-    buttonAddHtml,
+    actionsHtml,
     elementHtml,
     elementCardHtml,
     deletionConfirmation,
@@ -75,7 +75,7 @@ global.MonsieurBizRichEditorConfig = class {
     this.uielements = uielements;
     this.wysiwyg = wysiwyg;
     this.containerHtml = containerHtml;
-    this.buttonAddHtml = buttonAddHtml;
+    this.actionsHtml = actionsHtml;
     this.elementHtml = elementHtml;
     this.elementCardHtml = elementCardHtml;
     this.deletionConfirmation = deletionConfirmation;
@@ -259,24 +259,28 @@ global.MonsieurBizRichEditorManager = class {
     let elementsContainer = this.container.querySelector('.js-uie-container');
     elementsContainer.innerHTML = '';
     this.uiElements.forEach(function (element, position) {
-      elementsContainer.append(this.getNewButton(position));
+      elementsContainer.append(this.getActions(position));
       elementsContainer.append(this.getUiElement(element, position));
     }.bind(this));
-    elementsContainer.append(this.getNewButton(this.uiElements.length));
+    elementsContainer.append(this.getActions(this.uiElements.length));
   }
 
-  getNewButton(position) {
-    let buttonWrapper = document.createElement('div');
-    buttonWrapper.innerHTML = Mustache.render(this.config.buttonAddHtml, {'position': position});
-    let button = buttonWrapper.firstElementChild;
-    button.querySelector('.js-uie-add').position = position;
-    button.querySelector('.js-uie-add').manager = this;
-    button.querySelector('.js-uie-add').addEventListener('click', function (e) {
-      button.querySelector('.js-uie-add').manager.openSelectionPanel(
-        button.querySelector('.js-uie-add').position
+  getActions(position) {
+    let actionsWrapper = document.createElement('div');
+    actionsWrapper.innerHTML = Mustache.render(this.config.actionsHtml, {'position': position});
+
+    let actions = actionsWrapper.firstElementChild;
+
+    // Add button
+    actions.querySelector('.js-uie-add').position = position;
+    actions.querySelector('.js-uie-add').manager = this;
+    actions.querySelector('.js-uie-add').addEventListener('click', function (e) {
+      actions.querySelector('.js-uie-add').manager.openSelectionPanel(
+        actions.querySelector('.js-uie-add').position
       );
     });
-    return button;
+
+    return actions;
   }
 
   getUiElement(element, position) {
