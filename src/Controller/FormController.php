@@ -19,6 +19,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementFormOptionsInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploaderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType as NativeFileType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -193,6 +194,10 @@ class FormController extends AbstractController
         $processedData = [];
         foreach ($form as $child) {
             $formData = $this->processFormData($child, $fileUploader, $requestData[$child->getName()] ?? []);
+            $formType = $child->getConfig()->getType()->getInnerType();
+            if ($formType instanceof CollectionType) {
+                $formData = array_values($formData);
+            }
             $processedData[$child->getName()] = $formData;
         }
 
