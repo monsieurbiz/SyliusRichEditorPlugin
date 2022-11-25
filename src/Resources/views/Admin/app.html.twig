@@ -1,13 +1,19 @@
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
 {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
 
-<script id="monsieurbiz-rich-editor-button-add" type="x-tmpl-mustache">
+<script id="monsieurbiz-rich-editor-actions" type="x-tmpl-mustache">
 {% verbatim %}
 <div class="ui horizontal divider">
-    <button data-position="{{position}}" class="tiny ui basic button uie-m-0 js-uie-add" type="button">
-        <i class="plus square icon"></i>
-        {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
-    </button>
+    <div class="ui compact tiny menu">
+        <a data-position="{{position}}" class="item js-uie-add" type="button">
+            <i class="plus square icon"></i>
+            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
+        </a>
+        <a data-position="{{position}}" class="item js-uie-paste disabled" type="button">
+            <i class="paste icon"></i>
+            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.paste_from_clipboard"|trans }}{% verbatim %}
+        </a>
+    </div>
 </div>
 {% endverbatim %}
 </script>
@@ -23,17 +29,20 @@
                 {{#disabled}}<span class="ui label">{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.ui.disabled'|trans }}{% verbatim %}</span>{{/disabled}}
             </h3>
             <div class="ui small basic icon buttons sm:uie-mt-xs">
-                <button class="ui button js-uie-delete" type="button">
+                <button class="ui button js-uie-delete" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.delete'|trans }}{% verbatim %}" data-inverted>
                     <i class="trash alternate outline icon"></i>
                 </button>
-                <button class="ui button js-uie-edit" type="button">
+                <button class="ui button js-uie-edit" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.edit'|trans }}{% verbatim %}" data-inverted>
                     <i class="pencil alternate icon"></i>
                 </button>
-                <button class="ui button js-uie-up" type="button">
+                <button class="ui button js-uie-up" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_up'|trans }}{% verbatim %}" data-inverted>
                     <i class="arrow up icon"></i>
                 </button>
-                <button class="ui button js-uie-down" type="button">
+                <button class="ui button js-uie-down" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_down'|trans }}{% verbatim %}" data-inverted>
                     <i class="arrow down icon"></i>
+                </button>
+                <button class="ui button js-uie-copy" type="button" data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copy'|trans }}{% verbatim %}" data-inverted>
+                    <i class="copy icon"></i>
                 </button>
             </div>
         </div>
@@ -138,7 +147,7 @@
                 uielements,
                 wysiwyg,
                 document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
-                document.getElementById('monsieurbiz-rich-editor-button-add').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-actions').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element-card').innerHTML,
                 '{{ "monsieurbiz_richeditor_plugin.form.confirm_delete" |trans|e('js') }}',
@@ -147,7 +156,8 @@
                 '{{ url("monsieurbiz_richeditor_admin_form_render_elements")|e('js') }}',
                 '{{ monsieurbiz_richeditor_get_default_element() }}',
                 '{{ monsieurbiz_richeditor_get_default_element_data_field() }}',
-                '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}'
+                '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}',
+                '{{ 'monsieurbiz_richeditor_plugin.error.unallowed_uielement'|trans|e('js') }}'
             );
             editor.manager = new MonsieurBizRichEditorManager(config);
         });

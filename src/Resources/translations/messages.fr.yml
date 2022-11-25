@@ -89,6 +89,8 @@ monsieurbiz_richeditor_plugin:
   form:
     add: 'Ajouter un élément'
     move: 'Déplacer'
+    move_up: 'Déplacer vers le haut'
+    move_down: 'Déplacer vers le bas'
     edit: 'Éditer'
     delete: 'Supprimer'
     close: 'Fermer'
@@ -112,6 +114,10 @@ monsieurbiz_richeditor_plugin:
       center: 'Centré'
       right: 'Droite'
       justify: 'Justifié'
+    clipboard: 'Presse-papier'
+    paste_from_clipboard: 'Coller depuis le presse-papier'
+    copied: 'Copié !'
+    copy: 'Copier'
   action:
     new: 'Afficher les widgets disponibles'
     preview: 'Prévisualiser'
@@ -120,5 +126,6 @@ monsieurbiz_richeditor_plugin:
     cannot_find_type: 'Impossible de trouver le type pour certains éléments'
     cannot_upload_file: 'Impossible de charger le fichier. Il est possible qu''il soit trop lourd ou son format incorrect.'
     ajax_error: 'Un problème technique est survenu. Merci de contacter votre administrateur.'
+    unallowed_uielement: 'Élément non autorisé ici'
   ui:
     disabled: 'Désactivé'
