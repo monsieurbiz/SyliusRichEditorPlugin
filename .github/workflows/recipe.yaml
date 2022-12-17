@@ -38,6 +38,10 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: gd, intl, json
 
+      - name: Set project php-version
+        run: |
+          echo "${{ matrix.php }}" > .php-version
+
       - uses: actions/checkout@v2
         with:
           path: plugin
