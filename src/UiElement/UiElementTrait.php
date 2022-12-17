@@ -127,7 +127,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'code' => $this->getCode(),
