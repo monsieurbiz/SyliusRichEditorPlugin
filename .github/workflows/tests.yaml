@@ -35,6 +35,10 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: gd, intl, json
 
+      - name: Set project php-version
+        run: |
+          echo "${{ matrix.php }}" > .php-version
+
       - name: Install symfony CLI
         run: |
           curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
