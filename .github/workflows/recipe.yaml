@@ -91,7 +91,7 @@ jobs:
       - name: Require plugin without install
         working-directory: ./sylius
         run: |
-          composer require --no-install --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev"
+          composer require --no-install --no-scripts monsieurbiz/sylius-rich-editor-plugin="*@dev"
 
       - name: Composer install
         working-directory: ./sylius
