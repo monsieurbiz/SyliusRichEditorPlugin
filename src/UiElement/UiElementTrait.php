@@ -127,6 +127,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return [

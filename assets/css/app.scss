@@ -25,7 +25,7 @@ html.is-disabled body {
     padding: 10px;
 
     // These lines are here to avoid font-size style after removing EOL in the editor
-    // @see https://github.com/monsieurbiz/SyliusRichEditorPlugin/issues/132 
+    // @see https://github.com/monsieurbiz/SyliusRichEditorPlugin/issues/132
     p, span {
         font-size: unset !important;
         line-height: unset !important;
@@ -60,7 +60,7 @@ html.is-disabled body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 200;
+    z-index: 999;
     display: none;
     padding: 0.714rem 0 0.714rem 5%;
     -webkit-user-select: none;

@@ -40,7 +40,7 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
     /**
      * @inheritdoc
      */
-    public function getAlias()
+    public function getAlias(): string
     {
         return str_replace(['rich_editor', 'monsieur_biz'], ['richeditor', 'monsieurbiz'], parent::getAlias());
     }

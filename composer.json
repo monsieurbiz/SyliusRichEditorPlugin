@@ -5,10 +5,10 @@
     "description": "A Rich Editor plugin for Sylius.",
     "license": "MIT",
     "require": {
-        "php": "~7.4|~8.0",
+        "php": "~7.4|~8.0|~8.1",
         "ext-json": "*",
         "ext-intl": "*",
-        "sylius/sylius": ">=1.8 <1.12"
+        "sylius/sylius": ">=1.8 <1.13"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -30,7 +30,7 @@
         "mikey179/vfsstream": "^1.6",
         "mockery/mockery": "^1.4",
         "pamil/prophecy-common": "^0.1",
-        "phpspec/phpspec": "^6.1",
+        "phpspec/phpspec": "^6.1|^7.2",
         "phpstan/phpstan": "^0.12.57",
         "phpstan/phpstan-doctrine": "^0.12.19",
         "phpstan/phpstan-webmozart-assert": "^0.12.7",
@@ -56,7 +56,7 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "phpcs": "php-cs-fixer fix --using-cache=false",
+        "phpcs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --using-cache=false",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
         "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml",
         "phpunit": "phpunit",

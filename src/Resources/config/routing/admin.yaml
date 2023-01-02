@@ -2,19 +2,19 @@ monsieurbiz_richeditor_admin_form_create:
     path: /monsieurbiz_richeditor/form/{code}
     methods: [GET]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController::viewAction
 
 monsieurbiz_richeditor_admin_form_edit:
     path: /monsieurbiz_richeditor/form/{code}
     methods: [POST]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:viewAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController::viewAction
 
 monsieurbiz_richeditor_admin_form_submit:
     path: /monsieurbiz_richeditor/submit/{code}/{isEdition}
     methods: [POST]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:submitAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController::submitAction
         isEdition: 0
     requirements:
         isEdition:  1|0
@@ -23,4 +23,4 @@ monsieurbiz_richeditor_admin_form_render_elements:
     path: /monsieurbiz_richeditor/render_elements
     methods: [POST]
     defaults:
-        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController:renderElementsAction
+        _controller: MonsieurBiz\SyliusRichEditorPlugin\Controller\FormController::renderElementsAction
