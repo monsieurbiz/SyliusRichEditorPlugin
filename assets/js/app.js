@@ -610,6 +610,9 @@ global.MonsieurBizRichEditorManager = class {
     req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     let data = new FormData();
     data.append('ui_elements', JSON.stringify(uiElements));
+    if (this.input.dataset.locale) {
+      data.append('locale', this.input.dataset.locale);
+    }
     req.uiElements = uiElements;
     req.manager = this;
     req.send(data);
