@@ -20,7 +20,7 @@ final class VideoType extends FileType
     /**
      * @inheritdoc
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'monsieurbiz_rich_editor_plugin_video';
     }
