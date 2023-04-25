@@ -23,7 +23,7 @@ final class ImageType extends AbstractFileType
     /**
      * @inheritdoc
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'monsieurbiz_rich_editor_plugin_image';
     }
