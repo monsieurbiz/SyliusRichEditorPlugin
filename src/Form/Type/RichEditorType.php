@@ -27,6 +27,9 @@ class RichEditorType extends TextType
     {
         $view->vars['attr']['data-component'] = 'rich-editor';
         $view->vars['attr']['data-tags'] = implode(',', $options['tags'] ?? []);
+        if (null !== $options['locale']) {
+            $view->vars['attr']['data-locale'] = $options['locale'];
+        }
         parent::buildView($view, $form, $options);
     }
 
@@ -38,6 +41,7 @@ class RichEditorType extends TextType
         $resolver->setDefaults([
             'compound' => false,
             'tags' => [],
+            'locale' => null,
         ]);
     }
 }

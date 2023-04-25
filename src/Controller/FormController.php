@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Controller;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\Switcher\SwitchAdminLocaleInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementFormOptionsInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
@@ -80,13 +81,19 @@ class FormController extends AbstractController
     /**
      * Render all UI elements in HTML.
      */
-    public function renderElementsAction(Request $request): Response
+    public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
         if ($uiElements = $request->get('ui_elements')) {
             $uiElements = json_decode($uiElements, true);
             if (!\is_array($uiElements)) {
                 throw $this->createNotFoundException();
             }
+        }
+
+        // if we have a locale value in the post data, we change the current
+        // admin locale to make the ui elements in the correct version.
+        if ($locale = $request->get('locale')) {
+            $switchAdminLocale->switchLocale($locale);
         }
 
         $result = [];

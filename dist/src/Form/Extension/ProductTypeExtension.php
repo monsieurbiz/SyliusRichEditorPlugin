@@ -26,6 +26,7 @@ class ProductTypeExtension extends AbstractTypeExtension
         $builder->add('description', RichEditorType::class, [
             'required' => false,
             'label' => 'sylius.form.product.description',
+            'locale' => $builder->getName(),
         ]);
     }
 
