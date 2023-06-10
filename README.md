@@ -113,13 +113,25 @@ As example:
 $builder->add('description', RichEditorType::class, [
     'required' => false,
     'label' => 'sylius.form.product.description',
-    'tags' => ['product'],
+    'tags' => ['-default', 'product'],
 ]);
 ```
 
-In that example, only the Ui Elements with the tag `product` will be available.  
+In that example, all Ui Elements with the tag `default` will be excluded, then the Ui Elements with the tag `product` will be included.  
 Don't worry, you can add this filter afterwards, we won't remove the already present Ui Elements of your field. But we
 won't allow to add more if they don't have one of the allowed tags!
+
+#### Order matters
+
+The order of the tags matters! The first tag will be less important then the second.  
+As example, if you have 3 Ui Elements with the following tags:
+
+- element1: tag1, tag2, tag3
+- element2: tag1, tag2
+- element3: tag2, tag3
+
+And you set the tags of your field to `-tag1, tag2, -tag3`, then the only available Ui Element will be: `element2`.  
+They all have the tag2 to include them, but the element1 and element3 have the tag3 which is excluding them after being both included.
 
 #### Example of setting tags to an Ui Element using yaml
 

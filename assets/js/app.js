@@ -394,14 +394,16 @@ global.MonsieurBizRichEditorManager = class {
       ) {
         continue;
       }
+      let append = true;
       if (this.tags.length > 0) {
-        for (let tagIndex in this.tags) {
-          if (0 <= this.config.uielements[elementCode].tags.indexOf(this.tags[tagIndex])) {
-            cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
-            break;
+        for (let tagIndex in this.tags) { // We proceed tag by tag, excluding and including for every tag, so the order matters!
+          let realTag = this.tags[tagIndex].replace(/^(-|\+)/, '');
+          if (0 <= this.config.uielements[elementCode].tags.indexOf(realTag)) { // The element is tagged
+            append = !this.tags[tagIndex].startsWith('-'); // Append only if the tag is not excluded
           }
         }
-      } else {
+      }
+      if (append) {
         cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
       }
     }

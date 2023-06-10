@@ -1,9 +1,14 @@
 monsieurbiz_sylius_richeditor:
     ui_elements:
+        monsieurbiz.html:
+            tags: [ html ]
+        monsieurbiz.youtube:
+            tags: [ youtube ]
         app.google_maps:
             title: 'app.ui_element.google_maps.title'
             description: 'app.ui_element.google_maps.description'
             icon: map pin
+            tags: [ map ]
             classes:
                 form: App\Form\Type\UiElement\GoogleMapsType
                 ui_element: App\UiElement\GoogleMapsUiElement

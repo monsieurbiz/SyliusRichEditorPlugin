@@ -27,6 +27,7 @@ class ProductTypeExtension extends AbstractTypeExtension
             'required' => false,
             'label' => 'sylius.form.product.description',
             'locale' => $builder->getName(),
+            //'tags' => ['-map'],
         ]);
     }
 
