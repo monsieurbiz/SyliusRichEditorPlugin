@@ -24,8 +24,8 @@ jobs:
       DOCKER_INTERACTIVE_ARGS: -t
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '14'
 
@@ -44,7 +44,7 @@ jobs:
           curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
           sudo apt install symfony-cli
 
-      - uses: actions/cache@v1
+      - uses: actions/cache@v3
         id: cache-composer
         with:
           path: /home/runner/.composer/cache
