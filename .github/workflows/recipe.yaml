@@ -11,7 +11,7 @@ jobs:
 
   recipe:
 
-    name: Recipe (PHP ${{ matrix.php }}, Sylius ${{ matrix.sylius }})
+    name: Flex recipe (PHP ${{ matrix.php }}, Sylius ${{ matrix.sylius }})
 
     runs-on: ubuntu-latest
 

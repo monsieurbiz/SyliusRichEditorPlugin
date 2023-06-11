@@ -10,6 +10,8 @@ on:
 jobs:
 
   php:
+      
+    name: Quality tests (PHP ${{ matrix.php }})
 
     runs-on: ubuntu-latest
 

@@ -10,6 +10,8 @@ jobs:
 
   security:
 
+    name: Security check (PHP ${{ matrix.php }})
+
     runs-on: ubuntu-latest
 
     strategy:
