@@ -171,6 +171,13 @@ global.MonsieurBizRichEditorManager = class {
     let inputValue = this.input.value.trim();
 
     this.tags = this.input.dataset.tags.length === 0 ? [] : this.input.dataset.tags.split(',');
+    this.tagsAreExclusive = false;
+    for (let tag of this.tags) {
+      if (!tag.startsWith('-')) {
+        this.tagsAreExclusive = true;
+        break;
+      }
+    }
 
     let initInterfaceCallback = function () {
       this.initInterface();
@@ -396,6 +403,7 @@ global.MonsieurBizRichEditorManager = class {
       }
       let append = true;
       if (this.tags.length > 0) {
+        append = !this.tagsAreExclusive;
         for (let tagIndex in this.tags) { // We proceed tag by tag, excluding and including for every tag, so the order matters!
           let realTag = this.tags[tagIndex].replace(/^(-|\+)/, '');
           if (0 <= this.config.uielements[elementCode].tags.indexOf(realTag)) { // The element is tagged

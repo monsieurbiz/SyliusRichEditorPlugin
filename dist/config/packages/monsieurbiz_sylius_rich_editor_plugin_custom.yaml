@@ -15,3 +15,13 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '/Admin/UiElement/google_maps.html.twig'
                 front_render: '/Shop/UiElement/google_maps.html.twig'
+        app.noseeme:
+            title: 'You should not see me'
+            description: 'The invisible Ui Element'
+            icon: eye slash
+            tags: [ noseeme ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
