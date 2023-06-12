@@ -58,7 +58,7 @@ ${APP_DIR}/node_modules: yarn.install
 ### TEST APPLICATION
 ### ¯¯¯¯¯
 
-application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml
+application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml ## Setup the entire Test Application
 
 ${APP_DIR}:
 	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="~${SYLIUS_VERSION}" ${APP_DIR})
@@ -144,7 +144,7 @@ test.twig: ## Validate Twig templates
 ### SYLIUS
 ### ¯¯¯¯¯¯
 
-sylius: dependencies sylius.database sylius.fixtures sylius.assets ## Install Sylius
+sylius: dependencies sylius.database sylius.fixtures sylius.assets messenger.setup ## Install Sylius
 .PHONY: sylius
 
 sylius.database: ## Setup the database
@@ -159,6 +159,9 @@ sylius.assets: ## Install all assets with symlinks
 	${CONSOLE} assets:install --symlink
 	${CONSOLE} sylius:install:assets
 	${CONSOLE} sylius:theme:assets:install --symlink
+
+messenger.setup: ## Setup Messenger transports
+	${CONSOLE} messenger:setup-transports
 
 ###
 ### PLATFORM
