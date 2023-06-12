@@ -1,12 +1,27 @@
 monsieurbiz_sylius_richeditor:
     ui_elements:
+        monsieurbiz.html:
+            tags: [ html ]
+        monsieurbiz.youtube:
+            tags: [ youtube ]
         app.google_maps:
             title: 'app.ui_element.google_maps.title'
             description: 'app.ui_element.google_maps.description'
             icon: map pin
+            tags: [ map ]
             classes:
                 form: App\Form\Type\UiElement\GoogleMapsType
                 ui_element: App\UiElement\GoogleMapsUiElement
             templates:
                 admin_render: '/Admin/UiElement/google_maps.html.twig'
                 front_render: '/Shop/UiElement/google_maps.html.twig'
+        app.noseeme:
+            title: 'You should not see me'
+            description: 'The invisible Ui Element'
+            icon: eye slash
+            tags: [ noseeme ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
