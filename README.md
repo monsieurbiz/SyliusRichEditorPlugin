@@ -63,7 +63,7 @@ bin/console asset:install
 ### Update your form type
 
 To make a field use the rich editor, you must use the `RichEditorType` type for it.  
-We have an example of implementation in the [test application](/tests/Application/src/Form/Extension/ProductTypeExtension.php).
+We have an example of implementation in the [file for the test application](/dist/src/Form/Extension/ProductTypeExtension.php).
 
 If your field has some data already, like some previous text before installing this plugin, 
 then we will convert it for you as an HTML Element which contains… HTML.
@@ -80,7 +80,7 @@ To display the content of the rich editor field you must call the twig filter:
 {{ content | monsieurbiz_richeditor_render_field }}
 ```
 
-You can see an example in the [test application](/tests/Application/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
+You can see an example in the [file for the test application](/dist/templates/bundles/SyliusShopBundle/Product/Show/Tabs/Details/_description.html.twig)
 
 ### Custom rendering of elements
 
