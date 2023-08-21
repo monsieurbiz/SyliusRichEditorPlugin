@@ -18,7 +18,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class RowType extends AbstractType
+class ColumnType extends AbstractType
 {
     /**
      * @inheritdoc
@@ -28,7 +28,7 @@ class RowType extends AbstractType
         $builder
             ->add('content', RichEditorType::class, [
                 'required' => true,
-                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.field.content',
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.field.content',
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],

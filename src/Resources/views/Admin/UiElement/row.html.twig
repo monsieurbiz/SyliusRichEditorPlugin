@@ -2,13 +2,13 @@
     UI Element template
     type: row
     element fields :
-        columns
+        content
 #}
-{% if element is not empty and element.columns is not empty %}
+{% if element.content|default('') is not empty %}
 <div class="ui stackable grid equal width">
-    {% set columns = monsieurbiz_richeditor_get_elements(element.columns) %}
-    {% for column in columns %}
-        <div class="column">
+    {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
+    {% for column in content %}
+        <div class="column" style="border: 2px dashed rgba(34, 36, 38, 0.1);">
            {{ column | monsieurbiz_richeditor_render_element }}
         </div>
     {% endfor %}

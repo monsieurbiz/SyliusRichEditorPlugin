@@ -1,16 +1,14 @@
 {#
     UI Element template
-    type: row
+    type: columns
     element fields :
         content
 #}
 {% if element.content|default('') is not empty %}
-<div class="ui stackable grid equal width">
     {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
-    {% for column in content %}
-        <div class="column">
-           {{ column | monsieurbiz_richeditor_render_element }}
+    {% for row in content %}
+        <div style="border: 2px dashed rgba(34, 36, 38, 0.1); padding: 10px">
+           {{ row | monsieurbiz_richeditor_render_element }}
         </div>
     {% endfor %}
-</div>
 {% endif %}
