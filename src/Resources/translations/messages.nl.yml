@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.row:
+      title: 'Rij'
+      description: 'Een element met een andere lijst met elementen erin'
+      field:
+        columns: 'Kolommen'
     monsieurbiz.html:
       title: 'HTML'
       description: 'Een element met HTML-code'

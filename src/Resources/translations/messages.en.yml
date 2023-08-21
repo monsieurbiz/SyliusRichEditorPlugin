@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.row:
+      title: 'Row Element'
+      description: 'An element with another list of elements inside'
+      field:
+        columns: 'Columns'
     monsieurbiz.html:
       title: 'HTML Element'
       description: 'An element with raw data'

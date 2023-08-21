@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.row:
+      title: 'Red'
+      description: 'Element s drugim popisom elemenata unutra'
+      field:
+        columns: 'Stupci'
     monsieurbiz.html:
       title: 'Neobrađeni HTML'
       description: 'Element koji sadrži neobrađeni HTML.'

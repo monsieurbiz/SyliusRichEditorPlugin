@@ -1,5 +1,10 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
+    monsieurbiz.row:
+      title: 'Lame Ligne'
+      description: 'Une lame contenant une autre liste de lames à l''intérieur'
+      field:
+        columns: 'Colonnes'
     monsieurbiz.html:
       title: 'Lame HTML'
       description: 'Une lame contenant un contenu en brut'

@@ -1,0 +1,16 @@
+{#
+    UI Element template
+    type: row
+    element fields :
+        columns
+#}
+{% if element is not empty and element.columns is not empty %}
+<div class="ui stackable grid equal width">
+    {% set columns = monsieurbiz_richeditor_get_elements(element.columns) %}
+    {% for column in columns %}
+        <div class="column">
+           {{ column | monsieurbiz_richeditor_render_element }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
