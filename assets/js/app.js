@@ -171,13 +171,6 @@ global.MonsieurBizRichEditorManager = class {
     let inputValue = this.input.value.trim();
 
     this.tags = this.input.dataset.tags.length === 0 ? [] : this.input.dataset.tags.split(',');
-    this.tagsAreExclusive = false;
-    for (let tag of this.tags) {
-      if (!tag.startsWith('-')) {
-        this.tagsAreExclusive = true;
-        break;
-      }
-    }
 
     let initInterfaceCallback = function () {
       this.initInterface();
@@ -401,17 +394,7 @@ global.MonsieurBizRichEditorManager = class {
       ) {
         continue;
       }
-      let append = true;
-      if (this.tags.length > 0) {
-        append = !this.tagsAreExclusive;
-        for (let tagIndex in this.tags) { // We proceed tag by tag, excluding and including for every tag, so the order matters!
-          let realTag = this.tags[tagIndex].replace(/^(-|\+)/, '');
-          if (0 <= this.config.uielements[elementCode].tags.indexOf(realTag)) { // The element is tagged
-            append = !this.tags[tagIndex].startsWith('-'); // Append only if the tag is not excluded
-          }
-        }
-      }
-      if (append) {
+      if (this.elementIsAllowed(this.tags,this.config.uielements[elementCode].tags)) {
         cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
       }
     }
@@ -657,13 +640,7 @@ global.MonsieurBizRichEditorManager = class {
           let uiElement = manager.config.findUiElementByCode(pastedUiElement.code);
           if (null !== uiElement) {
             if (manager.tags.length > 0) {
-              let copy = false;
-              for (let tagIndex in manager.tags) {
-                if (0 <= manager.config.uielements[uiElement.code].tags.indexOf(manager.tags[tagIndex])) {
-                  copy = true;
-                }
-              }
-              if (copy) {
+              if (manager.elementIsAllowed(manager.tags, manager.config.uielements[uiElement.code].tags)) {
                 manager.create(uiElement.code, pastedUiElement.data, elementHtml, futurePosition);
               } else {
                 alert(manager.config.unallowedUiElementMessage);
@@ -675,6 +652,27 @@ global.MonsieurBizRichEditorManager = class {
         }
       });
     }
+  }
+
+  elementIsAllowed(managerTags, elementTags) {
+    let allowed = true;
+
+    for (let tagIndex in managerTags) {
+      let realTag = managerTags[tagIndex].replace(/^(-|\+)/, '');
+      let isExclude = managerTags[tagIndex].startsWith('-');
+
+      if (0 <= elementTags.indexOf(realTag) && isExclude) {
+        allowed = false;
+        break;
+      } else if (0 <= elementTags.indexOf(realTag) && !isExclude) {
+        allowed = true;
+        break;
+      } else if (-1 <= elementTags.indexOf(realTag) && !isExclude) {
+        allowed = false;
+      }
+    }
+
+    return allowed;
   }
 
   dispatchInitFormEvent(form) {
