@@ -170,14 +170,14 @@ global.MonsieurBizRichEditorManager = class {
   /**
    *
    */
-  constructor(config) {
+  constructor(config, tags) {
     config.input.setAttribute('data-rich-editor-uid', config.uid);
 
     this.config = config;
 
     let inputValue = this.input.value.trim();
 
-    this.tags = this.input.dataset.tags.length === 0 ? [] : this.input.dataset.tags.split(',');
+    this.tags = tags;
     this.tagsAreExclusive = false;
     for (let tag of this.tags) {
       if (!tag.startsWith('-')) {
@@ -440,7 +440,7 @@ global.MonsieurBizRichEditorManager = class {
     this.newPanel.dialog.innerHTML = formHtml;
     let form = this.newPanel.dialog;
     this.wysiwyg.load(form);
-    this.dispatchInitFormEvent(form);
+    this.dispatchInitFormEvent(form, this);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -507,7 +507,7 @@ global.MonsieurBizRichEditorManager = class {
     let form = this.editPanel.dialog;
 
     this.wysiwyg.load(form);
-    this.dispatchInitFormEvent(form);
+    this.dispatchInitFormEvent(form, this);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -694,9 +694,9 @@ global.MonsieurBizRichEditorManager = class {
     }
   }
 
-  dispatchInitFormEvent(form) {
+  dispatchInitFormEvent(form, manager) {
     document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitForm', {
-      'detail': {'form': form}
+      'detail': {'form': form, 'manager': manager}
     }));
   }
 };

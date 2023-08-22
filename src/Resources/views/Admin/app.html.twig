@@ -150,7 +150,7 @@
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
 
-        function setupRichEditor(editor) {
+        function setupRichEditor(editor, tags) {
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
@@ -170,11 +170,12 @@
                 '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}',
                 '{{ 'monsieurbiz_richeditor_plugin.error.unallowed_uielement'|trans|e('js') }}'
             );
-            editor.manager = new MonsieurBizRichEditorManager(config);
+            editor.manager = new MonsieurBizRichEditorManager(config, tags);
         }
 
         editors.forEach(function (editor) {
-            setupRichEditor(editor);
+            let tags = editor.dataset.tags.length === 0 ? [] : editor.dataset.tags.split(',')
+            setupRichEditor(editor, tags);
         });
 
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
@@ -188,8 +189,9 @@
         document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
             // Init dynamic editors
             let editors = document.querySelectorAll('[data-component="rich-editor"]:not([data-rich-editor-uid])');
+            let manager = e.detail.manager;
             editors.forEach(function (editor) {
-                setupRichEditor(editor);
+                setupRichEditor(editor, manager.tags); // Retrieve tags from the parent manager
             });
 
             let form = e.detail.form;
