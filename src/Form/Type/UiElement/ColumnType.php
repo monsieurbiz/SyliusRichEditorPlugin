@@ -32,7 +32,6 @@ class ColumnType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
-                'tags' => ['-noseeme'],
             ])
         ;
     }
