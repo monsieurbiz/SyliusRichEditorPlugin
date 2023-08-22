@@ -150,7 +150,7 @@
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
 
-        function setupEditor(editor) {
+        function setupRichEditor(editor) {
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
@@ -174,7 +174,7 @@
         }
 
         editors.forEach(function (editor) {
-            setupEditor(editor);
+            setupRichEditor(editor);
         });
 
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
@@ -189,7 +189,7 @@
             // Init dynamic editors
             let editors = document.querySelectorAll('[data-component="rich-editor"]:not([data-rich-editor-uid])');
             editors.forEach(function (editor) {
-                setupEditor(editor);
+                setupRichEditor(editor);
             });
 
             let form = e.detail.form;
