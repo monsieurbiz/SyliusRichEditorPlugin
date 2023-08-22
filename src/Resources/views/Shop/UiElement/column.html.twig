@@ -4,6 +4,6 @@
     element fields :
         content
 #}
-{% if element.content|default('') is not empty%}
+{% if element.content|default('') is not empty %}
     {{ monsieurbiz_richeditor_get_elements(element.content) | monsieurbiz_richeditor_render_elements }}
 {% endif %}
