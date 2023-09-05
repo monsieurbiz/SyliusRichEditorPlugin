@@ -163,19 +163,16 @@ monsieurbiz_sylius_richeditor:
 
 ### Row Element (Layout)
 
-It contains another rich editor field, each element will be displayed side by side.
+It contains another rich editor field, each element will be displayed one below the other (as rows…).
 
 ### Column Element (Layout)
 
-It contains another rich editor field, each element will be displayed one below the other.
+It contains another rich editor field, each element will be displayed side by side (as columns…).
 
-By using this element in the `Row` element, you will be able to build some layout like this:
+By using this element in the `Row` element, you will be able to build some layout like the screenshot below.  
+You can distinguish the `Row` element and the `Column` element by their dotted borders.
 
-![Example of using layouts](screenshots/layout.png)
-
-This is built by using 2 columns elements in the row element.
-
-![The column layout in row layout](screenshots/column.png)
+![The Columns and Rows elements](screenshots/columns_and_rows.jpg)
 
 ### HTML Element
 
