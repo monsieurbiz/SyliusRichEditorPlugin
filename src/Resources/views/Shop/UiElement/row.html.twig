@@ -5,10 +5,10 @@
         content
 #}
 {% if element.content|default('') is not empty %}
-<div class="ui stackable grid equal width">
+<div class="ui grid equal width container">
     {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
     {% for column in content %}
-        <div class="column">
+        <div class="row">
            {{ column | monsieurbiz_richeditor_render_element }}
         </div>
     {% endfor %}
