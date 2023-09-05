@@ -142,3 +142,25 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image_collection.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
+        monsieurbiz.column:
+            alias: column
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.description'
+            icon: columns
+            tags: [ default, layout ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ColumnType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/column.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/column.html.twig'
+        monsieurbiz.row:
+            alias: row
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.description'
+            icon: columns
+            tags: [ default, layout ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\RowType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/row.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/row.html.twig'

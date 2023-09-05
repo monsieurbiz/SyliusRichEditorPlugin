@@ -1,0 +1,16 @@
+{#
+    UI Element template
+    type: columns
+    element fields :
+        content
+#}
+{% if element.content|default('') is not empty %}
+<div class="ui grid equal width">
+    {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
+    {% for row in content %}
+        <div class="column" style="border: 2px dashed rgba(34,36,38,0.38); padding: 10px; margin: 10px; position: relative;">
+           {{ row | monsieurbiz_richeditor_render_element }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

@@ -161,7 +161,18 @@ monsieurbiz_sylius_richeditor:
 
 ## Available elements
 
-The plugin already contains some simple elements.
+### Row Element (Layout)
+
+It contains another rich editor field, each element will be displayed one below the other (as rows…).
+
+### Column Element (Layout)
+
+It contains another rich editor field, each element will be displayed side by side (as columns…).
+
+By using this element in the `Row` element, you will be able to build some layout like the screenshot below.  
+You can distinguish the `Row` element and the `Column` element by their dotted borders.
+
+![The Columns and Rows elements](screenshots/columns_and_rows.jpg)
 
 ### HTML Element
 

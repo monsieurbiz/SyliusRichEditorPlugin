@@ -80,7 +80,8 @@
             "symfony/thanks": true,
             "phpstan/extension-installer": true,
             "ergebnis/composer-normalize": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "php-http/discovery": true
         }
     }
 }

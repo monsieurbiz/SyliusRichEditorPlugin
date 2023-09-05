@@ -63,6 +63,8 @@ global.MonsieurBizRichEditorConfig = class {
     actionsHtml,
     elementHtml,
     elementCardHtml,
+    panelsHtml,
+    panelsEditHtml,
     deletionConfirmation,
     createElementFormUrl,
     editElementFormUrl,
@@ -79,6 +81,8 @@ global.MonsieurBizRichEditorConfig = class {
     this.actionsHtml = actionsHtml;
     this.elementHtml = elementHtml;
     this.elementCardHtml = elementCardHtml;
+    this.panelsHtml = panelsHtml;
+    this.panelsEditHtml = panelsEditHtml;
     this.deletionConfirmation = deletionConfirmation;
     this.createElementFormUrl = createElementFormUrl;
     this.editElementFormUrl = editElementFormUrl;
@@ -87,6 +91,7 @@ global.MonsieurBizRichEditorConfig = class {
     this.defaultUIElementDataField = defaultUIElementDataField;
     this.errorMessage = errorMessage;
     this.unallowedUiElementMessage = unallowedUiElementMessage;
+    this.uid = Math.random().toString(36).substring(2, 11);
   }
 
   findUiElementByCode(code) {
@@ -165,12 +170,14 @@ global.MonsieurBizRichEditorManager = class {
   /**
    *
    */
-  constructor(config) {
+  constructor(config, tags) {
+    config.input.setAttribute('data-rich-editor-uid', config.uid);
+
     this.config = config;
 
     let inputValue = this.input.value.trim();
 
-    this.tags = this.input.dataset.tags.length === 0 ? [] : this.input.dataset.tags.split(',');
+    this.tags = tags;
     this.tagsAreExclusive = false;
     for (let tag of this.tags) {
       if (!tag.startsWith('-')) {
@@ -246,16 +253,26 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   initUiPanelsInterface() {
-    this.selectionPanel = new Dialog('.js-uie-panels', {
-      labelledby: 'uie-heading',
-      enableAutoFocus: false,
-      closingSelector: '.js-uie-panels-close',
+    let panelsWrapper = document.createElement('div');
+    panelsWrapper.innerHTML = Mustache.render(this.config.panelsHtml, { uid: this.config.uid });
+    document.body.appendChild(panelsWrapper.firstElementChild);
+
+    let panelsEditWrapper = document.createElement('div');
+    panelsEditWrapper.innerHTML = Mustache.render(this.config.panelsEditHtml, {
+      uid: this.config.uid,
     });
-    this.newPanel = new Dialog('.js-uie-panels-new', {
-      helperSelector: '.js-uie-panels-selector',
+    document.body.appendChild(panelsEditWrapper.firstElementChild);
+
+    this.selectionPanel = new Dialog('.js-uie-panels-' + this.config.uid, {
+      labelledby: 'uie-heading-' + this.config.uid,
+      enableAutoFocus: false,
+      closingSelector: '.js-uie-panels-close-' + this.config.uid,
+    });
+    this.newPanel = new Dialog('.js-uie-panels-new-' + this.config.uid, {
+      helperSelector: '.js-uie-panels-selector-' + this.config.uid,
       enableAutoFocus: false,
     });
-    this.editPanel = new Dialog('.js-uie-panels-edit', {
+    this.editPanel = new Dialog('.js-uie-panels-edit-' + this.config.uid, {
       enableAutoFocus: false,
     });
   }
@@ -423,7 +440,7 @@ global.MonsieurBizRichEditorManager = class {
     this.newPanel.dialog.innerHTML = formHtml;
     let form = this.newPanel.dialog;
     this.wysiwyg.load(form);
-    this.dispatchInitFormEvent(form);
+    this.dispatchInitFormEvent(form, this);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -490,7 +507,7 @@ global.MonsieurBizRichEditorManager = class {
     let form = this.editPanel.dialog;
 
     this.wysiwyg.load(form);
-    this.dispatchInitFormEvent(form);
+    this.dispatchInitFormEvent(form, this);
 
     // Form submit
     let formElement = form.querySelector('form');
@@ -677,9 +694,9 @@ global.MonsieurBizRichEditorManager = class {
     }
   }
 
-  dispatchInitFormEvent(form) {
+  dispatchInitFormEvent(form, manager) {
     document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitForm', {
-      'detail': {'form': form}
+      'detail': {'form': form, 'manager': manager}
     }));
   }
 };

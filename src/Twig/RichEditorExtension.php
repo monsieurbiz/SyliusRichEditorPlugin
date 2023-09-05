@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
+use Symfony\Bridge\Twig\AppVariable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -27,6 +28,8 @@ use Twig\TwigFunction;
 
 final class RichEditorExtension extends AbstractExtension
 {
+    private const ADMIN_FIREWALL_CONTEXT = 'security.firewall.map.context.admin';
+
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
@@ -158,7 +161,7 @@ final class RichEditorExtension extends AbstractExtension
             return '';
         }
 
-        $template = $uiElement->getFrontRenderTemplate();
+        $template = $this->isAdmin($context) ? $uiElement->getAdminRenderTemplate() : $uiElement->getFrontRenderTemplate();
 
         $context = array_merge($context, [
             'ui_element' => $uiElement,
@@ -233,5 +236,16 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         return $path;
+    }
+
+    private function isAdmin(array $context): bool
+    {
+        /** @var ?AppVariable $app */
+        $app = $context['app'] ?? null;
+        if (null === $app || null === ($request = $app->getRequest())) {
+            return false;
+        }
+
+        return self::ADMIN_FIREWALL_CONTEXT === $request->get('_firewall_context');
     }
 }

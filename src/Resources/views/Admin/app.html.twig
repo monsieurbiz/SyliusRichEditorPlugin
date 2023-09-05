@@ -83,14 +83,16 @@
 {% endverbatim %}
 </script>
 
-<div class="uie-panels js-uie-panels">
-    <div class="uie-panels__content js-uie-panels-selector">
+<script id="monsieurbiz-rich-editor-panels" type="x-tmpl-mustache">
+{% verbatim %}
+<div class="uie-panels js-uie-panels-{{uid}}">
+    <div class="uie-panels__content js-uie-panels-selector-{{uid}}">
         <div class="uie-flex uie-flex-main-between uie-w-full uie-mb-md">
-            <h2 class="ui header uie-heading uie-m-0" id="uie-heading">
+            <h2 class="ui header uie-heading uie-m-0" id="uie-heading-{{uid}}">
                 {{ 'monsieurbiz_richeditor_plugin.form.select_ui_element'|trans }}
             </h2>
             <div class="uie-ml-md">
-                <button class="ui button js-uie-panels-close" type="button">
+                <button class="ui button icon js-uie-panels-close-{{uid}}" type="button">
                     <i class="close icon"></i>
                     {{ 'monsieurbiz_richeditor_plugin.form.close'|trans }}
                 </button>
@@ -100,15 +102,21 @@
         <div class="ui cards uie-cards js-uie-cards-container">
         </div>
 
-        <div class="uie-panels__new js-uie-panels-new">
+        <div class="uie-panels__new js-uie-panels-new-{{uid}}">
         </div>
     </div>
 </div>
+{% endverbatim %}
+</script>
 
-<div class="uie-panels js-uie-panels-edit">
+<script id="monsieurbiz-rich-editor-panels-edit" type="x-tmpl-mustache">
+{% verbatim %}
+<div class="uie-panels js-uie-panels-edit-{{uid}}">
     <div class="uie-panels__content js-uie-content">
     </div>
 </div>
+{% endverbatim %}
+</script>
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
@@ -141,7 +149,8 @@
 
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
-        editors.forEach(function (editor) {
+
+        function setupRichEditor(editor, tags) {
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
@@ -150,6 +159,8 @@
                 document.getElementById('monsieurbiz-rich-editor-actions').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element-card').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-panels').innerHTML,
+                document.getElementById('monsieurbiz-rich-editor-panels-edit').innerHTML,
                 '{{ "monsieurbiz_richeditor_plugin.form.confirm_delete" |trans|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_create", {"code": "__CODE__"})|e('js') }}',
                 '{{ url("monsieurbiz_richeditor_admin_form_edit", {"code": "__CODE__"})|e('js') }}',
@@ -159,7 +170,12 @@
                 '{{ 'monsieurbiz_richeditor_plugin.error.ajax_error'|trans|e('js') }}',
                 '{{ 'monsieurbiz_richeditor_plugin.error.unallowed_uielement'|trans|e('js') }}'
             );
-            editor.manager = new MonsieurBizRichEditorManager(config);
+            editor.manager = new MonsieurBizRichEditorManager(config, tags);
+        }
+
+        editors.forEach(function (editor) {
+            let tags = editor.dataset.tags.length === 0 ? [] : editor.dataset.tags.split(',')
+            setupRichEditor(editor, tags);
         });
 
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
@@ -169,12 +185,19 @@
                 wysiwyg.load(child);
             });
         });
-    });
 
-    document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
-        let form = e.detail.form;
-        $(form).find('[data-form-type="collection"]').CollectionForm();
-        $(form).find('.sylius-autocomplete').autoComplete();
+        document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
+            // Init dynamic editors
+            let editors = document.querySelectorAll('[data-component="rich-editor"]:not([data-rich-editor-uid])');
+            let manager = e.detail.manager;
+            editors.forEach(function (editor) {
+                setupRichEditor(editor, manager.tags); // Retrieve tags from the parent manager
+            });
+
+            let form = e.detail.form;
+            $(form).find('[data-form-type="collection"]').CollectionForm();
+            $(form).find('.sylius-autocomplete').autoComplete();
+        });
     });
 
     function monsieurBizRichEditorRemoveFile(inputName) {
