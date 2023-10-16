@@ -72,6 +72,8 @@ then we will convert it for you as an HTML Element which contains… HTML.
 
 This way you will be able to use our plugin right away without risking any data lost!
 
+To make it clear: to have rich editor for original admin fields, like _Product description_, _Taxon desription_ etc. you have to update each form type by an extension as the example shows above.
+
 ### Call twig render
 
 To display the content of the rich editor field you must call the twig filter:
