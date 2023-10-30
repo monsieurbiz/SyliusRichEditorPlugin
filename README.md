@@ -1,25 +1,12 @@
-<p align="center">
-    <a href="https://monsieurbiz.com" target="_blank">
-        <img src="https://monsieurbiz.com/logo.png" width="250px" alt="Monsieur Biz logo" />
-    </a>
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://monsieurbiz.com/agence-web-experte-sylius" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" width="200px" alt="Sylius logo" />
-    </a>
-    <br/>
-    <img src="https://monsieurbiz.com/assets/images/sylius_badge_extension-artisan.png" width="100" alt="Monsieur Biz is a Sylius Extension Artisan partner">
-</p>
+[![Banner of Sylius Rich Editor plugin](docs/images/banner.jpg)](https://monsieurbiz.com/agence-web-experte-sylius)
 
 <h1 align="center">Rich Editor</h1>
 
-[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin?public)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt)
-[![Tests Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Tests?logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
-[![Security Status](https://img.shields.io/github/workflow/status/monsieurbiz/SyliusRichEditorPlugin/Security?label=security&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
-
+[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin?public)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt) [![Tests](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/tests.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/tests.yaml) [![Security](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/security.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/security.yaml) [![Flex Recipe](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/recipe.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/recipe.yaml)
 
 This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
 
-![Example of rich editor field](screenshots/demo.gif)
+![Example of rich editor field](docs/images/screenshots/demo.gif)
 
 ## Installation
 
@@ -68,7 +55,7 @@ We have an example of implementation in the [file for the test application](/dis
 If your field has some data already, like some previous text before installing this plugin, 
 then we will convert it for you as an HTML Element which contains… HTML.
 
-![Example of a rich editor field](screenshots/form_field.png)
+![Example of a rich editor field](docs/images/screenshots/form_field.png)
 
 This way you will be able to use our plugin right away without risking any data lost!
 
@@ -174,57 +161,57 @@ It contains another rich editor field, each element will be displayed side by si
 By using this element in the `Row` element, you will be able to build some layout like the screenshot below.  
 You can distinguish the `Row` element and the `Column` element by their dotted borders.
 
-![The Columns and Rows elements](screenshots/columns_and_rows.jpg)
+![The Columns and Rows elements](docs/images/screenshots/columns_and_rows.jpg)
 
 ### HTML Element
 
-![The HTML element](screenshots/html.png)
+![The HTML element](docs/images/screenshots/html.png)
 
 ### Text element
 
-![The text element](screenshots/text.png)
+![The text element](docs/images/screenshots/text.png)
 
 ### Quote element
 
-![The quote element](screenshots/quote.png)
+![The quote element](docs/images/screenshots/quote.png)
 
 ### Image element
 
-![The image element](screenshots/image.png)
+![The image element](docs/images/screenshots/image.png)
 
 ### Video element
 
-![The video element](screenshots/video.png)
+![The video element](docs/images/screenshots/video.png)
 
 ### Button element
 
-![The button element](screenshots/button.png)
+![The button element](docs/images/screenshots/button.png)
 
 ### Title element
 
-![The title element](screenshots/title.png)
+![The title element](docs/images/screenshots/title.png)
 
 ### Separator element
 
-![The separator element](screenshots/separator.png)
+![The separator element](docs/images/screenshots/separator.png)
 
 ### Youtube element
 
-![The Youtube element](screenshots/youtube.png)
+![The Youtube element](docs/images/screenshots/youtube.png)
 
 ### Image collection element
 
-![The Image collection element](screenshots/image_collection.png)
+![The Image collection element](docs/images/screenshots/image_collection.png)
 
 ## Example of a rich product description
 
 ### Admin form with preview
 
-![Admin full form](screenshots/full_back.png)
+![Admin full form](docs/images/screenshots/full_back.png)
 
 ### Front display
 
-![Front full display](screenshots/full_front.png)
+![Front full display](docs/images/screenshots/full_front.png)
 
 ## Create your own elements
 
@@ -315,21 +302,21 @@ Here is an example of a simple template for this our which can be used in front 
 
 #### The element is in the UI Elements list
 
-![The Google Maps element](screenshots/gmap_element.png)
+![The Google Maps element](docs/images/screenshots/gmap_element.png)
 
 #### You now have a form to edit it (your form!)
 
-![The Google Maps form](screenshots/gmap_form.png)
+![The Google Maps form](docs/images/screenshots/gmap_form.png)
 
 #### And we use your templates to render your UiElement
 
 In admin : 
 
-![The GMap display](screenshots/gmap_render_admin.png)
+![The GMap display](docs/images/screenshots/gmap_render_admin.png)
 
 In front : 
 
-![The GMap display](screenshots/gmap_render.png)
+![The GMap display](docs/images/screenshots/gmap_render.png)
 
 ## File in fixtures management
 
