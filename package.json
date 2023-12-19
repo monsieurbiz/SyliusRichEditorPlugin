@@ -25,7 +25,12 @@
     "sass-loader": "^7.3.1"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.28.2",
+    "@editorjs/header": "^2.8.1",
+    "@editorjs/list": "^1.9.0",
+    "@editorjs/table": "^2.3.0",
     "a11y-dialog-component": "^5.5.1",
+    "editorjs-hyperlink": "^1.0.6",
     "gulp": "^4.0.2",
     "mustache": "^4.0.1",
     "pell": "^1.0.6"
