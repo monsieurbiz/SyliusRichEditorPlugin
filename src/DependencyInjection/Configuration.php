@@ -22,6 +22,8 @@ final class Configuration implements ConfigurationInterface
 {
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {

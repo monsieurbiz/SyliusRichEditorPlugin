@@ -23,6 +23,8 @@ class ButtonLinkType extends AbstractType
 {
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

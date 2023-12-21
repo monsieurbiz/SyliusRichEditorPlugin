@@ -68,6 +68,8 @@ class WysiwygType extends TextareaType
 
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
