@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\Renderer\EditorJSRendererInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
 use Symfony\Bridge\Twig\AppVariable;
@@ -45,8 +46,18 @@ final class RichEditorExtension extends AbstractExtension
         RegistryInterface $uiElementRegistry,
         Environment $twig,
         string $monsieurbizRicheditorDefaultElement,
-        string $monsieurbizRicheditorDefaultElementDataField
+        string $monsieurbizRicheditorDefaultElementDataField,
+        private readonly ?EditorJSRendererInterface $renderer = null,
     ) {
+        if (null === $this->renderer) {
+            trigger_deprecation(
+                'monsieurbiz/sylius-rich-editor-plugin',
+                '2.5',
+                'Not passing an %s instance to %s constructor is deprecated and will be removed in the next version.',
+                EditorJSRendererInterface::class,
+                self::class,
+            );
+        }
         $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
         $this->defaultElement = $monsieurbizRicheditorDefaultElement;
@@ -62,6 +73,7 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFilter('monsieurbiz_richeditor_render_field', [$this, 'renderField'], ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFilter('monsieurbiz_richeditor_render_elements', [$this, 'renderElements'], ['is_safe' => ['html'], 'needs_context' => true]),
             new TwigFilter('monsieurbiz_richeditor_render_element', [$this, 'renderElement'], ['is_safe' => ['html'], 'needs_context' => true]),
+            new TwigFilter('monsieurbiz_richeditor_render_editor', [$this, 'renderEditor'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -169,6 +181,15 @@ final class RichEditorExtension extends AbstractExtension
         ]);
 
         return $this->twig->render($template, $context);
+    }
+
+    public function renderEditor(string $value): string
+    {
+        if (null === $this->renderer) {
+            return $value;
+        }
+
+        return $this->renderer->render($value);
     }
 
     /**

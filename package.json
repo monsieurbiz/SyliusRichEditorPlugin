@@ -20,11 +20,15 @@
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.1",
     "autoprefixer": "^9.7.3",
+    "editorjs-inline-tool": "^0.4.0",
+    "esbuild-loader": "^4.0.2",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.3.1"
   },
   "dependencies": {
+    "@codexteam/icons": "^0.3.0",
+    "@editorjs/delimiter": "^1.4.0",
     "@editorjs/editorjs": "^2.28.2",
     "@editorjs/header": "^2.8.1",
     "@editorjs/list": "^1.9.0",
@@ -34,5 +38,8 @@
     "gulp": "^4.0.2",
     "mustache": "^4.0.1",
     "pell": "^1.0.6"
+  },
+  "peerDependencies": {
+    "editorjs-inline-tool": "^0.4.0"
   }
 }

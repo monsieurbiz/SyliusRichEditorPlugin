@@ -1,4 +1,5 @@
 monsieurbiz_sylius_richeditor:
+    use_editorjs: true # Set to false to use the classic editor (pell)
     ui_elements:
         monsieurbiz.html:
             tags: [ html ]
