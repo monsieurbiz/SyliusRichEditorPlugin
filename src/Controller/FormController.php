@@ -192,8 +192,6 @@ class FormController extends AbstractController
     /**
      * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
-     * @param mixed $requestData
-     *
      * @return array|mixed|string
      */
     private function processFormData(FormInterface $form, FileUploaderInterface $fileUploader, mixed $requestData)

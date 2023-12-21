@@ -33,7 +33,7 @@ class SeparatorType extends AbstractType
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
                 $data = $event->getData();
-                if (!is_array($data)) {
+                if (!\is_array($data)) {
                     return;
                 }
 

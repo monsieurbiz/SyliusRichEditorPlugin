@@ -28,7 +28,7 @@ class YoutubeUrlValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, YoutubeUrl::class);
         }
 
-        if (!is_string($value)) {
+        if (!\is_string($value)) {
             throw new UnexpectedValueException($value, 'string');
         }
 

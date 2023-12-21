@@ -46,7 +46,7 @@ class VideoType extends AbstractType
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             $data = $event->getData();
-            if (!is_array($data)) {
+            if (!\is_array($data)) {
                 return;
             }
 

@@ -52,7 +52,7 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "phpcs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --using-cache=false",
+        "phpcs": "php-cs-fixer fix --using-cache=no",
         "phpstan": "phpstan analyse -c phpstan.neon src/",
         "phpmd": "phpmd --exclude Migrations/* src/ ansi phpmd.xml",
         "phpunit": "phpunit",

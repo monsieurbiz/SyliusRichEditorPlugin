@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use InvalidArgumentException;
+
 final class Metadata implements MetadataInterface
 {
     private string $code;
@@ -25,10 +27,10 @@ final class Metadata implements MetadataInterface
     private function __construct(string $code, array $parameters)
     {
         if (!isset($parameters['classes'], $parameters['templates'])) {
-            throw new \InvalidArgumentException('Classes and Templates must be specified in parameters.');
+            throw new InvalidArgumentException('Classes and Templates must be specified in parameters.');
         }
         if (1 !== substr_count($code, '.')) {
-            throw new \InvalidArgumentException('The Code should contain one dot (.).');
+            throw new InvalidArgumentException('The Code should contain one dot (.).');
         }
         $this->code = $code;
         $this->parameters = $parameters;
@@ -82,7 +84,7 @@ final class Metadata implements MetadataInterface
     public function getParameter(string $name)
     {
         if (!$this->hasParameter($name)) {
-            throw new \InvalidArgumentException(sprintf('Parameter "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(sprintf('Parameter "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters[$name];
@@ -110,7 +112,7 @@ final class Metadata implements MetadataInterface
     public function getClass(string $name): string
     {
         if (!$this->hasClass($name)) {
-            throw new \InvalidArgumentException(sprintf('Class "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(sprintf('Class "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters['classes'][$name];
@@ -130,7 +132,7 @@ final class Metadata implements MetadataInterface
     public function getTemplate(string $name): string
     {
         if (!$this->hasTemplate($name)) {
-            throw new \InvalidArgumentException(sprintf('Template "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(sprintf('Template "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters['templates'][$name];

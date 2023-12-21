@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use ReturnTypeWillChange;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 trait UiElementTrait
@@ -130,7 +131,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return [

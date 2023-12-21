@@ -15,16 +15,10 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 interface MetadataInterface
 {
-    /**
-     * @return MetadataInterface
-     */
     public static function fromCodeAndConfiguration(string $code, array $parameters): self;
 
     public function getCode(): string;
 
-    /**
-     * @return string
-     */
     public function getAlias(): ?string;
 
     public function getCamelCasedCode(): string;

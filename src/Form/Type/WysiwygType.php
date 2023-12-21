@@ -53,11 +53,11 @@ class WysiwygType extends TextareaType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options): void {
                 $data = $event->getData();
 
                 // Try to convert EditorJS data to HTML for the Pell editor.
-                if (!is_string($data) || $options['editorjs'] || !$this->renderer) {
+                if (!\is_string($data) || $options['editorjs'] || !$this->renderer) {
                     return;
                 }
 
