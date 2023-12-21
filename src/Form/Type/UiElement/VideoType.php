@@ -45,14 +45,19 @@ class VideoType extends AbstractType
         ;
 
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
+            $data = $event->getData();
+            if (!is_array($data)) {
+                return;
+            }
+
             // Change video field constraints depending on submitted value
             $options = $event->getForm()->get('video')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getVideoConstraints($event->getData(), 'video');
+            $options['constraints'] = RichEditorConstraints::getVideoConstraints($data, 'video');
             $event->getForm()->add('video', FileType::class, $options);
 
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image', false);
+            $options['constraints'] = RichEditorConstraints::getImageConstraints($data, 'image', false);
             $event->getForm()->add('image', FileType::class, $options);
         });
     }

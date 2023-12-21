@@ -26,6 +26,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Webmozart\Assert\Assert;
 
 class FormController extends AbstractController
 {
@@ -58,6 +59,7 @@ class FormController extends AbstractController
         $data = [];
         $isEdition = $request->isMethod('post');
         if ($isEdition && ($data = $request->get('data'))) {
+            Assert::string($data, 'The data value must be a string');
             $data = json_decode($data, true);
             if (!\is_array($data)) {
                 throw $this->createNotFoundException();
@@ -84,6 +86,7 @@ class FormController extends AbstractController
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
         if ($uiElements = $request->get('ui_elements')) {
+            Assert::string($uiElements, 'The ui_elements value must be a string');
             $uiElements = json_decode($uiElements, true);
             if (!\is_array($uiElements)) {
                 throw $this->createNotFoundException();
@@ -93,6 +96,7 @@ class FormController extends AbstractController
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
         if ($locale = $request->get('locale')) {
+            Assert::string($locale, 'The locale value must be a string');
             $switchAdminLocale->switchLocale($locale);
         }
 
@@ -192,11 +196,15 @@ class FormController extends AbstractController
      *
      * @return array|mixed|string
      */
-    private function processFormData(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
+    private function processFormData(FormInterface $form, FileUploaderInterface $fileUploader, mixed $requestData)
     {
         // No child, end of recursivity, return form value or uploaded file path
         if (!\count($form->all())) {
             return $this->processFormDataWithoutChild($form, $fileUploader, $requestData);
+        }
+
+        if (!\is_array($requestData)) {
+            return $requestData;
         }
 
         $processedData = [];
@@ -209,7 +217,7 @@ class FormController extends AbstractController
     }
 
     /**
-     * @param array|string $requestData
+     * @param mixed $requestData
      *
      * @return array|mixed|string
      */
@@ -217,7 +225,10 @@ class FormController extends AbstractController
     {
         if ($form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
-            return $fileUploader->upload($form->getData(), $form->getConfig()->getOption('file-type'));
+            $fileType = $form->getConfig()->getOption('file-type');
+            Assert::nullOrString($fileType, 'The option "file-type" must be a string or null');
+
+            return $fileUploader->upload($form->getData(), $fileType);
         }
         if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)

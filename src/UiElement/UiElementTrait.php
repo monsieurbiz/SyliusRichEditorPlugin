@@ -68,6 +68,7 @@ trait UiElementTrait
      */
     public function getTitle(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('title');
     }
 
@@ -76,6 +77,7 @@ trait UiElementTrait
      */
     public function getDescription(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('description');
     }
 
@@ -84,6 +86,7 @@ trait UiElementTrait
      */
     public function getIcon(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('icon');
     }
 
