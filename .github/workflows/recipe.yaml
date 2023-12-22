@@ -68,6 +68,7 @@ jobs:
             composer config --no-plugins extra.symfony.docker false
             composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
             composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
+            composer config minimum-stability alpha
 
       - name: Require plugin & install all
         working-directory: ./sylius
