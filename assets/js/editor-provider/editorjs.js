@@ -102,6 +102,11 @@ class EditorJSProvider {
             }
         });
 
+        // dispatch custom event to allow project to add toolbar
+        document.dispatchEvent(new CustomEvent('mbiz:rich-editor:editorjs:toolbar', {
+            'detail': {'toolbar': toolbar}
+        }));
+
         return toolbar;
     }
 
