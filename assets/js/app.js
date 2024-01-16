@@ -1,14 +1,20 @@
-import pell from 'pell';
 import Dialog from 'a11y-dialog-component';
 import Mustache from 'mustache';
+import PellProvider from './editor-provider/pell';
+import EditorJSProvider from './editor-provider/editorjs';
 
 global.MonsieurBizRichEditorWysiwyg = class {
   constructor(config) {
     this.config = config; // {actions: []}
+    this.provider = null;
   }
 
   exec() {
-    return pell.exec(...arguments);
+    if (this.provider === null) {
+      return;
+    }
+
+    return this.provider.exec(...arguments);
   }
 
   load(container) {
@@ -20,38 +26,10 @@ global.MonsieurBizRichEditorWysiwyg = class {
 
   setupEditor(target) {
     target.setAttribute('hidden', 'true');
-
-    // Create container
-    const wysiwygContainer = document.createElement('div');
-    wysiwygContainer.classList.add('pell');
-    target.parentNode.appendChild(wysiwygContainer);
-
-    // Init pell wysiwyg
-    const editor = pell.init({
-      element: wysiwygContainer,
-      onChange: html => {
-        target.textContent = html
-      },
-      defaultParagraphSeparator: 'p',
-      actions: this.config.actions,
-    });
-
-    editor.addEventListener('paste', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let tempContainer = document.createElement('div');
-      let clipboardData = e.clipboardData || window.clipboardData;
-      tempContainer.innerHTML = clipboardData.getData('Text');
-      let text = tempContainer.textContent || tempContainer.innerText || "";
-      pell.exec('insertText', text);
-      return true;
-    });
-
-    // Populate wysiwyg with initial content
-    const initialContent = target.value;
-    editor.content.innerHTML = initialContent;
+    const isEditorJS = target.dataset.editorjs !== undefined && target.dataset.editorjs !== 'false';
+    this.provider = isEditorJS ? new EditorJSProvider(this.config) : new PellProvider(this.config);
+    this.provider.init(target);
   }
-
 };
 
 global.MonsieurBizRichEditorConfig = class {

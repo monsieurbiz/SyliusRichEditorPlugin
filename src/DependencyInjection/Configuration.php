@@ -22,6 +22,8 @@ final class Configuration implements ConfigurationInterface
 {
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -43,6 +45,7 @@ final class Configuration implements ConfigurationInterface
         /** @scrutinizer ignore-call */
         $rootNode
             ->children()
+                ->booleanNode('use_editorjs')->defaultFalse()->end()
                 ->scalarNode('upload_directory')->end()
                 ->scalarNode('image_upload_directory')->end()
                 ->scalarNode('default_element')->defaultValue('monsieurbiz.html')->end()

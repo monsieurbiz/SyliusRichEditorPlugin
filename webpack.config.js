@@ -38,3 +38,7 @@ Encore
 ;
 
 module.exports = Encore.getWebpackConfig();
+module.exports.module.rules.push({
+        test: /\.mjs$/,
+        loader: 'esbuild-loader',
+});

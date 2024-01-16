@@ -3,7 +3,7 @@ services:
         autowire: true
         autoconfigure: true
         public: false
-        
+
         bind:
             string $monsieurbizRicheditorDefaultElement: '%monsieurbiz.richeditor.config.default_element%'
             string $monsieurbizRicheditorDefaultElementDataField: '%monsieurbiz.richeditor.config.default_element_data_field%'
@@ -12,7 +12,7 @@ services:
     MonsieurBiz\SyliusRichEditorPlugin\Controller\:
         resource: '../../Controller'
         tags: ['controller.service_arguments']
-    
+
     MonsieurBiz\SyliusRichEditorPlugin\Fixture\:
         resource: '../../Fixture'
 
@@ -21,9 +21,12 @@ services:
 
     MonsieurBiz\SyliusRichEditorPlugin\Uploader\:
         resource: '../../Uploader'
-    
+
     MonsieurBiz\SyliusRichEditorPlugin\Switcher\:
         resource: '../../Switcher'
+
+    MonsieurBiz\SyliusRichEditorPlugin\Renderer\:
+        resource: '../../Renderer'
 
     monsieurbiz.richeditor.metadata_registry:
         class: MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata\Registry
@@ -45,3 +48,7 @@ services:
     MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploaderInterface: '@MonsieurBiz\SyliusRichEditorPlugin\Uploader\FileUploader'
 
     MonsieurBiz\SyliusRichEditorPlugin\Switcher\SwitchAdminLocaleInterface: '@MonsieurBiz\SyliusRichEditorPlugin\Switcher\SwitchAdminLocale'
+
+    MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType:
+        arguments:
+            $editorjs: '%monsieurbiz.richeditor.config.use_editorjs%'

@@ -9,7 +9,7 @@
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if element is not empty %}
 <blockquote style="text-align: {{align}};">
-    {{ element.content | raw | nl2br }}
+    {{ element.content|monsieurbiz_richeditor_render_editor }}
     <br />— <cite>{{ element.author }}</cite>
 </blockquote>
 {% endif %}

@@ -14,5 +14,7 @@
 /.php-version
 /php.ini
 /.phpunit.result.cache
+/.php-cs-fixer.cache
 /node_modules
 /yarn.lock
+

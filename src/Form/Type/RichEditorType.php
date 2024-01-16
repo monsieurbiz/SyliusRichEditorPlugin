@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Webmozart\Assert\Assert;
 
 class RichEditorType extends TextType
 {
@@ -26,7 +27,9 @@ class RichEditorType extends TextType
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-component'] = 'rich-editor';
-        $view->vars['attr']['data-tags'] = implode(',', $options['tags'] ?? []);
+        $tags = $options['tags'] ?? [];
+        Assert::isArray($tags);
+        $view->vars['attr']['data-tags'] = implode(',', $tags);
         if (null !== $options['locale']) {
             $view->vars['attr']['data-locale'] = $options['locale'];
         }
@@ -43,5 +46,6 @@ class RichEditorType extends TextType
             'tags' => [],
             'locale' => null,
         ]);
+        $resolver->setAllowedTypes('tags', ['array']);
     }
 }

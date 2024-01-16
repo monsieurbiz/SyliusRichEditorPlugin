@@ -22,6 +22,7 @@ trait UiElementFormOptionsTrait
      */
     public function getFormOptions(): array
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('form_options');
     }
 }

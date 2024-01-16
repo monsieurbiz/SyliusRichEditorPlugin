@@ -32,6 +32,7 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
         $container->setParameter('monsieurbiz.richeditor.config.image_upload_directory', $config['image_upload_directory']);
         $container->setParameter('monsieurbiz.richeditor.config.default_element', $config['default_element']);
         $container->setParameter('monsieurbiz.richeditor.config.default_element_data_field', $config['default_element_data_field']);
+        $container->setParameter('monsieurbiz.richeditor.config.use_editorjs', $config['use_editorjs']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');

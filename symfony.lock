@@ -5,12 +5,6 @@
     "alcohol/iso4217": {
         "version": "4.0.0"
     },
-    "amphp/amp": {
-        "version": "v2.5.0"
-    },
-    "amphp/byte-stream": {
-        "version": "v1.8.0"
-    },
     "api-platform/core": {
         "version": "2.5",
         "recipe": {
@@ -63,9 +57,6 @@
     },
     "dmore/chrome-mink-driver": {
         "version": "2.7.0"
-    },
-    "dnoegel/php-xdg-base-dir": {
-        "version": "v0.1.1"
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -169,12 +160,6 @@
     },
     "fakerphp/faker": {
         "version": "v1.14.1"
-    },
-    "felixfbecker/advanced-json-rpc": {
-        "version": "v3.1.1"
-    },
-    "felixfbecker/language-server-protocol": {
-        "version": "v1.4.0"
     },
     "fig/link-util": {
         "version": "1.1.1"
@@ -326,6 +311,19 @@
     "lcobucci/jwt": {
         "version": "3.3.3"
     },
+    "league/flysystem-bundle": {
+        "version": "2.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "913dc3d7a5a1af0d2b044c5ac3a16e2f851d7380"
+        },
+        "files": [
+            "config/packages/flysystem.yaml",
+            "var/storage/.gitignore"
+        ]
+    },
     "league/uri": {
         "version": "5.3.0"
     },
@@ -407,9 +405,6 @@
             "config/packages/dev/nelmio_alice.yaml",
             "config/packages/test/nelmio_alice.yaml"
         ]
-    },
-    "netresearch/jsonmapper": {
-        "version": "v2.1.0"
     },
     "nette/finder": {
         "version": "v2.5.2"
@@ -563,9 +558,6 @@
     "polishsymfonycommunity/symfony-mocker-container": {
         "version": "v1.0.3"
     },
-    "psalm/plugin-mockery": {
-        "version": "0.3.0"
-    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -635,6 +627,9 @@
     "sebastian/version": {
         "version": "2.0.1"
     },
+    "setono/editorjs-bundle": {
+        "version": "v0.2.0"
+    },
     "slevomat/coding-standard": {
         "version": "6.4.1"
     },
@@ -700,6 +695,9 @@
     },
     "sylius-labs/polyfill-symfony-security": {
         "version": "v1.0.0"
+    },
+    "sylius/calendar": {
+        "version": "v0.3.0"
     },
     "sylius/fixtures-bundle": {
         "version": "v1.6.1"
@@ -850,6 +848,18 @@
     },
     "symfony/intl": {
         "version": "v4.4.13"
+    },
+    "symfony/mailer": {
+        "version": "6.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.3",
+            "ref": "2bf89438209656b85b9a49238c4467bff1b1f939"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
+        ]
     },
     "symfony/messenger": {
         "version": "4.3",
@@ -1074,6 +1084,25 @@
             "config/routes/dev/web_profiler.yaml"
         ]
     },
+    "symfony/webpack-encore-bundle": {
+        "version": "1.17",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.10",
+            "ref": "eff2e505d4557c967b6710fe06bd947ba555cae5"
+        },
+        "files": [
+            "assets/app.js",
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js",
+            "assets/styles/app.css",
+            "config/packages/webpack_encore.yaml",
+            "package.json",
+            "webpack.config.js"
+        ]
+    },
     "symfony/yaml": {
         "version": "v4.4.13"
     },
@@ -1131,20 +1160,11 @@
     "twig/twig": {
         "version": "v2.13.1"
     },
-    "vimeo/psalm": {
-        "version": "3.16"
-    },
     "webimpress/safe-writer": {
         "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.9.1"
-    },
-    "webmozart/glob": {
-        "version": "4.1.0"
-    },
-    "webmozart/path-util": {
-        "version": "2.3.0"
     },
     "white-october/pagerfanta-bundle": {
         "version": "v1.3.2"

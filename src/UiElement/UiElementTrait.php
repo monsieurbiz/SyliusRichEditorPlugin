@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use ReturnTypeWillChange;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 trait UiElementTrait
@@ -68,6 +69,7 @@ trait UiElementTrait
      */
     public function getTitle(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('title');
     }
 
@@ -76,6 +78,7 @@ trait UiElementTrait
      */
     public function getDescription(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('description');
     }
 
@@ -84,6 +87,7 @@ trait UiElementTrait
      */
     public function getIcon(): string
     {
+        /** @phpstan-ignore-next-line */
         return $this->metadata->getParameter('icon');
     }
 
@@ -127,7 +131,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return [

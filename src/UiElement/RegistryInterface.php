@@ -13,9 +13,10 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use JsonSerializable;
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
 
-interface RegistryInterface extends \JsonSerializable
+interface RegistryInterface extends JsonSerializable
 {
     public function addUiElement(UiElementInterface $uiElement): void;
 
