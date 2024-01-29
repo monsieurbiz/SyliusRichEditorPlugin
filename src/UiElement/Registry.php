@@ -69,7 +69,7 @@ final class Registry implements RegistryInterface
      * @inheritdoc
      */
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->uiElements;
     }
