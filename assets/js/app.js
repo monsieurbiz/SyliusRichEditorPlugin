@@ -646,18 +646,18 @@ global.MonsieurBizRichEditorManager = class {
   }
 
   isClipboardEmpty() {
-    const clipboard = window.sessionStorage.getItem('monsieurBizRichEditorClipboard');
+    const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
     return null === clipboard || '' === clipboard;
   }
 
   saveUiElementToClipboard(uiElement, callback) {
-    window.sessionStorage.setItem('monsieurBizRichEditorClipboard', JSON.stringify(uiElement));
+    window.localStorage.setItem('monsieurBizRichEditorClipboard', JSON.stringify(uiElement));
     callback();
     document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielement:copied', {}));
   }
 
   pasteUiElementFromClipboard(futurePosition) {
-    const clipboard = window.sessionStorage.getItem('monsieurBizRichEditorClipboard');
+    const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
     if (null !== clipboard) {
       const pastedUiElement = JSON.parse(clipboard);
       const manager = this;
