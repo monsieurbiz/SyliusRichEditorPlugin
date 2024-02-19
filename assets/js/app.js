@@ -242,6 +242,8 @@ global.MonsieurBizRichEditorManager = class {
   initInterface() {
     this.initUiElementsInterface();
     this.initUiPanelsInterface();
+    this.initUiToolsInterface();
+
     document.dispatchEvent(new CustomEvent('mbiz:rich-editor:init-interface-complete', {
       'detail': {'editorManager': this}
     }));
@@ -250,6 +252,24 @@ global.MonsieurBizRichEditorManager = class {
         action.classList.remove('disabled');
       }.bind(this));
     }.bind(this));
+  }
+
+  initUiToolsInterface() {
+      const copyAllButton = this.container.querySelector('.js-uie-tools-copy-all');
+      const pasteAllButton = this.container.querySelector('.js-uie-tools-paste-all');
+      const trashAllButton = this.container.querySelector('.js-uie-tools-trash-all');
+
+      trashAllButton.addEventListener('click', e => {
+        this.resetUiElements();
+      });
+
+      copyAllButton.addEventListener('click', e => {
+        this.saveUiElementsToClipboard();
+      });
+
+      pasteAllButton.addEventListener('click', e => {
+        this.pasteUiElementsFromClipboard();
+      });
   }
 
   initUiPanelsInterface() {
@@ -324,7 +344,7 @@ global.MonsieurBizRichEditorManager = class {
       );
     });
     // Disabled?
-    if (!this.isClipboardEmpty()) {
+    if (!this.isClipboardEmpty('monsieurBizRichEditorElementClipboard')) {
       actions.querySelector('.js-uie-paste').classList.remove('disabled');
     }
 
@@ -645,19 +665,41 @@ global.MonsieurBizRichEditorManager = class {
     req.send(data);
   }
 
-  isClipboardEmpty() {
-    const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
+  isClipboardEmpty(clipboardKey) {
+    const clipboard = window.localStorage.getItem(clipboardKey);
     return null === clipboard || '' === clipboard;
   }
 
+  resetUiElements() {
+    this.initUiElements([], () => { this.write(); });
+  }
+
+  saveUiElementsToClipboard() {
+    window.localStorage.setItem('monsieurBizRichEditorElementsClipboard', JSON.stringify(this.uiElements));
+
+    const button = e.currentTarget;
+    const originalText = button.dataset.tooltip;
+    button.dataset.tooltip = button.dataset.alternateText;
+    window.setTimeout(function () {
+      button.dataset.tooltip = originalText;
+    }, 1000);
+  }
+
+  pasteUiElementsFromClipboard() {
+    const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementsClipboard');
+    const pastedUiElement = JSON.parse(clipboard);
+    this.initUiElements(pastedUiElement, () => { this.write(); });
+  }
+
   saveUiElementToClipboard(uiElement, callback) {
-    window.localStorage.setItem('monsieurBizRichEditorClipboard', JSON.stringify(uiElement));
+    window.localStorage.setItem('monsieurBizRichEditorElementClipboard', JSON.stringify(uiElement));
     callback();
     document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielement:copied', {}));
   }
 
+
   pasteUiElementFromClipboard(futurePosition) {
-    const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
+    const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementClipboard');
     if (null !== clipboard) {
       const pastedUiElement = JSON.parse(clipboard);
       const manager = this;

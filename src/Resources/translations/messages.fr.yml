@@ -126,6 +126,8 @@ monsieurbiz_richeditor_plugin:
       justify: 'Justifié'
     clipboard: 'Presse-papier'
     paste_from_clipboard: 'Coller depuis le presse-papier'
+    paste_all_from_clipboard: 'Coller tous les élements'
+    copy_all_from_clipboard: 'Copier tous les élements '
     copied: 'Copié !'
     copy: 'Copier'
   action:
