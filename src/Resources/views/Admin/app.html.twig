@@ -53,7 +53,20 @@
 
 <script id="monsieurbiz-rich-editor-ui-elements-container" type="x-tmpl-mustache">
 {% verbatim %}
-    <div class="ui container">
+    <div class="ui">
+        <div class="uie-flex uie-flex-cross-right">
+            <div class="ui buttons">
+                <button class="ui icon button js-uie-copy-all" type="button"  data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.copy_all_from_clipboard"|trans }}{% verbatim %}">
+                    <i class="copy icon"></i>
+                </button>
+                <button class="ui icon button js-uie-paste-all" type="button" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.paste_all_from_clipboard"|trans }}{% verbatim %}">
+                    <i class="paste icon"></i>
+                </button>
+                 <button class="ui icon button js-uie-trash" type="button" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.trash"|trans }}{% verbatim %}">
+                    <i class="trash icon"></i>
+                </button>
+            </div>
+        </div>
         <div class="ui segment js-uie-container">
         </div>
     </div>
