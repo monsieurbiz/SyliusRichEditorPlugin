@@ -1,6 +1,26 @@
 {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor.js'} %}
 {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor.css'} %}
 
+<div class="ui small basic modal" id="monsieurbiz-rich-editor-confirmation-modal">
+    <div class="ui icon header">
+        <i class="warning sign icon"></i>
+        {{ 'sylius.ui.confirm_your_action'|trans }}
+    </div>
+    <div class="content">
+        <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
+    </div>
+    <div class="actions">
+        <div class="ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            {{ 'sylius.ui.no_label'|trans }}
+        </div>
+        <div class="ui green ok inverted button" id="monsieurbiz-rich-editor-confirmation-button">
+            <i class="checkmark icon"></i>
+            {{ 'sylius.ui.yes_label'|trans }}
+        </div>
+    </div>
+</div>
+
 <script id="monsieurbiz-rich-editor-actions" type="x-tmpl-mustache">
 {% verbatim %}
 <div class="ui horizontal divider">
@@ -52,17 +72,16 @@
 </script>
 
 <script id="monsieurbiz-rich-editor-ui-elements-container" type="x-tmpl-mustache">
-{% verbatim %}
     <div class="ui">
         <div class="uie-flex uie-flex-cross-right">
             <div class="ui buttons">
-                <button class="ui icon button js-uie-copy-all" type="button"  data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.copy_all_from_clipboard"|trans }}{% verbatim %}">
+                <button class="ui icon button js-uie-tools-copy-all" type="button" data-alternate-text="{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.copy_all_from_clipboard"|trans }}">
                     <i class="copy icon"></i>
                 </button>
-                <button class="ui icon button js-uie-paste-all" type="button" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.paste_all_from_clipboard"|trans }}{% verbatim %}">
+                <button class="ui icon button js-uie-tools-paste-all" type="button" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.paste_all_from_clipboard"|trans }}">
                     <i class="paste icon"></i>
                 </button>
-                 <button class="ui icon button js-uie-trash" type="button" data-tooltip="{% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.trash"|trans }}{% verbatim %}">
+                 <button class="ui icon button js-uie-tools-trash-all" type="button" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.trash_all"|trans }}">
                     <i class="trash icon"></i>
                 </button>
             </div>
@@ -70,7 +89,6 @@
         <div class="ui segment js-uie-container">
         </div>
     </div>
-{% endverbatim %}
 </script>
 
 <script id="monsieurbiz-rich-editor-ui-element-card" type="x-tmpl-mustache">
