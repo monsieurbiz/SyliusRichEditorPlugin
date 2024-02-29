@@ -15,12 +15,15 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use InvalidArgumentException;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment;
 
 interface UiElementInterface extends \JsonSerializable
 {
     public function setMetadata(MetadataInterface $metadata): void;
 
     public function setTranslator(TranslatorInterface $translator): void;
+
+    public function setTwigEnvironment(Environment $twig): void;
 
     public function getCode(): string;
 
@@ -34,6 +37,10 @@ interface UiElementInterface extends \JsonSerializable
     public function getDescription(): string;
 
     public function getIcon(): string;
+
+    public function getWireframe(): string;
+
+    public function getWireframeSvg(): string;
 
     public function isEnabled(): bool;
 

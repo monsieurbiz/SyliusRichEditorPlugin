@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use Exception;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment;
 
 trait UiElementTrait
 {
@@ -22,6 +24,8 @@ trait UiElementTrait
     protected TranslatorInterface $translator;
 
     protected bool $ignored = false;
+
+    protected Environment $twig;
 
     /**
      * @inheritdoc
@@ -37,6 +41,14 @@ trait UiElementTrait
     public function setTranslator(TranslatorInterface $translator): void
     {
         $this->translator = $translator;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTwigEnvironment(Environment $twig): void
+    {
+        $this->twig = $twig;
     }
 
     /**
@@ -90,6 +102,32 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
+    public function getWireframe(): string
+    {
+        return $this->metadata->getParameter('wireframe');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getWireframeSvg(): string
+    {
+        try {
+            $code = $this->getWireframe();
+
+            if (empty($code)) {
+                return '';
+            }
+
+            return $this->twig->render(sprintf('@MonsieurBizSyliusRichEditorPlugin/Wireframe/%s.svg.twig', $code));
+        } catch (Exception $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getFormClass(): string
     {
         return $this->metadata->getClass('form');
@@ -134,6 +172,8 @@ trait UiElementTrait
             'code' => $this->getCode(),
             'description' => $this->translator->trans($this->getDescription()),
             'icon' => $this->getIcon(),
+            'wireframe' => $this->getWireframe(),
+            'wireframeSvg' => $this->getWireframeSvg(),
             'title' => $this->translator->trans($this->getTitle()),
             'ignored' => $this->ignored,
             'tags' => $this->metadata->getTags(),

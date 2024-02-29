@@ -54,6 +54,7 @@ final class UiElementRegistryPass implements CompilerPassInterface
             $uiElementDefinition = $container->setDefinition($id, (new Definition($class))->setAutowired(true));
             $uiElementDefinition->addMethodCall('setMetadata', [$this->getMetadataDefinition($metadata)]);
             $uiElementDefinition->addMethodCall('setTranslator', [new Reference('translator')]);
+            $uiElementDefinition->addMethodCall('setTwigEnvironment', [new Reference('Twig\Environment')]);
 
             $aliases = [
                 UiElementInterface::class . ' $' . $metadata->getCamelCasedCode() . 'UiElement' => $id,
