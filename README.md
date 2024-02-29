@@ -337,7 +337,7 @@ sylius_fixtures:
                                 target_path: 'baz/file.pdf'
 ```
 
-The exemple below will copy files to `public/media/image/foo/bar1.png` and `public/media/foo/file.pdf`.
+The example below will copy files to `public/media/image/foo/bar1.png` and `public/media/foo/file.pdf`.
 
 Now you can use files in your content fixtures:
 
@@ -352,6 +352,30 @@ description: |
         }
     }]
 ```
+
+## Wireframes
+
+From version 2.4.2 you can add a wireframe to your UiElement. 
+It will be displayed in the admin form to help the user to understand what the UiElement is about.
+The file need to be svg with a `.twig` extension.
+You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/Wireframe/*.svg.twig`
+In the YAML declaration of a UI Element, you can add the wireframe key with the name of the file without the extension.
+```yaml
+    monsieurbiz.title:
+        alias: title
+        title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
+        description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
+        icon: heading
+        wireframe: title
+        tags: [ default ]
+        classes:
+            form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+        templates:
+            admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
+            front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+```
+
+
 
 ## Contributing
 
