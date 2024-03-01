@@ -357,8 +357,10 @@ description: |
 
 From version 2.4.2 you can add a wireframe to your UiElement. 
 It will be displayed in the admin form to help the user to understand what the UiElement is about.
-The file need to be svg with a `.twig` extension.
-You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/Wireframe/*.svg.twig`
+The file can be either:
+* An SVG with a `.twig` extension. Example: `button.svg.twig`.
+* A classic twig template. Example `button.html.twig`.
+You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/Wireframe/*.{svg/html}.twig`
 In the YAML declaration of a UI Element, you can add the wireframe key with the name of the file without the extension.
 ```yaml
     monsieurbiz.title:

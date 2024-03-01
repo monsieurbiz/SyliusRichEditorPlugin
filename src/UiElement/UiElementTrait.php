@@ -110,7 +110,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
-    public function getWireframeSvg(): string
+    public function getWireframeAsHtml(): string
     {
         try {
             $code = $this->getWireframe();
@@ -119,7 +119,7 @@ trait UiElementTrait
                 return '';
             }
 
-            return $this->twig->render(sprintf('@MonsieurBizSyliusRichEditorPlugin/Wireframe/%s.svg.twig', $code));
+            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/Admin/wireframe.html.twig', ['wireframeCode' => $code]);
         } catch (Exception $e) {
             return '';
         }
@@ -173,7 +173,7 @@ trait UiElementTrait
             'description' => $this->translator->trans($this->getDescription()),
             'icon' => $this->getIcon(),
             'wireframe' => $this->getWireframe(),
-            'wireframeSvg' => $this->getWireframeSvg(),
+            'wireframeHtml' => $this->getWireframeAsHtml(),
             'title' => $this->translator->trans($this->getTitle()),
             'ignored' => $this->ignored,
             'tags' => $this->metadata->getTags(),

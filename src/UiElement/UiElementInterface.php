@@ -40,7 +40,7 @@ interface UiElementInterface extends \JsonSerializable
 
     public function getWireframe(): string;
 
-    public function getWireframeSvg(): string;
+    public function getWireframeAsHtml(): string;
 
     public function isEnabled(): bool;
 
