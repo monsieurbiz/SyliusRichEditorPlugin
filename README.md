@@ -355,7 +355,7 @@ description: |
 
 ## Wireframes
 
-From version 2.4.2 you can add a wireframe to your UiElement. 
+You can add a wireframe to your UiElement. 
 It will be displayed in the admin form to help the user to understand what the UiElement is about.
 The file can be either:
 * An SVG with a `.twig` extension. Example: `button.svg.twig`.

@@ -43,6 +43,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
             icon: file image
+            wireframe: image
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
