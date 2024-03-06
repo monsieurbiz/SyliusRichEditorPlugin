@@ -170,7 +170,7 @@ monsieurbiz_sylius_richeditor:
             alias: row
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.description'
-            icon: columns
+            icon: bars
             tags: [ default, layout ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\RowType
