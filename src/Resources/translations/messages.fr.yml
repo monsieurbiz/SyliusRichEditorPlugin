@@ -2,12 +2,12 @@ monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
       title: 'Lame Colonne'
-      description: 'Une lame contenant d''autres lames affichées en colonne'
+      description: 'Une mise en page pour afficher les éléments colonne par colonne'
       field:
         content: 'Contenu'
     monsieurbiz.row:
       title: 'Lame Ligne'
-      description: 'Une lame contenant d''autres lames affichées côte à côte'
+      description: 'Une mise en page pour afficher les éléments ligne par ligne'
       field:
         content: 'Contenu'
     monsieurbiz.html:
