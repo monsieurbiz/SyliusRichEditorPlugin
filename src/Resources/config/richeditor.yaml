@@ -7,6 +7,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
             icon: html5
+            wireframe: html
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType
@@ -18,6 +19,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.description'
             icon: font
+            wireframe: text-paragraph 
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
@@ -29,6 +31,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
             icon: quote left
+            wireframe: text-quote
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
@@ -40,6 +43,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
             icon: file image
+            wireframe: image
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
@@ -51,6 +55,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.description'
             icon: film
+            wireframe: video-default
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType
@@ -62,7 +67,8 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
             icon: hand pointer
-            tags: [ default ]
+            wireframe: button
+            tags: [ default, tptp, tiit ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
             templates:
@@ -73,6 +79,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
             icon: heading
+            wireframe: title
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
@@ -83,6 +90,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
             icon: heading
+            wireframe: title-h1
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
@@ -93,6 +101,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
             icon: heading
+            wireframe: title-h2
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
@@ -103,6 +112,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
             icon: heading
+            wireframe: title-h3
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
@@ -114,6 +124,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.description'
             icon: minus
+            wireframe: divider
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\SeparatorType
@@ -125,6 +136,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.description'
             icon: youtube
+            wireframe: video-youtube
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\YoutubeType
@@ -136,6 +148,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.description'
             icon: images
+            wireframe: image-collection
             tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageCollectionType
