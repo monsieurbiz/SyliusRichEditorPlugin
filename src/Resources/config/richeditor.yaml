@@ -160,6 +160,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.description'
             icon: columns
+            wireframe: column
             tags: [ default, layout ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ColumnType
@@ -170,7 +171,8 @@ monsieurbiz_sylius_richeditor:
             alias: row
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.description'
-            icon: columns
+            icon: bars
+            wireframe: row
             tags: [ default, layout ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\RowType
