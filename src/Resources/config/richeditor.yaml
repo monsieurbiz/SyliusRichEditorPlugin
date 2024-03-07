@@ -68,7 +68,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
             icon: hand pointer
             wireframe: button
-            tags: [ default, tptp, tiit ]
+            tags: [ default ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
             templates:
