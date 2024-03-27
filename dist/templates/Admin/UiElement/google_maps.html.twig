@@ -1,0 +1,13 @@
+{#
+UI Element template
+type: google_map
+element fields:
+    link: string
+element methods:
+    getLocale(): string
+#}
+
+<div style="width: 100%">
+    {{ ui_element.getLocale() }}
+    {{ element.link|replace({'hl=en': 'hl=' ~ ui_element.getLocale()}) }}
+</div>
