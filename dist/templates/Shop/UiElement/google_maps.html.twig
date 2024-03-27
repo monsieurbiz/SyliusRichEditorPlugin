@@ -1,0 +1,12 @@
+{#
+UI Element template
+type: google_map
+element fields:
+    link: string
+element methods:
+    getLocale(): string
+#}
+
+<div style="width: 100%">
+    <iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ element.link }}"><a href="https://www.gps.ie/">gps devices</a></iframe>
+</div>
