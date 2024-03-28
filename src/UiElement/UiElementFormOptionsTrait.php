@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
+use InvalidArgumentException;
+
 trait UiElementFormOptionsTrait
 {
     use UiElementTrait;
@@ -22,6 +24,10 @@ trait UiElementFormOptionsTrait
      */
     public function getFormOptions(): array
     {
-        return $this->metadata->getParameter('form_options');
+        try {
+            return $this->metadata->getParameter('form_options');
+        } catch (InvalidArgumentException) {
+            return [];
+        }
     }
 }
