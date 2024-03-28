@@ -217,6 +217,20 @@ You can distinguish the `Row` element and the `Column` element by their dotted b
 
 In this example, we will add a Google Maps element.
 
+With the Maker Bundle, you can create a new UiElement very easily: 
+
+```bash
+bin/console make:ui-element
+```
+
+Then you will have to answer some questions, or you can add arguments to the command to avoid the questions.
+
+```bash
+bin/console make:ui-element app.google_maps "map pin"
+```
+
+Just add the translations!
+
 ### Define your UiElement (for PHP < 8.1)
 
 **Tips:** If you are using PHP 8.1 or newer, you can use the `#[AsUiElement]` attribute to define your UiElement. You can skip this step.

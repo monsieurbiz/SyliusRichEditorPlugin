@@ -43,7 +43,8 @@
         "symfony/dotenv": "^4.4",
         "symfony/flex": "^1.7",
         "symfony/web-profiler-bundle": "^4.4",
-        "phpmd/phpmd": "@stable"
+        "phpmd/phpmd": "@stable",
+        "symfony/maker-bundle": "^1.39"
     },
     "prefer-stable": true,
     "autoload": {
