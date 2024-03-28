@@ -5,10 +5,10 @@
     "description": "A Rich Editor plugin for Sylius.",
     "license": "MIT",
     "require": {
-        "php": "~7.4|~8.0|~8.1",
+        "php": "^8.0",
         "ext-json": "*",
         "ext-intl": "*",
-        "sylius/sylius": ">=1.8 <1.13"
+        "sylius/sylius": ">=1.10 <1.13"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -43,7 +43,8 @@
         "symfony/dotenv": "^4.4",
         "symfony/flex": "^1.7",
         "symfony/web-profiler-bundle": "^4.4",
-        "phpmd/phpmd": "@stable"
+        "phpmd/phpmd": "@stable",
+        "symfony/maker-bundle": "^1.39"
     },
     "prefer-stable": true,
     "autoload": {

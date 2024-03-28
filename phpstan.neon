@@ -19,5 +19,8 @@ parameters:
         - 'tests/Application/app/**.php'
         - 'tests/Application/src/**.php'
 
+        # Skeleton files
+        - 'src/Resources/skeleton/*.php'
+
     ignoreErrors:
         - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
