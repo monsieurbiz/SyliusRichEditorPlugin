@@ -59,6 +59,7 @@ class AsUiElement
                 'front_render' => $this->getTemplates()->frontRender,
                 'admin_form' => $this->getTemplates()->adminForm,
             ],
+            'form_options' => [],
         ];
 
         if ($this->alias) {
