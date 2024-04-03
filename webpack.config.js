@@ -33,7 +33,10 @@ Encore
     .configureFilenames({
         js: 'js/[name].js',
         css: 'css/[name].css',
-        images: 'images/[name].[ext]'
+    })
+    .configureImageRule({
+        type: 'asset',
+        filename: `images/[name].[ext]`,
     })
 ;
 

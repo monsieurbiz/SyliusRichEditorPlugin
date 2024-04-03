@@ -18,11 +18,12 @@
   },
   "homepage": "https://github.com/monsieurbiz/sylius-rich-editor-plugin#readme",
   "devDependencies": {
-    "@symfony/webpack-encore": "^0.28.1",
+    "@symfony/webpack-encore": "^0.28.1 || ^1.6.1",
     "autoprefixer": "^9.7.3",
-    "node-sass": "^4.13.0",
-    "postcss-loader": "^3.0.0",
-    "sass-loader": "^7.3.1"
+    "file-loader": "^6.0.0",
+    "node-sass": "^4.13.0 || ^6.0.0",
+    "postcss-loader": "^3.0.0 || ^6.0.0",
+    "sass-loader": "^7.3.1 || ^12.1.0"
   },
   "dependencies": {
     "a11y-dialog-component": "^5.5.1",
