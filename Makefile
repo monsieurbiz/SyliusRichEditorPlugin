@@ -25,7 +25,7 @@ reset: ## Stop docker and remove dependencies
 	${MAKE} docker.down || true
 	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
 	rm -rf ${APP_DIR}
-	rm -rf vendor composer.lock
+	rm -rf vendor composer.lock node_modules yarn.lock
 .PHONY: reset
 
 dependencies: composer.lock node_modules ## Setup the dependencies
@@ -132,7 +132,7 @@ test.container: ## Lint the symfony container
 	${CONSOLE} lint:container
 
 test.yaml: ## Lint the symfony Yaml files
-	${CONSOLE} lint:yaml ../../recipes ../../src/Resources/config
+	${CONSOLE} lint:yaml --parse-tags ../../recipes ../../src/Resources/config
 
 test.schema: ## Validate MySQL Schema
 	${CONSOLE} doctrine:schema:validate
@@ -199,6 +199,18 @@ server.start: ## Run the local webserver using Symfony
 
 server.stop: ## Stop the local webserver
 	${SYMFONY} local:server:stop
+
+###
+### THEMING
+### ¯¯¯¯¯¯¯
+
+.PHONY: sylius.theming.build
+sylius.theming.build: yarn.install
+	${YARN} build
+
+.PHONY: sylius.theming.watch
+sylius.theming.watch: yarn.install
+	${YARN} watch
 
 ###
 ### HELP
