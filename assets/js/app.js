@@ -1,64 +1,22 @@
-import pell from 'pell';
 import Dialog from 'a11y-dialog-component';
 import Mustache from 'mustache';
+import '../css/app.scss';
 
-global.MonsieurBizRichEditorWysiwyg = class {
-  constructor(config) {
-    this.config = config; // {actions: []}
-  }
+import suneditor from "./editors/editors/suneditor";
 
-  exec() {
-    return pell.exec(...arguments);
-  }
+const initEditors = (target) => {
+  suneditor.init(target);
+}
 
-  load(container) {
-    const targets = container.querySelectorAll('textarea.wysiwyg-enabled');
-    for (let target of targets) {
-      this.setupEditor(target);
-    }
-  }
-
-  setupEditor(target) {
-    target.setAttribute('hidden', 'true');
-
-    // Create container
-    const wysiwygContainer = document.createElement('div');
-    wysiwygContainer.classList.add('pell');
-    target.parentNode.appendChild(wysiwygContainer);
-
-    // Init pell wysiwyg
-    const editor = pell.init({
-      element: wysiwygContainer,
-      onChange: html => {
-        target.textContent = html
-      },
-      defaultParagraphSeparator: 'p',
-      actions: this.config.actions,
-    });
-
-    editor.addEventListener('paste', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let tempContainer = document.createElement('div');
-      let clipboardData = e.clipboardData || window.clipboardData;
-      tempContainer.innerHTML = clipboardData.getData('Text');
-      let text = tempContainer.textContent || tempContainer.innerText || "";
-      pell.exec('insertText', text);
-      return true;
-    });
-
-    // Populate wysiwyg with initial content
-    const initialContent = target.value;
-    editor.content.innerHTML = initialContent;
-  }
-
-};
+document.addEventListener('DOMContentLoaded', function () {
+  const target = document.querySelector('body');
+  initEditors(target);
+});
 
 global.MonsieurBizRichEditorConfig = class {
   constructor(
     input,
     uielements,
-    wysiwyg,
     containerHtml,
     actionsHtml,
     elementHtml,
@@ -76,7 +34,6 @@ global.MonsieurBizRichEditorConfig = class {
   ) {
     this.input = input;
     this.uielements = uielements;
-    this.wysiwyg = wysiwyg;
     this.containerHtml = containerHtml;
     this.actionsHtml = actionsHtml;
     this.elementHtml = elementHtml;
@@ -400,10 +357,6 @@ global.MonsieurBizRichEditorManager = class {
     return this.config.input;
   }
 
-  get wysiwyg() {
-    return this.config.wysiwyg;
-  }
-
   openSelectionPanel(position) {
     this.selectionPanel.dialog.manager = this;
     this.selectionPanel.dialog.position = position;
@@ -439,7 +392,7 @@ global.MonsieurBizRichEditorManager = class {
   drawNewForm(formHtml, position) {
     this.newPanel.dialog.innerHTML = formHtml;
     let form = this.newPanel.dialog;
-    this.wysiwyg.load(form);
+    initEditors(form);
     this.dispatchInitFormEvent(form, this);
 
     // Form submit
@@ -506,7 +459,7 @@ global.MonsieurBizRichEditorManager = class {
     this.editPanel.dialog.querySelector('.js-uie-content').innerHTML = formHtml;
     let form = this.editPanel.dialog;
 
-    this.wysiwyg.load(form);
+    initEditors(form);
     this.dispatchInitFormEvent(form, this);
 
     // Form submit

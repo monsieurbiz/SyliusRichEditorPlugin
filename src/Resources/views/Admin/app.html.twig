@@ -1,5 +1,5 @@
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor.js'} %}
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor.css'} %}
 
 <script id="monsieurbiz-rich-editor-actions" type="x-tmpl-mustache">
 {% verbatim %}
@@ -127,32 +127,6 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
 
-        let wysiwyg = new MonsieurBizRichEditorWysiwyg({
-            actions: [
-                'bold',
-                'italic',
-                'underline',
-                'ulist',
-                'olist',
-                'paragraph',
-                'heading1',
-                'heading2',
-                {
-                    name: 'heading3',
-                    icon: '<b>H<sub>3</sub></b>',
-                    title: 'Heading 3',
-                    result: () => wysiwyg.exec('formatBlock', '<h3>')
-                },
-                'link',
-                {
-                    name: 'hr',
-                    icon: '<b>—</b>',
-                    title: 'Horizontal rule',
-                    result: () => wysiwyg.exec('insertHorizontalRule')
-                },
-            ]
-        });
-
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
 
@@ -160,7 +134,6 @@
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
-                wysiwyg,
                 document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-actions').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
