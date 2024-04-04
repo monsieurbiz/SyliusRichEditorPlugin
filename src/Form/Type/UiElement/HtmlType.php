@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
+use MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class HtmlType extends AbstractType
@@ -25,8 +26,9 @@ class HtmlType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', TextareaType::class, [
+            ->add('content', WysiwygType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.field.content',
+                'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_FULL,
             ])
         ;
     }
