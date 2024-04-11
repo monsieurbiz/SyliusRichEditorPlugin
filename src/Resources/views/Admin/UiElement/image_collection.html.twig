@@ -9,10 +9,10 @@
         <div class="column">
             {% if image.link is not empty %}
                 <a href="{{ image.link }}">
-                    <img class="ui fluid image" src="{{ image.image }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
+                    <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
                 </a>
             {% else %}
-                <img class="ui fluid image" src="{{ image.image }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
+                <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
             {% endif %}
         </div>
     {% endfor %}

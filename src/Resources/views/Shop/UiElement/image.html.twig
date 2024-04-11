@@ -13,10 +13,10 @@
 <p style="text-align: {{align}};">
     {% if element.link is not empty %}
         <a href="{{ element.link }}">
-            <img class="ui fluid image" src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+            <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
         </a>
     {% else %}
-        <img class="ui fluid image" src="{{ element.image }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+        <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
     {% endif %}
 </p>
 {% endif %}

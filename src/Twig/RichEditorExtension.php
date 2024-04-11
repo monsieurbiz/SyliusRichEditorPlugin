@@ -38,6 +38,8 @@ final class RichEditorExtension extends AbstractExtension
 
     private string $defaultElementDataField;
 
+    private string $uploadDirectory;
+
     /**
      * RichEditorExtension constructor.
      */
@@ -45,12 +47,14 @@ final class RichEditorExtension extends AbstractExtension
         RegistryInterface $uiElementRegistry,
         Environment $twig,
         string $monsieurbizRicheditorDefaultElement,
-        string $monsieurbizRicheditorDefaultElementDataField
+        string $monsieurbizRicheditorDefaultElementDataField,
+        string $monsieurbizRicheditorUploadDirectory
     ) {
         $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
         $this->defaultElement = $monsieurbizRicheditorDefaultElement;
         $this->defaultElementDataField = $monsieurbizRicheditorDefaultElementDataField;
+        $this->uploadDirectory = $monsieurbizRicheditorUploadDirectory;
     }
 
     /**
@@ -78,6 +82,7 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFunction('monsieurbiz_richeditor_get_default_element', [$this, 'getDefaultElement'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_default_element_data_field', [$this, 'getDefaultElementDataField'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_current_file_path', [$this, 'getCurrentFilePath'], ['needs_context' => true, 'is_safe' => ['html']]),
+            new TwigFunction('monsieurbiz_richeditor_get_media_without_upload_dir', [$this, 'getMediaWithoutUploadDir'], ['is_safe' => ['html', 'js']]),
         ];
     }
 
@@ -233,6 +238,15 @@ final class RichEditorExtension extends AbstractExtension
 
                 return $fullName;
             }
+        }
+
+        return $path;
+    }
+
+    public function getMediaWithoutUploadDir(string $path): string
+    {
+        if (0 === strpos($path, $this->uploadDirectory)) {
+            return substr($path, \strlen($this->uploadDirectory));
         }
 
         return $path;
