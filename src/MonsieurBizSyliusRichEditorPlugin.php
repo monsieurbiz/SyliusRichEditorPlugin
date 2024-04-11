@@ -51,4 +51,19 @@ final class MonsieurBizSyliusRichEditorPlugin extends Bundle
         parent::build($container);
         $container->addCompilerPass(new UiElementRegistryPass());
     }
+
+    public static function imageMediaManagerExists(): bool
+    {
+        return class_exists('MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType');
+    }
+
+    public static function videoMediaManagerExists(): bool
+    {
+        return class_exists('MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\VideoType');
+    }
+
+    public static function fileExtensionMediaManagerExists(): bool
+    {
+        return class_exists('MonsieurBiz\SyliusMediaManagerPlugin\Twig\Extension\FileExtension');
+    }
 }

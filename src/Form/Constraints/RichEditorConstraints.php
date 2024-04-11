@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints;
 
+use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class RichEditorConstraints
@@ -24,6 +25,10 @@ final class RichEditorConstraints
      */
     public static function getImageConstraints(array $data, string $fieldName, bool $required = true, array $defaultConstraints = []): array
     {
+        if (MonsieurBizSyliusRichEditorPlugin::imageMediaManagerExists()) {
+            return self::getMediaManagerConstraints($required, $defaultConstraints);
+        }
+
         if (empty($defaultConstraints)) {
             $defaultConstraints = [
                 new Assert\Image([]),
@@ -40,6 +45,10 @@ final class RichEditorConstraints
      */
     public static function getVideoConstraints(array $data, string $fieldName, bool $required = true, array $defaultConstraints = []): array
     {
+        if (MonsieurBizSyliusRichEditorPlugin::videoMediaManagerExists()) {
+            return self::getMediaManagerConstraints($required, $defaultConstraints);
+        }
+
         if (empty($defaultConstraints)) {
             $defaultConstraints = [
                 new Assert\File([
@@ -58,6 +67,18 @@ final class RichEditorConstraints
             return [];
         }
 
+        if (!$required) {
+            return $constraints;
+        }
+
+        // No file set yet, we require file
+        $constraints[] = new Assert\NotBlank([]);
+
+        return $constraints;
+    }
+
+    private static function getMediaManagerConstraints(bool $required, array $constraints): array
+    {
         if (!$required) {
             return $constraints;
         }
