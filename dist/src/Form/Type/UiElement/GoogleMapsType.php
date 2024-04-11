@@ -13,11 +13,19 @@ declare(strict_types=1);
 
 namespace App\Form\Type\UiElement;
 
+use App\UiElement\GoogleMapsUiElement;
+use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[AsUiElement(
+    code: 'app.google_maps',
+    icon: 'map pin',
+    uiElement: GoogleMapsUiElement::class,
+    tags: ['map'],
+)]
 class GoogleMapsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

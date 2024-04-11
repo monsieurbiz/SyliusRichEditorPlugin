@@ -701,6 +701,9 @@
     "sylius-labs/polyfill-symfony-security": {
         "version": "v1.0.0"
     },
+    "sylius/calendar": {
+        "version": "v0.3.0"
+    },
     "sylius/fixtures-bundle": {
         "version": "v1.6.1"
     },
@@ -850,6 +853,15 @@
     },
     "symfony/intl": {
         "version": "v4.4.13"
+    },
+    "symfony/maker-bundle": {
+        "version": "1.39",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
+        }
     },
     "symfony/messenger": {
         "version": "4.3",
