@@ -26,6 +26,7 @@ class ImageCollectionType extends AbstractType
     {
         $builder->add('images', CollectionType::class, [
             'entry_type' => ImageType::class,
+            'prototype_name' => '__image__',
             'button_add_label' => 'monsieurbiz_richeditor_plugin.form.add_image',
             'allow_add' => true,
             'allow_delete' => true,
