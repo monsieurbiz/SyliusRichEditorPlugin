@@ -33,6 +33,9 @@ class ImageCollectionType extends AbstractType
             'by_reference' => false,
             'delete_empty' => true,
             'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.field.images',
+            'attr' => [
+                'class' => 'ui segment secondary collection--flex',
+            ],
         ]);
     }
 }
