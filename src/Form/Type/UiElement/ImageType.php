@@ -22,7 +22,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
-use Webmozart\Assert\Assert as AssertAssert;
 
 class ImageType extends AbstractType
 {
@@ -30,6 +29,12 @@ class ImageType extends AbstractType
      * @inheritdoc
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $this->addFields($builder, $options);
+        $this->addEvents($builder, $options);
+    }
+
+    public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('image', FileType::class, [
@@ -53,7 +58,7 @@ class ImageType extends AbstractType
                     new Assert\AtLeastOneOf([
                         'includeInternalMessages' => false,
                         'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
-                        'constraints'=> [
+                        'constraints' => [
                             new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
                             new Assert\Regex(['pattern' => '`^(#|/[^/])`']),
                         ],
@@ -62,7 +67,10 @@ class ImageType extends AbstractType
             ])
             ->add('align', AlignmentType::class)
         ;
+    }
 
+    public function addEvents(FormBuilderInterface $builder, array $options): void
+    {
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
