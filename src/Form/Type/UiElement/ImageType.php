@@ -22,6 +22,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
+use Webmozart\Assert\Assert as AssertAssert;
 
 class ImageType extends AbstractType
 {
@@ -49,7 +50,14 @@ class ImageType extends AbstractType
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link',
                 'constraints' => [
-                    new Assert\Url([]),
+                    new Assert\AtLeastOneOf([
+                        'includeInternalMessages' => false,
+                        'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
+                        'constraints'=> [
+                            new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
+                            new Assert\Regex(['pattern' => '`^(#|/[^/])`']),
+                        ],
+                    ]),
                 ],
             ])
             ->add('align', AlignmentType::class)
