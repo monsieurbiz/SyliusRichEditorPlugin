@@ -26,12 +26,16 @@ class ImageCollectionType extends AbstractType
     {
         $builder->add('images', CollectionType::class, [
             'entry_type' => ImageType::class,
+            'prototype_name' => '__image__',
             'button_add_label' => 'monsieurbiz_richeditor_plugin.form.add_image',
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false,
             'delete_empty' => true,
             'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.field.images',
+            'attr' => [
+                'class' => 'ui segment secondary collection--flex',
+            ],
         ]);
     }
 }
