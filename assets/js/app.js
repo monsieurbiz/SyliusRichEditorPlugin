@@ -654,7 +654,9 @@ global.MonsieurBizRichEditorManager = class {
         const modal = document.querySelector('#monsieurbiz-rich-editor-confirmation-modal');
         const confirmButton = modal.querySelector('#monsieurbiz-rich-editor-confirmation-button');
 
-        confirmButton.addEventListener('click', () => {
+        const clonedConfirmButtom = confirmButton.cloneNode(true);
+        confirmButton.parentNode.replaceChild(clonedConfirmButtom, confirmButton);
+        clonedConfirmButtom.addEventListener('click', () => {
             callback();
         })
 
