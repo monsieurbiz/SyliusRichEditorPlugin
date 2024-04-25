@@ -46,6 +46,17 @@ services:
 
     MonsieurBiz\SyliusRichEditorPlugin\Switcher\SwitchAdminLocaleInterface: '@MonsieurBiz\SyliusRichEditorPlugin\Switcher\SwitchAdminLocale'
 
+    MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType:
+        autowire: true
+
+    MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\SunEditor:
+        tags: ['monsieurbiz_rich_editor.wysiwyg_editor']
+
+    MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorCollectionInterface:
+        class: MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorCollection
+        arguments:
+            - !tagged_iterator { tag: 'monsieurbiz_rich_editor.wysiwyg_editor', default_index_method: 'getType' }
+
     # Maker
     MonsieurBiz\SyliusRichEditorPlugin\Maker\UiElementMaker:
         tags: ['maker.command']

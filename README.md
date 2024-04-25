@@ -435,7 +435,49 @@ In the YAML declaration of a UI Element, you can add the wireframe key with the 
             front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
 ```
 
+## Wysiwyg Type
 
+The `WysiwygType` form type is a custom form type provided by the MonsieurBiz Sylius Rich Editor plugin. It extends the 
+Symfony's `TextareaType` and provides a rich text editor interface in the admin form. It will work only in admin.
+
+### Basic Usage
+
+To use the `WysiwygType` in your form, you can add it to your form builder like this:
+
+```php
+$builder->add('content', WysiwygType::class, [
+    'required' => false,
+    'label' => 'app.form.content',
+]);
+```
+### Options
+
+The `WysiwygType` form type accepts several options:
+
+- `editor_type`: The type of the editor. Default is `SunEditor::TYPE`. At this time, the only supported editor type is `SunEditor::TYPE`.
+- `editor_height`: The height of the editor in pixels. Default is `300`.
+- `editor_locale`: The locale of the editor. Default is the current admin locale or 'en' if it cannot be determined.
+- `editor_toolbar_type`: The type of the toolbar. It can be one of the following: `EditorInterface::TOOLBAR_TYPE_MINIMAL`, `EditorInterface::TOOLBAR_TYPE_BASIC`, `EditorInterface::TOOLBAR_TYPE_FULL`, `EditorInterface::TOOLBAR_TYPE_CUSTOM`. Default is `EditorInterface::TOOLBAR_TYPE_BASIC`.
+- `editor_toolbar_buttons`: An array of buttons to be displayed in the toolbar when `editor_toolbar_type` is `EditorInterface::TOOLBAR_TYPE_CUSTOM`. Default is `null`.
+- `editor_custom_config`: An array of custom configuration options for the editor. Default is `null`.
+
+Here is an example of how to use these options:
+
+```php
+$builder->add('content', WysiwygType::class, [
+    'required' => false,
+    'label' => 'app.form.content',
+    'editor_height' => 500,
+    'editor_locale' => 'fr',
+    'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_CUSTOM,
+    'editor_toolbar_buttons' => ['bold', 'italic', 'underline'],
+    'editor_custom_config' => ['option1' => 'value1', 'option2' => 'value2'],
+]);
+```
+
+In this example, we have set a custom editor type, increased the height of the editor, set the locale to French, chosen
+a full toolbar, specified the buttons to be displayed in the toolbar, and provided some custom configuration options for 
+the editor.
 
 ## Contributing
 
