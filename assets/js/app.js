@@ -24,8 +24,6 @@ global.MonsieurBizRichEditorWysiwyg = class {
   }
 }
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
   const target = document.querySelector('body');
   initEditors(target);
