@@ -15,7 +15,6 @@ global.MonsieurBizRichEditorWysiwyg = class {
   load(container) {
       initEditors(container);
   }
-
   setupEditor(target) {
     if (null === target.parent) {
       return;
