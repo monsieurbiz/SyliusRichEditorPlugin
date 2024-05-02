@@ -158,11 +158,12 @@
         });
 
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
-        $(document).on('collection-form-add', function(event, children) {
-            // It returns an array with one object : the new element
-            children.each(function (index, child) {
-                wysiwyg.load(child);
-            });
+        $(document).on('collection-form-add', (event, addedElement) => {
+            document.dispatchEvent(new CustomEvent('rich-editor:reload', {
+                detail: {
+                    target: addedElement[0],
+                }
+            }));
         });
 
         document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
