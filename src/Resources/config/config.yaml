@@ -23,4 +23,4 @@ liip_imagine:
         default:
             filesystem:
                 data_root:
-                    - "%sylius_core.public_dir%/%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
+                    - "%sylius_core.public_dir%%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
