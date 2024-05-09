@@ -14,11 +14,13 @@ knp_gaufrette:
         monsieurbiz_rich_editor_fixture_file:
             adapter: 'monsieurbiz_rich_editor_fixture_file'
 
+parameters:
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR): /media/rich-editor
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_IMAGE_UPLOAD_DIR): /media/image
+
 liip_imagine:
     loaders:
         default:
             filesystem:
                 data_root:
-                    # @TODO manage to use the configuration parameter
-                    # - "%sylius_core.public_dir%/%monsieurbiz.richeditor.config.upload_directory%"
-                    - "%sylius_core.public_dir%/media/rich-editor"
+                    - "%sylius_core.public_dir%/%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
