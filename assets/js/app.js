@@ -252,6 +252,12 @@ global.MonsieurBizRichEditorManager = class {
         action.classList.remove('disabled');
       }.bind(this));
     }.bind(this));
+
+    document.addEventListener('mbiz:rich-editor:uielements:copied', function (e) {
+      this.container.querySelectorAll('.js-uie-tools-paste-all').forEach(function (action) {
+        action.removeAttribute('disabled');
+      }.bind(this));
+    }.bind(this));
   }
 
   initUiToolsInterface() {
@@ -697,6 +703,8 @@ global.MonsieurBizRichEditorManager = class {
     window.setTimeout(function () {
       button.dataset.tooltip = originalText;
     }, 1000);
+
+    document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielements:copied', {}));
   }
 
   pasteUiElementsFromClipboard() {
