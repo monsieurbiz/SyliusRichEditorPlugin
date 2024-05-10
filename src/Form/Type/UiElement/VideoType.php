@@ -28,6 +28,12 @@ class VideoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $this->addFields($builder, $options);
+        $this->addEvents($builder, $options);
+    }
+
+    public function addFields(FormBuilderInterface $builder, array $options): void
+    {
         $builder
             ->add('video', FileType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.video',
@@ -43,7 +49,10 @@ class VideoType extends AbstractType
             ])
             ->add('align', AlignmentType::class)
         ;
+    }
 
+    public function addEvents(FormBuilderInterface $builder, array $options): void
+    {
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change video field constraints depending on submitted value
             $options = $event->getForm()->get('video')->getConfig()->getOptions();

@@ -1,0 +1,141 @@
+monsieurbiz_richeditor_plugin:
+  ui_element:
+    monsieurbiz.column:
+      title: 'Elemento de diseño de columna'
+      description: 'Un diseño para mostrar elementos como una columna'
+      field:
+        content: 'Contenido'
+    monsieurbiz.row:
+      title: 'Elemento de diseño de fila'
+      description: 'Un diseño para mostrar elementos como una fila'
+      field:
+        content: 'Contenido'
+    monsieurbiz.html:
+      title: 'Elemento HTML'
+      description: 'Un elemento con datos en bruto'
+      field:
+        content: 'Contenido'
+    monsieurbiz.text:
+      title: 'Elemento de texto'
+      description: 'Un elemento con contenido de texto'
+      field:
+        content: 'Contenido'
+    monsieurbiz.title:
+      title: 'Elemento de título'
+      short_description: 'Un elemento de título'
+      description: 'Un elemento que contiene el título que deseas'
+      field:
+        content: 'Contenido'
+    monsieurbiz.h1:
+      title: '<h1> Elemento de título'
+      short_description: 'Encabezado nivel 1'
+      description: 'Un elemento que contiene el título que deseas'
+      field:
+        content: 'Contenido'
+    monsieurbiz.h2:
+      title: '<h2> Elemento de título'
+      short_description: 'Encabezado nivel 2'
+      description: 'Un elemento que contiene el título que deseas'
+      field:
+        content: 'Contenido'
+    monsieurbiz.h3:
+      title: '<h3> Elemento de título'
+      short_description: 'Encabezado nivel 3'
+      description: 'Un elemento que contiene el título que deseas'
+      field:
+        content: 'Contenido'
+    monsieurbiz.image:
+      title: 'Elemento de imagen'
+      short_description: 'Un elemento con una imagen, un texto alternativo y un título.'
+      description: 'Un elemento con una imagen, un texto alternativo y un título. Se puede agregar un enlace a él.'
+      field:
+        current_image: 'Imagen actual'
+        image: 'Imagen'
+        alt: 'Texto alternativo'
+        title: 'Título'
+        link: 'Enlace'
+    monsieurbiz.quote:
+      title: 'Elemento de cita'
+      description: 'Un elemento con un autor y un contenido'
+      field:
+        author: 'Autor'
+        content: 'Contenido'
+    monsieurbiz.video:
+      title: 'Elemento de video'
+      short_description: 'Elemento con un video y una imagen de video de fondo'
+      description: 'Un elemento con un archivo de video y un archivo de imagen de fondo que se renderiza antes de reproducir el video'
+      field:
+        video: 'Video'
+        image: 'Imagen de fondo'
+    monsieurbiz.separator:
+      title: 'Elemento separador'
+      short_description: 'Un elemento separador'
+      description: 'Un elemento separador. El separador puede ser uno oculto.'
+      field:
+        hidden: 'Separador oculto'
+    monsieurbiz.button:
+      title: 'Elemento de botón'
+      short_description: 'Un botón con un texto y un enlace.'
+      description: 'Un botón con un texto y un enlace.'
+      field:
+        label: 'Etiqueta'
+        link: 'Enlace'
+    monsieurbiz.youtube:
+      title: 'Elemento de Youtube'
+      short_description: 'Un elemento de Youtube.'
+      description: 'Un elemento que muestra un video de Youtube.'
+      field:
+        link: 'Enlace de Youtube'
+        width: 'Ancho del iframe'
+        height: 'Altura del iframe'
+    monsieurbiz.image_collection:
+      title: 'Elemento de colección de imágenes'
+      short_description: 'Un elemento con varias imágenes.'
+      description: 'Un elemento con varias imágenes. Se puede agregar un enlace a cada imagen.'
+      field:
+        images: 'Lista de imágenes'
+  file:
+    change: 'Cambiar archivo'
+  form:
+    add: 'Agregar un elemento'
+    move: 'Mover'
+    move_up: 'Mover hacia arriba'
+    move_down: 'Mover hacia abajo'
+    edit: 'Editar'
+    delete: 'Eliminar'
+    close: 'Cerrar'
+    confirm_delete: '¿Estás seguro de que quieres eliminar este elemento?'
+    apply_changes: 'Aplicar cambios'
+    cancel_changes: 'Cancelar cambios'
+    placeholder: 'Arrastra los widgets en esta área'
+    current_image: 'Imagen actual'
+    current_video: 'Video actual'
+    current_file: 'Archivo actual'
+    add_element: 'Agregar %uiElementTitle%'
+    edit_element: 'Editar %uiElementTitle%'
+    cancel: 'Cancelar'
+    save: 'Guardar'
+    add_image: 'Agregar imagen'
+    select_ui_element: 'Seleccionar un elemento de interfaz de usuario'
+    align:
+      label: 'Alineación'
+      default: 'Por defecto'
+      left: 'Izquierda'
+      center: 'Centro'
+      right: 'Derecha'
+      justify: 'Justificar'
+    clipboard: 'Portapapeles'
+    paste_from_clipboard: 'Pegar desde el portapapeles'
+    copied: '¡Copiado!'
+    copy: 'Copiar'
+  action:
+    new: 'Mostrar widgets disponibles'
+    preview: 'Vista previa'
+  error:
+    cannot_parse_json: 'No se puede analizar el contenido actual'
+    cannot_find_type: 'No se puede encontrar el tipo para algunos elementos de la interfaz de usuario'
+    cannot_upload_image: 'No se puede cargar la imagen. El archivo puede ser demasiado grande o tener un formato incorrecto.'
+    ajax_error: 'Hay un problema técnico. Por favor, contacta con tu administrador.'
+    unallowed_uielement: 'Elemento no permitido aquí'
+  ui:
+    disabled: 'Desactivado'

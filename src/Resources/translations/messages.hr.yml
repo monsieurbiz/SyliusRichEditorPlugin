@@ -1,13 +1,13 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
-      title: 'Kolona'
-      description: 'Element koji sadrži druge elemente unutra'
+      title: 'Stupac'
+      description: 'Raspored za prikaz elemenata stupac po stupac'
       field:
         content: 'Sadržaj'
     monsieurbiz.row:
       title: 'Red'
-      description: 'Element koji sadrži druge elemente unutra'
+      description: 'Raspored za prikaz elemenata red po red'
       field:
         content: 'Sadržaj'
     monsieurbiz.html:

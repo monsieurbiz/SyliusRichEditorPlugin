@@ -56,6 +56,7 @@ final class Configuration implements ConfigurationInterface
                             ->scalarNode('description')->isRequired()->cannotBeEmpty()->end()
                             ->scalarNode('alias')->end()
                             ->scalarNode('icon')->isRequired()->cannotBeEmpty()->end()
+                            ->scalarNode('wireframe')->defaultValue('')->end()
                             ->booleanNode('enabled')->defaultTrue()->end()
                             ->arrayNode('classes')
                                 ->addDefaultsIfNotSet()

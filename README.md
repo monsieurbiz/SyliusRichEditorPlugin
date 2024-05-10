@@ -217,7 +217,23 @@ You can distinguish the `Row` element and the `Column` element by their dotted b
 
 In this example, we will add a Google Maps element.
 
-### Define your UiElement
+With the Maker Bundle, you can create a new UiElement very easily: 
+
+```bash
+bin/console make:ui-element
+```
+
+Then you will have to answer some questions, or you can add arguments to the command to avoid the questions.
+
+```bash
+bin/console make:ui-element app.google_maps "map pin"
+```
+
+Just add the translations!
+
+### Define your UiElement (for PHP < 8.1)
+
+**Tips:** If you are using PHP 8.1 or newer, you can use the `#[AsUiElement]` attribute to define your UiElement. You can skip this step.
 
 Define your UiElement in your configuration folder, let's say in `config/packages/monsieurbiz_sylius_richeditor_plugin.yaml` as example.
 
@@ -271,6 +287,48 @@ class GoogleMapsType extends AbstractType
         ;
     }
 }
+```
+
+For PHP 8.1 and newer, you can use the `#[AsUiElement]` attribute to define your UiElement. For example:
+
+```php
+<?php
+
+// ...
+
+use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
+
+#[AsUiElement(
+    code: 'app.google_maps',
+    icon: 'map pin',
+)]
+class GoogleMapsType extends AbstractType
+// ...
+```
+
+The title, description and templates values are generated automatically from the code. In this example :
+
+- the title will be `app.ui_element.google_maps.title`,
+- the description will be `app.ui_element.google_maps.description`,
+- the admin template will be `/Admin/UiElement/google_maps.html.twig`, 
+- and the front template will be `/Shop/UiElement/google_maps.html.twig`.
+
+But you can override them if you want:
+
+```php
+#[AsUiElement(
+    code: 'app.google_maps',
+    title: 'my_cusom.title', // Use your own translation key or a string
+    description: 'my_custom.description',
+    icon: 'map pin',
+    templates: new TemplatesUiElement(
+        adminRender: 'MyCusomPath/google_maps.html.twig',
+        frontRender: 'MyCusomPath/google_maps.html.twig',
+    ),
+    uiElement: GoogleMapsUiElement::class, // Use your own UiElement class
+    tags: ['map'], // Add some tags to filter the UiElement
+    wireframe: 'google_maps', // Add a wireframe to help the user to understand the UiElement, see below
+)]
 ```
 
 ### Add your translations of course
@@ -337,7 +395,7 @@ sylius_fixtures:
                                 target_path: 'baz/file.pdf'
 ```
 
-The exemple below will copy files to `public/media/image/foo/bar1.png` and `public/media/foo/file.pdf`.
+The example below will copy files to `public/media/image/foo/bar1.png` and `public/media/foo/file.pdf`.
 
 Now you can use files in your content fixtures:
 
@@ -352,6 +410,74 @@ description: |
         }
     }]
 ```
+
+## Wireframes
+
+You can add a wireframe to your UiElement. 
+It will be displayed in the admin form to help the user to understand what the UiElement is about.
+The file can be either:
+* An SVG with a `.twig` extension. Example: `button.svg.twig`.
+* A classic twig template. Example `button.html.twig`.
+You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/Wireframe/*.{svg/html}.twig`
+In the YAML declaration of a UI Element, you can add the wireframe key with the name of the file without the extension.
+```yaml
+    monsieurbiz.title:
+        alias: title
+        title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
+        description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
+        icon: heading
+        wireframe: title
+        tags: [ default ]
+        classes:
+            form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
+        templates:
+            admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
+            front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+```
+
+## Wysiwyg Type
+
+The `WysiwygType` form type is a custom form type provided by the MonsieurBiz Sylius Rich Editor plugin. It extends the 
+Symfony's `TextareaType` and provides a rich text editor interface in the admin form. It will work only in admin.
+
+### Basic Usage
+
+To use the `WysiwygType` in your form, you can add it to your form builder like this:
+
+```php
+$builder->add('content', WysiwygType::class, [
+    'required' => false,
+    'label' => 'app.form.content',
+]);
+```
+### Options
+
+The `WysiwygType` form type accepts several options:
+
+- `editor_type`: The type of the editor. Default is `SunEditor::TYPE`. At this time, the only supported editor type is `SunEditor::TYPE`.
+- `editor_height`: The height of the editor in pixels. Default is `300`.
+- `editor_locale`: The locale of the editor. Default is the current admin locale or 'en' if it cannot be determined.
+- `editor_toolbar_type`: The type of the toolbar. It can be one of the following: `EditorInterface::TOOLBAR_TYPE_MINIMAL`, `EditorInterface::TOOLBAR_TYPE_BASIC`, `EditorInterface::TOOLBAR_TYPE_FULL`, `EditorInterface::TOOLBAR_TYPE_CUSTOM`. Default is `EditorInterface::TOOLBAR_TYPE_BASIC`.
+- `editor_toolbar_buttons`: An array of buttons to be displayed in the toolbar when `editor_toolbar_type` is `EditorInterface::TOOLBAR_TYPE_CUSTOM`. Default is `null`.
+- `editor_custom_config`: An array of custom configuration options for the editor. Default is `null`.
+
+Here is an example of how to use these options:
+
+```php
+$builder->add('content', WysiwygType::class, [
+    'required' => false,
+    'label' => 'app.form.content',
+    'editor_height' => 500,
+    'editor_locale' => 'fr',
+    'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_CUSTOM,
+    'editor_toolbar_buttons' => ['bold', 'italic', 'underline'],
+    'editor_custom_config' => ['option1' => 'value1', 'option2' => 'value2'],
+]);
+```
+
+In this example, we have set a custom editor type, increased the height of the editor, set the locale to French, chosen
+a full toolbar, specified the buttons to be displayed in the toolbar, and provided some custom configuration options for 
+the editor.
 
 ## Contributing
 

@@ -1,5 +1,25 @@
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-js.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-css.css'} %}
+{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor.js'} %}
+{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor.css'} %}
+
+<div class="ui small basic modal" id="monsieurbiz-rich-editor-confirmation-modal">
+    <div class="ui icon header">
+        <i class="warning sign icon"></i>
+        {{ 'sylius.ui.confirm_your_action'|trans }}
+    </div>
+    <div class="content">
+        <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
+    </div>
+    <div class="actions">
+        <div class="ui red basic cancel inverted button">
+            <i class="remove icon"></i>
+            {{ 'sylius.ui.no_label'|trans }}
+        </div>
+        <div class="ui green ok inverted button" id="monsieurbiz-rich-editor-confirmation-button">
+            <i class="checkmark icon"></i>
+            {{ 'sylius.ui.yes_label'|trans }}
+        </div>
+    </div>
+</div>
 
 <div class="ui small basic modal" id="monsieurbiz-rich-editor-confirmation-modal">
     <div class="ui icon header">
@@ -104,6 +124,12 @@
             {{description}}
             {{/description}}
         </div>
+        {{#wireframe}}
+            <div class="wireframe">
+                {{& wireframeHtml }}
+            </div>
+        {{/wireframe}}
+</div>
     </div>
     <div class="extra content right aligned">
         {{#tags}}
@@ -152,32 +178,6 @@
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
 
-        let wysiwyg = new MonsieurBizRichEditorWysiwyg({
-            actions: [
-                'bold',
-                'italic',
-                'underline',
-                'ulist',
-                'olist',
-                'paragraph',
-                'heading1',
-                'heading2',
-                {
-                    name: 'heading3',
-                    icon: '<b>H<sub>3</sub></b>',
-                    title: 'Heading 3',
-                    result: () => wysiwyg.exec('formatBlock', '<h3>')
-                },
-                'link',
-                {
-                    name: 'hr',
-                    icon: '<b>—</b>',
-                    title: 'Horizontal rule',
-                    result: () => wysiwyg.exec('insertHorizontalRule')
-                },
-            ]
-        });
-
         let editors = document.querySelectorAll('[data-component="rich-editor"]');
         let uielements = {{ monsieurbiz_richeditor_list_elements() }};
 
@@ -185,7 +185,6 @@
             let config = new MonsieurBizRichEditorConfig(
                 editor,
                 uielements,
-                wysiwyg,
                 document.getElementById('monsieurbiz-rich-editor-ui-elements-container').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-actions').innerHTML,
                 document.getElementById('monsieurbiz-rich-editor-ui-element').innerHTML,
@@ -210,11 +209,12 @@
         });
 
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
-        $(document).on('collection-form-add', function(event, children) {
-            // It returns an array with one object : the new element
-            children.each(function (index, child) {
-                wysiwyg.load(child);
-            });
+        $(document).on('collection-form-add', (event, addedElement) => {
+            document.dispatchEvent(new CustomEvent('rich-editor:reload', {
+                detail: {
+                    target: addedElement[0],
+                }
+            }));
         });
 
         document.addEventListener('monsieurBizRichEditorInitForm', (e) => {

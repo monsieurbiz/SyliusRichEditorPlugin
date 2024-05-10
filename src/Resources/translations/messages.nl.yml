@@ -2,12 +2,12 @@ monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
       title: 'Kolom'
-      description: 'Een element met een lijst met elementen erin'
+      description: 'Een lay-out om elementen kolom per kolom weer te geven'
       field:
         content: 'Inhoud'
     monsieurbiz.row:
       title: 'Rij'
-      description: 'Een element met een lijst met elementen erin'
+      description: 'Een lay-out om elementen rij per rij weer te geven'
       field:
         content: 'Inhoud'
     monsieurbiz.html:

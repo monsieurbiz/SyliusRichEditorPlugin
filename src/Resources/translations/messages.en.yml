@@ -2,12 +2,12 @@ monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
       title: 'Column Layout Element'
-      description: 'A layout to display elements as a column'
+      description: 'A layout to display elements column by column'
       field:
         content: 'Content'
     monsieurbiz.row:
       title: 'Row Layout Element'
-      description: 'A layout to display elements as a row'
+      description: 'A layout to display elements row by row'
       field:
         content: 'Content'
     monsieurbiz.html:

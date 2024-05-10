@@ -237,6 +237,14 @@ html.is-disabled body {
     margin-left: 2rem !important;
 }
 
+.wireframe {
+    padding-top: 10px;
+    svg {
+        max-height: 100px;
+        width: 100%;
+    }
+}
+
 @media (max-width: 700px) {
     .sm\:uie-flex-column {
         flex-direction: column !important;

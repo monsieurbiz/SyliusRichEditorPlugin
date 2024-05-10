@@ -4,17 +4,18 @@ monsieurbiz_sylius_richeditor:
             tags: [ html ]
         monsieurbiz.youtube:
             tags: [ youtube ]
-        app.google_maps:
-            title: 'app.ui_element.google_maps.title'
-            description: 'app.ui_element.google_maps.description'
-            icon: map pin
-            tags: [ map ]
-            classes:
-                form: App\Form\Type\UiElement\GoogleMapsType
-                ui_element: App\UiElement\GoogleMapsUiElement
-            templates:
-                admin_render: '/Admin/UiElement/google_maps.html.twig'
-                front_render: '/Shop/UiElement/google_maps.html.twig'
+#        Example without PHP Attributes or for PHP version < 8.1
+#        app.google_maps:
+#            title: 'app.ui_element.google_maps.title'
+#            description: 'app.ui_element.google_maps.description'
+#            icon: map pin
+#            tags: [ map ]
+#            classes:
+#                form: App\Form\Type\UiElement\GoogleMapsType
+#                ui_element: App\UiElement\GoogleMapsUiElement
+#            templates:
+#                admin_render: '/Admin/UiElement/google_maps.html.twig'
+#                front_render: '/Shop/UiElement/google_maps.html.twig'
         app.noseeme:
             title: 'You should not see me'
             description: 'The invisible Ui Element'

@@ -7,8 +7,7 @@ Encore
     .setPublicPath('/public')
 
     // entries
-    .addEntry('rich-editor-js', './assets/js/app.js')
-    .addStyleEntry('rich-editor-css', './assets/css/app.scss')
+    .addEntry('rich-editor', './assets/js/app.js')
 
     // copy images
     .copyFiles({
@@ -33,7 +32,10 @@ Encore
     .configureFilenames({
         js: 'js/[name].js',
         css: 'css/[name].css',
-        images: 'images/[name].[ext]'
+    })
+    .configureImageRule({
+        type: 'asset',
+        filename: `images/[name].[ext]`,
     })
 ;
 
