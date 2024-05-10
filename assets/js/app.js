@@ -10,7 +10,7 @@ const initEditors = (target) => {
 
 // For retro-compatibility we keep the MonsieurBizRichEditorWysiwyg class
 global.MonsieurBizRichEditorWysiwyg = class {
-    constructor(config) { }
+    constructor(config) {}
     load(container) {
         console.log('Deprecated method MonsieurBizRichEditorWysiwyg.load(), use initEditors(target) instead.');
     }
@@ -221,7 +221,7 @@ global.MonsieurBizRichEditorManager = class {
         this.initUiToolsInterface();
 
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:init-interface-complete', {
-            'detail': { 'editorManager': this }
+            'detail': {'editorManager': this}
         }));
         document.addEventListener('mbiz:rich-editor:uielement:copied', function (e) {
             this.container.querySelectorAll('.js-uie-paste').forEach(function (action) {
@@ -304,7 +304,7 @@ global.MonsieurBizRichEditorManager = class {
 
     getActions(position) {
         let actionsWrapper = document.createElement('div');
-        actionsWrapper.innerHTML = Mustache.render(this.config.actionsHtml, { 'position': position });
+        actionsWrapper.innerHTML = Mustache.render(this.config.actionsHtml, {'position': position});
 
         let actions = actionsWrapper.firstElementChild;
 
@@ -476,7 +476,7 @@ global.MonsieurBizRichEditorManager = class {
         saveButton.panel = this.newPanel;
         saveButton.addEventListener('click', function (e) {
             e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-                new Event('submit', { cancelable: true })
+                new Event('submit', {cancelable: true})
             );
         });
     }
@@ -544,7 +544,7 @@ global.MonsieurBizRichEditorManager = class {
         saveButton.panel = this.editPanel;
         saveButton.addEventListener('click', function (e) {
             e.currentTarget.panel.dialog.querySelector('form').dispatchEvent(
-                new Event('submit', { cancelable: true })
+                new Event('submit', {cancelable: true})
             );
         });
     }
@@ -563,7 +563,7 @@ global.MonsieurBizRichEditorManager = class {
         this.input.value = (this.uiElements.length > 0) ? JSON.stringify(this.uiElements) : '';
         this.drawUiElements();
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:write-complete', {
-            'detail': { 'editorManager': this }
+            'detail': {'editorManager': this}
         }));
     }
 
@@ -616,7 +616,7 @@ global.MonsieurBizRichEditorManager = class {
         req.open("post", url.replace('__CODE__', element.code), true);
         req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        req.send(new URLSearchParams({ data: JSON.stringify(element.data) }).toString());
+        req.send(new URLSearchParams({data: JSON.stringify(element.data)}).toString());
     }
 
     submitUiElementForm(form, callback) {
@@ -740,7 +740,7 @@ global.MonsieurBizRichEditorManager = class {
 
     dispatchInitFormEvent(form, manager) {
         document.dispatchEvent(new CustomEvent('monsieurBizRichEditorInitForm', {
-            'detail': { 'form': form, 'manager': manager }
+            'detail': {'form': form, 'manager': manager}
         }));
     }
 };
