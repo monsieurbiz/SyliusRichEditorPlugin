@@ -79,7 +79,11 @@ final class RichEditorExtension extends AbstractExtension
      */
     public function getFunctions(): array
     {
-        return [
+        $mediaManagerTwigExtension = $this->fileExtensionMediaManagerExists() ? [] : [
+            new TwigFunction('get_media_manager_file_path', [$this, 'getMediaManagerFilePath'], ['is_safe' => ['html', 'js']]),
+        ];
+
+        return array_merge([
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_id', [$this, 'getYoutubeIdFromLink'], ['is_safe' => ['html', 'js']]),
@@ -90,7 +94,7 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFunction('monsieurbiz_richeditor_get_media_without_upload_dir', [$this, 'getMediaWithoutUploadDir'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_file_extension_media_manager_exists', [$this, 'fileExtensionMediaManagerExists'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_file_exists', [$this, 'fileExists'], ['is_safe' => ['html', 'js']]),
-        ];
+        ], $mediaManagerTwigExtension);
     }
 
     /**
@@ -267,6 +271,12 @@ final class RichEditorExtension extends AbstractExtension
     public function fileExists(string $path): bool
     {
         return file_exists($this->kernelPublicDir . $path);
+    }
+
+    // Fall back for twig linter if the media manager is not installed
+    public function getMediaManagerFilePath(string $path): string
+    {
+        return $path;
     }
 
     private function isAdmin(array $context): bool
