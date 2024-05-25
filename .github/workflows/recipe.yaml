@@ -20,6 +20,10 @@ jobs:
       matrix:
         php: ['8.0', '8.1']
         sylius: ['~1.10.0', '~1.11.0', '~1.12.0']
+        include:
+          - php: '8.1'
+            sylius: '~1.12.0'
+            sylius_paypal: '~1.5.0'
 
     steps:
       - name: Setup PHP
@@ -57,6 +61,14 @@ jobs:
         working-directory: ./sylius
         run: |
             composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
+
+      # Fix Paypal 1.5 on Sylius 1.12 and PHP 8.1
+      - name: Make sure to install the required version of Sylius Paypal Plugin
+        if: ${{ matrix.sylius_paypal }}
+        working-directory: ./sylius
+        run: |
+            composer require --no-install --no-scripts --no-progress sylius/paypal-plugin="${{ matrix.sylius_paypal }}" # @see https://github.com/Sylius/PayPalPlugin/issues/295
+
 
       - name: Setup some requirements
         working-directory: ./sylius
