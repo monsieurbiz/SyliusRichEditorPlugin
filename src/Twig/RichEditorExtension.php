@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Exception\UiElementNotFoundException;
+use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\RegistryInterface;
 use MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints\YoutubeUrlValidator;
 use Symfony\Bridge\Twig\AppVariable;
@@ -40,6 +41,8 @@ final class RichEditorExtension extends AbstractExtension
 
     private string $uploadDirectory;
 
+    private string $kernelPublicDir;
+
     /**
      * RichEditorExtension constructor.
      */
@@ -48,13 +51,15 @@ final class RichEditorExtension extends AbstractExtension
         Environment $twig,
         string $monsieurbizRicheditorDefaultElement,
         string $monsieurbizRicheditorDefaultElementDataField,
-        string $monsieurbizRicheditorUploadDirectory
+        string $monsieurbizRicheditorUploadDirectory,
+        string $monsieurbizRicheditorKernelPublicDir
     ) {
         $this->uiElementRegistry = $uiElementRegistry;
         $this->twig = $twig;
         $this->defaultElement = $monsieurbizRicheditorDefaultElement;
         $this->defaultElementDataField = $monsieurbizRicheditorDefaultElementDataField;
         $this->uploadDirectory = $monsieurbizRicheditorUploadDirectory;
+        $this->kernelPublicDir = $monsieurbizRicheditorKernelPublicDir;
     }
 
     /**
@@ -74,7 +79,11 @@ final class RichEditorExtension extends AbstractExtension
      */
     public function getFunctions(): array
     {
-        return [
+        $mediaManagerTwigExtension = $this->fileExtensionMediaManagerExists() ? [] : [
+            new TwigFunction('get_media_manager_file_path', [$this, 'getMediaManagerFilePath'], ['is_safe' => ['html', 'js']]),
+        ];
+
+        return array_merge([
             new TwigFunction('monsieurbiz_richeditor_list_elements', [$this, 'listUiElements'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_link', [$this, 'convertYoutubeEmbeddedLink'], ['is_safe' => ['html', 'js']]),
             new TwigFunction('monsieurbiz_richeditor_youtube_id', [$this, 'getYoutubeIdFromLink'], ['is_safe' => ['html', 'js']]),
@@ -83,7 +92,9 @@ final class RichEditorExtension extends AbstractExtension
             new TwigFunction('monsieurbiz_richeditor_get_default_element_data_field', [$this, 'getDefaultElementDataField'], ['is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_current_file_path', [$this, 'getCurrentFilePath'], ['needs_context' => true, 'is_safe' => ['html']]),
             new TwigFunction('monsieurbiz_richeditor_get_media_without_upload_dir', [$this, 'getMediaWithoutUploadDir'], ['is_safe' => ['html', 'js']]),
-        ];
+            new TwigFunction('monsieurbiz_richeditor_file_extension_media_manager_exists', [$this, 'fileExtensionMediaManagerExists'], ['is_safe' => ['html', 'js']]),
+            new TwigFunction('monsieurbiz_richeditor_file_exists', [$this, 'fileExists'], ['is_safe' => ['html', 'js']]),
+        ], $mediaManagerTwigExtension);
     }
 
     /**
@@ -249,6 +260,22 @@ final class RichEditorExtension extends AbstractExtension
             return substr($path, \strlen($this->uploadDirectory));
         }
 
+        return $path;
+    }
+
+    public function fileExtensionMediaManagerExists(): bool
+    {
+        return MonsieurBizSyliusRichEditorPlugin::fileExtensionMediaManagerExists();
+    }
+
+    public function fileExists(string $path): bool
+    {
+        return file_exists($this->kernelPublicDir . $path);
+    }
+
+    // Fall back for twig linter if the media manager is not installed
+    public function getMediaManagerFilePath(string $path): string
+    {
         return $path;
     }
 

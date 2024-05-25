@@ -45,6 +45,16 @@ And install the assets
 bin/console asset:install
 ```
 
+## Use it with the [Sylius Media Manager](https://github.com/monsieurbiz/SyliusMediaManagerPlugin/)
+
+You don't need to do something, everything is compatible.
+
+If you used the rich editor before using the media manager, you need to override the form theme of the media manager plugin :
+```
+mkdir -p templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/;
+cp dist/templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/_theme.html.twig templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/_theme.html.twig;
+```
+
 ## Use the Rich Editor
 
 ### Update your form type

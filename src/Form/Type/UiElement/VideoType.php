@@ -13,8 +13,11 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType as MediaManagerImageType;
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\VideoType as MediaManagerVideoType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,13 +38,13 @@ class VideoType extends AbstractType
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('video', FileType::class, [
+            ->add('video', $this->getVideoType(), [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.video',
                 'data_class' => null,
                 'required' => true,
                 'attr' => ['data-video' => 'true'],
             ])
-            ->add('image', FileType::class, [
+            ->add('image', $this->getImageType(), [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.image',
                 'data_class' => null,
                 'required' => false,
@@ -51,18 +54,30 @@ class VideoType extends AbstractType
         ;
     }
 
+    private function getImageType(): string
+    {
+        // @phpstan-ignore-next-line
+        return MonsieurBizSyliusRichEditorPlugin::imageMediaManagerExists() ? MediaManagerImageType::class : FileType::class;
+    }
+
+    private function getVideoType(): string
+    {
+        // @phpstan-ignore-next-line
+        return MonsieurBizSyliusRichEditorPlugin::videoMediaManagerExists() ? MediaManagerVideoType::class : FileType::class;
+    }
+
     public function addEvents(FormBuilderInterface $builder, array $options): void
     {
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change video field constraints depending on submitted value
             $options = $event->getForm()->get('video')->getConfig()->getOptions();
             $options['constraints'] = RichEditorConstraints::getVideoConstraints($event->getData(), 'video');
-            $event->getForm()->add('video', FileType::class, $options);
+            $event->getForm()->add('video', $this->getVideoType(), $options);
 
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
             $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image', false);
-            $event->getForm()->add('image', FileType::class, $options);
+            $event->getForm()->add('image', $this->getImageType(), $options);
         });
     }
 }

@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
+use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType as MediaManagerImageType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
@@ -37,7 +39,7 @@ class ImageType extends AbstractType
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('image', FileType::class, [
+            ->add('image', $this->getImageType(), [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.image',
                 'data_class' => null,
                 'required' => true,
@@ -69,13 +71,19 @@ class ImageType extends AbstractType
         ;
     }
 
+    private function getImageType(): string
+    {
+        // @phpstan-ignore-next-line
+        return MonsieurBizSyliusRichEditorPlugin::imageMediaManagerExists() ? MediaManagerImageType::class : FileType::class;
+    }
+
     public function addEvents(FormBuilderInterface $builder, array $options): void
     {
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
             $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image');
-            $event->getForm()->add('image', FileType::class, $options);
+            $event->getForm()->add('image', $this->getImageType(), $options);
         });
     }
 }

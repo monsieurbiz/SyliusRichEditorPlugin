@@ -7,8 +7,16 @@
         align
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
+{% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
+    {% set videoSrc = get_media_manager_file_path(element.video) %}
+    {% if not monsieurbiz_richeditor_file_exists(videoSrc) %}
+        {% set videoSrc = element.video %}
+    {% endif %}
+{% else %}
+    {% set videoSrc = element.video %}
+{% endif %}
 <div style="text-align: {{align}};">
     <video width="100%" poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" controls>
-        <source src="{{ element.video }}" type="video/{{ element.video|split('.')|last }}">
+        <source src="{{ videoSrc }}" type="video/{{ element.video|split('.')|last }}">
     </video>
 </div>

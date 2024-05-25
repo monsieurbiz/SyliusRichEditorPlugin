@@ -8,6 +8,7 @@ services:
             string $monsieurbizRicheditorDefaultElement: '%monsieurbiz.richeditor.config.default_element%'
             string $monsieurbizRicheditorDefaultElementDataField: '%monsieurbiz.richeditor.config.default_element_data_field%'
             string $monsieurbizRicheditorUploadDirectory: '%monsieurbiz.richeditor.config.upload_directory%'
+            string $monsieurbizRicheditorKernelPublicDir: '%kernel.project_dir%/public'
             Gaufrette\FilesystemInterface $filesystem: '@gaufrette.monsieurbiz_rich_editor_fixture_file_filesystem'
 
     MonsieurBiz\SyliusRichEditorPlugin\Controller\:
