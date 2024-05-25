@@ -8,7 +8,7 @@
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 <div style="text-align: {{align}};">
-    <video width="100%" poster="{{ element.image }}" controls>
+    <video width="100%" poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" controls>
         <source src="{{ element.video }}" type="video/{{ element.video|split('.')|last }}">
     </video>
 </div>

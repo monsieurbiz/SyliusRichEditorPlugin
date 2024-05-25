@@ -6,5 +6,9 @@
     },
     "copy-from-recipe": {
         "config/": "%CONFIG_DIR%/"
+    },
+    "env": {
+        "MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR": "/media/rich-editor",
+        "MONSIEURBIZ_SYLIUS_RICH_EDITOR_IMAGE_UPLOAD_DIR": "/media/image"
     }
 }

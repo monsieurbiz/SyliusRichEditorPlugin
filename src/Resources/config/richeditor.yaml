@@ -1,6 +1,6 @@
 monsieurbiz_sylius_richeditor:
-    upload_directory: '/media/rich-editor'
-    image_upload_directory: '/media/image'
+    upload_directory: "%env(resolve:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
+    image_upload_directory: "%env(resolve:MONSIEURBIZ_SYLIUS_RICH_EDITOR_IMAGE_UPLOAD_DIR)%"
     ui_elements:
         monsieurbiz.html:
             alias: html

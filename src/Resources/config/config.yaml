@@ -13,3 +13,14 @@ knp_gaufrette:
     filesystems:
         monsieurbiz_rich_editor_fixture_file:
             adapter: 'monsieurbiz_rich_editor_fixture_file'
+
+parameters:
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR): /media/rich-editor
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_IMAGE_UPLOAD_DIR): /media/image
+
+liip_imagine:
+    loaders:
+        default:
+            filesystem:
+                data_root:
+                    - "%sylius_core.public_dir%/%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"

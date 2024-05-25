@@ -7,6 +7,7 @@ services:
         bind:
             string $monsieurbizRicheditorDefaultElement: '%monsieurbiz.richeditor.config.default_element%'
             string $monsieurbizRicheditorDefaultElementDataField: '%monsieurbiz.richeditor.config.default_element_data_field%'
+            string $monsieurbizRicheditorUploadDirectory: '%monsieurbiz.richeditor.config.upload_directory%'
             Gaufrette\FilesystemInterface $filesystem: '@gaufrette.monsieurbiz_rich_editor_fixture_file_filesystem'
 
     MonsieurBiz\SyliusRichEditorPlugin\Controller\:

@@ -48,7 +48,7 @@
             {% if form.vars.attr['data-image'] is defined %}
                 <p>
                     <small>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</small><br />
-                    <img src="{{ current_file_path }}" alt="" style="max-width: 300px;max-height: 300px;" />
+                    <img src="{{  monsieurbiz_richeditor_get_media_without_upload_dir(current_file_path)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="" style="max-width: 300px;max-height: 300px;" />
                 </p>
             {% elseif form.vars.attr['data-video'] is defined %}
                 <p>
