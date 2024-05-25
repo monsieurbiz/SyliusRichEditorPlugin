@@ -218,6 +218,8 @@ global.MonsieurBizRichEditorManager = class {
     initInterface() {
         this.initUiElementsInterface();
         this.initUiPanelsInterface();
+        this.initUiToolsInterface();
+
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:init-interface-complete', {
             'detail': {'editorManager': this}
         }));
@@ -226,6 +228,30 @@ global.MonsieurBizRichEditorManager = class {
                 action.classList.remove('disabled');
             }.bind(this));
         }.bind(this));
+
+        document.addEventListener('mbiz:rich-editor:uielements:copied', function (e) {
+            this.container.querySelectorAll('.js-uie-tools-paste-all').forEach(function (action) {
+                action.removeAttribute('disabled');
+            }.bind(this));
+        }.bind(this));
+    }
+
+    initUiToolsInterface() {
+        const copyAllButton = this.container.querySelector('.js-uie-tools-copy-all');
+        const pasteAllButton = this.container.querySelector('.js-uie-tools-paste-all');
+        const trashAllButton = this.container.querySelector('.js-uie-tools-trash-all');
+
+        copyAllButton && copyAllButton.addEventListener('click', e => {
+            this.saveUiElementsToClipboard(e.currentTarget);
+        });
+
+        pasteAllButton && pasteAllButton.addEventListener('click', e => {
+            this.pasteUiElementsFromClipboard();
+        });
+
+        trashAllButton && trashAllButton.addEventListener('click', e => {
+            this.resetUiElements();
+        });
     }
 
     initUiPanelsInterface() {
@@ -300,7 +326,7 @@ global.MonsieurBizRichEditorManager = class {
             );
         });
         // Disabled?
-        if (!this.isClipboardEmpty()) {
+        if (!this.isClipboardEmpty('monsieurBizRichEditorElementClipboard')) {
             actions.querySelector('.js-uie-paste').classList.remove('disabled');
         }
 
@@ -617,19 +643,65 @@ global.MonsieurBizRichEditorManager = class {
         req.send(data);
     }
 
-    isClipboardEmpty() {
-        const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
+    isClipboardEmpty(clipboardKey) {
+        const clipboard = window.localStorage.getItem(clipboardKey);
         return null === clipboard || '' === clipboard;
     }
 
+    resetUiElements() {
+        if (this.uiElements.length === 0) {
+            return;
+        }
+
+        this.loadUiConfirmationModal(() => { this.initUiElements([], () => { this.write(); }) })
+    }
+
+    loadUiConfirmationModal(callback) {
+        const modal = document.querySelector('#monsieurbiz-rich-editor-confirmation-modal');
+        const confirmButton = modal.querySelector('#monsieurbiz-rich-editor-confirmation-button');
+
+        const clonedConfirmButtom = confirmButton.cloneNode(true);
+        confirmButton.parentNode.replaceChild(clonedConfirmButtom, confirmButton);
+        clonedConfirmButtom.addEventListener('click', () => {
+            callback();
+        })
+
+        $(modal).modal('show');
+    }
+
+    saveUiElementsToClipboard(button) {
+        window.localStorage.setItem('monsieurBizRichEditorElementsClipboard', JSON.stringify(this.uiElements));
+
+        const originalText = button.dataset.tooltip;
+        button.dataset.tooltip = button.dataset.alternateText;
+        window.setTimeout(function () {
+            button.dataset.tooltip = originalText;
+        }, 1000);
+
+      document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielements:copied', {}));
+    }
+
+    pasteUiElementsFromClipboard() {
+        const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementsClipboard');
+        if (clipboard !== null) {
+            const pastedUiElement = JSON.parse(clipboard);
+
+            if (this.uiElements.length > 0) {
+                this.loadUiConfirmationModal(() => { this.initUiElements(pastedUiElement, () => { this.write(); }) })
+            } else {
+                this.initUiElements(pastedUiElement, () => { this.write(); });
+            }
+        }
+    }
+
     saveUiElementToClipboard(uiElement, callback) {
-        window.localStorage.setItem('monsieurBizRichEditorClipboard', JSON.stringify(uiElement));
+        window.localStorage.setItem('monsieurBizRichEditorElementClipboard', JSON.stringify(uiElement));
         callback();
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielement:copied', {}));
     }
 
     pasteUiElementFromClipboard(futurePosition) {
-        const clipboard = window.localStorage.getItem('monsieurBizRichEditorClipboard');
+        const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementClipboard');
         if (null !== clipboard) {
             const pastedUiElement = JSON.parse(clipboard);
             const manager = this;
