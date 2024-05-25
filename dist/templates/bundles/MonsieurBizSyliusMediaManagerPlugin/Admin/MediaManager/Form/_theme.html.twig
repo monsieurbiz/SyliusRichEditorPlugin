@@ -18,12 +18,13 @@
     </div>
 {% endblock %}
 
-{% block monsieurbiz_sylius_media_manager_video_row %}{% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
+{% block monsieurbiz_sylius_media_manager_video_row %}
     {% set videoSrc = '' %}
-    {% if form.vars.value   %}
-        {% set videoSrc = get_media_manager_file_path(form.vars.value) %}
+    {% if form.vars.value %}
+        {% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
+            {% set videoSrc = get_media_manager_file_path(form.vars.value) %}
             {% if not monsieurbiz_richeditor_file_exists(videoSrc) %}
-                {% set videoSrc = form.vars.value %}
+                {% set videoSrc = form.vars.value%}
             {% endif %}
         {% else %}
             {% set videoSrc = form.vars.value %}
