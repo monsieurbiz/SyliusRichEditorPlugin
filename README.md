@@ -49,6 +49,10 @@ bin/console asset:install
 
 You don't need to do something, everything is compatible.
 
+```
+composer require monsieurbiz/sylius-media-manager-plugin="^1.0"
+```
+
 If you used the rich editor before using the media manager, you need to override the form theme of the media manager plugin :
 ```
 mkdir -p templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/;
