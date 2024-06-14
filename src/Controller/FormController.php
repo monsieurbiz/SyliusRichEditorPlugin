@@ -151,6 +151,9 @@ class FormController extends AbstractController
 
         // Convert uploaded files to string in form data if necessary, or retrieve current image path if edition
         $formData = $this->processFormData($form, $fileUploader, $data);
+        if (array_key_exists('images', $formData)) {
+            $formData['images'] = array_values($formData['images']);
+        }
 
         // Generate form render with error display
         if (!$form->isValid()) {
