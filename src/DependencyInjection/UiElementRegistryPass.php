@@ -17,6 +17,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElementInterface;
+use ReflectionAttribute;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -72,7 +73,7 @@ final class UiElementRegistryPass implements CompilerPassInterface
      */
     private function processClass(Definition $definition, ReflectionClass $reflectionClass, ContainerBuilder $container, Definition $registry, Definition $metadataRegistry): void
     {
-        foreach ($reflectionClass->getAttributes(AsUiElement::class, \ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
+        foreach ($reflectionClass->getAttributes(AsUiElement::class, ReflectionAttribute::IS_INSTANCEOF) as $attribute) {
             $attribute = $attribute->newInstance();
             /** @var AsUiElement $attribute */
             $code = $attribute->getCode();

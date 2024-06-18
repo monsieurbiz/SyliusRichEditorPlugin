@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata;
 
+use InvalidArgumentException;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\Metadata;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\MetadataInterface;
 
@@ -29,7 +30,7 @@ final class Registry implements RegistryInterface
     public function get(string $code): MetadataInterface
     {
         if (!\array_key_exists($code, $this->metadata)) {
-            throw new \InvalidArgumentException(sprintf('Resource "%s" does not exist.', $code));
+            throw new InvalidArgumentException(sprintf('Resource "%s" does not exist.', $code));
         }
 
         return $this->metadata[$code];

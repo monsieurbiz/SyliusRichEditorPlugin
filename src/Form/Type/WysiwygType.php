@@ -85,7 +85,7 @@ class WysiwygType extends TextareaType
         $resolver->setAllowedTypes('editor_toolbar_buttons', ['null', 'array']);
         $resolver->setAllowedTypes('editor_custom_config', ['null', 'array']);
 
-        $resolver->setNormalizer('editor_toolbar_buttons', function (Options $options, array|null $value): string {
+        $resolver->setNormalizer('editor_toolbar_buttons', function (Options $options, ?array $value): string {
             $editor = $this->editorCollection->getEditor($options['editor_type']);
 
             return match ($options['editor_toolbar_type']) {
@@ -96,7 +96,7 @@ class WysiwygType extends TextareaType
             };
         });
 
-        $resolver->setNormalizer('editor_custom_config', function (Options $options, array|null $value): string {
+        $resolver->setNormalizer('editor_custom_config', function (Options $options, ?array $value): string {
             return $this->encoder->encode($value ?? [], 'json');
         });
     }
