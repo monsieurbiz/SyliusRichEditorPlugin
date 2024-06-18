@@ -61,7 +61,7 @@ ${APP_DIR}/node_modules: yarn.install
 application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml ## Setup the entire Test Application
 
 ${APP_DIR}:
-	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="~${SYLIUS_VERSION}" ${APP_DIR})
+	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="1.12.x-dev" ${APP_DIR})
 
 setup_application:
 	rm -f ${APP_DIR}/yarn.lock

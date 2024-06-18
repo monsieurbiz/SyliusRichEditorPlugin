@@ -48,7 +48,7 @@ jobs:
 
       - name: Create Sylius-Standard project without install
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "${{ matrix.sylius }}"
+          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "1.12.x-dev"
 
       # Because the sylius-standard has a soft constraint
       - name: Make sure to install the required version of Sylius
