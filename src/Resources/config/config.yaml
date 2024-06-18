@@ -22,5 +22,6 @@ liip_imagine:
     loaders:
         default:
             filesystem:
+                allow_unresolvable_data_roots: true
                 data_root:
                     - "%sylius_core.public_dir%%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
