@@ -1,14 +1,30 @@
 [![Banner of Sylius Rich Editor plugin](docs/images/banner.jpg)](https://monsieurbiz.com/agence-web-experte-sylius)
 
-<h1 align="center">Rich Editor</h1>
+<h1 align="center">Sylius Rich Editor</h1>
 
-[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin?public)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt) [![Tests](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/tests.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/tests.yaml) [![Security](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/security.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/security.yaml) [![Flex Recipe](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/recipe.yaml/badge.svg)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions/workflows/recipe.yaml)
-
+[![Rich Editor Plugin license](https://img.shields.io/github/license/monsieurbiz/SyliusRichEditorPlugin?public)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/blob/master/LICENSE.txt)
+[![Tests Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/tests.yaml?branch=master&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
+[![Recipe Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/recipe.yaml?branch=master&label=recipes&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
+[![Security Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/security.yaml?branch=master&label=security&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
 This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
 
 ![Example of rich editor field](docs/images/screenshots/demo.gif)
 
+## Compatibility
+
+| Sylius Version | PHP Version |
+|---|---|
+| 1.11 | 8.0 - 8.1 |
+| 1.12 | 8.1 - 8.2 |
+| 1.13 | 8.1 - 8.2 |
+
 ## Installation
+
+If you want to use our recipes, you can configure your composer.json by running:
+
+```json
+composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
+```
 
 ```bash
 composer require monsieurbiz/sylius-rich-editor-plugin

@@ -9,14 +9,12 @@ jobs:
 
   php:
 
-    name: Quality tests (PHP ${{ matrix.php }})
-
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.0', '8.1', '8.2']
+        php: ['8.1', '8.2']
 
     env:
       SYMFONY_ARGS: --no-tls
@@ -24,34 +22,36 @@ jobs:
       DOCKER_INTERACTIVE_ARGS: -t
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: '16'
-
+          node-version: '14'
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           extensions: gd, intl, json
+          ini-values: date.timezone=UTC
+          tools: symfony-cli
 
       - name: Set project php-version
         run: |
           echo "${{ matrix.php }}" > .php-version
 
-      - name: Install symfony CLI
-        run: |
-          curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-          sudo apt install symfony-cli
+      - name: Determine composer cache directory
+        id: composer-cache-directory
+        run: echo "directory=$(composer config cache-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - name: Cache dependencies installed with composer
+        uses: actions/cache@v3
         id: cache-composer
         with:
-          path: /home/runner/.composer/cache
+          path: ${{ steps.composer-cache-directory.outputs.directory }}
           key: composer2-php:${{ matrix.php }}-${{ github.sha }}
           restore-keys: composer2-php:${{ matrix.php }}-
 
-      - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
+      - name: Ensure that composer cache directory exists
+        run: mkdir -p ${{ steps.composer-cache-directory.outputs.directory }}
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
@@ -65,6 +65,8 @@ jobs:
       - run: make test.phpunit
 
       - run: make test.phpstan
+
+      - run: make test.phpmd
 
       - run: make test.phpspec
 

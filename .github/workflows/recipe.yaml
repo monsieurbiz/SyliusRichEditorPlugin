@@ -9,22 +9,20 @@ jobs:
 
   recipe:
 
-    name: Flex recipe (PHP ${{ matrix.php }}, Sylius ${{ matrix.sylius }})
-
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
         php: ['8.0', '8.1', '8.2']
-        sylius: ['~1.11.0', '~1.12.0']
-        include:
-          - php: '8.1'
-            sylius: '~1.12.0'
-            sylius_paypal: '~1.5.0'
+        sylius: ["~1.11.0", "~1.12.0", "~1.13.0"]
+        exclude:
           - php: '8.2'
+            sylius: '~1.11.0'
+          - php: '8.0'
             sylius: '~1.12.0'
-            sylius_paypal: '~1.5.0'
+          - php: '8.0'
+            sylius: '~1.13.0'
 
     steps:
       - name: Setup PHP
@@ -32,23 +30,32 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: gd, intl, json
+          ini-values: date.timezone=UTC
+          tools: symfony-cli
 
       - name: Set project php-version
         run: |
-          echo "${{ matrix.php }}" > .php-version
+          echo ${{ matrix.php }} > .php-version
 
       - uses: actions/checkout@v3
         with:
           path: plugin
 
-      - run: mkdir -p /home/runner/{.composer/cache,.config/composer}
+      - name: Determine composer cache directory
+        id: composer-cache-directory
+        working-directory: plugin
+        run: echo "directory=$(composer config cache-dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v3
+      - name: Cache dependencies installed with composer
+        uses: actions/cache@v3
         id: cache-composer
         with:
-          path: /home/runner/.composer/cache
-          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ github.sha }}
+          path: ${{ steps.composer-cache-directory.outputs.directory }}
+          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ hashFiles('**/composer.json') }}
           restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
+
+      - name: Ensure that composer cache directory exists
+        run: mkdir -p ${{ steps.composer-cache-directory.outputs.directory }}
 
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
@@ -63,14 +70,6 @@ jobs:
         run: |
             composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
 
-      # Fix Paypal 1.5 on Sylius 1.12 and PHP 8.1
-      - name: Make sure to install the required version of Sylius Paypal Plugin
-        if: ${{ matrix.sylius_paypal }}
-        working-directory: ./sylius
-        run: |
-            composer require --no-install --no-scripts --no-progress sylius/paypal-plugin="${{ matrix.sylius_paypal }}" # @see https://github.com/Sylius/PayPalPlugin/issues/295
-
-
       - name: Setup some requirements
         working-directory: ./sylius
         run: |
@@ -82,7 +81,7 @@ jobs:
             composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
             composer config repositories.plugin '{"type": "path", "url": "../plugin/"}'
 
-      - name: Require plugin & install all
+      - name: Require plugin & install all dependencies
         working-directory: ./sylius
         run: |
           composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
