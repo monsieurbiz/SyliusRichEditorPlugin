@@ -10,6 +10,11 @@ parameters:
         # Test dependencies
         - 'tests/Application/**/*'
 
+        # Skeleton files
+        - 'src/Resources/skeleton/*.php'
+
+        # Maker files
+        - 'src/Maker/*.php'
+
     ignoreErrors:
-        - identifier: missingType.generics
         - identifier: missingType.iterableValue

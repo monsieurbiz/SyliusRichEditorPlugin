@@ -32,6 +32,7 @@ class SeparatorType extends AbstractType
                 'required' => false,
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+                /** @var array $data */
                 $data = $event->getData();
                 $data['hidden'] = (bool) ($data['hidden'] ?? false);
                 $event->setData($data);

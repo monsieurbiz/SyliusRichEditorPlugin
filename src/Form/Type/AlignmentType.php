@@ -38,7 +38,7 @@ class AlignmentType extends ChoiceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         // Add justify choices depending on options
-        if ($options['show_justify']) {
+        if ($options['show_justify'] && \is_array($options['choices'])) {
             $options['choices']['monsieurbiz_richeditor_plugin.form.align.justify'] = 'justify';
         }
         parent::buildForm($builder, $options);

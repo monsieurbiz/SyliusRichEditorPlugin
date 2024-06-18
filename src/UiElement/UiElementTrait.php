@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use Exception;
+use PHPUnit\Framework\Assert;
 use ReturnTypeWillChange;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
@@ -81,7 +82,10 @@ trait UiElementTrait
      */
     public function getTitle(): string
     {
-        return $this->metadata->getParameter('title');
+        $value = $this->metadata->getParameter('title');
+        Assert::assertIsString($value);
+
+        return $value;
     }
 
     /**
@@ -89,7 +93,10 @@ trait UiElementTrait
      */
     public function getDescription(): string
     {
-        return $this->metadata->getParameter('description');
+        $value = $this->metadata->getParameter('description');
+        Assert::assertIsString($value);
+
+        return $value;
     }
 
     /**
@@ -97,7 +104,10 @@ trait UiElementTrait
      */
     public function getIcon(): string
     {
-        return $this->metadata->getParameter('icon');
+        $value = $this->metadata->getParameter('icon');
+        Assert::assertIsString($value);
+
+        return $value;
     }
 
     /**
@@ -105,7 +115,10 @@ trait UiElementTrait
      */
     public function getWireframe(): string
     {
-        return $this->metadata->getParameter('wireframe');
+        $value = $this->metadata->getParameter('wireframe');
+        Assert::assertIsString($value);
+
+        return $value;
     }
 
     /**

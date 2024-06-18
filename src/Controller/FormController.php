@@ -58,6 +58,9 @@ class FormController extends AbstractController
         $data = [];
         $isEdition = $request->isMethod('post');
         if ($isEdition && ($data = $request->get('data'))) {
+            if (!\is_string($data)) {
+                throw $this->createNotFoundException();
+            }
             $data = json_decode($data, true);
             if (!\is_array($data)) {
                 throw $this->createNotFoundException();
@@ -84,6 +87,9 @@ class FormController extends AbstractController
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
         if ($uiElements = $request->get('ui_elements')) {
+            if (!\is_string($uiElements)) {
+                throw $this->createNotFoundException();
+            }
             $uiElements = json_decode($uiElements, true);
             if (!\is_array($uiElements)) {
                 throw $this->createNotFoundException();
@@ -92,7 +98,7 @@ class FormController extends AbstractController
 
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
-        if ($locale = $request->get('locale')) {
+        if (($locale = $request->get('locale')) && \is_string($locale)) {
             $switchAdminLocale->switchLocale($locale);
         }
 
@@ -104,8 +110,8 @@ class FormController extends AbstractController
             if (!isset($uiElementData['code'])) {
                 if (isset($uiElementData['type'], $uiElementData['fields'])) {
                     $uiElementData['code'] = $uiElementData['type'];
-                    $uiElementData['data'] = $uiElementData['fields']; // @phpstan-ignore-line
-                    unset($uiElementData['type'], $uiElementData['fields']); // @phpstan-ignore-line
+                    $uiElementData['data'] = $uiElementData['fields'];
+                    unset($uiElementData['type'], $uiElementData['fields']);
                 } else {
                     continue;
                 }
@@ -188,7 +194,7 @@ class FormController extends AbstractController
     /**
      * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
-     * @param mixed $requestData
+     * @param array|string $requestData
      *
      * @return array|mixed|string
      */
@@ -217,7 +223,10 @@ class FormController extends AbstractController
     {
         if ($form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
-            return $fileUploader->upload($form->getData(), $form->getConfig()->getOption('file-type'));
+            /** @var ?string $fileType */
+            $fileType = $form->getConfig()->getOption('file-type');
+
+            return $fileUploader->upload($form->getData(), $fileType);
         }
         if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)
