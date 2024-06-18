@@ -36,6 +36,9 @@ class ImageType extends AbstractType
         $this->addEvents($builder, $options);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder

@@ -44,6 +44,8 @@ class FormController extends AbstractController
 
     /**
      * Generate the form for an element.
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function viewAction(Request $request, string $code): Response
     {
@@ -83,6 +85,9 @@ class FormController extends AbstractController
 
     /**
      * Render all UI elements in HTML.
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
@@ -218,6 +223,8 @@ class FormController extends AbstractController
      * @param array|string $requestData
      *
      * @return array|mixed|string
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
@@ -240,6 +247,8 @@ class FormController extends AbstractController
      * Recursively convert multidimensional array to one dimension
      * The key is the full input name (ex : `image_collection[images][0][image]`)
      * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function convertFormDataForRequest(array $formData, string $prefix = ''): array
     {
