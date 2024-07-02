@@ -6,6 +6,7 @@
 [![Tests Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/tests.yaml?branch=master&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ATests)
 [![Recipe Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/recipe.yaml?branch=master&label=recipes&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
 [![Security Status](https://img.shields.io/github/actions/workflow/status/monsieurbiz/SyliusRichEditorPlugin/security.yaml?branch=master&label=security&logo=github)](https://github.com/monsieurbiz/SyliusRichEditorPlugin/actions?query=workflow%3ASecurity)
+
 This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
 
 ![Example of rich editor field](docs/images/screenshots/demo.gif)
