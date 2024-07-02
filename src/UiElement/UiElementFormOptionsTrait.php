@@ -25,6 +25,7 @@ trait UiElementFormOptionsTrait
     public function getFormOptions(): array
     {
         try {
+            /** @var array */
             return $this->metadata->getParameter('form_options');
         } catch (InvalidArgumentException) {
             return [];

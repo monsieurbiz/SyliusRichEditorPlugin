@@ -14,10 +14,11 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use InvalidArgumentException;
+use JsonSerializable;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
-interface UiElementInterface extends \JsonSerializable
+interface UiElementInterface extends JsonSerializable
 {
     public function setMetadata(MetadataInterface $metadata): void;
 
@@ -27,9 +28,6 @@ interface UiElementInterface extends \JsonSerializable
 
     public function getCode(): string;
 
-    /**
-     * @return string
-     */
     public function getAlias(): ?string;
 
     public function getTitle(): string;

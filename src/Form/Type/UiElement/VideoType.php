@@ -35,6 +35,9 @@ class VideoType extends AbstractType
         $this->addEvents($builder, $options);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -71,12 +74,12 @@ class VideoType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change video field constraints depending on submitted value
             $options = $event->getForm()->get('video')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getVideoConstraints($event->getData(), 'video');
+            $options['constraints'] = RichEditorConstraints::getVideoConstraints(\is_array($event->getData()) ? $event->getData() : [], 'video');
             $event->getForm()->add('video', $this->getVideoType(), $options);
 
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image', false);
+            $options['constraints'] = RichEditorConstraints::getImageConstraints(\is_array($event->getData()) ? $event->getData() : [], 'image', false);
             $event->getForm()->add('image', $this->getImageType(), $options);
         });
     }

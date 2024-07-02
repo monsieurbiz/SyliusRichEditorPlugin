@@ -43,6 +43,8 @@ class WysiwygType extends TextareaType
 
     /**
      * @inheritdoc
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
@@ -85,27 +87,32 @@ class WysiwygType extends TextareaType
         $resolver->setAllowedTypes('editor_toolbar_buttons', ['null', 'array']);
         $resolver->setAllowedTypes('editor_custom_config', ['null', 'array']);
 
-        $resolver->setNormalizer('editor_toolbar_buttons', function (Options $options, array|null $value): string {
-            $editor = $this->editorCollection->getEditor($options['editor_type']);
+        $resolver->setNormalizer('editor_toolbar_buttons', function (Options $options, ?array $value): string {
+            /** @var string $editorType */
+            $editorType = $options['editor_type'];
+            $editor = $this->editorCollection->getEditor($editorType);
 
             return match ($options['editor_toolbar_type']) {
                 EditorInterface::TOOLBAR_TYPE_MINIMAL => $this->encoder->encode($editor->getMinimalButtons(), 'json'),
-                EditorInterface::TOOLBAR_TYPE_BASIC => $this->encoder->encode($editor->getBasicButtons() ?? [], 'json'),
-                EditorInterface::TOOLBAR_TYPE_FULL => $this->encoder->encode($editor->getFullButtons() ?? [], 'json'),
+                EditorInterface::TOOLBAR_TYPE_BASIC => $this->encoder->encode($editor->getBasicButtons(), 'json'),
+                EditorInterface::TOOLBAR_TYPE_FULL => $this->encoder->encode($editor->getFullButtons(), 'json'),
                 default => $this->encoder->encode($value ?? [], 'json'),
             };
         });
 
-        $resolver->setNormalizer('editor_custom_config', function (Options $options, array|null $value): string {
+        $resolver->setNormalizer('editor_custom_config', function (Options $options, ?array $value): string {
             return $this->encoder->encode($value ?? [], 'json');
         });
     }
 
     private function getDataValues(array $options): array
     {
+        /** @var string $editorType */
+        $editorType = $options['editor_type'];
+
         return [
             'data-component' => 'wysiwyg-editor',
-            'data-editor-type' => $options['editor_type'],
+            'data-editor-type' => $editorType,
             'data-editor-height' => $options['editor_height'],
             'data-editor-locale' => $options['editor_locale'],
             'data-editor-buttons' => $options['editor_toolbar_buttons'],

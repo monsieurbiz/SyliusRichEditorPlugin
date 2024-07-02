@@ -26,12 +26,8 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('monsieurbiz_sylius_richeditor');
-        if (method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $rootNode = /** @scrutinizer ignore-deprecated */ $treeBuilder->root('monsieurbiz_sylius_richeditor');
-        }
+        /** @var ArrayNodeDefinition $rootNode */
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addUiElements($rootNode);
 
@@ -40,7 +36,7 @@ final class Configuration implements ConfigurationInterface
 
     private function addUiElements(ArrayNodeDefinition $rootNode): void
     {
-        /** @scrutinizer ignore-call */
+        /** @phpstan-ignore-next-line */
         $rootNode
             ->children()
                 ->scalarNode('upload_directory')->end()

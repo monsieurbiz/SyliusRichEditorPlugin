@@ -44,6 +44,8 @@ class FormController extends AbstractController
 
     /**
      * Generate the form for an element.
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function viewAction(Request $request, string $code): Response
     {
@@ -58,6 +60,9 @@ class FormController extends AbstractController
         $data = [];
         $isEdition = $request->isMethod('post');
         if ($isEdition && ($data = $request->get('data'))) {
+            if (!\is_string($data)) {
+                throw $this->createNotFoundException();
+            }
             $data = json_decode($data, true);
             if (!\is_array($data)) {
                 throw $this->createNotFoundException();
@@ -80,10 +85,16 @@ class FormController extends AbstractController
 
     /**
      * Render all UI elements in HTML.
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
         if ($uiElements = $request->get('ui_elements')) {
+            if (!\is_string($uiElements)) {
+                throw $this->createNotFoundException();
+            }
             $uiElements = json_decode($uiElements, true);
             if (!\is_array($uiElements)) {
                 throw $this->createNotFoundException();
@@ -92,7 +103,7 @@ class FormController extends AbstractController
 
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
-        if ($locale = $request->get('locale')) {
+        if (($locale = $request->get('locale')) && \is_string($locale)) {
             $switchAdminLocale->switchLocale($locale);
         }
 
@@ -104,8 +115,8 @@ class FormController extends AbstractController
             if (!isset($uiElementData['code'])) {
                 if (isset($uiElementData['type'], $uiElementData['fields'])) {
                     $uiElementData['code'] = $uiElementData['type'];
-                    $uiElementData['data'] = $uiElementData['fields']; // @phpstan-ignore-line
-                    unset($uiElementData['type'], $uiElementData['fields']); // @phpstan-ignore-line
+                    $uiElementData['data'] = $uiElementData['fields'];
+                    unset($uiElementData['type'], $uiElementData['fields']);
                 } else {
                     continue;
                 }
@@ -188,7 +199,7 @@ class FormController extends AbstractController
     /**
      * Build a new form data array with the uploaded file path instead of files, or current filenames on edition.
      *
-     * @param mixed $requestData
+     * @param array|string $requestData
      *
      * @return array|mixed|string
      */
@@ -212,12 +223,17 @@ class FormController extends AbstractController
      * @param array|string $requestData
      *
      * @return array|mixed|string
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
         if ($form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
-            return $fileUploader->upload($form->getData(), $form->getConfig()->getOption('file-type'));
+            /** @var ?string $fileType */
+            $fileType = $form->getConfig()->getOption('file-type');
+
+            return $fileUploader->upload($form->getData(), $fileType);
         }
         if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)
@@ -231,6 +247,8 @@ class FormController extends AbstractController
      * Recursively convert multidimensional array to one dimension
      * The key is the full input name (ex : `image_collection[images][0][image]`)
      * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
+     *
+     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function convertFormDataForRequest(array $formData, string $prefix = ''): array
     {

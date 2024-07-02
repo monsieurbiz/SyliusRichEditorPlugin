@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\UiElement;
 
 use Exception;
+use ReturnTypeWillChange;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -80,6 +81,7 @@ trait UiElementTrait
      */
     public function getTitle(): string
     {
+        /** @var string */
         return $this->metadata->getParameter('title');
     }
 
@@ -88,6 +90,7 @@ trait UiElementTrait
      */
     public function getDescription(): string
     {
+        /** @var string */
         return $this->metadata->getParameter('description');
     }
 
@@ -96,6 +99,7 @@ trait UiElementTrait
      */
     public function getIcon(): string
     {
+        /** @var string */
         return $this->metadata->getParameter('icon');
     }
 
@@ -104,6 +108,7 @@ trait UiElementTrait
      */
     public function getWireframe(): string
     {
+        /** @var string */
         return $this->metadata->getParameter('wireframe');
     }
 
@@ -165,7 +170,7 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
         return [

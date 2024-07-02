@@ -26,7 +26,7 @@ class RichEditorType extends TextType
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['attr']['data-component'] = 'rich-editor';
-        $view->vars['attr']['data-tags'] = implode(',', $options['tags'] ?? []);
+        $view->vars['attr']['data-tags'] = implode(',', \is_array($options['tags']) ? $options['tags'] : []);
         if (null !== $options['locale']) {
             $view->vars['attr']['data-locale'] = $options['locale'];
         }

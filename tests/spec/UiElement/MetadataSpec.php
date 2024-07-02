@@ -57,19 +57,19 @@ class MetadataSpec extends ObjectBehavior
         ;
 
         $this->shouldThrow(InvalidArgumentException::class)->during(
-             'fromCodeAndConfiguration',
-             ['app.yep', []]
-         );
+            'fromCodeAndConfiguration',
+            ['app.yep', []]
+        );
 
         $this->shouldThrow(InvalidArgumentException::class)->during(
-             'fromCodeAndConfiguration',
-             ['app.yep.bam', self::PARAMETERS]
-         );
+            'fromCodeAndConfiguration',
+            ['app.yep.bam', self::PARAMETERS]
+        );
 
         $this->shouldThrow(InvalidArgumentException::class)->during(
-             'fromCodeAndConfiguration',
-             ['app', self::PARAMETERS]
-         );
+            'fromCodeAndConfiguration',
+            ['app', self::PARAMETERS]
+        );
     }
 
     public function it_gives_back_the_code(): void

@@ -36,6 +36,9 @@ class ImageType extends AbstractType
         $this->addEvents($builder, $options);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -82,7 +85,7 @@ class ImageType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event): void {
             // Change image field constraints depending on submitted value
             $options = $event->getForm()->get('image')->getConfig()->getOptions();
-            $options['constraints'] = RichEditorConstraints::getImageConstraints($event->getData(), 'image');
+            $options['constraints'] = RichEditorConstraints::getImageConstraints(\is_array($event->getData()) ? $event->getData() : [], 'image');
             $event->getForm()->add('image', $this->getImageType(), $options);
         });
     }

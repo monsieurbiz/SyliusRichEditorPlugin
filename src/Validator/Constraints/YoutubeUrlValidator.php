@@ -19,17 +19,20 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class YoutubeUrlValidator extends ConstraintValidator
 {
-    public const YOUTUBE_REGEX_VALIDATOR = '`^(?:https?://)?(?:www\.)?(?:youtu.be/|youtube\.com/(?:watch(?:/|/?\?(?:\S*&)?v=)|embed/))([\w\d-]+)$`';
+    public const YOUTUBE_REGEX_VALIDATOR = '`^(?:https?://)?(?:www\.)?(?:youtu.be/|youtube\.com/(?:watch(?:/|/?\?(?:\S*&)?v=)|embed|shorts/))([\w\d-]+)$`';
 
-    public function validate($value, Constraint $constraint): void
+    public function validate(mixed $value, Constraint $constraint): void
     {
         if (!$constraint instanceof YoutubeUrl) {
             throw new UnexpectedTypeException($constraint, YoutubeUrl::class);
         }
 
-        if (!preg_match(self::YOUTUBE_REGEX_VALIDATOR, (string) $value)) {
+        /** @phpstan-ignore-next-line */
+        $value = (string) $value;
+
+        if (!preg_match(self::YOUTUBE_REGEX_VALIDATOR, $value)) {
             $this->context->buildViolation($constraint->message)
-                ->setParameter('{{ string }}', (string) $value)
+                ->setParameter('{{ string }}', $value)
                 ->addViolation()
             ;
         }

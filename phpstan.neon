@@ -1,26 +1,20 @@
-includes:
-    - vendor/phpstan/phpstan-doctrine/extension.neon
-    - vendor/phpstan/phpstan-webmozart-assert/extension.neon
-
 parameters:
     level: max
     paths:
         - %rootDir%/src/
 
-    reportUnmatchedIgnoredErrors: false
-    checkMissingIterableValueType: false
-
-    excludes_analyse:
+    excludePaths:
         # Makes PHPStan crash
-        - 'src/DependencyInjection/Configuration.php'
         - 'src/DependencyInjection/MonsieurBizSyliusRichEditorExtension.php'
 
         # Test dependencies
-        - 'tests/Application/app/**.php'
-        - 'tests/Application/src/**.php'
+        - 'tests/Application/**/*'
 
         # Skeleton files
         - 'src/Resources/skeleton/*.php'
 
+        # Maker files
+        - 'src/Maker/*.php'
+
     ignoreErrors:
-        - '/Parameter #1 \$configuration of method Symfony\\Component\\DependencyInjection\\Extension\\Extension::processConfiguration\(\) expects Symfony\\Component\\Config\\Definition\\ConfigurationInterface, Symfony\\Component\\Config\\Definition\\ConfigurationInterface\|null given\./'
+        - identifier: missingType.iterableValue

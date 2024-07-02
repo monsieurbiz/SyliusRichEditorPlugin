@@ -1,8 +1,7 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
 APP_DIR=tests/Application
-SYLIUS_VERSION=1.12.0
-SYLIUS_PAYPAL_VERSION=1.5.0
+SYLIUS_VERSION=1.13.0
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
@@ -26,7 +25,7 @@ reset: ## Stop docker and remove dependencies
 	${MAKE} docker.down || true
 	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
 	rm -rf ${APP_DIR}
-	rm -rf vendor composer.lock node_modules yarn.lock
+	rm -rf vendor composer.lock
 .PHONY: reset
 
 dependencies: composer.lock node_modules ## Setup the dependencies
@@ -48,8 +47,9 @@ yarn.install: ${APP_DIR}/yarn.lock
 ${APP_DIR}/yarn.lock:
 	ln -sf ${APP_DIR}/node_modules node_modules
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
-	${YARN} install
-	${YARN} encore prod
+# No CSS and JS on this plugin yet
+#	${YARN} install
+#	${YARN} encore prod
 
 node_modules: ${APP_DIR}/node_modules ## Install the Node dependencies using yarn
 
@@ -59,7 +59,7 @@ ${APP_DIR}/node_modules: yarn.install
 ### TEST APPLICATION
 ### ¯¯¯¯¯
 
-application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml ## Setup the entire Test Application
+application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml
 
 ${APP_DIR}:
 	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="~${SYLIUS_VERSION}" ${APP_DIR})
@@ -70,21 +70,21 @@ setup_application:
 	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
 	(cd ${APP_DIR} && ${COMPOSER} config minimum-stability dev)
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
+	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]')
 	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
-	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/paypal-plugin="~${SYLIUS_PAYPAL_VERSION}") # @see https://github.com/Sylius/PayPalPlugin/issues/295
 	$(MAKE) ${APP_DIR}/.php-version
 	$(MAKE) ${APP_DIR}/php.ini
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
 	$(MAKE) apply_dist
-	(cd ${APP_DIR} && ${COMPOSER} require --no-interaction --no-progress monsieurbiz/${PLUGIN_NAME}="*@dev")
+	(cd ${APP_DIR} && ${COMPOSER} require --no-progress monsieurbiz/${PLUGIN_NAME}="*@dev")
 	rm -rf ${APP_DIR}/var/cache
 
 
 ${APP_DIR}/docker-compose.yaml:
 	rm -f ${APP_DIR}/docker-compose.yml
 	rm -f ${APP_DIR}/docker-compose.yaml
-	rm -f ${APP_DIR}/compose.yml
-	rm -f ${APP_DIR}/compose.override.dist.yml
+	rm -f ${APP_DIR}/compose.yml # Remove Sylius file about Docker
+	rm -f ${APP_DIR}/compose.override.dist.yml # Remove Sylius file about Docker
 	ln -s ../../docker-compose.yaml.dist ${APP_DIR}/docker-compose.yaml
 .PHONY: ${APP_DIR}/docker-compose.yaml
 
@@ -118,7 +118,7 @@ test.phpstan: ## Run PHPStan
 	${COMPOSER} phpstan
 
 test.phpmd: ## Run PHPMD
-	${COMPOSER} phpmd || true
+	${COMPOSER} phpmd
 
 test.phpunit: ## Run PHPUnit
 	${COMPOSER} phpunit
@@ -136,7 +136,7 @@ test.container: ## Lint the symfony container
 	${CONSOLE} lint:container
 
 test.yaml: ## Lint the symfony Yaml files
-	${CONSOLE} lint:yaml --parse-tags ../../recipes ../../src/Resources/config
+	${CONSOLE} lint:yaml ../../src/Resources/config --parse-tags
 
 test.schema: ## Validate MySQL Schema
 	${CONSOLE} doctrine:schema:validate
@@ -203,18 +203,6 @@ server.start: ## Run the local webserver using Symfony
 
 server.stop: ## Stop the local webserver
 	${SYMFONY} local:server:stop
-
-###
-### THEMING
-### ¯¯¯¯¯¯¯
-
-.PHONY: sylius.theming.build
-sylius.theming.build: yarn.install
-	${YARN} build
-
-.PHONY: sylius.theming.watch
-sylius.theming.watch: yarn.install
-	${YARN} watch
 
 ###
 ### HELP

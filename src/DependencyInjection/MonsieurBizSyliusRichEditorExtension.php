@@ -26,7 +26,7 @@ final class MonsieurBizSyliusRichEditorExtension extends Extension
     public function load(array $config, ContainerBuilder $container): void
     {
         $configuration = $this->getConfiguration([], $container);
-        $config = $this->processConfiguration(/** @scrutinizer ignore-type */ $configuration, $config);
+        $config = $this->processConfiguration($configuration, $config);
         $container->setParameter('monsieurbiz.richeditor.config.ui_elements', $config['ui_elements']);
         $container->setParameter('monsieurbiz.richeditor.config.upload_directory', $config['upload_directory']);
         $container->setParameter('monsieurbiz.richeditor.config.image_upload_directory', $config['image_upload_directory']);
