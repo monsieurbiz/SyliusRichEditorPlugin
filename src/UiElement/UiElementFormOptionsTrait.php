@@ -25,7 +25,7 @@ trait UiElementFormOptionsTrait
     public function getFormOptions(): array
     {
         try {
-            /** @phpstan-ignore-next-line */
+            /** @var array */
             return $this->metadata->getParameter('form_options');
         } catch (InvalidArgumentException) {
             return [];
