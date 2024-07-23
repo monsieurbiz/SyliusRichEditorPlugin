@@ -1,0 +1,144 @@
+monsieurbiz_richeditor_plugin:
+    ui_element:
+        monsieurbiz.column:
+            title: 'Element układu kolumnowego'
+            description: 'Układ do wyświetlania elementów kolumna po kolumnie'
+            field:
+                content: 'Treść'
+        monsieurbiz.row:
+            title: 'Element układu wierszowego'
+            description: 'Układ do wyświetlania elementów wiersz po wierszu'
+            field:
+                content: 'Treść'
+        monsieurbiz.html:
+            title: 'Element HTML'
+            description: 'Element z surowymi danymi'
+            field:
+                content: 'Treść'
+        monsieurbiz.text:
+            title: 'Element tekstowy'
+            description: 'Element z treścią tekstową'
+            field:
+                content: 'Treść'
+        monsieurbiz.title:
+            title: 'Element tytułowy'
+            short_description: 'Element tytułowy'
+            description: 'Element zawierający pożądany tytuł'
+            field:
+                content: 'Treść'
+        monsieurbiz.h1:
+            title: 'Element <h1>'
+            short_description: 'Nagłówek poziomu 1'
+            description: 'Element zawierający pożądany tytuł'
+            field:
+                content: 'Treść'
+        monsieurbiz.h2:
+            title: 'Element <h2>'
+            short_description: 'Nagłówek poziomu 2'
+            description: 'Element zawierający pożądany tytuł'
+            field:
+                content: 'Treść'
+        monsieurbiz.h3:
+            title: 'Element <h3>'
+            short_description: 'Nagłówek poziomu 3'
+            description: 'Element zawierający pożądany tytuł'
+            field:
+                content: 'Treść'
+        monsieurbiz.image:
+            title: 'Element obrazkowy'
+            short_description: 'Element z obrazem, alternatywnym tekstem i tytułem.'
+            description: 'Element z obrazem, alternatywnym tekstem i tytułem. Można dodać link.'
+            field:
+                current_image: 'Obecny obraz'
+                image: 'Obraz'
+                alt: 'Tekst alternatywny'
+                title: 'Tytuł'
+                link: 'Link'
+        monsieurbiz.quote:
+            title: 'Element cytatu'
+            description: 'Element z autorem i treścią'
+            field:
+                author: 'Autor'
+                content: 'Treść'
+        monsieurbiz.video:
+            title: 'Element wideo'
+            short_description: 'Element z wideo i obrazem w tle'
+            description: 'Element z plikiem wideo i plikiem obrazu w tle wyświetlanym przed odtworzeniem wideo'
+            field:
+                video: 'Wideo'
+                image: 'Obraz w tle'
+        monsieurbiz.separator:
+            title: 'Element separatora'
+            short_description: 'Element separatora'
+            description: 'Element separatora. Separator może być ukryty.'
+            field:
+                hidden: 'Ukryty separator'
+        monsieurbiz.button:
+            title: 'Element przycisku'
+            short_description: 'Przycisk z tekstem i linkiem.'
+            description: 'Przycisk z tekstem i linkiem.'
+            field:
+                label: 'Etykieta'
+                link: 'Link'
+        monsieurbiz.youtube:
+            title: 'Element YouTube'
+            short_description: 'Element YouTube.'
+            description: 'Element wyświetlający wideo z YouTube.'
+            field:
+                link: 'Link YouTube'
+                width: 'Szerokość iframe'
+                height: 'Wysokość iframe'
+        monsieurbiz.image_collection:
+            title: 'Element kolekcji obrazów'
+            short_description: 'Element z wieloma obrazami.'
+            description: 'Element z wieloma obrazami. Można dodać link do każdego obrazu.'
+            field:
+                images: 'Lista obrazów'
+    file:
+        change: 'Zmień plik'
+    form:
+        add: 'Dodaj element'
+        move: 'Przenieś'
+        move_up: 'Przenieś w górę'
+        move_down: 'Przenieś w dół'
+        edit: 'Edytuj'
+        delete: 'Usuń'
+        close: 'Zamknij'
+        confirm_delete: 'Czy na pewno chcesz usunąć ten element?'
+        apply_changes: 'Zastosuj zmiany'
+        cancel_changes: 'Anuluj zmiany'
+        placeholder: 'Przeciągnij widżety w to miejsce'
+        current_image: 'Obecny obraz'
+        current_video: 'Obecne wideo'
+        current_file: 'Obecny plik'
+        add_element: 'Dodaj %uiElementTitle%'
+        edit_element: 'Edytuj %uiElementTitle%'
+        cancel: 'Anuluj'
+        save: 'Zapisz'
+        add_image: 'Dodaj obraz'
+        select_ui_element: 'Wybierz element UI'
+        align:
+            label: 'Wyrównanie'
+            default: 'Domyślne'
+            left: 'Lewo'
+            center: 'Środek'
+            right: 'Prawo'
+            justify: 'Justuj'
+        clipboard: 'Schowek'
+        paste_from_clipboard: 'Wklej ze schowka'
+        paste_all_from_clipboard: 'Wklej wszystkie elementy'
+        copy_all_from_clipboard: 'Kopiuj wszystkie elementy'
+        trash_all: 'Usuń wszystkie elementy'
+        copied: 'Skopiowano!'
+        copy: 'Kopiuj'
+    action:
+        new: 'Przełącz dostępne widżety'
+        preview: 'Podgląd'
+    error:
+        cannot_parse_json: 'Nie można zanalizować bieżącej treści'
+        cannot_find_type: 'Nie można znaleźć typu dla niektórych elementów UI'
+        cannot_upload_image: 'Nie można przesłać obrazu. Plik może być zbyt duży lub w niewłaściwym formacie.'
+        ajax_error: 'Wystąpił problem techniczny. Skontaktuj się z administratorem.'
+        unallowed_uielement: 'Element niedozwolony tutaj'
+    ui:
+        disabled: 'Wyłączone'
