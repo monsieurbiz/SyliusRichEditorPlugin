@@ -39,7 +39,7 @@ final class UiElementMaker extends AbstractMaker
     {
         $command
             ->addArgument('code', InputArgument::OPTIONAL, 'The code of the UI Element (e.g. <fg=yellow>my_ui_element</>)')
-            ->addArgument('icon', InputArgument::OPTIONAL, 'The semantic icon code for the UI Element (e.g. <fg=yellow>map pin</>)')
+            ->addArgument('icon', InputArgument::OPTIONAL, 'The semantic icon code for the UI Element (e.g. <fg=yellow>map pin</>)', 'square')
             ->addArgument('code_prefix', InputArgument::OPTIONAL, 'The code prefix for the UI Element (e.g. <fg=yellow>app</>)', 'app')
             ->setDescription('Creates a new UI Element FormType and templates')
         ;
@@ -48,6 +48,7 @@ final class UiElementMaker extends AbstractMaker
     public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
     {
         $code = $input->getArgument('code');
+        $icon = $input->getArgument('icon');
         $codePrefix = $input->getArgument('code_prefix');
         Assert::string($code);
         $name = Str::asCamelCase($code);
@@ -61,7 +62,7 @@ final class UiElementMaker extends AbstractMaker
             __DIR__ . '/../Resources/skeleton/UiElementFormType.tpl.php',
             [
                 'code' => \sprintf('%s.%s', $codePrefix, $code),
-                'icon' => 'map pin',
+                'icon' => $icon,
                 'tags' => json_encode([]),
             ]
         );
