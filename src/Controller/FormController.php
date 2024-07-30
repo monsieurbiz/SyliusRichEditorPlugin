@@ -257,12 +257,12 @@ class FormController extends AbstractController
         foreach ($formData as $key => $value) {
             if (\is_array($value)) {
                 if (empty($prefix)) {
-                    $items = array_merge($items, $this->convertFormDataForRequest($value, sprintf('%s', $key)));
+                    $items = array_merge($items, $this->convertFormDataForRequest($value, \sprintf('%s', $key)));
                 } else {
-                    $items = array_merge($items, $this->convertFormDataForRequest($value, sprintf('%s[%s]', $prefix, $key)));
+                    $items = array_merge($items, $this->convertFormDataForRequest($value, \sprintf('%s[%s]', $prefix, $key)));
                 }
             } else {
-                $items[sprintf('%s[%s]', $prefix, $key)] = $value;
+                $items[\sprintf('%s[%s]', $prefix, $key)] = $value;
             }
         }
 

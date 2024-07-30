@@ -84,7 +84,7 @@ final class Metadata implements MetadataInterface
     public function getParameter(string $name)
     {
         if (!$this->hasParameter($name)) {
-            throw new InvalidArgumentException(sprintf('Parameter "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(\sprintf('Parameter "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters[$name];
@@ -112,7 +112,7 @@ final class Metadata implements MetadataInterface
     public function getClass(string $name): string
     {
         if (!$this->hasClass($name)) {
-            throw new InvalidArgumentException(sprintf('Class "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(\sprintf('Class "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters['classes'][$name];
@@ -132,7 +132,7 @@ final class Metadata implements MetadataInterface
     public function getTemplate(string $name): string
     {
         if (!$this->hasTemplate($name)) {
-            throw new InvalidArgumentException(sprintf('Template "%s" is not configured for resource "%s".', $name, $this->getCode()));
+            throw new InvalidArgumentException(\sprintf('Template "%s" is not configured for resource "%s".', $name, $this->getCode()));
         }
 
         return $this->parameters['templates'][$name];
@@ -153,7 +153,7 @@ final class Metadata implements MetadataInterface
     {
         $code = explode('.', $this->code);
 
-        return sprintf('%s.%s.%s', $code[0], $serviceName, $code[1]);
+        return \sprintf('%s.%s.%s', $code[0], $serviceName, $code[1]);
     }
 
     /**

@@ -22,6 +22,6 @@ final class UiElementNotFoundException extends Exception
      */
     public function __construct(string $code, ?Exception $previous = null)
     {
-        parent::__construct(sprintf('UiElement with code "%s" could not be found!', $code), 0, $previous);
+        parent::__construct(\sprintf('UiElement with code "%s" could not be found!', $code), 0, $previous);
     }
 }
