@@ -44,6 +44,6 @@ final class EditorCollection implements EditorCollectionInterface
             return $this->editors[$type];
         }
 
-        throw new DomainException(sprintf('There is no editor with %s type', $type));
+        throw new DomainException(\sprintf('There is no editor with %s type', $type));
     }
 }

@@ -61,7 +61,7 @@ final class UiElementMaker extends AbstractMaker
             $uiElementFormClassNameDetails->getFullName(),
             __DIR__ . '/../Resources/skeleton/UiElementFormType.tpl.php',
             [
-                'code' => sprintf('%s.%s', $codePrefix, $code),
+                'code' => \sprintf('%s.%s', $codePrefix, $code),
                 'icon' => $icon,
                 'tags' => json_encode([]),
             ]
@@ -69,14 +69,14 @@ final class UiElementMaker extends AbstractMaker
 
         // Generate templates
         $generator->generateTemplate(
-            sprintf('Admin/UiElement/%s.html.twig', $code),
+            \sprintf('Admin/UiElement/%s.html.twig', $code),
             __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
             [
                 'code' => $code,
             ]
         );
         $generator->generateTemplate(
-            sprintf('Shop/UiElement/%s.html.twig', $code),
+            \sprintf('Shop/UiElement/%s.html.twig', $code),
             __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
             [
                 'code' => $code,
