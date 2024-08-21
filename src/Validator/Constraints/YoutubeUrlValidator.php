@@ -27,7 +27,6 @@ class YoutubeUrlValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, YoutubeUrl::class);
         }
 
-        /** @phpstan-ignore-next-line */
         $value = (string) $value;
 
         if (!preg_match(self::YOUTUBE_REGEX_VALIDATOR, $value)) {

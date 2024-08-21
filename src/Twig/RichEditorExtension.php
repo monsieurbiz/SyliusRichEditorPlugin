@@ -206,7 +206,7 @@ final class RichEditorExtension extends AbstractExtension
             return null;
         }
 
-        return sprintf('https://www.youtube.com/embed/%s', $id);
+        return \sprintf('https://www.youtube.com/embed/%s', $id);
     }
 
     /**
