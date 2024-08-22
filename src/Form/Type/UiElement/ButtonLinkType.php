@@ -70,8 +70,8 @@ class ButtonLinkType extends AbstractType
             ])
             ->add('target', ChoiceType::class, [
                 'choices'  => [
-                    'Open in the same frame as it was clicked (this is default)' => '_self',
-                    'Open in a new window or tab' => '_blank',
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.target_option.self' => '_self',
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.target_option.blank' => '_blank',
                 ],
             ])
             ->add('align', AlignmentType::class)

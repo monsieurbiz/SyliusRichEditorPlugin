@@ -81,6 +81,9 @@ monsieurbiz_richeditor_plugin:
         label: 'Label'
         link: 'Link'
         target: 'Target'
+        target_option:
+          self: 'Open in the same frame as it was clicked (this is default)'
+          blank: 'Open in a new window or tab'
     monsieurbiz.youtube:
       title: 'Youtube Element'
       short_description: 'A Youtube element.'
