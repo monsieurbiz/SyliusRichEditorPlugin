@@ -80,6 +80,7 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+        target: 'Target'
     monsieurbiz.youtube:
       title: 'Youtube Element'
       short_description: 'A Youtube element.'

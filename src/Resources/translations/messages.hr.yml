@@ -80,6 +80,7 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Natpis na gumbu'
         link: 'URL linka'
+        target: 'Ciljni'
     monsieurbiz.youtube:
       title: 'YouTube video'
       short_description: 'Element s YouTube videom.'

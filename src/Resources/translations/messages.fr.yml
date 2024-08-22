@@ -80,6 +80,7 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Libellé'
         link: 'Lien'
+        target: 'Cible'
     monsieurbiz.youtube:
       title: 'Lame Youtube'
       short_description: 'Une vidéo youtube.'

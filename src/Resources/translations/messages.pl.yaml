@@ -80,6 +80,7 @@ monsieurbiz_richeditor_plugin:
             field:
                 label: 'Etykieta'
                 link: 'Link'
+                target: 'Docelowy'
         monsieurbiz.youtube:
             title: 'Element YouTube'
             short_description: 'Element YouTube.'

@@ -62,6 +62,7 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+        target: 'Doelkenmerk'
     monsieurbiz.youtube:
       title: 'YouTube-video'
       short_description: 'Een YouTube-element.'

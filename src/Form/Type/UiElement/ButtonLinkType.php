@@ -16,6 +16,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -66,6 +67,12 @@ class ButtonLinkType extends AbstractType
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,
+            ])
+            ->add('target', ChoiceType::class, [
+                'choices'  => [
+                    'Open in the same frame as it was clicked (this is default)' => '_self',
+                    'Open in a new window or tab' => '_blank',
+                ],
             ])
             ->add('align', AlignmentType::class)
         ;

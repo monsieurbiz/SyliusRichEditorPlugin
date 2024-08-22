@@ -80,6 +80,7 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Etiqueta'
         link: 'Enlace'
+        target: 'Destino'
     monsieurbiz.youtube:
       title: 'Elemento de Youtube'
       short_description: 'Un elemento de Youtube.'
