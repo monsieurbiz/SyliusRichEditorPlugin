@@ -139,3 +139,8 @@ monsieurbiz_richeditor_plugin:
     unallowed_uielement: 'Elemento no permitido aquí'
   ui:
     disabled: 'Desactivado'
+  common:
+    link_type: 'Tipo de enlace'
+    internal_link: 'Enlace interno'
+    external_link: 'Enlace externo'
+

@@ -104,3 +104,7 @@ monsieurbiz_richeditor_plugin:
     cannot_find_type: 'Kan type niet vinden voor sommige UI-elementen'
     cannot_upload_image: 'Kan de afbeelding niet uploaden. Het bestand is mogelijk te groot of heeft een onjuist formaat.'
     ajax_error: 'Er is een technisch probleem. Neem contact op met uw beheerder.'
+  common:
+    link_type: 'Type link'
+    internal_link: 'Interne link'
+    external_link: 'Externe link'

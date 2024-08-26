@@ -130,3 +130,7 @@ monsieurbiz_richeditor_plugin:
     cannot_find_type: 'Vrsta dijela elemenata nije podržana.'
     cannot_upload_image: 'Postoji tehnički problem. Molimo kontaktirajte svog administratora.'
     ajax_error: 'Technikai probléma van. Kérjük, lépjen kapcsolatba rendszergazdájával.'
+  common:
+    link_type: 'Tip linka'
+    internal_link: 'Unutarnji link'
+    external_link: 'Vanjski link'
