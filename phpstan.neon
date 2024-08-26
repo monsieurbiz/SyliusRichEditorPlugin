@@ -1,7 +1,7 @@
 parameters:
     level: 8
     paths:
-        - %rootDir%/src/
+        - src/
 
     excludePaths:
         # Makes PHPStan crash
