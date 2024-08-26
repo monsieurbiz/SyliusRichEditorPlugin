@@ -80,7 +80,6 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Libellé'
         link: 'Lien'
-        target: 'Cible'
     monsieurbiz.youtube:
       title: 'Lame Youtube'
       short_description: 'Une vidéo youtube.'
@@ -143,3 +142,7 @@ monsieurbiz_richeditor_plugin:
     unallowed_uielement: 'Élément non autorisé ici'
   ui:
     disabled: 'Désactivé'
+  common:
+    link_type: 'Type de lien'
+    internal_link: 'Lien interne'
+    external_link: 'Lien externe'

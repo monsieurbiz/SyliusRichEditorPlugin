@@ -80,7 +80,6 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Etiqueta'
         link: 'Enlace'
-        target: 'Destino'
     monsieurbiz.youtube:
       title: 'Elemento de Youtube'
       short_description: 'Un elemento de Youtube.'
@@ -140,3 +139,8 @@ monsieurbiz_richeditor_plugin:
     unallowed_uielement: 'Elemento no permitido aquí'
   ui:
     disabled: 'Desactivado'
+  common:
+    link_type: 'Tipo de enlace'
+    internal_link: 'Enlace interno'
+    external_link: 'Enlace externo'
+

@@ -4,13 +4,14 @@
     element fields :
         label
         link
-        target
+        link_type
         align
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'center' %}
-{% set target = element.target is defined and element.target is not empty ? element.target : '_self' %}
-{% set rel = element.target is defined and element.target == '_blank' ? 'rel="noopener noreferrer"' : '' %}
+{% set linkIsBlank = element.link_type is defined and element.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
 
 <p style="text-align: {{align}};">
-    <a href="{{ element.link }}" target="{{ element.target }}" {{ rel }} class="ui primary button massive">{{ element.label }}</a>
+    <a href="{{ element.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %} class="ui primary button massive">
+        {{ element.label }}
+    </a>
 </p>
