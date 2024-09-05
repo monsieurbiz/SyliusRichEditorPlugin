@@ -76,20 +76,17 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
-services:
-    # Removed by Rich Editor because it is loaded by the quire of twig/extra-bundle
-    #
-    # _defaults:
-    #     public: false
-    #     autowire: true
-    #     autoconfigure: true
-    #
-    # Twig\Extra\Intl\IntlExtension: ~
+# Removed by Rich Editor because it is loaded by the require of twig/extra-bundle
+# services:
+#     _defaults:
+#         public: false
+#         autowire: true
+#         autoconfigure: true
+#     Twig\Extra\Intl\IntlExtension: ~
 
 when@test_cached:
     twig:
         strict_variables: true
-
 ```
 
 ### Install the assets
