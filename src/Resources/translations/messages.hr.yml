@@ -94,6 +94,11 @@ monsieurbiz_richeditor_plugin:
       description: 'Element s više slika. Svaka slika može biti link.'
       field:
         images: 'Slike'
+    monsieurbiz.markdown:
+      title: 'Markdown'
+      description: 'Element koji sadrži Markdown.'
+      field:
+        content: 'Sadržaj'
   file:
     change: 'Zamijeni datoteku'
   form:

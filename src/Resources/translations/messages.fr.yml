@@ -94,6 +94,11 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant une liste d''images.'
       field:
         images: 'Liste d''images'
+    monsieurbiz.markdown:
+      title: 'Lame Markdown'
+      description: 'Une lame affichant un contenu rédigé en Markdown'
+      field:
+        content: 'Contenu'
   file:
     change: 'Changer de fichier'
   form:

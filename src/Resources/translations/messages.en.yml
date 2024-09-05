@@ -94,6 +94,11 @@ monsieurbiz_richeditor_plugin:
       description: 'An element with multiple images. A link can be added on each image.'
       field:
         images: 'Images list'
+    monsieurbiz.markdown:
+      title: 'Markdown Element'
+      description: 'An element with markdown content'
+      field:
+        content: 'Content'
   file:
     change: 'Change file'
   form:

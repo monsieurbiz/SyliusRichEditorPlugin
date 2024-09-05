@@ -76,6 +76,11 @@ monsieurbiz_richeditor_plugin:
       description: 'Een element met meerdere afbeeldingen. Aan elke afbeelding kan een link worden toegevoegd.'
       field:
         images: 'Lijst van afbeeldingen'
+    monsieurbiz.markdown:
+      title: 'Markdown'
+      description: 'Een element met inhoud in markdown'
+      field:
+        content: 'Inhoud'
   file:
     change: 'Bestand aanpassen'
   form:

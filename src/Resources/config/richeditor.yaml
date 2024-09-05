@@ -179,3 +179,15 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/row.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/row.html.twig'
+        monsieurbiz.markdown:
+            alias: markdown
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.description'
+            icon: file code
+            wireframe: markdown
+            tags: [ default ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\MarkdownType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/markdown.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/markdown.html.twig'
