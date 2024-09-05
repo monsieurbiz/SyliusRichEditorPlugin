@@ -21,6 +21,9 @@ This plugin adds a rich editor on the fields you want. Now you can manage your c
 
 ## Installation
 
+
+### Require the plugin
+
 If you want to use our recipes, you can configure your composer.json by running:
 
 ```bash
@@ -30,6 +33,10 @@ composer config --no-plugins --json extra.symfony.endpoint '["https://api.github
 ```bash
 composer require monsieurbiz/sylius-rich-editor-plugin
 ```
+
+<details>
+<summary>For the installation without flex, follow these additional steps</summary>
+<p>
 
 Change your `config/bundles.php` file to add the line for the plugin : 
 
@@ -56,8 +63,37 @@ monsieurbiz_richeditor_admin:
     resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
     prefix: /%sylius_admin.path_name%
 ```
+</p>
+</details>
 
-And install the assets
+### Correct `Twig\Extra\Intl\IntlExtension` conflict
+
+Update the file `config/packages/twig.yaml` to remove the `IntlExtension` service :
+
+```yaml
+twig:
+    paths: ['%kernel.project_dir%/templates']
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+services:
+    # Removed by Rich Editor because it is loaded by the quire of twig/extra-bundle
+    #
+    # _defaults:
+    #     public: false
+    #     autowire: true
+    #     autoconfigure: true
+    #
+    # Twig\Extra\Intl\IntlExtension: ~
+
+when@test_cached:
+    twig:
+        strict_variables: true
+
+```
+
+### Install the assets
+
 ```yaml
 bin/console asset:install
 ```
