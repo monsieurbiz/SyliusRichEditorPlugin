@@ -68,30 +68,17 @@ monsieurbiz_richeditor_admin:
 
 ### Correct `Twig\Extra\Intl\IntlExtension` conflict
 
-Update the file `config/packages/twig.yaml` to remove the `IntlExtension` service :
+If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` declaration :
 
 ```yaml
-twig:
-    paths: ['%kernel.project_dir%/templates']
-    debug: '%kernel.debug%'
-    strict_variables: '%kernel.debug%'
-
-# Removed by Rich Editor because it is loaded by the require of twig/extra-bundle
-# services:
-#     _defaults:
-#         public: false
-#         autowire: true
-#         autoconfigure: true
-#     Twig\Extra\Intl\IntlExtension: ~
-
-when@test_cached:
-    twig:
-        strict_variables: true
+# Twig\Extra\Intl\IntlExtension: ~
 ```
 
 ### Install the assets
 
-```yaml
+If the `auto-script` is not in your `composer.json` project, you can install the assets with the following command:
+
+```bash
 bin/console asset:install
 ```
 
