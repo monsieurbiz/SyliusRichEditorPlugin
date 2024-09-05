@@ -198,6 +198,13 @@ You can distinguish the `Row` element and the `Column` element by their dotted b
 
 ![The HTML element](docs/images/screenshots/html.png)
 
+### Markdown Element
+
+![The Markdown element](docs/images/screenshots/markdown.png)
+
+Use can use `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_SHOP` to enable code highlighting in the shop.
+Also you can change the theme with `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME`.
+
 ### Text element
 
 ![The text element](docs/images/screenshots/text.png)
