@@ -1,4 +1,6 @@
 {
   "public/rich-editor.css": "/public/css/rich-editor.css",
-  "public/rich-editor.js": "/public/js/rich-editor.js"
+  "public/rich-editor.js": "/public/js/rich-editor.js",
+  "public/rich-editor-highlight.css": "/public/css/rich-editor-highlight.css",
+  "public/rich-editor-highlight.js": "/public/js/rich-editor-highlight.js"
 }
