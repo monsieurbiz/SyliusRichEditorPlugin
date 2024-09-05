@@ -7,8 +7,8 @@
     "require": {
         "php": "^8.0",
         "sylius/sylius": ">=1.11 <1.14",
-        "twig/markdown-extra": "^3.12",
-        "twig/extra-bundle": "^3.12",
+        "twig/markdown-extra": "^2.16|^3.12",
+        "twig/extra-bundle": "^2.16|^3.12",
         "league/commonmark": "^2.5"
     },
     "require-dev": {
