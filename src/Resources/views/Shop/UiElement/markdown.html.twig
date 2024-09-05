@@ -7,7 +7,7 @@
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if element is not empty and element.content is not empty %}
-<div style="text-align: {{align}};">
+<div style="text-align: {{align}};" class="monsieurbiz-rich-editor-markdown">
     {{ element.content|markdown_to_html }}
 </div>
 {% endif %}
