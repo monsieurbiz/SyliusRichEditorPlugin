@@ -4,7 +4,7 @@ twig:
     strict_variables: '%kernel.debug%'
 
 services:
-    # Removed by Rich Editor because it is loaded by the quire of twig/extra-bundle
+    # Removed by Rich Editor because it is loaded by the require of twig/extra-bundle
     #
     # _defaults:
     #     public: false
