@@ -15,7 +15,7 @@ function replaceIntlExtensionInTwigConfig($filePath): void
 {
     $realPath = realpath($filePath);
 
-    if (false === $realPath || !file_exists($realPath)) {
+    if (!$realPath || !file_exists($realPath)) {
         return;
     }
 
