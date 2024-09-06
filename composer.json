@@ -6,7 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "sylius/sylius": ">=1.11 <1.14"
+        "sylius/sylius": ">=1.11 <1.14",
+        "twig/markdown-extra": "^2.16|^3.12",
+        "twig/extra-bundle": "^2.16|^3.12",
+        "league/commonmark": "^2.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.16",
@@ -36,7 +39,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.8-dev"
+            "dev-master": "2.9-dev"
         },
         "symfony": {
             "docker": false,

@@ -21,6 +21,9 @@ This plugin adds a rich editor on the fields you want. Now you can manage your c
 
 ## Installation
 
+
+### Require the plugin
+
 If you want to use our recipes, you can configure your composer.json by running:
 
 ```bash
@@ -30,6 +33,10 @@ composer config --no-plugins --json extra.symfony.endpoint '["https://api.github
 ```bash
 composer require monsieurbiz/sylius-rich-editor-plugin
 ```
+
+<details>
+<summary>For the installation without flex, follow these additional steps</summary>
+<p>
 
 Change your `config/bundles.php` file to add the line for the plugin : 
 
@@ -56,9 +63,22 @@ monsieurbiz_richeditor_admin:
     resource: "@MonsieurBizSyliusRichEditorPlugin/Resources/config/routing/admin.yaml"
     prefix: /%sylius_admin.path_name%
 ```
+</p>
+</details>
 
-And install the assets
+### Correct `Twig\Extra\Intl\IntlExtension` conflict
+
+If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` declaration :
+
 ```yaml
+# Twig\Extra\Intl\IntlExtension: ~
+```
+
+### Install the assets
+
+If the `auto-script` is not in your `composer.json` project, you can install the assets with the following command:
+
+```bash
 bin/console asset:install
 ```
 
@@ -197,6 +217,13 @@ You can distinguish the `Row` element and the `Column` element by their dotted b
 ### HTML Element
 
 ![The HTML element](docs/images/screenshots/html.png)
+
+### Markdown Element
+
+![The Markdown element](docs/images/screenshots/markdown.png)
+
+You can use `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_SHOP` to enable code highlighting in the shop.
+Also you can change the theme with `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME`.
 
 ### Text element
 

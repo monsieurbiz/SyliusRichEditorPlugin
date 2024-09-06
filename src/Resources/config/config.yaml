@@ -17,6 +17,17 @@ knp_gaufrette:
 parameters:
     env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR): /media/rich-editor
     env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_IMAGE_UPLOAD_DIR): /media/image
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_SHOP): 'false'
+    env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME): 'default'
+
+twig:
+    globals:
+        monsieurbiz_sylius_rich_editor: {
+            highlight_js: {
+                shop_enabled: '%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_SHOP)%',
+                theme: '%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME)%',
+            }
+        }
 
 liip_imagine:
     loaders:

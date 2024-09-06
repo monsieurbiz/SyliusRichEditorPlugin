@@ -8,6 +8,7 @@ Encore
 
     // entries
     .addEntry('rich-editor', './assets/js/app.js')
+    .addEntry('rich-editor-highlight', './assets/js/highlight.js')
 
     // copy images
     .copyFiles({

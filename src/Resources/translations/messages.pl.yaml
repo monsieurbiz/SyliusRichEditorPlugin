@@ -94,6 +94,11 @@ monsieurbiz_richeditor_plugin:
             description: 'Element z wieloma obrazami. Można dodać link do każdego obrazu.'
             field:
                 images: 'Lista obrazów'
+        monsieurbiz.markdown:
+            title: 'Element Markdown'
+            description: 'Element z treścią Markdown'
+            field:
+                content: 'Treść'
     file:
         change: 'Zmień plik'
     form:

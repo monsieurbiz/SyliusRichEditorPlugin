@@ -1,0 +1,12 @@
+{% set highlightJsEnabled = monsieurbiz_sylius_rich_editor.highlight_js.shop_enabled|default('false') %}
+{% set highlightJsTheme = monsieurbiz_sylius_rich_editor.highlight_js.theme|default('default') %}
+
+{% if highlightJsEnabled == 'true' %}
+    {% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor-highlight.js'} %}
+    {% if highlightJsTheme == 'default' %}
+        {% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor-highlight.css'} %}
+    {% else %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/{{ highlightJsTheme|escape('html_attr') }}.min.css">
+    {% endif %}
+
+{% endif %}

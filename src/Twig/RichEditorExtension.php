@@ -216,7 +216,7 @@ final class RichEditorExtension extends AbstractExtension
     {
         $isValid = (bool) preg_match(YoutubeUrlValidator::YOUTUBE_REGEX_VALIDATOR, $url, $matches);
 
-        if (!$isValid || !isset($matches[1])) {
+        if (!$isValid) {
             return null;
         }
 

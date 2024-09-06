@@ -7,6 +7,14 @@
       "js": [
         "/public/js/rich-editor.js"
       ]
+    },
+    "rich-editor-highlight": {
+      "css": [
+        "/public/css/rich-editor-highlight.css"
+      ],
+      "js": [
+        "/public/js/rich-editor-highlight.js"
+      ]
     }
   }
 }
