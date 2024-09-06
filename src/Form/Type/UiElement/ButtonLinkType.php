@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LevelType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkTypeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
@@ -78,6 +79,7 @@ class ButtonLinkType extends AbstractType
                 'constraints' => $constraintsLinkType,
             ])
             ->add('align', AlignmentType::class)
+            ->add('level', LevelType::class)
         ;
     }
 }

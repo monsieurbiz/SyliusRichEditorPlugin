@@ -129,6 +129,12 @@ monsieurbiz_richeditor_plugin:
       center: 'Centré'
       right: 'Droite'
       justify: 'Justifié'
+    level:
+        label: 'Niveau'
+        default: 'Aucun'
+        primary: 'Primaire'
+        secondary: 'Secondaire'
+        tertiary: 'Tertiaire'
     clipboard: 'Presse-papier'
     paste_from_clipboard: 'Coller depuis le presse-papier'
     paste_all_from_clipboard: 'Coller tous les éléments'
