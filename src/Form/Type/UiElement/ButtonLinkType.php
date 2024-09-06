@@ -14,10 +14,11 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LevelType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkTypeType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -42,7 +43,7 @@ class ButtonLinkType extends AbstractType
                     'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
                     'constraints' => [
                         new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
-                        new Assert\Regex(['pattern' => '`^(#|/.*)$`']),
+                        new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
                     ],
                 ]),
                 new Assert\NotBlank([]),
@@ -56,7 +57,7 @@ class ButtonLinkType extends AbstractType
                     'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
                     'constraints' => [
                         new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
-                        new Assert\Regex(['pattern' => '`^(#|/.*)$`']),
+                        new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
                     ],
                 ]),
             ];
@@ -68,7 +69,7 @@ class ButtonLinkType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.label',
                 'constraints' => $constraintsLabel,
             ])
-            ->add('link', UrlType::class, [
+            ->add('link', TextType::class, [
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,
@@ -78,6 +79,7 @@ class ButtonLinkType extends AbstractType
                 'constraints' => $constraintsLinkType,
             ])
             ->add('align', AlignmentType::class)
+            ->add('level', LevelType::class)
         ;
     }
 }

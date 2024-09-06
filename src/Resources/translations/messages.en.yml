@@ -129,6 +129,12 @@ monsieurbiz_richeditor_plugin:
       center: 'Center'
       right: 'Right'
       justify: 'Justify'
+    level:
+        label: 'Level'
+        default: 'Default'
+        primary: 'Primary'
+        secondary: 'Secondary'
+        tertiary: 'Tertiary'
     clipboard: 'Clipboard'
     paste_from_clipboard: 'Paste from clipboard'
     paste_all_from_clipboard: 'Paste all elements'
