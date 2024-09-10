@@ -31,6 +31,6 @@
     "gulp": "^4.0.2",
     "highlight.js": "^11.10.0",
     "mustache": "^4.0.1",
-    "suneditor": "^2.45.1"
+    "suneditor": "^2.47.0"
   }
 }
