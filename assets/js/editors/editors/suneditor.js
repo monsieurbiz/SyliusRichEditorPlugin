@@ -14,7 +14,8 @@ const initEditor = () => {
     codeMirror: CodeMirror,
     height: 'auto',
     plugins: suneditorPlugins,
-    buttonList: []
+    buttonList: [],
+    stickyToolbar: false,
   });
 }
 
@@ -23,7 +24,7 @@ export default {
     const editorModel = initEditor();
     target.querySelectorAll('[data-component="wysiwyg-editor"][data-editor-type="suneditor"]').forEach((component) => {
 
-      // SundEditor is ID based, so we need to make sure that the ID is unique
+      // SunEditor is ID based, so we need to make sure that the ID is unique
       if (currentEditors.includes(component.id)) {
         component.id = `${component.id}-${Math.random().toString(36).substring(7)}`;
       }
