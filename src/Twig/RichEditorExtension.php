@@ -292,6 +292,11 @@ final class RichEditorExtension extends AbstractExtension
             return false;
         }
 
+        // If we are on the SyliusCmsPagePlugin preview page, we need to load Shop templates.
+        if ('monsieurbiz_cms_page_admin_page_preview' === $request->get('_route')) {
+            return false;
+        }
+
         return self::ADMIN_FIREWALL_CONTEXT === $request->get('_firewall_context');
     }
 }
