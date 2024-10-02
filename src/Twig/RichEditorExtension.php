@@ -31,6 +31,8 @@ final class RichEditorExtension extends AbstractExtension
 {
     private const ADMIN_FIREWALL_CONTEXT = 'security.firewall.map.context.admin';
 
+    private const SYLIUS_ADMIN_SECTION = 'admin';
+
     private RegistryInterface $uiElementRegistry;
 
     private Environment $twig;
@@ -284,6 +286,9 @@ final class RichEditorExtension extends AbstractExtension
         return $path;
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
     private function isAdmin(array $context): bool
     {
         /** @var ?AppVariable $app */
@@ -292,6 +297,19 @@ final class RichEditorExtension extends AbstractExtension
             return false;
         }
 
-        return self::ADMIN_FIREWALL_CONTEXT === $request->get('_firewall_context');
+        // Check Sylius section to know if we are in the admin
+        /** @var ?array $sylius */
+        $sylius = $request->get('_sylius');
+        if (isset($sylius['section'])) {
+            return self::SYLIUS_ADMIN_SECTION === $sylius['section'];
+        }
+
+        // Check firewall context to know if we are in the admin
+        if ($request->attributes->has('_firewall_context')) {
+            return self::ADMIN_FIREWALL_CONTEXT === $request->attributes->get('_firewall_context');
+        }
+
+        // False by default
+        return false;
     }
 }
