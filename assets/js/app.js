@@ -146,7 +146,7 @@ global.MonsieurBizRichEditorManager = class {
     /**
      *
      */
-    constructor(config, tags) {
+    constructor(config, tags, locale) {
         config.input.setAttribute('data-rich-editor-uid', config.uid);
 
         this.config = config;
@@ -161,6 +161,8 @@ global.MonsieurBizRichEditorManager = class {
                 break;
             }
         }
+
+        this.locale = locale;
 
         let initInterfaceCallback = function () {
             this.initInterface();
@@ -603,7 +605,7 @@ global.MonsieurBizRichEditorManager = class {
     loadUiElementCreateForm(element, callback) {
         let req = new XMLHttpRequest();
         req.onload = callback;
-        let url = this.config.createElementFormUrl;
+        let url = this.config.createElementFormUrl + '?locale=' + this.locale;
         req.open("get", url.replace('__CODE__', element.code), true);
         req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         req.send();
@@ -616,7 +618,7 @@ global.MonsieurBizRichEditorManager = class {
         req.open("post", url.replace('__CODE__', element.code), true);
         req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        req.send(new URLSearchParams({data: JSON.stringify(element.data)}).toString());
+        req.send(new URLSearchParams({data: JSON.stringify(element.data), locale: this.locale}).toString());
     }
 
     submitUiElementForm(form, callback) {
