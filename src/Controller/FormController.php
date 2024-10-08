@@ -47,7 +47,7 @@ class FormController extends AbstractController
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function viewAction(Request $request, string $code): Response
+    public function viewAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale, string $code): Response
     {
         // Find UI Element from type
         try {
@@ -59,6 +59,14 @@ class FormController extends AbstractController
         // Check data in post
         $data = [];
         $isEdition = $request->isMethod('post');
+        $locale = $request->get('locale');
+
+        // if we have a locale value in the post data, we change the current
+        // admin locale to make the ui elements in the correct version.
+        if (($locale = $request->get('locale')) && \is_string($locale)) {
+            $switchAdminLocale->switchLocale($locale);
+        }
+
         if ($isEdition && ($data = $request->get('data'))) {
             if (!\is_string($data)) {
                 throw $this->createNotFoundException();
@@ -70,10 +78,12 @@ class FormController extends AbstractController
         }
 
         // Create form depending on UI Element with data
-        $form = $this->createForm($uiElement->getFormClass(), $data, $this->getFormOptions($uiElement));
+        $formOptions = array_merge(['attr' => ['data-locale' => $locale]], $this->getFormOptions($uiElement));
+        $form = $this->createForm($uiElement->getFormClass(), $data, $formOptions);
 
         return new JsonResponse([
             'code' => $uiElement->getCode(),
+            'locale' => $locale,
             'form_html' => $this->renderView($uiElement->getAdminFormTemplate(), [
                 'form' => $form->createView(),
                 'uiElement' => $uiElement,
