@@ -15,9 +15,9 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LevelType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkTypeType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -69,7 +69,7 @@ class ButtonLinkType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.label',
                 'constraints' => $constraintsLabel,
             ])
-            ->add('link', TextType::class, [
+            ->add('link', LinkType::class, [
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,

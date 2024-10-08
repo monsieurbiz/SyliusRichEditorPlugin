@@ -16,12 +16,12 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType as MediaManagerImageType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LinkTypeType;
 use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -58,7 +58,7 @@ class ImageType extends AbstractType
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title',
             ])
-            ->add('link', UrlType::class, [
+            ->add('link', LinkType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link',
                 'constraints' => [
