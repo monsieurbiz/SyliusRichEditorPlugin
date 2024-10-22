@@ -236,6 +236,12 @@ global.MonsieurBizRichEditorManager = class {
                 action.removeAttribute('disabled');
             }.bind(this));
         }.bind(this));
+
+        if (window.localStorage.getItem('monsieurBizRichEditorElementsClipboard') !== null) {
+            this.container.querySelectorAll('.js-uie-tools-paste-all').forEach(function (action) {
+                action.removeAttribute('disabled');
+            }.bind(this));
+        }
     }
 
     initUiToolsInterface() {
