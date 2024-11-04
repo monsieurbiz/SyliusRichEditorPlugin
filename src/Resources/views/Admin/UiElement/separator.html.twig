@@ -3,5 +3,9 @@
     type: separator
     element fields :
         hidden
+        style
 #}
 <div class="ui {% if element is not empty and element.hidden is not empty %}hidden{% endif %} divider"></div>
+{% if element.style is defined and element is not empty %}
+    <div class="ui label">{{ ('monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.' ~ element.style)|trans }}</div>
+{% endif %}
