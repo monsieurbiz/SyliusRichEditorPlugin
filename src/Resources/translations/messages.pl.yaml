@@ -73,6 +73,12 @@ monsieurbiz_richeditor_plugin:
             description: 'Element separatora. Separator może być ukryty.'
             field:
                 hidden: 'Ukryty separator'
+                style:
+                    label: 'Styl'
+                    choices:
+                        solid: 'Solidny'
+                        dashed: 'Kreskowany'
+                        dotted: 'Kropkowany'
         monsieurbiz.button:
             title: 'Element przycisku'
             short_description: 'Przycisk z tekstem i linkiem.'

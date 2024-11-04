@@ -73,6 +73,12 @@ monsieurbiz_richeditor_plugin:
       description: 'Un elemento separador. El separador puede ser uno oculto.'
       field:
         hidden: 'Separador oculto'
+        style:
+         label: 'Estilo'
+         choices:
+           solid: 'Sólido'
+           dashed: 'Punteado'
+           dotted: 'Punteado'
     monsieurbiz.button:
       title: 'Elemento de botón'
       short_description: 'Un botón con un texto y un enlace.'

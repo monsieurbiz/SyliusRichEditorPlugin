@@ -73,6 +73,12 @@ monsieurbiz_richeditor_plugin:
       description: 'Vidljivi ili nevidljivi element koji se nalazi između dva druga elementa i tako ih razdvaja.'
       field:
         hidden: 'Skriveni razdjelnik'
+        style:
+         label: 'Stil'
+         choices:
+           solid: 'Solidan'
+           dashed: 'Isprekidan'
+           dotted: 'Točkast'
     monsieurbiz.button:
       title: 'Gumb'
       short_description: 'Gumb s tekstom i linkom.'

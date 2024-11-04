@@ -3,5 +3,11 @@
     type: separator
     element fields :
         hidden
+        style
 #}
-<div class="ui {% if element.hidden is not empty %}hidden{% endif %} divider"></div>
+{% set borderStyleMap = {
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::SOLID_STYLE')): 'border-top: 1px solid; border-bottom: none;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::DOTTED_STYLE')): 'border-top: 1px dotted; border-bottom: none;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::DASHED_STYLE')): 'border-top: 1px dashed; border-bottom: none;',
+} %}
+<div class="ui {% if element.hidden is not empty %}hidden{% endif %} divider" {% if element.style is defined and element.style is not empty %}style="{{ borderStyleMap[element.style] }}"{% endif %}></div>

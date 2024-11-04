@@ -73,6 +73,12 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
       field:
         hidden: 'Séparateur caché'
+        style:
+         label: 'Style'
+         choices:
+           solid: 'Solide'
+           dashed: 'Pointillé'
+           dotted: 'Pointé'
     monsieurbiz.button:
       title: 'Lame Bouton'
       short_description: 'Un bouton avec un texte et un lien.'

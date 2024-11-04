@@ -73,6 +73,12 @@ monsieurbiz_richeditor_plugin:
       description: 'A separator element. The separator can be a hidden one.'
       field:
         hidden: 'Hidden separator'
+        style:
+         label: 'Style'
+         choices:
+           solid: 'Solid'
+           dashed: 'Dashed'
+           dotted: 'Dotted'
     monsieurbiz.button:
       title: 'Button Element'
       short_description: 'A button with a text and a link.'

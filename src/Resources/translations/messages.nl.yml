@@ -55,6 +55,12 @@ monsieurbiz_richeditor_plugin:
       description: 'Een scheidingselement dat optioneel verborgen kan zijn.'
       field:
         hidden: 'Verborgen scheidingselement'
+        style:
+         label: 'Stijl'
+         choices:
+           solid: 'Solide'
+           dashed: 'Gestippeld'
+           dotted: 'Gepunt'
     monsieurbiz.button:
       title: 'Knop'
       short_description: 'Een knop met tekst en een link.'
