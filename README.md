@@ -528,7 +528,7 @@ $builder->add('content', WysiwygType::class, [
     'editor_height' => 500,
     'editor_locale' => 'fr',
     'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_CUSTOM,
-    'editor_toolbar_buttons' => ['bold', 'italic', 'underline'],
+    'editor_toolbar_buttons' => [['bold', 'italic', 'underline']],
     'editor_custom_config' => ['option1' => 'value1', 'option2' => 'value2'],
 ]);
 ```
