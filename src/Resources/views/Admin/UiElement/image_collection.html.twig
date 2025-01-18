@@ -4,9 +4,9 @@
     element fields :
         images
 #}
-<div class="ui stackable two column grid">
+<div class="ui row">
     {% for image in element.images %}
-        <div class="column">
+        <div class="col">
             {% if image.link is not empty %}
                 <a href="{{ image.link }}">
                     <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />

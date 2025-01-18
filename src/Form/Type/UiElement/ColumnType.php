@@ -32,6 +32,12 @@ class ColumnType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
         ;
     }

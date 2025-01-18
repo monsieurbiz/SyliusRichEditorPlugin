@@ -1,3 +1,11 @@
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
 /*!
   Theme: Default
   Description: Original highlight.js style
@@ -6,4 +14,106 @@
   Website: https://highlightjs.org/
   License: see project LICENSE
   Touched: 2021
-*/pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{background:#f3f3f3;color:#444}.hljs-comment{color:#697070}.hljs-punctuation,.hljs-tag{color:#444a}.hljs-tag .hljs-attr,.hljs-tag .hljs-name{color:#444}.hljs-attribute,.hljs-doctag,.hljs-keyword,.hljs-meta .hljs-keyword,.hljs-name,.hljs-selector-tag{font-weight:700}.hljs-deletion,.hljs-number,.hljs-quote,.hljs-selector-class,.hljs-selector-id,.hljs-string,.hljs-template-tag,.hljs-type{color:#800}.hljs-section,.hljs-title{color:#800;font-weight:700}.hljs-link,.hljs-operator,.hljs-regexp,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-symbol,.hljs-template-variable,.hljs-variable{color:#ab5656}.hljs-literal{color:#695}.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-code{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta .hljs-string{color:#38a}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+*/
+/*
+This is left on purpose making default.css the single file that can be lifted
+as-is from the repository directly without the need for a build step
+
+Typically this "required" baseline CSS is added by `makestuff.js` during build.
+*/
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+/* end baseline CSS */
+.hljs {
+  background: #F3F3F3;
+  color: #444
+}
+/* Base color: saturation 0; */
+.hljs-subst {
+  /* default */
+  
+}
+/* purposely ignored */
+.hljs-formula,
+.hljs-attr,
+.hljs-property,
+.hljs-params {
+  
+}
+.hljs-comment {
+  color: #697070
+}
+.hljs-tag,
+.hljs-punctuation {
+  color: #444a
+}
+.hljs-tag .hljs-name,
+.hljs-tag .hljs-attr {
+  color: #444
+}
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta .hljs-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold
+}
+/* User color: hue: 0 */
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #880000
+}
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold
+}
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-operator,
+.hljs-selector-pseudo {
+  color: #ab5656
+}
+/* Language color: hue: 90; */
+.hljs-literal {
+  color: #695
+}
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300
+}
+/* Meta color: hue: 200 */
+.hljs-meta {
+  color: #1f7199
+}
+.hljs-meta .hljs-string {
+  color: #38a
+}
+/* Misc effects */
+.hljs-emphasis {
+  font-style: italic
+}
+.hljs-strong {
+  font-weight: bold
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzL3JpY2gtZWRpdG9yLWhpZ2hsaWdodC5jc3MiLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCO0FBQ0Y7QUFDQTtFQUNFO0FBQ0Y7QUFDQTs7Ozs7Ozs7Q0FRQztBQUNEOzs7OztDQUtDO0FBQ0Q7RUFDRSxjQUFjO0VBQ2QsZ0JBQWdCO0VBQ2hCO0FBQ0Y7QUFDQTtFQUNFO0FBQ0Y7QUFDQSxxQkFBcUI7QUFDckI7RUFDRSxtQkFBbUI7RUFDbkI7QUFDRjtBQUNBLDhCQUE4QjtBQUM5QjtFQUNFLFlBQVk7O0FBRWQ7QUFDQSxzQkFBc0I7QUFDdEI7Ozs7O0FBS0E7QUFDQTtFQUNFO0FBQ0Y7QUFDQTs7RUFFRTtBQUNGO0FBQ0E7O0VBRUU7QUFDRjtBQUNBOzs7Ozs7RUFNRTtBQUNGO0FBQ0EsdUJBQXVCO0FBQ3ZCOzs7Ozs7OztFQVFFO0FBQ0Y7QUFDQTs7RUFFRSxjQUFjO0VBQ2Q7QUFDRjtBQUNBOzs7Ozs7OztFQVFFO0FBQ0Y7QUFDQSw2QkFBNkI7QUFDN0I7RUFDRTtBQUNGO0FBQ0E7Ozs7RUFJRTtBQUNGO0FBQ0EseUJBQXlCO0FBQ3pCO0VBQ0U7QUFDRjtBQUNBO0VBQ0U7QUFDRjtBQUNBLGlCQUFpQjtBQUNqQjtFQUNFO0FBQ0Y7QUFDQTtFQUNFO0FBQ0YsQyIsInNvdXJjZXMiOlsid2VicGFjazovL2VsYmlkb3VpbGxldXItc3lsaXVzLXJpY2gtZWRpdG9yLXBsdWdpbi8uL25vZGVfbW9kdWxlcy9oaWdobGlnaHQuanMvc3R5bGVzL2RlZmF1bHQuY3NzIl0sInNvdXJjZXNDb250ZW50IjpbInByZSBjb2RlLmhsanMge1xuICBkaXNwbGF5OiBibG9jaztcbiAgb3ZlcmZsb3cteDogYXV0bztcbiAgcGFkZGluZzogMWVtXG59XG5jb2RlLmhsanMge1xuICBwYWRkaW5nOiAzcHggNXB4XG59XG4vKiFcbiAgVGhlbWU6IERlZmF1bHRcbiAgRGVzY3JpcHRpb246IE9yaWdpbmFsIGhpZ2hsaWdodC5qcyBzdHlsZVxuICBBdXRob3I6IChjKSBJdmFuIFNhZ2FsYWV2IDxtYW5pYWNAc29mdHdhcmVtYW5pYWNzLm9yZz5cbiAgTWFpbnRhaW5lcjogQGhpZ2hsaWdodGpzL2NvcmUtdGVhbVxuICBXZWJzaXRlOiBodHRwczovL2hpZ2hsaWdodGpzLm9yZy9cbiAgTGljZW5zZTogc2VlIHByb2plY3QgTElDRU5TRVxuICBUb3VjaGVkOiAyMDIxXG4qL1xuLypcblRoaXMgaXMgbGVmdCBvbiBwdXJwb3NlIG1ha2luZyBkZWZhdWx0LmNzcyB0aGUgc2luZ2xlIGZpbGUgdGhhdCBjYW4gYmUgbGlmdGVkXG5hcy1pcyBmcm9tIHRoZSByZXBvc2l0b3J5IGRpcmVjdGx5IHdpdGhvdXQgdGhlIG5lZWQgZm9yIGEgYnVpbGQgc3RlcFxuXG5UeXBpY2FsbHkgdGhpcyBcInJlcXVpcmVkXCIgYmFzZWxpbmUgQ1NTIGlzIGFkZGVkIGJ5IGBtYWtlc3R1ZmYuanNgIGR1cmluZyBidWlsZC5cbiovXG5wcmUgY29kZS5obGpzIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG92ZXJmbG93LXg6IGF1dG87XG4gIHBhZGRpbmc6IDFlbVxufVxuY29kZS5obGpzIHtcbiAgcGFkZGluZzogM3B4IDVweFxufVxuLyogZW5kIGJhc2VsaW5lIENTUyAqL1xuLmhsanMge1xuICBiYWNrZ3JvdW5kOiAjRjNGM0YzO1xuICBjb2xvcjogIzQ0NFxufVxuLyogQmFzZSBjb2xvcjogc2F0dXJhdGlvbiAwOyAqL1xuLmhsanMtc3Vic3Qge1xuICAvKiBkZWZhdWx0ICovXG4gIFxufVxuLyogcHVycG9zZWx5IGlnbm9yZWQgKi9cbi5obGpzLWZvcm11bGEsXG4uaGxqcy1hdHRyLFxuLmhsanMtcHJvcGVydHksXG4uaGxqcy1wYXJhbXMge1xuICBcbn1cbi5obGpzLWNvbW1lbnQge1xuICBjb2xvcjogIzY5NzA3MFxufVxuLmhsanMtdGFnLFxuLmhsanMtcHVuY3R1YXRpb24ge1xuICBjb2xvcjogIzQ0NGFcbn1cbi5obGpzLXRhZyAuaGxqcy1uYW1lLFxuLmhsanMtdGFnIC5obGpzLWF0dHIge1xuICBjb2xvcjogIzQ0NFxufVxuLmhsanMta2V5d29yZCxcbi5obGpzLWF0dHJpYnV0ZSxcbi5obGpzLXNlbGVjdG9yLXRhZyxcbi5obGpzLW1ldGEgLmhsanMta2V5d29yZCxcbi5obGpzLWRvY3RhZyxcbi5obGpzLW5hbWUge1xuICBmb250LXdlaWdodDogYm9sZFxufVxuLyogVXNlciBjb2xvcjogaHVlOiAwICovXG4uaGxqcy10eXBlLFxuLmhsanMtc3RyaW5nLFxuLmhsanMtbnVtYmVyLFxuLmhsanMtc2VsZWN0b3ItaWQsXG4uaGxqcy1zZWxlY3Rvci1jbGFzcyxcbi5obGpzLXF1b3RlLFxuLmhsanMtdGVtcGxhdGUtdGFnLFxuLmhsanMtZGVsZXRpb24ge1xuICBjb2xvcjogIzg4MDAwMFxufVxuLmhsanMtdGl0bGUsXG4uaGxqcy1zZWN0aW9uIHtcbiAgY29sb3I6ICM4ODAwMDA7XG4gIGZvbnQtd2VpZ2h0OiBib2xkXG59XG4uaGxqcy1yZWdleHAsXG4uaGxqcy1zeW1ib2wsXG4uaGxqcy12YXJpYWJsZSxcbi5obGpzLXRlbXBsYXRlLXZhcmlhYmxlLFxuLmhsanMtbGluayxcbi5obGpzLXNlbGVjdG9yLWF0dHIsXG4uaGxqcy1vcGVyYXRvcixcbi5obGpzLXNlbGVjdG9yLXBzZXVkbyB7XG4gIGNvbG9yOiAjYWI1NjU2XG59XG4vKiBMYW5ndWFnZSBjb2xvcjogaHVlOiA5MDsgKi9cbi5obGpzLWxpdGVyYWwge1xuICBjb2xvcjogIzY5NVxufVxuLmhsanMtYnVpbHRfaW4sXG4uaGxqcy1idWxsZXQsXG4uaGxqcy1jb2RlLFxuLmhsanMtYWRkaXRpb24ge1xuICBjb2xvcjogIzM5NzMwMFxufVxuLyogTWV0YSBjb2xvcjogaHVlOiAyMDAgKi9cbi5obGpzLW1ldGEge1xuICBjb2xvcjogIzFmNzE5OVxufVxuLmhsanMtbWV0YSAuaGxqcy1zdHJpbmcge1xuICBjb2xvcjogIzM4YVxufVxuLyogTWlzYyBlZmZlY3RzICovXG4uaGxqcy1lbXBoYXNpcyB7XG4gIGZvbnQtc3R5bGU6IGl0YWxpY1xufVxuLmhsanMtc3Ryb25nIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGRcbn0iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/

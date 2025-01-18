@@ -48,15 +48,42 @@ class ImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.image',
                 'data_class' => null,
                 'required' => true,
-                'attr' => ['data-image' => 'true'], // To be able to manage display in form
+                'attr' => [
+                    'data-image' => 'true', // To be able to manage display in form
+                    'class' => 'form-control'
+                ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
             ->add('alt', FormTextType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.alt',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
             ->add('title', FormTextType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title',
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
             ->add('link', LinkType::class, [
                 'required' => false,
@@ -71,11 +98,33 @@ class ImageType extends AbstractType
                         ],
                     ]),
                 ],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
             ->add('link_type', LinkTypeType::class, [
                 'required' => false,
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
-            ->add('align', AlignmentType::class)
+            ->add('align', AlignmentType::class, [
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
+            ])
         ;
     }
 

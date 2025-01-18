@@ -46,14 +46,39 @@ class VideoType extends AbstractType
                 'data_class' => null,
                 'required' => true,
                 'attr' => ['data-video' => 'true'],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
             ->add('image', $this->getImageType(), [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.image',
                 'data_class' => null,
                 'required' => false,
                 'attr' => ['data-image' => 'true'],
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
             ])
-            ->add('align', AlignmentType::class)
+            ->add('align', AlignmentType::class, [
+                'label_attr' => [
+                    'class' => 'form-label'
+                ],
+                'row_attr' => [
+                    'class' => 'mb-3 field'
+                ]
+            ])
         ;
     }
 
