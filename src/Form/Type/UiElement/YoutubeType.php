@@ -36,15 +36,6 @@ class YoutubeType extends AbstractType
                     new Assert\NotBlank(),
                     new YoutubeUrl(),
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->add('width', FormTextType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.width',
@@ -53,15 +44,6 @@ class YoutubeType extends AbstractType
                     new Assert\Type('numeric'),
                     new Assert\GreaterThan(0),
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->add('height', FormTextType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.height',
@@ -70,24 +52,8 @@ class YoutubeType extends AbstractType
                     new Assert\Type('numeric'),
                     new Assert\GreaterThan(0),
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
-            ->add('align', AlignmentType::class, [
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
-            ])
+            ->add('align', AlignmentType::class)
         ;
     }
 }

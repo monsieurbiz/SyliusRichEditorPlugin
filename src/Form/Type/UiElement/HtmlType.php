@@ -27,15 +27,6 @@ class HtmlType extends AbstractType
         $builder
             ->add('content', TextareaType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.field.content',
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
         ;
     }

@@ -33,24 +33,9 @@ class MarkdownType extends AbstractType
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->add('align', AlignmentType::class, [
-                'show_justify' => true,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
+                'show_justify' => true
             ])
         ;
     }

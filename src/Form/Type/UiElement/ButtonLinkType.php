@@ -68,56 +68,18 @@ class ButtonLinkType extends AbstractType
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.label',
                 'constraints' => $constraintsLabel,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->add('link', LinkType::class, [
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
                 'constraints' => $constraintsLink,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->add('link_type', LinkTypeType::class, [
                 'required' => $required,
                 'constraints' => $constraintsLinkType,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
-            ->add('align', AlignmentType::class, [
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
-            ])
-            ->add('level', LevelType::class, [
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
-            ])
+            ->add('align', AlignmentType::class)
+            ->add('level', LevelType::class)
         ;
     }
 }

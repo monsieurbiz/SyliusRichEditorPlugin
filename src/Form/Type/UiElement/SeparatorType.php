@@ -37,12 +37,6 @@ class SeparatorType extends AbstractType
             ->add('hidden', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.hidden',
                 'required' => false,
-                'attr' => [
-                    'class' => 'form-check-input'
-                ],
-                'row_attr' => [
-                    'class' => 'form-check mb-3'
-                ],
             ])
             ->add('style', ChoiceType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.label',
@@ -51,12 +45,6 @@ class SeparatorType extends AbstractType
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.dashed' => self::DASHED_STYLE,
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.dotted' => self::DOTTED_STYLE,
                 ],
-                'label_attr' => [
-                    'class' => 'form-label'
-                ],
-                'row_attr' => [
-                    'class' => 'mb-3 field'
-                ]
             ])
             ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
                 /** @var array $data */
