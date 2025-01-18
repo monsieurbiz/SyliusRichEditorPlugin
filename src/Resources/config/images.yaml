@@ -1,7 +1,9 @@
 liip_imagine:
     filter_sets:
         monsieurbiz_rich_editor_uploaded_image:
+            data_loader: monsieurbiz_sylius_rich_editor
             filters:
                 thumbnail: { size: [400, 400], mode: inset }
                 relative_resize: { widen: 32 }
-        monsieurbiz_rich_editor_image: ~
+        monsieurbiz_rich_editor_image: 
+            data_loader: monsieurbiz_sylius_rich_editor

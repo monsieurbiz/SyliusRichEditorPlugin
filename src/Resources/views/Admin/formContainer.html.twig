@@ -1,0 +1,15 @@
+{% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
+
+{% set formAttributes = {'data-model': 'norender|*'} %} {# Do not reload the form on each field change #}
+{% set isEdition = this.isEdition ? 1 : 0 %}
+{% if uiElement is not null %}
+    {% set formAttributes = formAttributes|merge({'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': this.uiElement.code, 'isEdition': isEdition, 'locale': this.locale})}) %}
+{% else %}
+    {% set formAttributes = formAttributes|merge({'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': this.formName, 'isEdition': isEdition, 'locale': this.locale})}) %}
+{% endif %}
+
+<div {{ attributes }}>
+    {{ form_start(form, {attr: formAttributes} ) }}
+    {{ form(form) }}
+    {{ form_end(form) }}
+</div>

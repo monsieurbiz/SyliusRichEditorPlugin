@@ -1,4 +1,4 @@
-{% extends '@SyliusAdmin/Form/theme.html.twig' %}
+{% extends '@SyliusAdmin/shared/form_theme.html.twig' %}
 
 {% block monsieurbiz_rich_editor_plugin_image_widget %}
     {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
@@ -29,7 +29,7 @@
                     <source src="{{ current_file_path }}" type="video/{{ current_file_path|split('.')|last }}">
                 </video>
             </p>
-            <button type="button" class="ui button" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
+            <button type="button" class="ui btn btn-outline-primary" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
                 {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
             </button>
             <input type="hidden" name="{{ form.vars.full_name }}" value="{{ current_file_path }}" />
@@ -65,7 +65,7 @@
                     </a>
                 </p>
             {% endif %}
-            <button type="button" class="ui button" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
+            <button type="button" class="ui btn btn-outline-primary" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
                 {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
             </button>
 
@@ -76,4 +76,3 @@
         {{- form_widget(form) -}}
     {% endif %}
 {% endblock %}
-

@@ -6,7 +6,7 @@ monsieurbiz_sylius_richeditor:
             alias: html
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
-            icon: html5
+            icon: tabler:eye
             wireframe: html
             tags: [ default, html ]
             classes:

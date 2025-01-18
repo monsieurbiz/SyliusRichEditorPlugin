@@ -60,9 +60,9 @@ html.is-disabled body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 999;
+    z-index: 1020;
     display: none;
-    padding: 0.714rem 0 0.714rem 5%;
+    padding: 0 0 0 15rem;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -99,6 +99,7 @@ html.is-disabled body {
     border-right-width: 0;
     border-radius: 0.286rem 0 0 0.286rem;
     box-shadow: 1px 3px 3px 0 rgba(0, 0, 0, 0.2), 1px 3px 15px 2px rgba(0, 0, 0, 0.2);
+    overflow: auto;
 }
 
 [aria-hidden=false] .uie-panels__content {
@@ -122,6 +123,10 @@ html.is-disabled body {
     border-right-width: 0;
     border-radius: 0.286rem 0 0 0.286rem;
     box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+}
+
+.uie-panels__new>.row {
+    height: 100%;
 }
 
 .uie-panels__new[aria-hidden=false] {

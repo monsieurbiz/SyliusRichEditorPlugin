@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
 APP_DIR=tests/Application
-SYLIUS_VERSION=1.14.0
+SYLIUS_VERSION=2.0.0
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
@@ -46,6 +46,7 @@ yarn.install: ${APP_DIR}/yarn.lock
 
 ${APP_DIR}/yarn.lock:
 	ln -sf ${APP_DIR}/node_modules node_modules
+	touch ${APP_DIR}/yarn.lock
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
 # No CSS and JS on this plugin yet
 #	${YARN} install
