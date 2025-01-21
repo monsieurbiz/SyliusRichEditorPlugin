@@ -32,5 +32,6 @@
     </div>
 </div>
 <div class="uie-panels__inner ui segment form">
-    {{ form(form, {'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition})}) }}
+    {% set locale = form.vars.attr['data-locale']|default(sylius.localeCode) %}
+    {{ form(form, {'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': uiElement.code, 'isEdition': isEdition, 'locale': locale})}) }}
 </div>
