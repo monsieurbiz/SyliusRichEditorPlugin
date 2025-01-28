@@ -20,6 +20,12 @@
         "phpunit/phpunit": "^10.5",
         "phpmd/phpmd": "^2.15"
     },
+    "suggest": {
+        "monsieurbiz/sylius-media-manager-plugin": "To use the media manager in the ui elements"
+    },
+    "conflict": {
+        "monsieurbiz/sylius-media-manager-plugin": "<1.2.2"
+    },
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
