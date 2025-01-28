@@ -151,14 +151,22 @@ class FormController extends AbstractController
 
     /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function submitAction(Request $request, FileUploaderInterface $fileUploader, string $code, bool $isEdition): Response
+    public function submitAction(Request $request, FileUploaderInterface $fileUploader, SwitchAdminLocaleInterface $switchAdminLocale, string $code, bool $isEdition): Response
     {
         // Find UI Element from type
         try {
             $uiElement = $this->uiElementRegistry->getUiElement($code);
         } catch (UiElementNotFoundException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
+        }
+
+        // if we have a locale value in the post data, we change the current
+        // admin locale to make the ui elements in the correct version.
+        if (($locale = $request->get('locale')) && \is_string($locale)) {
+            $switchAdminLocale->switchLocale($locale);
         }
 
         // Create and validate form
