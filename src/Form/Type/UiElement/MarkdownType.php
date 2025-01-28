@@ -35,7 +35,7 @@ class MarkdownType extends AbstractType
                 ],
             ])
             ->add('align', AlignmentType::class, [
-                'show_justify' => true,
+                'show_justify' => true
             ])
         ;
     }

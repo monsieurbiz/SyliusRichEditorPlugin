@@ -15,8 +15,9 @@
 {% else %}
     {% set videoSrc = element.video %}
 {% endif %}
+{% dump(element) %}
 <div style="text-align: {{align}};">
-    <video width="100%" poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" controls>
+    <video width="100%" {% if element.image is defined and element.image is not null %}poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}"{% endif %} controls>
         <source src="{{ videoSrc }}" type="video/{{ element.video|split('.')|last }}">
     </video>
 </div>

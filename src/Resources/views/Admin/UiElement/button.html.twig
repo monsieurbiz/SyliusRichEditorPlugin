@@ -12,5 +12,5 @@
 {% set level = element.level is defined and element.level is not empty ? element.level : 'primary' %}
 {% set linkIsBlank = element.link_type is defined and element.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
 <p style="text-align: {{align}};">
-    <a href="{{ element.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %} class="ui {{ level }} button massive">{{ element.label }}</a>
+    <a href="{{ element.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-{{ level }}">{{ element.label }}</a>
 </p>

@@ -48,7 +48,9 @@ class ImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.image',
                 'data_class' => null,
                 'required' => true,
-                'attr' => ['data-image' => 'true'], // To be able to manage display in form
+                'attr' => [
+                    'data-image' => 'true', // To be able to manage display in form
+                ],
             ])
             ->add('alt', FormTextType::class, [
                 'required' => false,

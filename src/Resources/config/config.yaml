@@ -1,6 +1,6 @@
 imports:
     - { resource: "services.yaml" }
-    - { resource: "sylius/ui.yaml" }
+    - { resource: "sylius/twig_hooks.yaml" }
     - { resource: "richeditor.yaml" }
     - { resource: 'images.yaml' }
 
@@ -28,6 +28,8 @@ twig:
                 theme: '%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME)%',
             }
         }
+    form_themes: ['@MonsieurBizSyliusRichEditorPlugin/Form/theme_test.html.twig']
+        
 
 liip_imagine:
     loaders:
@@ -36,3 +38,5 @@ liip_imagine:
                 allow_unresolvable_data_roots: true
                 data_root:
                     - "%sylius_core.public_dir%%env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR)%"
+
+
