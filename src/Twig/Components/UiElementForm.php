@@ -2,6 +2,7 @@
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig\Components;
 
+use App\Entity\Locale\Locale;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
@@ -27,12 +28,15 @@ class UiElementForm extends AbstractController
 
     public ?UiElement $uiElement = null;
 
+    public ?string $isEdition = null;
+
+    public ?string $locale = null;
+
     protected function instantiateForm(): FormInterface
     {
-        dump($this->initialFormData);
-        dump($this->uiElement);
-        dump($this->formType);
-
+        if ($this->isEdition === null) {
+            $this->isEdition = false;
+        }
         // we can extend AbstractController to get the normal shortcuts
         return $this->createForm($this->uiElement?->getFormClass() ?? $this->formType, $this->initialFormData, ['attr' => ['data-form-type' => $this->uiElement?->getFormClass()]]);
     }

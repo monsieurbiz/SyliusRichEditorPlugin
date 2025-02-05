@@ -9,6 +9,7 @@ use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 
 trait LiveCollectionRichEditorTrait
 {
+
     use ComponentWithFormTrait;
 
     private ?string $formType = null;
@@ -22,6 +23,8 @@ trait LiveCollectionRichEditorTrait
         string $form,
         #[LiveArg]
         ?string $type = null,
+        #[LiveArg]
+        ?string $code = null,
     ): void {
         $this->formType = $form;
         $propertyPath = $this->fieldNameToPropertyPath($name, $this->formName);
@@ -71,4 +74,6 @@ trait LiveCollectionRichEditorTrait
 
         return $propertyPath;
     }
+
+
 }
