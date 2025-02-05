@@ -87,7 +87,7 @@ class FormController extends AbstractController
             'form_html' => $this->renderView($uiElement->getAdminFormTemplate(), [
                 'form' => $form->createView(),
                 'uiElement' => $uiElement,
-                'locale' => $locale,
+                'locale' => $locale, // @TODO To confirm
                 'data' => $data,
                 'isEdition' => (int) $isEdition,
             ]),

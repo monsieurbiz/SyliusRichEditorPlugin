@@ -241,6 +241,8 @@ html.is-disabled body {
     }
 }
 
+// @TODO To confirm
+
 .ui.horizontal.divider::before {
     background-position: right 1em top 50%;
 }
@@ -257,6 +259,8 @@ html.is-disabled body {
     top: 50%;
     width: 50%;
 }
+
+// End to confirm
 
 @media (max-width: 700px) {
     .sm\:uie-flex-column {

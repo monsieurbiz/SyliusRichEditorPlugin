@@ -4,7 +4,7 @@ monsieurbiz_sylius_richeditor:
             tags: [ html ]
         monsieurbiz.youtube:
             tags: [ youtube ]
-#        Example without PHP Attributes or for PHP version < 8.1
+#        Example without PHP Attributes
 #        app.google_maps:
 #            title: 'app.ui_element.google_maps.title'
 #            description: 'app.ui_element.google_maps.description'

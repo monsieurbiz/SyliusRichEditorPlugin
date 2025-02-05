@@ -10,6 +10,10 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Cannot extends LiveCollectionType, because it is final.
+ * This class is the same as LiveCollectionType, but with form type as a parameter.
+ */
 class LiveCollectionRichEditorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,6 +39,7 @@ class LiveCollectionRichEditorType extends AbstractType
             $attr['data-action'] ??= 'live#action';
             $attr['data-live-action-param'] ??= 'addCollectionItem';
             $attr['data-live-name-param'] ??= $view->vars['full_name'];
+            // Add form type
             $attr['data-live-form-param'] ??= $options['form_type'];
             $view->vars['button_add']->vars['attr'] = $attr;
 
@@ -76,6 +81,7 @@ class LiveCollectionRichEditorType extends AbstractType
                 $attr['data-live-action-param'] ??= 'removeCollectionItem';
                 $attr['data-live-name-param'] ??= $view->vars['full_name'];
                 $attr['data-live-index-param'] ??= $k;
+                // Add form type
                 $attr['data-live-form-param'] ??= $options['form_type'];
                 $entryView->vars['button_delete']->vars['attr'] = $attr;
 
@@ -98,6 +104,7 @@ class LiveCollectionRichEditorType extends AbstractType
             'allow_add' => true,
             'allow_delete' => true,
             'by_reference' => false,
+            // Add form type
             'form_type' => null
         ]);
     }
