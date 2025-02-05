@@ -28,7 +28,7 @@ class UiElementForm extends AbstractController
 
     public bool $isEdition = false;
 
-    // public ?string $locale = null;
+    public ?string $locale = null;
 
     protected function instantiateForm(): FormInterface
     {

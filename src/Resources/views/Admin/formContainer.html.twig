@@ -1,7 +1,13 @@
 {% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
 
+{% set formAttributes = {'data-model': 'norender|*'} %}
+{% if uiElement is not null %}
+    {% set isEdition = this.isEdition ? 1 : 0 %}
+    {% set formAttributes = formAttributes|merge({'action': url('monsieurbiz_richeditor_admin_form_submit', {'code': this.formName, 'isEdition': isEdition, 'locale': this.locale})}) %}
+{% endif %}
+
 <div {{ attributes }}>
-    {{ form_start(form, {attr: {'data-model': 'norender|*'}} ) }}
+    {{ form_start(form, {attr: formAttributes} ) }}
 
     {{ form(form) }}
 
