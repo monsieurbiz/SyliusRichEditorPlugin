@@ -1,0 +1,9 @@
+{% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
+
+<div {{ attributes }}>
+    {{ form_start(form, {attr: {'data-model': 'norender|*'}} ) }}
+
+    {{ form(form) }}
+
+    {{ form_end(form) }}
+</div>

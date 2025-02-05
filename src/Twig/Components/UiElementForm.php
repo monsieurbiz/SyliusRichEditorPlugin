@@ -5,15 +5,13 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig\Components;
 use App\Entity\Locale\Locale;
 use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent(name: 'sylius_admin:uielement:form')]
-#[AutoconfigureTag(attributes:['name' => 'sylius.live_component.admin', 'key' => 'sylius_admin:uielement:form'])]
+#[AsLiveComponent(name: 'SyliusAdmin:MonsieurBizUiElement:Form', template: '@MonsieurBizSyliusRichEditorPlugin/Admin/formContainer.html.twig')]
 class UiElementForm extends AbstractController
 {
     use DefaultActionTrait;
@@ -24,20 +22,20 @@ class UiElementForm extends AbstractController
      * The initial data used to create the form.
      */
     #[LiveProp]
-    public ?array $initialFormData = null;
+    public array $data;
 
-    public ?UiElement $uiElement = null;
+    public UiElement $uiElement;
 
-    public ?string $isEdition = null;
+    public bool $isEdition = false;
 
-    public ?string $locale = null;
+    // public ?string $locale = null;
 
     protected function instantiateForm(): FormInterface
     {
-        if ($this->isEdition === null) {
-            $this->isEdition = false;
-        }
-        // we can extend AbstractController to get the normal shortcuts
-        return $this->createForm($this->uiElement?->getFormClass() ?? $this->formType, $this->initialFormData, ['attr' => ['data-form-type' => $this->uiElement?->getFormClass()]]);
+        return $this->createForm(
+            $this->uiElement->getFormClass(),
+            $this->data,
+            ['attr' => ['data-form-type' => $this->uiElement->getFormClass()]]
+        );
     }
 }
