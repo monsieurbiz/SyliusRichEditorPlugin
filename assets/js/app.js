@@ -465,6 +465,7 @@ global.MonsieurBizRichEditorManager = class {
                         this.form.manager.create(data.code, data.data, data.previewHtml, this.form.position);
                         this.form.manager.newPanel.close();
                         this.form.manager.selectionPanel.close();
+                        myForm.innerHTML = '';
                     }
                 }
                 if (this.status !== 200) {
@@ -479,6 +480,7 @@ global.MonsieurBizRichEditorManager = class {
         cancelButton.panel = this.newPanel;
         cancelButton.addEventListener('click', function (e) {
             e.currentTarget.panel.close();
+            formElement.innerHTML = '';
         });
         let saveButton = form.querySelector('.js-uie-save');
         saveButton.panel = this.newPanel;
@@ -533,6 +535,7 @@ global.MonsieurBizRichEditorManager = class {
                         this.form.uiElement.previewHtml = data.previewHtml;
                         this.form.manager.write();
                         this.form.manager.editPanel.close();
+                        myForm.innerHTML = '';
                     }
                 }
                 if (this.status !== 200) {
@@ -547,6 +550,7 @@ global.MonsieurBizRichEditorManager = class {
         cancelButton.panel = this.editPanel;
         cancelButton.addEventListener('click', function (e) {
             e.currentTarget.panel.close();
+            formElement.innerHTML = '';
         });
         let saveButton = form.querySelector('.js-uie-save');
         saveButton.panel = this.editPanel;
