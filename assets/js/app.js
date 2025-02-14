@@ -686,12 +686,26 @@ global.MonsieurBizRichEditorManager = class {
     pasteUiElementsFromClipboard() {
         const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementsClipboard');
         if (clipboard !== null) {
-            const pastedUiElement = JSON.parse(clipboard);
+            const pastedUiElements = JSON.parse(clipboard);
+            let allowed = true;
+            pastedUiElements.forEach((pastedUiElement) => {
+                let uiElementCode = pastedUiElement.code;
+                if (!this.elementIsAllowed(this.tags, this.config.uielements[uiElementCode].tags, this.tagsAreExclusive)) {
+                    allowed = false;
+                    return;
+                }
+            });
+
+            // Show alert message if at least one element is not allowed
+            if (!allowed) {
+                alert(this.config.unallowedUiElementMessage);
+                return;
+            }
 
             if (this.uiElements.length > 0) {
-                this.loadUiConfirmationModal(() => { this.initUiElements(pastedUiElement, () => { this.write(); }) })
+                this.loadUiConfirmationModal(() => { this.initUiElements(pastedUiElements, () => { this.write(); }) })
             } else {
-                this.initUiElements(pastedUiElement, () => { this.write(); });
+                this.initUiElements(pastedUiElements, () => { this.write(); });
             }
         }
     }
