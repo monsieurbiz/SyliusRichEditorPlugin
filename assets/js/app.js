@@ -424,17 +424,7 @@ global.MonsieurBizRichEditorManager = class {
             ) {
                 continue;
             }
-            let append = true;
-            if (this.tags.length > 0) {
-                append = !this.tagsAreExclusive;
-                for (let tagIndex in this.tags) { // We proceed tag by tag, excluding and including for every tag, so the order matters!
-                    let realTag = this.tags[tagIndex].replace(/^(-|\+)/, '');
-                    if (0 <= this.config.uielements[elementCode].tags.indexOf(realTag)) { // The element is tagged
-                        append = !this.tags[tagIndex].startsWith('-'); // Append only if the tag is not excluded
-                    }
-                }
-            }
-            if (append) {
+            if (this.elementIsAllowed(this.tags, this.config.uielements[elementCode].tags, this.tagsAreExclusive)) {
                 cardsContainer.append(this.getNewUiElementCard(this.config.uielements[elementCode], position));
             }
         }
@@ -696,12 +686,26 @@ global.MonsieurBizRichEditorManager = class {
     pasteUiElementsFromClipboard() {
         const clipboard = window.localStorage.getItem('monsieurBizRichEditorElementsClipboard');
         if (clipboard !== null) {
-            const pastedUiElement = JSON.parse(clipboard);
+            const pastedUiElements = JSON.parse(clipboard);
+            let allowed = true;
+            pastedUiElements.forEach((pastedUiElement) => {
+                let uiElementCode = pastedUiElement.code;
+                if (!this.elementIsAllowed(this.tags, this.config.uielements[uiElementCode].tags, this.tagsAreExclusive)) {
+                    allowed = false;
+                    return;
+                }
+            });
+
+            // Show alert message if at least one element is not allowed
+            if (!allowed) {
+                alert(this.config.unallowedUiElementMessage);
+                return;
+            }
 
             if (this.uiElements.length > 0) {
-                this.loadUiConfirmationModal(() => { this.initUiElements(pastedUiElement, () => { this.write(); }) })
+                this.loadUiConfirmationModal(() => { this.initUiElements(pastedUiElements, () => { this.write(); }) })
             } else {
-                this.initUiElements(pastedUiElement, () => { this.write(); });
+                this.initUiElements(pastedUiElements, () => { this.write(); });
             }
         }
     }
@@ -730,13 +734,7 @@ global.MonsieurBizRichEditorManager = class {
                     let uiElement = manager.config.findUiElementByCode(pastedUiElement.code);
                     if (null !== uiElement) {
                         if (manager.tags.length > 0) {
-                            let copy = false;
-                            for (let tagIndex in manager.tags) {
-                                if (0 <= manager.config.uielements[uiElement.code].tags.indexOf(manager.tags[tagIndex])) {
-                                    copy = true;
-                                }
-                            }
-                            if (copy) {
+                            if (manager.elementIsAllowed(manager.tags, manager.config.uielements[uiElement.code].tags, manager.tagsAreExclusive)) {
                                 manager.create(uiElement.code, pastedUiElement.data, elementHtml, futurePosition);
                             } else {
                                 alert(manager.config.unallowedUiElementMessage);
@@ -748,6 +746,21 @@ global.MonsieurBizRichEditorManager = class {
                 }
             });
         }
+    }
+
+    elementIsAllowed(managerTags, elementTags, tagsAreExclusive) {
+      let allowed = true;
+      if (managerTags.length > 0) {
+        allowed = !tagsAreExclusive;
+        for (let tagIndex in managerTags) { // We proceed tag by tag, excluding and including for every tag, so the order matters!
+          let realTag = managerTags[tagIndex].replace(/^(-|\+)/, '');
+          if (0 <= elementTags.indexOf(realTag)) { // The element is tagged
+            allowed = !managerTags[tagIndex].startsWith('-'); // Authorize only if the tag is not excluded
+          }
+        }
+      }
+
+      return allowed;
     }
 
     dispatchInitFormEvent(form, manager) {
