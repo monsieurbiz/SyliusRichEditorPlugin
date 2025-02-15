@@ -67,6 +67,8 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
+        controls: 'Show controls'
+        autoplay: 'Autoplay (without sound)'
     monsieurbiz.separator:
       title: 'Separator Element'
       short_description: 'A separator element'
@@ -79,6 +81,18 @@ monsieurbiz_richeditor_plugin:
            solid: 'Solid'
            dashed: 'Dashed'
            dotted: 'Dotted'
+        thickness:
+         label: 'Thickness'
+         choices:
+           fine: 'Fine'
+           medium: 'Medium'
+           thick: 'Thick'
+           very_thick: 'Very thick'
+    anchor:
+        title: Anchor
+        description: Add an anchor to be accessible by link with `#`
+        field:
+            name: Anchor's name (Without `#`)
     monsieurbiz.button:
       title: 'Button Element'
       short_description: 'A button with a text and a link.'

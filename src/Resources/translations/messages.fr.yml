@@ -67,6 +67,8 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Vidéo'
         image: 'Image de fond'
+        controls: 'Afficher les contrôles'
+        autoplay: 'Lancer automatiquement la vidéo (sans le son)'
     monsieurbiz.separator:
       title: 'Lame Séparateur'
       short_description: 'Une lame permettant de faire séparateur'
@@ -79,6 +81,18 @@ monsieurbiz_richeditor_plugin:
            solid: 'Solide'
            dashed: 'Pointillé'
            dotted: 'Pointé'
+        thickness:
+         label: 'Épaisseur'
+         choices:
+           fine: 'Fine'
+           medium: 'Moyenne'
+           thick: 'Épaisse'
+           very_thick: 'Très épaisse'
+    monsieurbiz.anchor:
+      title: Ancre
+      description: Ajoute une ancre accessible avec un lien `#`
+      field:
+        name: Nom de l'ancre (Sans le `#`)
     monsieurbiz.button:
       title: 'Lame Bouton'
       short_description: 'Un bouton avec un texte et un lien.'

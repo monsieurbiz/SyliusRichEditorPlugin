@@ -4,8 +4,19 @@
     element fields :
         hidden
         style
+        thickness
 #}
-<div class="ui {% if element is not empty and element.hidden is not empty %}hidden{% endif %} divider"></div>
-{% if element.style is defined and element is not empty %}
-    <div class="ui label">{{ ('monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.' ~ element.style)|trans }}</div>
-{% endif %}
+{% set elementStyle = element.style | default(constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::SOLID_STYLE')) %}
+{% set elementThickness = element.thickness | default(constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_FINE')) %}
+{% set borderStyleMap = {
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::SOLID_STYLE')): 'border-top-style: solid; border-bottom: none;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::DOTTED_STYLE')): 'border-top-style: dotted; border-bottom: none;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::DASHED_STYLE')): 'border-top-style: dashed; border-bottom: none;',
+} %}
+{% set borderThicknessMap = {
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_FINE')): 'border-top-width: 1px;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_MEDIUM')): 'border-top-width: 2px;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_THICK')): 'border-top-width: 4px;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_VERY_THICK')): 'border-top-width: 8px;',
+} %}
+<div class="ui {% if element.hidden is not empty %}hidden{% endif %} divider" style="{{ borderStyleMap[elementStyle] }} {{ borderThicknessMap[elementThickness] }}"></div>

@@ -19,6 +19,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -54,6 +55,15 @@ class VideoType extends AbstractType
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('align', AlignmentType::class)
+            ->add('controls', CheckboxType::class, [
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.controls',
+                'required' => false,
+                'data' => $options['data']['controls'] ?? true,
+            ])
+            ->add('autoplay', CheckboxType::class, [
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.autoplay',
+                'required' => false,
+            ])
         ;
     }
 

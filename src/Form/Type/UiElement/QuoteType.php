@@ -15,6 +15,7 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
+use MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,6 +39,7 @@ class QuoteType extends AbstractType
             ->add('content', WysiwygType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.field.content',
+                'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_MINIMAL,
                 'constraints' => [
                     new Assert\NotBlank([]),
                 ],
