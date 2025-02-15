@@ -131,6 +131,17 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/separator.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/separator.html.twig'
+        monsieurbiz.anchor:
+            alias: anchor
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.description'
+            icon: 'anchor'
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\AnchorType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/anchor.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/anchor.html.twig'
+            tags: [default, anchor]
         monsieurbiz.youtube:
             alias: youtube
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'

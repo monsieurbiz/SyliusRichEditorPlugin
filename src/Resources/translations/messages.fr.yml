@@ -88,6 +88,11 @@ monsieurbiz_richeditor_plugin:
            medium: 'Moyenne'
            thick: 'Épaisse'
            very_thick: 'Très épaisse'
+    monsieurbiz.anchor:
+      title: Ancre
+      description: Ajoute une ancre accessible avec un lien `#`
+      field:
+        name: Nom de l'ancre (Sans le `#`)
     monsieurbiz.button:
       title: 'Lame Bouton'
       short_description: 'Un bouton avec un texte et un lien.'

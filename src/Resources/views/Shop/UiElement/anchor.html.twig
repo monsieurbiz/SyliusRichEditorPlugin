@@ -1,0 +1,9 @@
+{#
+    UI Element template
+    type: anchor
+    element fields :
+        name
+#}
+{% if element.name is defined and element.name is not empty %}
+<div id="{{ element.name|escape('html_attr') }}" aria-hidden="true"></div>
+{% endif %}
