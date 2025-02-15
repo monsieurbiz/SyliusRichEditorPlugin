@@ -15,11 +15,11 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\WysiwygType;
+use MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as FormTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use MonsieurBiz\SyliusRichEditorPlugin\WysiwygEditor\EditorInterface;
 
 class QuoteType extends AbstractType
 {
