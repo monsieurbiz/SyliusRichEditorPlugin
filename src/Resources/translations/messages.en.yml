@@ -79,6 +79,13 @@ monsieurbiz_richeditor_plugin:
            solid: 'Solid'
            dashed: 'Dashed'
            dotted: 'Dotted'
+        thickness:
+         label: 'Thickness'
+         choices:
+           fine: 'Fine'
+           medium: 'Medium'
+           thick: 'Thick'
+           very_thick: 'Very thick'
     monsieurbiz.button:
       title: 'Button Element'
       short_description: 'A button with a text and a link.'
