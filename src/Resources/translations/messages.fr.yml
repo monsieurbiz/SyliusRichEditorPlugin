@@ -67,6 +67,8 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Vidéo'
         image: 'Image de fond'
+        controls: 'Afficher les contrôles'
+        autoplay: 'Lancer automatiquement la vidéo (sans le son)'
     monsieurbiz.separator:
       title: 'Lame Séparateur'
       short_description: 'Une lame permettant de faire séparateur'

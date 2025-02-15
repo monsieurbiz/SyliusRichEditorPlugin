@@ -23,6 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class VideoType extends AbstractType
 {
@@ -54,6 +55,15 @@ class VideoType extends AbstractType
                 'attr' => ['data-image' => 'true'],
             ])
             ->add('align', AlignmentType::class)
+            ->add('controls', CheckboxType::class, [
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.controls',
+                'required' => false,
+                'data' => $options['data']['controls'] ?? true,
+            ])
+            ->add('autoplay', CheckboxType::class, [
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.autoplay',
+                'required' => false,
+            ])
         ;
     }
 

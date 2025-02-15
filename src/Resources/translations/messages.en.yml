@@ -67,6 +67,8 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
+        controls: 'Show controls'
+        autoplay: 'Autoplay (without sound)'
     monsieurbiz.separator:
       title: 'Separator Element'
       short_description: 'A separator element'

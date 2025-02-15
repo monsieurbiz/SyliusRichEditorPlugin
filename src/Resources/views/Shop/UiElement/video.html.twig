@@ -5,6 +5,8 @@
         video
         image
         align
+        autoplay
+        controls
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
@@ -15,8 +17,23 @@
 {% else %}
     {% set videoSrc = element.video %}
 {% endif %}
+{% set image = element.image|default('') %}
+{% set controls = element.controls is defined ? element.controls : true %}
+{% set autoplay = element.autoplay is defined ? element.autoplay : false %}
 <div style="text-align: {{align}};">
-    <video width="100%" poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" controls>
+    <video
+        width="100%"
+        {% if image is not empty %}
+            poster="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}"
+        {% endif %}
+        {% if controls %}
+            controls
+        {% endif %}
+        {% if autoplay %}
+            autoplay
+            muted
+        {% endif %}
+    >
         <source src="{{ videoSrc }}" type="video/{{ element.video|split('.')|last }}">
     </video>
 </div>
