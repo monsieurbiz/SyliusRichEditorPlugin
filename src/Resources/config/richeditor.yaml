@@ -8,7 +8,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
             icon: html5
             wireframe: html
-            tags: [ default ]
+            tags: [ default, html ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType
             templates:
@@ -20,7 +20,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.description'
             icon: font
             wireframe: text-paragraph 
-            tags: [ default ]
+            tags: [ default, text ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
             templates:
@@ -32,7 +32,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
             icon: quote left
             wireframe: text-quote
-            tags: [ default ]
+            tags: [ default, quote ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
             templates:
@@ -44,7 +44,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
             icon: file image
             wireframe: image
-            tags: [ default ]
+            tags: [ default, image ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
             templates:
@@ -56,7 +56,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.description'
             icon: film
             wireframe: video-default
-            tags: [ default ]
+            tags: [ default, video ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType
             templates:
@@ -68,7 +68,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
             icon: hand pointer
             wireframe: button
-            tags: [ default ]
+            tags: [ default, button ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
             templates:
@@ -80,7 +80,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
             icon: heading
             wireframe: title
-            tags: [ default ]
+            tags: [ default, title ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
@@ -91,7 +91,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
             icon: heading
             wireframe: title-h1
-            tags: [ default ]
+            tags: [ default, title, title-h1 ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
@@ -102,7 +102,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
             icon: heading
             wireframe: title-h2
-            tags: [ default ]
+            tags: [ default, title, title-h2 ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
@@ -113,7 +113,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
             icon: heading
             wireframe: title-h3
-            tags: [ default ]
+            tags: [ default, title, title-h3 ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
@@ -125,7 +125,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.description'
             icon: minus
             wireframe: divider
-            tags: [ default ]
+            tags: [ default, separator ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\SeparatorType
             templates:
@@ -137,7 +137,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.description'
             icon: youtube
             wireframe: video-youtube
-            tags: [ default ]
+            tags: [ default, youtube ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\YoutubeType
             templates:
@@ -149,7 +149,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.description'
             icon: images
             wireframe: image-collection
-            tags: [ default ]
+            tags: [ default, image-collection ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageCollectionType
             templates:
@@ -161,7 +161,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.description'
             icon: columns
             wireframe: column
-            tags: [ default, layout ]
+            tags: [ default, layout, column ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ColumnType
             templates:
@@ -173,7 +173,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.description'
             icon: bars
             wireframe: row
-            tags: [ default, layout ]
+            tags: [ default, layout, row ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\RowType
             templates:
@@ -185,7 +185,7 @@ monsieurbiz_sylius_richeditor:
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.description'
             icon: file code
             wireframe: markdown
-            tags: [ default ]
+            tags: [ default, markdown ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\MarkdownType
             templates:
