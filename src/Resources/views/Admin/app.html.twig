@@ -116,12 +116,14 @@
 <div class="ui link card uie-card js-uie-new">
     <div class="content left aligned">
         <div class="header">
-            <i class="{{icon}} icon"></i>
-            {{title}}
-        </div>
-        <div class="description">
+            <div>
+                <i class="{{icon}} icon"></i>
+                {{title}}
+            </div>
             {{#description}}
-            {{description}}
+            <div class="mini ui basic icon button" data-tooltip="{{description}}" data-inverted="" data-position="bottom center">
+                <i class="question icon"></i>
+            </div>
             {{/description}}
         </div>
         {{#wireframe}}

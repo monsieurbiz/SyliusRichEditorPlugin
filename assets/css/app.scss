@@ -194,6 +194,17 @@ html.is-disabled body {
     padding-top: 1.5rem !important;
 }
 
+.uie-card .header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.uie-card .header .button {
+    align-self: flex-start;
+}
+
 .is-active .uie-heading {
     transform: rotate(90deg) translateY(-0.6rem) scale(0.7);
     transform-origin: left top 0;
