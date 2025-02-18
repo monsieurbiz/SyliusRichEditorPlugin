@@ -88,7 +88,7 @@ monsieurbiz_richeditor_plugin:
            medium: 'Medium'
            thick: 'Thick'
            very_thick: 'Very thick'
-    anchor:
+    monsieurbiz.anchor:
         title: Anchor
         description: Add an anchor to be accessible by link with `#`
         field:
