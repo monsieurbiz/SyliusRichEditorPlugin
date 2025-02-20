@@ -21,6 +21,7 @@
 {% set image = element.image|default('') %}
 {% set controls = element.controls is defined ? element.controls : true %}
 {% set autoplay = element.autoplay is defined ? element.autoplay : false %}
+{% set loop = element.loop is defined ? element.loop : false %}
 <div style="text-align: {{align}};">
     <video
         width="100%"
