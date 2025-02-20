@@ -1,51 +1,51 @@
 monsieurbiz_richeditor_plugin:
     ui_element:
         monsieurbiz.column:
-            title: 'Element układu kolumnowego'
+            title: 'Układu kolumnowego'
             description: 'Układ do wyświetlania elementów kolumna po kolumnie'
             field:
                 content: 'Treść'
         monsieurbiz.row:
-            title: 'Element układu wierszowego'
+            title: 'Układu wierszowego'
             description: 'Układ do wyświetlania elementów wiersz po wierszu'
             field:
                 content: 'Treść'
         monsieurbiz.html:
-            title: 'Element HTML'
+            title: 'HTML'
             description: 'Element z surowymi danymi'
             field:
                 content: 'Treść'
         monsieurbiz.text:
-            title: 'Element tekstowy'
+            title: 'Tekstowy'
             description: 'Element z treścią tekstową'
             field:
                 content: 'Treść'
         monsieurbiz.title:
-            title: 'Element tytułowy'
+            title: 'Tytułowy'
             short_description: 'Element tytułowy'
             description: 'Element zawierający pożądany tytuł'
             field:
                 content: 'Treść'
         monsieurbiz.h1:
-            title: 'Element <h1>'
+            title: '<h1> Tytułowy'
             short_description: 'Nagłówek poziomu 1'
             description: 'Element zawierający pożądany tytuł'
             field:
                 content: 'Treść'
         monsieurbiz.h2:
-            title: 'Element <h2>'
+            title: '<h2> Tytułowy'
             short_description: 'Nagłówek poziomu 2'
             description: 'Element zawierający pożądany tytuł'
             field:
                 content: 'Treść'
         monsieurbiz.h3:
-            title: 'Element <h3>'
+            title: '<h3> Tytułowy'
             short_description: 'Nagłówek poziomu 3'
             description: 'Element zawierający pożądany tytuł'
             field:
                 content: 'Treść'
         monsieurbiz.image:
-            title: 'Element obrazkowy'
+            title: 'Obrazkowy'
             short_description: 'Element z obrazem, alternatywnym tekstem i tytułem.'
             description: 'Element z obrazem, alternatywnym tekstem i tytułem. Można dodać link.'
             field:
@@ -55,20 +55,20 @@ monsieurbiz_richeditor_plugin:
                 title: 'Tytuł'
                 link: 'Link'
         monsieurbiz.quote:
-            title: 'Element cytatu'
+            title: 'Cytatu'
             description: 'Element z autorem i treścią'
             field:
                 author: 'Autor'
                 content: 'Treść'
         monsieurbiz.video:
-            title: 'Element wideo'
+            title: 'Wideo'
             short_description: 'Element z wideo i obrazem w tle'
             description: 'Element z plikiem wideo i plikiem obrazu w tle wyświetlanym przed odtworzeniem wideo'
             field:
                 video: 'Wideo'
                 image: 'Obraz w tle'
         monsieurbiz.separator:
-            title: 'Element separatora'
+            title: 'Separatora'
             short_description: 'Element separatora'
             description: 'Element separatora. Separator może być ukryty.'
             field:
@@ -80,14 +80,14 @@ monsieurbiz_richeditor_plugin:
                         dashed: 'Kreskowany'
                         dotted: 'Kropkowany'
         monsieurbiz.button:
-            title: 'Element przycisku'
+            title: 'Przycisku'
             short_description: 'Przycisk z tekstem i linkiem.'
             description: 'Przycisk z tekstem i linkiem.'
             field:
                 label: 'Etykieta'
                 link: 'Link'
         monsieurbiz.youtube:
-            title: 'Element YouTube'
+            title: 'YouTube'
             short_description: 'Element YouTube.'
             description: 'Element wyświetlający wideo z YouTube.'
             field:
@@ -95,13 +95,13 @@ monsieurbiz_richeditor_plugin:
                 width: 'Szerokość iframe'
                 height: 'Wysokość iframe'
         monsieurbiz.image_collection:
-            title: 'Element kolekcji obrazów'
+            title: 'Kolekcji obrazów'
             short_description: 'Element z wieloma obrazami.'
             description: 'Element z wieloma obrazami. Można dodać link do każdego obrazu.'
             field:
                 images: 'Lista obrazów'
         monsieurbiz.markdown:
-            title: 'Element Markdown'
+            title: 'Markdown'
             description: 'Element z treścią Markdown'
             field:
                 content: 'Treść'

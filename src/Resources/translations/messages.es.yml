@@ -1,51 +1,51 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
-      title: 'Elemento de diseño de columna'
+      title: 'Diseño de columna'
       description: 'Un diseño para mostrar elementos como una columna'
       field:
         content: 'Contenido'
     monsieurbiz.row:
-      title: 'Elemento de diseño de fila'
+      title: 'Diseño de fila'
       description: 'Un diseño para mostrar elementos como una fila'
       field:
         content: 'Contenido'
     monsieurbiz.html:
-      title: 'Elemento HTML'
+      title: 'HTML'
       description: 'Un elemento con datos en bruto'
       field:
         content: 'Contenido'
     monsieurbiz.text:
-      title: 'Elemento de texto'
+      title: 'Texto'
       description: 'Un elemento con contenido de texto'
       field:
         content: 'Contenido'
     monsieurbiz.title:
-      title: 'Elemento de título'
+      title: 'Título'
       short_description: 'Un elemento de título'
       description: 'Un elemento que contiene el título que deseas'
       field:
         content: 'Contenido'
     monsieurbiz.h1:
-      title: '<h1> Elemento de título'
+      title: '<h1> Título'
       short_description: 'Encabezado nivel 1'
       description: 'Un elemento que contiene el título que deseas'
       field:
         content: 'Contenido'
     monsieurbiz.h2:
-      title: '<h2> Elemento de título'
+      title: '<h2> Título'
       short_description: 'Encabezado nivel 2'
       description: 'Un elemento que contiene el título que deseas'
       field:
         content: 'Contenido'
     monsieurbiz.h3:
-      title: '<h3> Elemento de título'
+      title: '<h3> Título'
       short_description: 'Encabezado nivel 3'
       description: 'Un elemento que contiene el título que deseas'
       field:
         content: 'Contenido'
     monsieurbiz.image:
-      title: 'Elemento de imagen'
+      title: 'Imagen'
       short_description: 'Un elemento con una imagen, un texto alternativo y un título.'
       description: 'Un elemento con una imagen, un texto alternativo y un título. Se puede agregar un enlace a él.'
       field:
@@ -55,20 +55,20 @@ monsieurbiz_richeditor_plugin:
         title: 'Título'
         link: 'Enlace'
     monsieurbiz.quote:
-      title: 'Elemento de cita'
+      title: 'Cita'
       description: 'Un elemento con un autor y un contenido'
       field:
         author: 'Autor'
         content: 'Contenido'
     monsieurbiz.video:
-      title: 'Elemento de video'
+      title: 'Video'
       short_description: 'Elemento con un video y una imagen de video de fondo'
       description: 'Un elemento con un archivo de video y un archivo de imagen de fondo que se renderiza antes de reproducir el video'
       field:
         video: 'Video'
         image: 'Imagen de fondo'
     monsieurbiz.separator:
-      title: 'Elemento separador'
+      title: 'Separador'
       short_description: 'Un elemento separador'
       description: 'Un elemento separador. El separador puede ser uno oculto.'
       field:
@@ -80,14 +80,14 @@ monsieurbiz_richeditor_plugin:
            dashed: 'Punteado'
            dotted: 'Punteado'
     monsieurbiz.button:
-      title: 'Elemento de botón'
+      title: 'Botón'
       short_description: 'Un botón con un texto y un enlace.'
       description: 'Un botón con un texto y un enlace.'
       field:
         label: 'Etiqueta'
         link: 'Enlace'
     monsieurbiz.youtube:
-      title: 'Elemento de Youtube'
+      title: 'Youtube'
       short_description: 'Un elemento de Youtube.'
       description: 'Un elemento que muestra un video de Youtube.'
       field:
@@ -95,13 +95,13 @@ monsieurbiz_richeditor_plugin:
         width: 'Ancho del iframe'
         height: 'Altura del iframe'
     monsieurbiz.image_collection:
-      title: 'Elemento de colección de imágenes'
+      title: 'Colección de imágenes'
       short_description: 'Un elemento con varias imágenes.'
       description: 'Un elemento con varias imágenes. Se puede agregar un enlace a cada imagen.'
       field:
         images: 'Lista de imágenes'
     monsieurbiz.markdown:
-      title: 'Elemento de markdown'
+      title: 'Markdown'
       description: 'Un elemento con contenido en markdown'
       field:
         content: 'Contenido'

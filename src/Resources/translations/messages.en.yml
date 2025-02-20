@@ -1,51 +1,51 @@
 monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
-      title: 'Column Layout Element'
+      title: 'Column Layout'
       description: 'A layout to display elements column by column'
       field:
         content: 'Content'
     monsieurbiz.row:
-      title: 'Row Layout Element'
+      title: 'Row Layout'
       description: 'A layout to display elements row by row'
       field:
         content: 'Content'
     monsieurbiz.html:
-      title: 'HTML Element'
+      title: 'HTML'
       description: 'An element with raw data'
       field:
         content: 'Content'
     monsieurbiz.text:
-      title: 'Text Element'
+      title: 'Text'
       description: 'An element with a text content'
       field:
         content: 'Content'
     monsieurbiz.title:
-      title: 'Title Element'
+      title: 'Title'
       short_description: 'A title element'
       description: 'An element containing the title you want'
       field:
         content: 'Content'
     monsieurbiz.h1:
-      title: '<h1> Title Element'
+      title: '<h1> Title'
       short_description: 'Header level 1'
       description: 'An element containing the title you want'
       field:
         content: 'Content'
     monsieurbiz.h2:
-      title: '<h2> Title Element'
+      title: '<h2> Title'
       short_description: 'Header level 2'
       description: 'An element containing the title you want'
       field:
         content: 'Content'
     monsieurbiz.h3:
-      title: '<h3> Title Element'
+      title: '<h3> Title'
       short_description: 'Header level 3'
       description: 'An element containing the title you want'
       field:
         content: 'Content'
     monsieurbiz.image:
-      title: 'Image Element'
+      title: 'Image'
       short_description: 'An element with an image, an alternative text and a title..'
       description: 'An element with an image, an alternative text and a title. A link can be added on it.'
       field:
@@ -55,13 +55,13 @@ monsieurbiz_richeditor_plugin:
         title: 'Title'
         link: 'Link'
     monsieurbiz.quote:
-      title: 'Quote Element'
+      title: 'Quote'
       description: 'An element with an author and a content'
       field:
         author: 'Author'
         content: 'Content'
     monsieurbiz.video:
-      title: 'Video Element'
+      title: 'Video'
       short_description: 'Element with a video and a background video image'
       description: 'An element with a video file and a background image file rendering before you play the video'
       field:
@@ -70,8 +70,8 @@ monsieurbiz_richeditor_plugin:
         controls: 'Show controls'
         autoplay: 'Autoplay (without sound)'
     monsieurbiz.separator:
-      title: 'Separator Element'
-      short_description: 'A separator element'
+      title: 'Separator'
+      short_description: 'A separator'
       description: 'A separator element. The separator can be a hidden one.'
       field:
         hidden: 'Hidden separator'
@@ -94,14 +94,14 @@ monsieurbiz_richeditor_plugin:
         field:
             name: Anchor's name (Without `#`)
     monsieurbiz.button:
-      title: 'Button Element'
+      title: 'Button'
       short_description: 'A button with a text and a link.'
       description: 'A button with a text and a link.'
       field:
         label: 'Label'
         link: 'Link'
     monsieurbiz.youtube:
-      title: 'Youtube Element'
+      title: 'Youtube'
       short_description: 'A Youtube element.'
       description: 'An element which displays a Youtube video.'
       field:
@@ -109,13 +109,13 @@ monsieurbiz_richeditor_plugin:
         width: 'Iframe width'
         height: 'Iframe height'
     monsieurbiz.image_collection:
-      title: 'Image Collection Element'
+      title: 'Image Collection'
       short_description: 'An element with multiple images.'
       description: 'An element with multiple images. A link can be added on each image.'
       field:
         images: 'Images list'
     monsieurbiz.markdown:
-      title: 'Markdown Element'
+      title: 'Markdown'
       description: 'An element with markdown content'
       field:
         content: 'Content'
