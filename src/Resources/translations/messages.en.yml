@@ -69,6 +69,7 @@ monsieurbiz_richeditor_plugin:
         image: 'Background image'
         controls: 'Show controls'
         autoplay: 'Autoplay (without sound)'
+        loop: 'Loop'
     monsieurbiz.separator:
       title: 'Separator'
       short_description: 'A separator'

@@ -69,6 +69,7 @@ monsieurbiz_richeditor_plugin:
         image: 'Image de fond'
         controls: 'Afficher les contrôles'
         autoplay: 'Lancer automatiquement la vidéo (sans le son)'
+        loop: 'Jouer en boucle'
     monsieurbiz.separator:
       title: 'Séparateur'
       short_description: 'Une lame permettant de faire séparateur'

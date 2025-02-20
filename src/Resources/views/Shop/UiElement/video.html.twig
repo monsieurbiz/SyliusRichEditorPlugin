@@ -7,6 +7,7 @@
         align
         autoplay
         controls
+        loop
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
@@ -32,6 +33,9 @@
         {% if autoplay %}
             autoplay
             muted
+        {% endif %}
+        {% if loop %}
+            loop
         {% endif %}
     >
         <source src="{{ videoSrc }}" type="video/{{ element.video|split('.')|last }}">

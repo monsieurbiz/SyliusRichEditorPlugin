@@ -64,6 +64,10 @@ class VideoType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.autoplay',
                 'required' => false,
             ])
+            ->add('loop', CheckboxType::class, [
+                'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.loop',
+                'required' => false,
+            ])
         ;
     }
 

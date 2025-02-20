@@ -7,6 +7,7 @@
         align
         autoplay
         controls
+        loop
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if monsieurbiz_richeditor_file_extension_media_manager_exists() %}
@@ -20,6 +21,7 @@
 {% set image = element.image|default('') %}
 {% set controls = element.controls is defined ? element.controls : true %}
 {% set autoplay = element.autoplay is defined ? element.autoplay : false %}
+{% set loop = element.loop is defined ? element.loop : false %}
 <div style="text-align: {{align}};">
     <video
         width="100%"
@@ -32,6 +34,9 @@
         {% if autoplay %}
             autoplay
             muted
+        {% endif %}
+        {% if loop %}
+            loop
         {% endif %}
     >
         <source src="{{ videoSrc }}" type="video/{{ element.video|split('.')|last }}">
