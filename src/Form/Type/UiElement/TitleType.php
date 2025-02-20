@@ -14,6 +14,9 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement;
 
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LevelType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\TagType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\TextSizeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -33,8 +36,18 @@ class TitleType extends AbstractType
                     new Assert\NotBlank([]),
                 ],
             ])
+            ->add('text_size', TextSizeType::class, [
+                'required' => false,
+            ])
+            ->add('tag', TagType::class, [
+                'required' => false,
+            ])
             ->add('align', AlignmentType::class, [
                 'show_justify' => true,
+                'required' => false,
+            ])
+            ->add('level', LevelType::class, [
+                'required' => false,
             ])
         ;
     }

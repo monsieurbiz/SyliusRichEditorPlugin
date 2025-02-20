@@ -3,9 +3,34 @@
     type: title
     element fields :
         content
+        text_size
+        tag
+        level
         align
 #}
+
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
+{% set tag = element.tag is defined and element.tag is not empty ? element.tag : 'div' %}
+
+{% set textSize = element.text_size is defined and element.text_size is not empty ? element.text_size : '' %}
+{% set textSizeMap = {
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XS')): 'tiny',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_S')): 'small',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_M')): 'medium',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_L')): 'large',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XL')): 'huge',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XXL')): 'very huge',
+} %}
+{% set textSize = textSizeMap[textSize]|default(textSizeMap[constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XL')]) %}
+
+{% set titleColor = element.level is defined and element.level is not empty ? element.level : '' %}
+{% set titleColorMap = {
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LevelType::PRIMARY_LEVEL')): '#000000',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LevelType::SECONDARY_LEVEL')): '#666666',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LevelType::TERTIARY_LEVEL')): '#999999',
+} %}
+{% set titleColor = titleColorMap[titleColor]|default('') %}
+
 {% if element is not empty %}
-    <div class="ui huge header" style="text-align: {{align}};">{{ element.content }}</div>
+    <{{tag}} class="ui {{ textSize }} header" style="text-align: {{align}};{% if titleColor %}color: {{titleColor}};{% endif %}">{{ element.content }}</{{tag}}>
 {% endif %}
