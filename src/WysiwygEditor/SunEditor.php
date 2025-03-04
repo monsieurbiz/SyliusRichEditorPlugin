@@ -25,7 +25,7 @@ final class SunEditor implements EditorInterface
     public function getMinimalButtons(): array
     {
         return [
-            ['bold', 'italic', 'underline', 'list', 'formatBlock', 'link', 'horizontalRule'],
+            ['bold', 'italic', 'underline', 'list', 'fontSize', 'formatBlock', 'link', 'horizontalRule'],
             ['fullScreen', 'showBlocks', 'codeView'],
         ];
     }
@@ -37,7 +37,7 @@ final class SunEditor implements EditorInterface
             ['bold', 'underline', 'italic', 'strike'],
             ['fontColor', 'hiliteColor'],
             ['removeFormat'],
-            ['align', 'horizontalRule', 'list'],
+            ['align', 'horizontalRule', 'list', 'fontSize'],
             ['outdent', 'indent'],
             ['table', 'link'],
             ['fullScreen', 'showBlocks', 'codeView'],
