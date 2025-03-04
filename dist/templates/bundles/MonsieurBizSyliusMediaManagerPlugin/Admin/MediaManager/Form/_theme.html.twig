@@ -8,7 +8,7 @@
                     <img src="{{ form.vars.value ? monsieurbiz_richeditor_get_media_without_upload_dir(form.vars.value)|imagine_filter('monsieurbiz_sylius_media_manager_uploaded_image', {"relative_resize": {"widen": filterWidth }}) : '' }}" alt="" style="max-width: 300px;max-height: 300px;" />
                 </p>
             </div>
-            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}');">
+            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}', '{{ mimeTypes|escape('js') }}');">
                 {{ 'monsieurbiz_sylius_media_manager.ui.choose_image' | trans }}
             </button>
             <button type="button" class="monsieurbiz-sylius-file-manager__button-remove ui red button" onclick="monsieurbizSyliusMediaManagerRemoveFile('{{ form.vars.full_name | escape('js') }}', '{{ 'monsieurbiz_sylius_media_manager.ui.remove_confirmation' | trans | escape('js')}}');" {%- if form.vars.value is empty -%} style="display: none;"{%- endif -%}>
@@ -36,12 +36,12 @@
             <div class="monsieurbiz-sylius-file-manager__current" {%- if form.vars.value is empty -%}style="display: none;"{%- endif -%}>
                 <p>
                     <small>{{ 'monsieurbiz_sylius_media_manager.ui.current_video' | trans }}</small><br />
-                     <video width="320" height="240" controls>
+                    <video width="320" height="240" controls>
                         <source src="{{ form.vars.value ? videoSrc : '' }}">
                     </video>
                 </p>
             </div>
-            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}');">
+            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}', '{{ mimeTypes|escape('js') }}');">
                 {{ 'monsieurbiz_sylius_media_manager.ui.choose_video' | trans }}
             </button>
             <button type="button" class="monsieurbiz-sylius-file-manager__button-remove ui red button" onclick="monsieurbizSyliusMediaManagerRemoveFile('{{ form.vars.full_name | escape('js') }}', '{{ 'monsieurbiz_sylius_media_manager.ui.remove_confirmation' | trans | escape('js')}}');" {%- if form.vars.value is empty -%} style="display: none;"{%- endif -%}>
@@ -63,7 +63,7 @@
                     </a>
                 </p>
             </div>
-            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}');">
+            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}', '{{ mimeTypes|escape('js') }}');">
                 {{ 'monsieurbiz_sylius_media_manager.ui.choose_file' | trans }}
             </button>
             <button type="button" class="monsieurbiz-sylius-file-manager__button-remove ui red button" onclick="monsieurbizSyliusMediaManagerRemoveFile('{{ form.vars.full_name | escape('js') }}', '{{ 'monsieurbiz_sylius_media_manager.ui.remove_confirmation' | trans | escape('js')}}');" {%- if form.vars.value is empty -%} style="display: none;"{%- endif -%}>
@@ -83,7 +83,7 @@
                     <img src="{{ form.vars.value ? monsieurbiz_richeditor_get_media_without_upload_dir(form.vars.value)|imagine_filter('monsieurbiz_sylius_media_manager_uploaded_image', {"relative_resize": {"widen": filterWidth }}) : '' }}" alt="" style="max-width: 40px;max-height: 40px;" />
                 </p>
             </div>
-            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}');">
+            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}', '{{ mimeTypes|escape('js') }}');">
                 {{ 'monsieurbiz_sylius_media_manager.ui.choose_image' | trans }}
             </button>
             <button type="button" class="monsieurbiz-sylius-file-manager__button-remove ui red button" onclick="monsieurbizSyliusMediaManagerRemoveFile('{{ form.vars.full_name | escape('js') }}', '{{ 'monsieurbiz_sylius_media_manager.ui.remove_confirmation' | trans | escape('js')}}');" {%- if form.vars.value is empty -%} style="display: none;"{%- endif -%}>
@@ -105,7 +105,7 @@
                     </audio>
                 </p>
             </div>
-            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}');">
+            <button type="button" class="ui button" onclick="monsieurbizSyliusMediaManagerChooseFile('{{ form.vars.full_name | escape('js') }}', '{{ form.vars.value | escape('js') }}', '{{ folder | escape('js') }}', '{{ mimeTypes|escape('js') }}');">
                 {{ 'monsieurbiz_sylius_media_manager.ui.choose_file' | trans }}
             </button>
             <button type="button" class="monsieurbiz-sylius-file-manager__button-remove ui red button" onclick="monsieurbizSyliusMediaManagerRemoveFile('{{ form.vars.full_name | escape('js') }}', '{{ 'monsieurbiz_sylius_media_manager.ui.remove_confirmation' | trans | escape('js')}}');" {%- if form.vars.value is empty -%} style="display: none;"{%- endif -%}>
