@@ -37,6 +37,10 @@ export default {
         height,
         buttonList,
         lang: lang[locale],
+        linkRelDefault: {
+          check_new_window: 'noreferrer noopener',
+        },
+        linkNoPrefix: true,
         ...customConfig
       };
       const editor = editorModel.create(component, config);
