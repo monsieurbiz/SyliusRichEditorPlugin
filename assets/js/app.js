@@ -121,8 +121,8 @@ global.MonsieurBizRichEditorUiElement = class {
         this.manager.editUiElement(this);
     }
 
-    copy(callback) {
-        this.manager.saveUiElementToClipboard(this, callback);
+    copy() {
+        this.manager.saveUiElementToClipboard(this);
     }
 
     up() {
@@ -250,7 +250,7 @@ global.MonsieurBizRichEditorManager = class {
         const trashAllButton = this.container.querySelector('.js-uie-tools-trash-all');
 
         copyAllButton && copyAllButton.addEventListener('click', e => {
-            this.saveUiElementsToClipboard(e.currentTarget);
+            this.saveUiElementsToClipboard();
         });
 
         pasteAllButton && pasteAllButton.addEventListener('click', e => {
@@ -259,6 +259,40 @@ global.MonsieurBizRichEditorManager = class {
 
         trashAllButton && trashAllButton.addEventListener('click', e => {
             this.resetUiElements();
+        });
+    }
+
+    initTooltips() {
+        // Retrieve all elements with data-tooltip
+        this.container.querySelectorAll("[data-tooltip]").forEach(el => {
+            // Set `title` which will be used by Bootstrap for display
+            el.setAttribute("title", el.getAttribute("data-tooltip"));
+        });
+
+        // Setup the tooltips
+        var tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-tooltip]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            // Init the tooltip
+            const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+
+            // Manage behaviour on click
+            tooltipTriggerEl.addEventListener('click', function () {
+                // An alternate text is displayed before hide (like `Copied!` when you copy an element)
+                if (tooltipTriggerEl.dataset.alternateText) {
+                    const originalText = tooltipTriggerEl.dataset.tooltip;
+                    tooltip.setContent({ '.tooltip-inner': tooltipTriggerEl.dataset.alternateText });
+                    window.setTimeout(function () {
+                        tooltipTriggerEl.title = originalText;
+                        tooltip.setContent({ '.tooltip-inner': originalText });
+                        tooltip.hide();
+                    }, 1000);
+
+                    return;
+                }
+
+                // If no alternate text, hide the tooltip to avoid to have it kept displayed
+                tooltip.hide();
+            });
         });
     }
 
@@ -374,14 +408,7 @@ global.MonsieurBizRichEditorManager = class {
             this.closest('.js-uie-element').element.edit();
         });
         uiElement.querySelector('.js-uie-copy').addEventListener('click', function (e) {
-            this.closest('.js-uie-element').element.copy(function () {
-                const button = e.currentTarget;
-                const originalText = button.dataset.tooltip;
-                button.dataset.tooltip = button.dataset.alternateText;
-                window.setTimeout(function () {
-                    button.dataset.tooltip = originalText;
-                }, 1000);
-            });
+            this.closest('.js-uie-element').element.copy();
         });
         return uiElement;
     }
@@ -563,6 +590,7 @@ global.MonsieurBizRichEditorManager = class {
     write() {
         this.input.value = (this.uiElements.length > 0) ? JSON.stringify(this.uiElements) : '';
         this.drawUiElements();
+        this.initTooltips();
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:write-complete', {
             'detail': {'editorManager': this}
         }));
@@ -671,16 +699,9 @@ global.MonsieurBizRichEditorManager = class {
         modal.show();
     }
 
-    saveUiElementsToClipboard(button) {
+    saveUiElementsToClipboard() {
         window.localStorage.setItem('monsieurBizRichEditorElementsClipboard', JSON.stringify(this.uiElements));
-
-        const originalText = button.dataset.tooltip;
-        button.dataset.tooltip = button.dataset.alternateText;
-        window.setTimeout(function () {
-            button.dataset.tooltip = originalText;
-        }, 1000);
-
-      document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielements:copied', {}));
+        document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielements:copied', {}));
     }
 
     pasteUiElementsFromClipboard() {
@@ -710,9 +731,8 @@ global.MonsieurBizRichEditorManager = class {
         }
     }
 
-    saveUiElementToClipboard(uiElement, callback) {
+    saveUiElementToClipboard(uiElement,) {
         window.localStorage.setItem('monsieurBizRichEditorElementClipboard', JSON.stringify(uiElement));
-        callback();
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:uielement:copied', {}));
     }
 
