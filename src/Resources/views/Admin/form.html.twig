@@ -34,6 +34,8 @@
     </div>
     <div class="uie-panels__inner ui segment form">
         {% set locale = form.vars.attr['data-locale']|default(sylius.localeCode) %}
-        <twig:SyliusAdmin:MonsieurBizUiElement:Form :data="data" :uiElement="uiElement" :isEdition="isEdition" :locale="locale" />
+        {% set uiElementCode = uiElement.code %}
+        {% set uiElementFormClass = uiElement.formClass %}
+        <twig:SyliusAdmin:MonsieurBizUiElement:Form :data="data" :uiElementCode="uiElementCode" :uiElementFormClass="uiElementFormClass" :isEdition="isEdition" :locale="locale" />
     </div>
 </div>
