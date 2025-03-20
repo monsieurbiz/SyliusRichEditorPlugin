@@ -352,10 +352,9 @@ global.MonsieurBizRichEditorManager = class {
         let uiElement = elementWrapper.firstElementChild;
         uiElement.element = element;
         uiElement.position = position;
+        uiElement.manager = this;
         uiElement.querySelector('.js-uie-delete').addEventListener('click', function () {
-            if (confirm(this.closest('.js-uie-element').element.config.deletionConfirmation)) {
-                this.closest('.js-uie-element').element.delete();
-            }
+            uiElement.manager.loadUiConfirmationModal(() => { this.closest('.js-uie-element').element.delete() })
         });
         if (position === 0) {
             uiElement.querySelector('.js-uie-up').remove();
@@ -659,8 +658,8 @@ global.MonsieurBizRichEditorManager = class {
     }
 
     loadUiConfirmationModal(callback) {
-        const modal = document.querySelector('#monsieurbiz-rich-editor-confirmation-modal');
-        const confirmButton = modal.querySelector('#monsieurbiz-rich-editor-confirmation-button');
+        const modalElement = document.querySelector('#monsieurbiz-rich-editor-confirmation-modal');
+        const confirmButton = modalElement.querySelector('#monsieurbiz-rich-editor-confirmation-button');
 
         const clonedConfirmButtom = confirmButton.cloneNode(true);
         confirmButton.parentNode.replaceChild(clonedConfirmButtom, confirmButton);
@@ -668,7 +667,8 @@ global.MonsieurBizRichEditorManager = class {
             callback();
         })
 
-        $(modal).modal('show');
+        let modal = new bootstrap.Modal(modalElement);
+        modal.show();
     }
 
     saveUiElementsToClipboard(button) {
