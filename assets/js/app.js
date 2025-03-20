@@ -262,15 +262,15 @@ global.MonsieurBizRichEditorManager = class {
         });
     }
 
-    initTooltips() {
+    initTooltips(source) {
         // Retrieve all elements with data-tooltip
-        this.container.querySelectorAll("[data-tooltip]").forEach(el => {
+        source.querySelectorAll("[data-tooltip]").forEach(el => {
             // Set `title` which will be used by Bootstrap for display
             el.setAttribute("title", el.getAttribute("data-tooltip"));
         });
 
         // Setup the tooltips
-        var tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-tooltip]'));
+        var tooltipTriggerList = [].slice.call(source.querySelectorAll('[data-tooltip]'));
         tooltipTriggerList.map(function (tooltipTriggerEl) {
             // Init the tooltip
             const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
@@ -455,6 +455,7 @@ global.MonsieurBizRichEditorManager = class {
             }
         }
         this.newPanel.close();
+        this.initTooltips(cardsContainer);
         this.selectionPanel.open();
     }
 
@@ -590,7 +591,7 @@ global.MonsieurBizRichEditorManager = class {
     write() {
         this.input.value = (this.uiElements.length > 0) ? JSON.stringify(this.uiElements) : '';
         this.drawUiElements();
-        this.initTooltips();
+        this.initTooltips(this.container);
         document.dispatchEvent(new CustomEvent('mbiz:rich-editor:write-complete', {
             'detail': {'editorManager': this}
         }));

@@ -131,12 +131,18 @@
     <div class="ui link card uie-card js-uie-new p-3 h-100">
         <div class="content left aligned d-flex flex-column h-100">
             <div class="header h3 mb-1">
-                <i class="{{icon}} icon"></i>
-                {{title}}
-            </div>
-            <div class="description">
+                <div>
+                    <i class="{{icon}} icon"></i>
+                    {{title}}
+                </div>
                 {{#description}}
-                {{description}}
+                    <div
+                        class="d-inline-flex align-items-center justify-content-center border p-1 rounded-2"
+                        data-tooltip="{{description}}">
+                    {% endverbatim %}
+                        {{ ux_icon('tabler:question-mark') }}
+                    {% verbatim %}
+                    </div>
                 {{/description}}
             </div>
             {{#wireframe}}
