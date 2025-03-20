@@ -2,6 +2,9 @@ app:
     ui_element:
         google_maps:
             title: 'Google Maps'
-            short_description: 'Include a Google Maps'
             description: 'An element with a Google Maps link'
             link: 'Link'
+        text_collection:
+            title: '[Debug] Text collection'
+            description: 'Collection of text types'
+            content: 'Content'

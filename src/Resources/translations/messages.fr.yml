@@ -143,6 +143,8 @@ monsieurbiz_richeditor_plugin:
     save: 'Sauvegarder'
     add_image: 'Ajouter une image'
     select_ui_element: 'Choisissez un élément'
+    add_item: 'Ajouter un élément'
+    delete_item: 'Supprimer cet élément'
     align:
       label: 'Alignement'
       default: 'Par défaut'
