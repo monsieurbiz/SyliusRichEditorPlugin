@@ -5,12 +5,10 @@
         content
 #}
 {% if element.content|default('') is not empty %}
-    <div class="ui grid equal width">
     {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
     {% for column in content %}
-        <div class="row" style="border: 2px dashed rgba(34, 36, 38, 0.1); padding: 10px; margin: 10px;">
+        <div class="row" style="border: 2px dashed rgba(34, 36, 38, 0.1); padding: 5px; margin: 5px;">
            {{ column | monsieurbiz_richeditor_render_element }}
         </div>
     {% endfor %}
-</div>
 {% endif %}
