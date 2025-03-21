@@ -8,3 +8,9 @@ app:
             title: 'Text collection'
             description: 'Collection of text types'
             content: 'Content'
+        product:
+            title: 'Product'
+            description: 'A product'
+            field:
+                title: 'Title'
+                product: 'Product'
