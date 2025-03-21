@@ -36,7 +36,7 @@ class TextCollectionType extends AbstractType
             'button_delete_options' => [
                 'label' => 'monsieurbiz_richeditor_plugin.form.delete_item', // To test the custom translation
             ],
-            'label' => 'app.ui_element.text_collection.content',
+            'label' => 'app.ui_element.text_collection.field.items',
             'allow_add' => true,
             'allow_delete' => true,
             'delete_empty' => true,
