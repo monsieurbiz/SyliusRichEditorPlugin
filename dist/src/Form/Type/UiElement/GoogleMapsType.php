@@ -24,7 +24,8 @@ use Symfony\Component\Validator\Constraints as Assert;
     code: 'app.google_maps',
     icon: 'map pin',
     uiElement: GoogleMapsUiElement::class,
-    tags: ['map'],
+    wireframe: 'google-maps',
+    tags: ['debug', 'map'],
 )]
 class GoogleMapsType extends AbstractType
 {

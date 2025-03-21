@@ -3,7 +3,7 @@ app:
         google_maps:
             title: 'Google Maps'
             description: 'An element with a Google Maps link'
-            link: 'Link'
+            link: 'Embed Link (The `src` of the iframe)'
         text_collection:
             title: '[Debug] Text collection'
             description: 'Collection of text types'
