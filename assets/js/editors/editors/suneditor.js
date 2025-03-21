@@ -7,8 +7,6 @@ import CodeMirror from 'codemirror'
 import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/lib/codemirror.css'
 
-const currentEditors = [];
-
 const initEditor = () => {
   return suneditor.init({
     codeMirror: CodeMirror,
@@ -23,12 +21,6 @@ export default {
   init(target) {
     const editorModel = initEditor();
     target.querySelectorAll('[data-component="wysiwyg-editor"][data-editor-type="suneditor"]').forEach((component) => {
-
-      // SunEditor is ID based, so we need to make sure that the ID is unique
-      if (currentEditors.includes(component.id)) {
-        component.id = `${component.id}-${Math.random().toString(36).substring(7)}`;
-      }
-
       const buttonList = JSON.parse(component.dataset.editorButtons);
       const height = component.dataset.editorHeight;
       const locale = component.dataset.editorLocale;
@@ -43,12 +35,14 @@ export default {
         linkNoPrefix: true,
         ...customConfig
       };
-      const editor = editorModel.create(component, config);
-      editor.onChange = () => {
-        editor.save();
-      };
-
-      currentEditors.push(component.id);
+      try {
+        const editor = editorModel.create(component, config);
+        editor.onChange = () => {
+          editor.save();
+        };
+      } catch (error) {
+        console.warn(error.message.replace('Error :', ''));
+      }
     })
   }
 }

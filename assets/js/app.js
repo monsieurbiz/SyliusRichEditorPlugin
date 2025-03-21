@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('rich-editor:reload', function (event) {
-    const target = event.detail.target;
+    const target = event.target;
     if (target === undefined) {
         return;
     }
     initEditors(target);
-})
+});
 
 global.MonsieurBizRichEditorConfig = class {
     constructor(
