@@ -7,9 +7,9 @@
     "require": {
         "php": "^8.2",
         "sylius/sylius": "~2.0.0",
-        "twig/markdown-extra": "^2.16|^3.12",
-        "twig/extra-bundle": "^2.16|^3.12",
-        "league/commonmark": "^2.5"
+        "twig/markdown-extra": "^3.13",
+        "twig/extra-bundle": "^3.13",
+        "league/commonmark": "^2.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.16",

@@ -45,6 +45,7 @@ Change your `config/bundles.php` file to add the line for the plugin :
 
 return [
     //..
+    Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true],
 ];
 ```
@@ -66,12 +67,13 @@ monsieurbiz_richeditor_admin:
 </p>
 </details>
 
-### Correct `Twig\Extra\Intl\IntlExtension` conflict
+### Correct `Twig\Extra\Intl\IntlExtension` and `Twig\Extra\String\StringExtension` conflict
 
-If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` declaration :
+If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` and `StringExtension` declarations :
 
 ```yaml
 # Twig\Extra\Intl\IntlExtension: ~
+#Twig\Extra\String\StringExtension: ~
 ```
 
 ### Install the assets
