@@ -19,7 +19,6 @@ function replaceTwigExtraExtensionsInTwigConfig($filePath): void
         return;
     }
 
-
     $extensionsToReplace = ['Twig\\Extra\\Intl\\IntlExtension', 'Twig\\Extra\\String\\StringExtension'];
     $content = file_get_contents($realPath);
 

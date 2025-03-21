@@ -16,28 +16,24 @@ namespace MonsieurBiz\SyliusRichEditorPlugin\Twig\Components;
 use RuntimeException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
+use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
-use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
-use Symfony\UX\LiveComponent\Attribute\LiveArg;
-use Symfony\UX\LiveComponent\Attribute\LiveAction;
-use Symfony\UX\LiveComponent\ComponentToolsTrait;
-use Symfony\UX\LiveComponent\Attribute\LiveListener;
 
 #[AsLiveComponent(name: 'SyliusAdmin:MonsieurBizUiElement:Form', template: '@MonsieurBizSyliusRichEditorPlugin/Admin/formContainer.html.twig')]
 class UiElementForm extends AbstractController
 {
-    use DefaultActionTrait;
     use ComponentToolsTrait;
-
+    use DefaultActionTrait;
     use LiveCollectionTrait {
         addCollectionItem as private addLiveCollectionItem;
         removeCollectionItem as private removeLiveCollectionItem;
     }
-
-    private ?string $formType = null;
 
     #[LiveProp]
     public array $data;

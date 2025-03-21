@@ -245,17 +245,6 @@
             setupRichEditor(editor, tags, locale);
         });
 
-        // @TODO - Check to manage this functional with new system
-        //
-        // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
-        // $(document).on('collection-form-add', (event, addedElement) => {
-        //     document.dispatchEvent(new CustomEvent('rich-editor:reload', {
-        //         detail: {
-        //             target: addedElement[0],
-        //         }
-        //     }));
-        // });
-
         document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
             // Init dynamic editors
             let editors = document.querySelectorAll('[data-component="rich-editor"]:not([data-rich-editor-uid])');
