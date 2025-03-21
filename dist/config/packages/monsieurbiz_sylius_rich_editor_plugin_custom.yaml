@@ -19,7 +19,7 @@ monsieurbiz_sylius_richeditor:
         app.noseeme:
             title: 'You should not see me'
             description: 'The invisible Ui Element'
-            icon: eye slash
+            icon: tabler:eye-closed
             tags: [ noseeme ]
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType

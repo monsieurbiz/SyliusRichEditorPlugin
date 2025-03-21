@@ -23,9 +23,6 @@ final class GoogleMapsUiElement implements UiElementInterface
 
     private LocaleContextInterface $localeContext;
 
-    /**
-     * GoogleMapsUiElement constructor.
-     */
     public function __construct(LocaleContextInterface $localeContext)
     {
         $this->localeContext = $localeContext;
