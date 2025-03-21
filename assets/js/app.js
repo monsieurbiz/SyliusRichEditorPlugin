@@ -113,6 +113,10 @@ global.MonsieurBizRichEditorUiElement = class {
         return this.uielement.icon;
     }
 
+  get iconHtml() {
+        return this.uielement.iconHtml;
+    }
+
     get manager() {
         return this.config.input.manager;
     }
@@ -380,6 +384,7 @@ global.MonsieurBizRichEditorManager = class {
         elementWrapper.innerHTML = Mustache.render(this.config.elementHtml, {
             'title': element.title,
             'icon': element.icon,
+            'iconHtml': element.iconHtml,
             'preview': element.previewHtml,
             'disabled': !element.enabled
         });
