@@ -8,17 +8,6 @@ const initEditors = (target) => {
     suneditor.init(target);
 }
 
-// For retro-compatibility we keep the MonsieurBizRichEditorWysiwyg class
-global.MonsieurBizRichEditorWysiwyg = class {
-    constructor(config) {}
-    load(container) {
-        console.log('Deprecated method MonsieurBizRichEditorWysiwyg.load(), use initEditors(target) instead.');
-    }
-    setupEditor(target) {
-        console.log('Deprecated method MonsieurBizRichEditorWysiwyg.setupEditor(), use initEditors(target) instead.');
-    }
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     const target = document.querySelector('body');
     initEditors(target);
