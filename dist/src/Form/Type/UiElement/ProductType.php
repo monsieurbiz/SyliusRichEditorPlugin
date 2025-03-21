@@ -19,7 +19,6 @@ use Sylius\Bundle\AdminBundle\Form\Type\ProductAutocompleteType;
 use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ResourceToIdentifierTransformer;
 use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\ReversedTransformer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -40,10 +39,6 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, [
-                'label' => 'app.ui_element.product.field.title',
-                'required' => false,
-            ])
             ->add('product_code', ProductAutocompleteType::class, [
                 'label' => 'app.ui_element.product.field.product',
                 'required' => true,

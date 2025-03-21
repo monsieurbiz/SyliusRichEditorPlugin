@@ -14,5 +14,9 @@ app:
             title: 'Product'
             description: 'A product'
             field:
-                title: 'Title'
                 product: 'Product'
+        product_collection:
+            title: 'Product collection'
+            description: 'A list products'
+            field:
+                products: 'Products'

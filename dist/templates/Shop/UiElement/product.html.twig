@@ -2,15 +2,10 @@
 UI Element template
 type: text_collection
 element fields:
-    title: string
     product_code: string
 element methods:
     getProduct(string $code): ?ProductInterface
 #}
-
-{% if element.title|default(null) %}
-    <div class="h1">{{ element.title }}</div>
-{% endif %}
 
 {% if element.product_code|default(null) %}
     {% set product = ui_element.getProduct(element.product_code) %}
