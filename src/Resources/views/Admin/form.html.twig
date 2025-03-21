@@ -36,6 +36,7 @@
         {% set locale = form.vars.attr['data-locale']|default(sylius.localeCode) %}
         {% set uiElementCode = uiElement.code %}
         {% set uiElementFormClass = uiElement.formClass %}
-        <twig:SyliusAdmin:MonsieurBizUiElement:Form :data="data" :uiElementCode="uiElementCode" :uiElementFormClass="uiElementFormClass" :isEdition="isEdition" :locale="locale" />
+
+        <twig:SyliusAdmin:MonsieurBizUiElement:Form :form="form" :data="data" :uiElementCode="uiElementCode" :uiElementFormClass="uiElementFormClass" :isEdition="isEdition" :locale="locale" />
     </div>
 </div>

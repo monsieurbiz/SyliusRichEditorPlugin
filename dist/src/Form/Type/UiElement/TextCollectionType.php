@@ -17,6 +17,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 #[AsUiElement(
@@ -42,6 +43,11 @@ class TextCollectionType extends AbstractType
             'delete_empty' => true,
             'attr' => [
                 'class' => 'p-3 bg-light border rounded collection--flex',
+            ],
+            'constraints' => [
+                new Assert\Count([
+                    'min' => 1,
+                ]),
             ],
         ]);
     }

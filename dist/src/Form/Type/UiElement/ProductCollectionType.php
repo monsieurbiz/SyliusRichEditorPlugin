@@ -17,8 +17,8 @@ use App\UiElement\ProductCollectionUiElement;
 use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
 use Sylius\Resource\Doctrine\Persistence\RepositoryInterface;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 #[AsUiElement(
@@ -51,6 +51,11 @@ class ProductCollectionType extends AbstractType
                 'delete_empty' => true,
                 'attr' => [
                     'class' => 'p-3 bg-light border rounded collection--flex',
+                ],
+                'constraints' => [
+                    new Assert\Count([
+                        'min' => 1,
+                    ]),
                 ],
             ])
         ;

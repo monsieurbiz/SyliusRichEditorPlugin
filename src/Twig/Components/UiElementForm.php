@@ -22,6 +22,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
+use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
@@ -29,6 +30,7 @@ use Symfony\UX\LiveComponent\LiveCollectionTrait;
 class UiElementForm extends AbstractController
 {
     use ComponentToolsTrait;
+    use ComponentWithFormTrait;
     use DefaultActionTrait;
     use LiveCollectionTrait {
         addCollectionItem as private addLiveCollectionItem;
