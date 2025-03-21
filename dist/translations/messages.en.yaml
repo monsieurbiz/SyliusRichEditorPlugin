@@ -5,6 +5,6 @@ app:
             description: 'An element with a Google Maps link'
             link: 'Embed Link (The `src` of the iframe)'
         text_collection:
-            title: '[Debug] Text collection'
+            title: 'Text collection'
             description: 'Collection of text types'
             content: 'Content'

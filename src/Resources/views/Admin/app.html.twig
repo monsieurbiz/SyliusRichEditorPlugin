@@ -61,7 +61,9 @@
             <div
                 class="d-flex justify-content-between align-items-center">
                 <h3 class="header m-0 h2">
-                    <i class="{{icon}} icon"></i>
+                    {{#icon}}
+                        {{& iconHtml }}
+                    {{/icon}}
                     {{title}}
                     {{#disabled}}<span class="ui label">{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.ui.disabled'|trans }}{% verbatim %}</span>{{/disabled}}
                 </h3>
@@ -132,7 +134,9 @@
         <div class="content left aligned d-flex flex-column h-100">
             <div class="header h3 mb-1">
                 <div>
-                    <i class="{{icon}} icon"></i>
+                    {{#icon}}
+                        {{& iconHtml }}
+                    {{/icon}}
                     {{title}}
                 </div>
                 {{#description}}

@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[AsUiElement(
     code: 'app.google_maps',
-    icon: 'map pin',
+    icon: 'tabler:brand-google-maps',
     uiElement: GoogleMapsUiElement::class,
     wireframe: 'google-maps',
     tags: ['debug', 'map'],

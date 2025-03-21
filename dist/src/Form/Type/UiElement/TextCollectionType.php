@@ -21,8 +21,8 @@ use Symfony\UX\LiveComponent\Form\Type\LiveCollectionType;
 
 #[AsUiElement(
     code: 'app.text_collection',
-    icon: 'pencil',
-    tags: ['testing'],
+    icon: 'gg:debug',
+    tags: ['debug'],
 )]
 class TextCollectionType extends AbstractType
 {
