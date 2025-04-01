@@ -247,7 +247,7 @@ class FormController extends AbstractController
      */
     private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
-        if ($form->isValid() && $form->getData() instanceof UploadedFile) {
+        if ($form->isSubmitted() && $form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
             /** @var ?string $fileType */
             $fileType = $form->getConfig()->getOption('file-type');

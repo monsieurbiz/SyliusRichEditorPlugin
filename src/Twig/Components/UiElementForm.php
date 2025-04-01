@@ -37,7 +37,7 @@ class UiElementForm extends AbstractController
         removeCollectionItem as private removeLiveCollectionItem;
     }
 
-    #[LiveProp]
+    #[LiveProp(hydrateWith: 'hydrateData', dehydrateWith: 'dehydrateData')]
     public array $data;
 
     #[LiveProp]
@@ -51,6 +51,10 @@ class UiElementForm extends AbstractController
 
     #[LiveProp]
     public ?string $locale = null;
+
+    // Add `hydrateWith` and `dehydrateWith` comparing to the `ComponentWithFormTrait` definition
+    #[LiveProp(writable: true, fieldName: 'getFormName()', hydrateWith: 'hydrateData', dehydrateWith: 'dehydrateData')]
+    public array $formValues = [];
 
     #[LiveAction]
     public function addCollectionItem(PropertyAccessorInterface $propertyAccessor, #[LiveArg] string $name): void
@@ -72,5 +76,15 @@ class UiElementForm extends AbstractController
             $this->uiElementFormClass ?? throw new RuntimeException('Ui Element form class is not defined'),
             $this->data,
         );
+    }
+
+    public function hydrateData(string $value): array
+    {
+        return json_decode($value, true);
+    }
+
+    public function dehydrateData(array $value): string
+    {
+        return (string) json_encode($value);
     }
 }

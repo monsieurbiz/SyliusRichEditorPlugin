@@ -31,7 +31,6 @@ class ImageCollectionType extends AbstractType
             ],
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => false,
             'delete_empty' => true,
             'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.field.images',
             'attr' => [

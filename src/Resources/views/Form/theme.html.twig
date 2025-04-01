@@ -1,6 +1,6 @@
 {% extends '@SyliusAdmin/shared/form_theme.html.twig' %}
 
-{% block file_widget %}
+{% block monsieurbiz_richeditor_file_widget %}
     {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
     {% if form.vars.valid and current_file_path is not empty %}
         <div>
@@ -24,7 +24,8 @@
                     </a>
                 </p>
             {% endif %}
-            <button type="button" class="ui btn btn-outline-primary" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
+            <button
+                type="button" class="ui btn btn-outline-primary" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
                 {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
             </button>
 
