@@ -1,47 +1,6 @@
 {% extends '@SyliusAdmin/shared/form_theme.html.twig' %}
 
-{% block monsieurbiz_rich_editor_plugin_image_widget %}
-    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
-    {% if form.vars.valid and current_file_path is not empty %}
-        <div>
-            <p>
-                <small>{{ 'monsieurbiz_richeditor_plugin.form.current_image' | trans }}</small><br />
-                <img src="{{ current_file_path|imagine_filter('monsieurbiz_rich_editor_uploaded_image', {"relative_resize": {"widen": filterWidth }}) }}" alt="" style="max-width: 300px;max-height: 300px;" />
-            </p>
-            <button type="button" class="ui button" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
-                {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
-            </button>
-            <input type="hidden" name="{{ form.vars.full_name }}" value="{{ current_file_path }}" />
-        </div>
-        {{- form_widget(form, {'attr': {'style': 'display: none;'}, 'full_name': 'change_' ~ form.vars.full_name}) -}}
-    {% else %}
-        {{- form_widget(form) -}}
-    {% endif %}
-{% endblock %}
-
-{% block monsieurbiz_rich_editor_plugin_video_widget %}
-    {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
-    {% if form.vars.valid and current_file_path is not empty %}
-        <div>
-            <p>
-                <small>{{ 'monsieurbiz_richeditor_plugin.form.current_video' | trans }}</small><br />
-                <video width="100%" controls style="max-width: 300px;max-height: 300px;">
-                    <source src="{{ current_file_path }}" type="video/{{ current_file_path|split('.')|last }}">
-                </video>
-            </p>
-            <button type="button" class="ui btn btn-outline-primary" onclick="monsieurBizRichEditorRemoveFile('{{ form.vars.full_name | escape }}');">
-                {{ 'monsieurbiz_richeditor_plugin.file.change' | trans }}
-            </button>
-            <input type="hidden" name="{{ form.vars.full_name }}" value="{{ current_file_path }}" />
-        </div>
-        {{- form_widget(form, {'attr': {'style': 'display: none;'}, 'full_name': 'change_' ~ form.vars.full_name}) -}}
-    {% else %}
-        {{- form_widget(form) -}}
-    {% endif %}
-{% endblock %}
-
 {% block file_widget %}
-
     {% set current_file_path = monsieurbiz_richeditor_get_current_file_path(form.vars.full_name) %}
     {% if form.vars.valid and current_file_path is not empty %}
         <div>
