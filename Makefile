@@ -23,9 +23,8 @@ down: server.stop docker.down ## Down the project (removes docker containers, st
 
 reset: ## Stop docker and remove dependencies
 	${MAKE} docker.down || true
-	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
 	rm -rf ${APP_DIR}
-	rm -rf vendor composer.lock
+	rm -rf node_modules yarn.lock vendor composer.lock
 .PHONY: reset
 
 dependencies: composer.lock node_modules ## Setup the dependencies
