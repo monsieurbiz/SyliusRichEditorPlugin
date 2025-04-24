@@ -36,3 +36,21 @@
         {{- form_widget(form) -}}
     {% endif %}
 {% endblock %}
+
+{%- block live_collection_widget -%}
+    <div>
+        {{ block('form_widget') }}
+        {%- if skip_add_button|default(false) is same as(false) and button_add is defined and not button_add.rendered -%}
+            {{ form_row(button_add) }}
+        {%- endif -%}
+    </div>
+{%- endblock live_collection_widget -%}
+
+{%- block live_collection_entry_row -%}
+    <div>
+        {{ block('form_row') }}
+        {%- if button_delete is defined and not button_delete.rendered -%}
+            {{ form_row(button_delete) }}
+        {%- endif -%}
+    </div>
+{%- endblock live_collection_entry_row -%}

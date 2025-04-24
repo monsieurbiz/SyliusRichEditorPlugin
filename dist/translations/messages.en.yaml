@@ -9,7 +9,7 @@ app:
             title: 'Text collection'
             description: 'Collection of text types'
             field:  
-                items: 'Content'
+                items: 'Items'
         product:
             title: 'Product'
             description: 'A product'

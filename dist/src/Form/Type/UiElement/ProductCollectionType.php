@@ -40,17 +40,26 @@ class ProductCollectionType extends AbstractType
             ->add('products', LiveCollectionType::class, [
                 'entry_type' => ProductType::class,
                 'button_add_options' => [
-                    'label' => 'monsieurbiz_richeditor_plugin.form.add_item', // To test the custom translation
+                    'label' => 'monsieurbiz_richeditor_plugin.form.add_item',
                 ],
                 'button_delete_options' => [
-                    'label' => 'monsieurbiz_richeditor_plugin.form.delete_item', // To test the custom translation
+                    'label' => 'monsieurbiz_richeditor_plugin.form.delete_item',
+                    'attr' => [
+                        'class' => 'btn-outline-danger',
+                    ],
                 ],
                 'label' => 'app.ui_element.product_collection.field.products',
                 'allow_add' => true,
                 'allow_delete' => true,
                 'delete_empty' => true,
                 'attr' => [
-                    'class' => 'p-3 bg-light border rounded collection--flex',
+                    'class' => 'row row-cols-1 row-cols-sm-2 row-cols-md-4',
+                ],
+                'entry_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'class' => 'p-3 bg-gray-300 border rounded col',
+                    ],
                 ],
                 'constraints' => [
                     new Assert\Count([

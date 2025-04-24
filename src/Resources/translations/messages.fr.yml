@@ -142,6 +142,7 @@ monsieurbiz_richeditor_plugin:
     cancel: 'Annuler'
     save: 'Sauvegarder'
     add_image: 'Ajouter une image'
+    delete_image: 'Supprimer l''image'
     select_ui_element: 'Choisissez un élément'
     add_item: 'Ajouter un élément'
     delete_item: 'Supprimer cet élément'
