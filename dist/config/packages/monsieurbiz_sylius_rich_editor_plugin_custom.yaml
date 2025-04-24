@@ -22,3 +22,19 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
+
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                monsieurbiz_rich_editor_product:
+                    options:
+                        custom:
+                            -   code: 'Adventurous_Aurora_Cap'
+                                translations:
+                                    en_US:
+                                        description: |
+                                            Test !
+                                    fr_FR:
+                                        description: |
+                                            Test FR !
