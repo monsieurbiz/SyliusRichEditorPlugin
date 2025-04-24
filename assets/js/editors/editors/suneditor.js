@@ -39,6 +39,7 @@ export default {
         const editor = editorModel.create(component, config);
         editor.onChange = () => {
           editor.save();
+          component.dispatchEvent(new Event('change', { bubbles: true }));
         };
       } catch (error) {
         console.warn(error.message.replace('Error :', ''));
