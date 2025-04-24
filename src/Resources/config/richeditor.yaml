@@ -97,6 +97,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h1.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h1.html.twig'
+            enabled: false
         monsieurbiz.h2:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
@@ -108,6 +109,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h2.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h2.html.twig'
+            enabled: false
         monsieurbiz.h3:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
@@ -119,6 +121,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h3.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h3.html.twig'
+            enabled: false
         monsieurbiz.separator:
             alias: separator
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'
