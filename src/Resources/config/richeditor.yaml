@@ -139,6 +139,7 @@ monsieurbiz_sylius_richeditor:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.description'
             icon: tabler:anchor
+            wireframe: anchor
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\AnchorType
             templates:
