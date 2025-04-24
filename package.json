@@ -37,6 +37,5 @@
     "highlight.js": "^11.11.1",
     "mustache": "^4.0.1",
     "suneditor": "^2.47.5"
-  },
-  "packageManager": "yarn@4.7.0"
+  }
 }
