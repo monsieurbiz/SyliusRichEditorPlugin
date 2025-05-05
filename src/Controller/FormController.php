@@ -254,6 +254,9 @@ class FormController extends AbstractController
 
             return $fileUploader->upload($form->getData(), $fileType);
         }
+        if ($form->isSubmitted() && !$form->isValid() && $form->getData() instanceof UploadedFile) {
+            return null;
+        }
         if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)
             return $requestData; // Will return the current filename string

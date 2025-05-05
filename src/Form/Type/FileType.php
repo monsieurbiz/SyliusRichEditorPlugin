@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType as CoreFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileType extends CoreFileType
 {
@@ -41,6 +42,13 @@ class FileType extends CoreFileType
         $view->vars = array_replace($view->vars, [
             'type' => 'file',
         ]);
+
+        // Remove uploaded file from the view, but keep value if it's a string (like filepath)
+        if ($form->getData() instanceof UploadedFile) {
+            $view->vars = array_replace($view->vars, [
+                'value' => '',
+            ]);
+        }
     }
 
     public function getBlockPrefix(): string

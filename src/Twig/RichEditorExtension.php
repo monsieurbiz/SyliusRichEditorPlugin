@@ -258,6 +258,15 @@ final class RichEditorExtension extends AbstractExtension
             }
         }
 
+        if ($path instanceof UploadedFile) {
+            return null;
+        }
+
+        /** @TODO Manage fakepath a better way */
+        if (null !== $path && false !== strpos($path, 'fakepath')) {
+            return null;
+        }
+
         return $path;
     }
 
