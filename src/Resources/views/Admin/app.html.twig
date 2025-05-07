@@ -211,6 +211,18 @@
             setupRichEditor(editor, tags, locale);
         });
 
+        // This event authorized external JS script to activate Rich Editor on a RichEditor input.
+        // It's usefull in case of AJAX loaded input or in case of dynmamic DOM addition.
+        document.addEventListener('mbiz:rich-editor:add-editor', (e) => {
+            const {editor} = e.detail;
+            if (editor === null || editor.dataset.component === undefined || editor.dataset.component !== 'rich-editor') {
+                return;
+            }
+            let tags = editor.dataset.tags.length === 0 ? [] : editor.dataset.tags.split(',')
+            let locale = editor.dataset.locale ? editor.dataset.locale : fallBackLocale;
+            setupRichEditor(editor, tags, locale);
+        });
+
         // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
         $(document).on('collection-form-add', (event, addedElement) => {
             document.dispatchEvent(new CustomEvent('rich-editor:reload', {
