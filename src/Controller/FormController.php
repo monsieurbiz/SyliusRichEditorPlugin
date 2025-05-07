@@ -87,6 +87,7 @@ class FormController extends AbstractController
             'form_html' => $this->renderView($uiElement->getAdminFormTemplate(), [
                 'form' => $form->createView(),
                 'uiElement' => $uiElement,
+                'locale' => $locale,
                 'data' => $data,
                 'isEdition' => (int) $isEdition,
             ]),
@@ -246,12 +247,15 @@ class FormController extends AbstractController
      */
     private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
-        if ($form->isValid() && $form->getData() instanceof UploadedFile) {
+        if ($form->isSubmitted() && $form->isValid() && $form->getData() instanceof UploadedFile) {
             // Upload image selected by user
             /** @var ?string $fileType */
             $fileType = $form->getConfig()->getOption('file-type');
 
             return $fileUploader->upload($form->getData(), $fileType);
+        }
+        if ($form->isSubmitted() && !$form->isValid() && $form->getData() instanceof UploadedFile) {
+            return null;
         }
         if ($form->getConfig()->getType()->getInnerType() instanceof NativeFileType && !empty($requestData)) {
             // Check if we have a string value for this fields which is the file path (During edition for example)

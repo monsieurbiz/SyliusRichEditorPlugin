@@ -22,9 +22,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[AsUiElement(
     code: 'app.google_maps',
-    icon: 'map pin',
+    icon: 'tabler:brand-google-maps',
     uiElement: GoogleMapsUiElement::class,
-    tags: ['map'],
+    wireframe: 'google-maps',
+    tags: ['debug', 'map'],
 )]
 class GoogleMapsType extends AbstractType
 {
@@ -32,7 +33,7 @@ class GoogleMapsType extends AbstractType
     {
         $builder
             ->add('link', TextType::class, [
-                'label' => 'app.ui_element.google_maps.link',
+                'label' => 'app.ui_element.google_maps.field.link',
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank(),

@@ -18,6 +18,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\LevelType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\TagType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\TextSizeType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -29,7 +30,7 @@ class TitleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
+            ->add('content', TextType::class, [
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.content',
                 'constraints' => [

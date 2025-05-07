@@ -133,6 +133,24 @@ trait UiElementTrait
     /**
      * @inheritdoc
      */
+    public function getIconAsHtml(): string
+    {
+        try {
+            $icon = $this->getIcon();
+
+            if (empty($icon)) {
+                return '';
+            }
+
+            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/Admin/icon.html.twig', ['icon' => $icon]);
+        } catch (Exception $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getFormClass(): string
     {
         return $this->metadata->getClass('form');
@@ -177,6 +195,7 @@ trait UiElementTrait
             'code' => $this->getCode(),
             'description' => $this->translator->trans($this->getDescription()),
             'icon' => $this->getIcon(),
+            'iconHtml' => $this->getIconAsHtml(),
             'wireframe' => $this->getWireframe(),
             'wireframeHtml' => $this->getWireframeAsHtml(),
             'title' => $this->translator->trans($this->getTitle()),

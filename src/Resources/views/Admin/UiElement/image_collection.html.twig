@@ -26,7 +26,7 @@
 
 <div class="ui {{ gridClasses }} grid my-7.5 w-full">
     {% for image in element.images %}
-        <div class="column">
+        <div class="col">
             {% if image.link is not empty %}
                 {% set linkIsBlank = image.link_type is defined and image.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
                 <a class="ui fluid image" href="{{ image.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %}>

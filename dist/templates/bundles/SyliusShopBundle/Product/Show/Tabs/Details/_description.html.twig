@@ -1,5 +1,0 @@
-{% if product.description is not empty %}
-    {{ product.description | monsieurbiz_richeditor_render_field }}
-{% else %}
-    {{ 'sylius.ui.no_description'|trans }}.
-{% endif %}

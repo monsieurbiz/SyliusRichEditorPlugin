@@ -5,11 +5,11 @@
     "description": "A Rich Editor plugin for Sylius.",
     "license": "MIT",
     "require": {
-        "php": "^8.1",
-        "sylius/sylius": ">=1.12 <2.0",
-        "twig/markdown-extra": "^2.16|^3.12",
-        "twig/extra-bundle": "^2.16|^3.12",
-        "league/commonmark": "^2.5"
+        "php": "^8.2",
+        "sylius/sylius": "~2.0.0",
+        "twig/markdown-extra": "^3.13",
+        "twig/extra-bundle": "^3.13",
+        "league/commonmark": "^2.6"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.16",
@@ -45,7 +45,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.9-dev"
+            "dev-master": "3.0-dev"
         },
         "symfony": {
             "docker": false,

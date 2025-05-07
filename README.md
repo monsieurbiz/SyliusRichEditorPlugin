@@ -15,12 +15,11 @@ This plugin adds a rich editor on the fields you want. Now you can manage your c
 
 | Sylius Version | PHP Version     |
 |----------------|-----------------|
-| 1.12           | 8.1 - 8.2 - 8.3 |
-| 1.13           | 8.1 - 8.2 - 8.3 |
-| 1.14           | 8.1 - 8.2 - 8.3 |
+| 2.0            | 8.1 - 8.2       |
+
+ℹ️ For Sylius 1.x, see our branch [branch 2.x] (https://github.com/monsieurbiz/SyliusRichEditorPlugin/tree/2.0) and all 2.x releases.
 
 ## Installation
-
 
 ### Require the plugin
 
@@ -45,6 +44,7 @@ Change your `config/bundles.php` file to add the line for the plugin :
 
 return [
     //..
+    Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
     MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin::class => ['all' => true],
 ];
 ```
@@ -66,12 +66,13 @@ monsieurbiz_richeditor_admin:
 </p>
 </details>
 
-### Correct `Twig\Extra\Intl\IntlExtension` conflict
+### Correct `Twig\Extra\Intl\IntlExtension` and `Twig\Extra\String\StringExtension` conflict
 
-If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` declaration :
+If the recipe did not comment it, update the file `config/packages/twig.yaml` to comment or remove the `IntlExtension` and `StringExtension` declarations :
 
 ```yaml
 # Twig\Extra\Intl\IntlExtension: ~
+#Twig\Extra\String\StringExtension: ~
 ```
 
 ### Install the assets
@@ -84,17 +85,8 @@ bin/console asset:install
 
 ## Use it with the [Sylius Media Manager](https://github.com/monsieurbiz/SyliusMediaManagerPlugin/)
 
-You don't need to do something, everything is compatible.
-
-```
-composer require monsieurbiz/sylius-media-manager-plugin="^1.0"
-```
-
-If you used the rich editor before using the media manager, you need to override the form theme of the media manager plugin :
-```
-mkdir -p templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/;
-cp dist/templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/_theme.html.twig templates/bundles/MonsieurBizSyliusMediaManagerPlugin/Admin/MediaManager/Form/_theme.html.twig;
-```
+The Media Manager is not compatible yet with Rich Editor.  
+We are doing our best to make it work with it.
 
 ## Use the Rich Editor
 

@@ -1,0 +1,10 @@
+{#
+UI Element template
+type: text_collection
+element fields:
+    items: array
+#}
+
+{% for item in element.items|default([]) %}
+    {{ include('@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig', { 'element': item }) }}
+{% endfor %}

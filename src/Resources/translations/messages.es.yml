@@ -127,6 +127,7 @@ monsieurbiz_richeditor_plugin:
     cancel: 'Cancelar'
     save: 'Guardar'
     add_image: 'Agregar imagen'
+    delete_image: 'Eliminar imagen'
     select_ui_element: 'Seleccionar un elemento de interfaz de usuario'
     align:
       label: 'Alineación'

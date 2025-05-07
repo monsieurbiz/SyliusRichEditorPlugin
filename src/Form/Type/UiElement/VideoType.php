@@ -17,10 +17,10 @@ use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\ImageType as MediaManagerImag
 use MonsieurBiz\SyliusMediaManagerPlugin\Form\Type\VideoType as MediaManagerVideoType;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Constraints\RichEditorConstraints;
 use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\AlignmentType;
+use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\FileType;
 use MonsieurBiz\SyliusRichEditorPlugin\MonsieurBizSyliusRichEditorPlugin;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

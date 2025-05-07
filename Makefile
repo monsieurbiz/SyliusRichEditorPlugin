@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
 APP_DIR=tests/Application
-SYLIUS_VERSION=1.14.0
+SYLIUS_VERSION=2.0.0
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
@@ -23,9 +23,8 @@ down: server.stop docker.down ## Down the project (removes docker containers, st
 
 reset: ## Stop docker and remove dependencies
 	${MAKE} docker.down || true
-	rm -rf ${APP_DIR}/node_modules ${APP_DIR}/yarn.lock
 	rm -rf ${APP_DIR}
-	rm -rf vendor composer.lock
+	rm -rf node_modules yarn.lock vendor composer.lock
 .PHONY: reset
 
 dependencies: composer.lock node_modules ## Setup the dependencies
@@ -46,6 +45,7 @@ yarn.install: ${APP_DIR}/yarn.lock
 
 ${APP_DIR}/yarn.lock:
 	ln -sf ${APP_DIR}/node_modules node_modules
+	touch ${APP_DIR}/yarn.lock
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
 # No CSS and JS on this plugin yet
 #	${YARN} install

@@ -44,4 +44,9 @@ class RichEditorType extends TextType
             'locale' => null,
         ]);
     }
+
+    public function getBlockPrefix(): string
+    {
+        return 'rich_editor';
+    }
 }

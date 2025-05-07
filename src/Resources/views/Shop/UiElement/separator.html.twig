@@ -19,4 +19,4 @@
     (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_THICK')): 'border-top-width: 4px;',
     (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_VERY_THICK')): 'border-top-width: 8px;',
 } %}
-<div class="ui {% if element.hidden is not empty %}hidden{% endif %} divider" style="{{ borderStyleMap[elementStyle] }} {{ borderThicknessMap[elementThickness] }}"></div>
+<div class="ui {% if element.hidden is not empty %}opacity-0{% endif %} divider" style="{{ borderStyleMap[elementStyle] }} {{ borderThicknessMap[elementThickness] }}"></div>

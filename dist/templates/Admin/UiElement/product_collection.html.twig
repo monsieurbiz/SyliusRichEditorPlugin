@@ -1,0 +1,30 @@
+{#
+UI Element template
+type: product_collection
+element fields:
+    title: string
+    products: array
+        title: string
+        product_code: string
+element methods:
+    getProduct(string $code): ?ProductInterface
+#}
+
+{% if element.title|default(null) %}
+    <div class="h1">{{ element.title }}</div>
+{% endif %}
+
+{% if element.products|default([])|length > 0 %}
+    {% set products = ui_element.getProducts(element.products) %}
+    {% if products|default([])|length > 0 %}
+        <div class="container">
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-4">
+                        {{ component('sylius_shop:product:card', { product: product, template: '@SyliusShop/product/common/card.html.twig' }) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
