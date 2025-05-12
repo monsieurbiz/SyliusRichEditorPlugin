@@ -9,7 +9,8 @@
 
 This plugin adds a rich editor on the fields you want. Now you can manage your content very easily!
 
-![Example of rich editor field](docs/images/screenshots/demo.gif)
+![Example of rich editor panel](docs/images/screenshots/elements.png)
+![Example of admin form](docs/images/screenshots/admin.png)
 
 ## Compatibility
 
@@ -85,8 +86,8 @@ bin/console asset:install
 
 ## Use it with the [Sylius Media Manager](https://github.com/monsieurbiz/SyliusMediaManagerPlugin/)
 
-The Media Manager is not compatible yet with Rich Editor.  
-We are doing our best to make it work with it.
+The Media Manager is not compatible yet with Rich Editor v3.
+We are doing our best to make it work with it. Stay tuned!
 
 ## Use the Rich Editor
 
@@ -97,8 +98,6 @@ We have an example of implementation in the [file for the test application](/dis
 
 If your field has some data already, like some previous text before installing this plugin, 
 then we will convert it for you as an HTML Element which contains… HTML.
-
-![Example of a rich editor field](docs/images/screenshots/form_field.png)
 
 This way you will be able to use our plugin right away without risking any data lost!
 
@@ -193,75 +192,21 @@ monsieurbiz_sylius_richeditor:
 
 ## Available elements
 
-### Row Element (Layout)
-
-It contains another rich editor field, each element will be displayed one below the other (as rows…).
-
-### Column Element (Layout)
-
-It contains another rich editor field, each element will be displayed side by side (as columns…).
-
-By using this element in the `Row` element, you will be able to build some layout like the screenshot below.  
-You can distinguish the `Row` element and the `Column` element by their dotted borders.
-
-![The Columns and Rows elements](docs/images/screenshots/columns_and_rows.jpg)
-
-### HTML Element
-
-![The HTML element](docs/images/screenshots/html.png)
-
-### Markdown Element
-
-![The Markdown element](docs/images/screenshots/markdown.png)
-
-You can use `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_SHOP` to enable code highlighting in the shop.
-Also you can change the theme with `MONSIEURBIZ_SYLIUS_RICH_EDITOR_ENABLED_HIGHLIGHT_JS_THEME`.
-
-### Text element
-
-![The text element](docs/images/screenshots/text.png)
-
-### Quote element
-
-![The quote element](docs/images/screenshots/quote.png)
-
-### Image element
-
-![The image element](docs/images/screenshots/image.png)
-
-### Video element
-
-![The video element](docs/images/screenshots/video.png)
-
-### Button element
-
-![The button element](docs/images/screenshots/button.png)
-
-### Title element
-
-![The title element](docs/images/screenshots/title.png)
-
-### Separator element
-
-![The separator element](docs/images/screenshots/separator.png)
-
-### Youtube element
-
-![The Youtube element](docs/images/screenshots/youtube.png)
-
-### Image collection element
-
-![The Image collection element](docs/images/screenshots/image_collection.png)
-
-## Example of a rich product description
-
-### Admin form with preview
-
-![Admin full form](docs/images/screenshots/full_back.png)
-
-### Front display
-
-![Front full display](docs/images/screenshots/full_front.png)
+- Two columns element (Layout)
+- Row Element (Layout)
+- Column Element (Layout)
+- HTML Element
+- Markdown Element
+- Text element
+- Quote element
+- Image element
+- Video element
+- Button element
+- Title element
+- Separator element
+- Youtube element
+- Image collection element
+- Anchor element
 
 ## Create your own elements
 
@@ -404,27 +349,6 @@ Here is an example of a simple template for this our which can be used in front 
 ```twig
 <iframe id="gmap_canvas" src="{{ element.link }}" scrolling="no" marginheight="0" marginwidth="0" width="600" height="500" frameborder="0"></iframe>
 ```
-
-
-### The result !
-
-#### The element is in the UI Elements list
-
-![The Google Maps element](docs/images/screenshots/gmap_element.png)
-
-#### You now have a form to edit it (your form!)
-
-![The Google Maps form](docs/images/screenshots/gmap_form.png)
-
-#### And we use your templates to render your UiElement
-
-In admin : 
-
-![The GMap display](docs/images/screenshots/gmap_render_admin.png)
-
-In front : 
-
-![The GMap display](docs/images/screenshots/gmap_render.png)
 
 ## File in fixtures management
 
