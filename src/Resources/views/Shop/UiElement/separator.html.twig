@@ -14,9 +14,9 @@
     (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::DASHED_STYLE')): 'border-top-style: dashed; border-bottom: none;',
 } %}
 {% set borderThicknessMap = {
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_FINE')): 'border-top-width: 1px;',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_MEDIUM')): 'border-top-width: 2px;',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_THICK')): 'border-top-width: 4px;',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_VERY_THICK')): 'border-top-width: 8px;',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_FINE')): 'border-1',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_MEDIUM')): 'border-2',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_THICK')): 'border-4',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\SeparatorType::THICKNESS_VERY_THICK')): 'border-5',
 } %}
-<div class="ui {% if element.hidden is not empty %}opacity-0{% endif %} divider" style="{{ borderStyleMap[elementStyle] }} {{ borderThicknessMap[elementThickness] }}"></div>
+<div style="{{ borderStyleMap[elementStyle] }}" class="p-2 border-dark {% if element.hidden is not empty %}hidden {% endif %}{{ borderThicknessMap[elementThickness] }}" ></div>
