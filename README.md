@@ -11,6 +11,7 @@ This plugin adds a rich editor on the fields you want. Now you can manage your c
 
 ![Example of rich editor panel](docs/images/screenshots/elements.png)
 ![Example of admin form](docs/images/screenshots/admin.png)
+![Example of front display](docs/images/screenshots/front.png)
 
 ## Compatibility
 
@@ -101,7 +102,7 @@ then we will convert it for you as an HTML Element which contains… HTML.
 
 This way you will be able to use our plugin right away without risking any data lost!
 
-To make it clear: to have rich editor for original admin fields, like _Product description_, _Taxon desription_ etc. you have to update each form type by an extension as the example shows above.
+⚠️ To have rich editor for original admin fields, like _Product description_, _Taxon desription_ etc. you have to update each form type by an extension as the example shows above.
 
 ### Call twig render
 
