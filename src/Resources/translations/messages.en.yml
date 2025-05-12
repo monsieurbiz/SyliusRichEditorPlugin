@@ -109,6 +109,8 @@ monsieurbiz_richeditor_plugin:
         link: 'Youtube link'
         width: 'Iframe width'
         height: 'Iframe height'
+        width_help: 'Keep empty for a dynamic size'
+        height_help: 'Keep empty for a dynamic size'
     monsieurbiz.image_collection:
       title: 'Image Collection'
       short_description: 'An element with multiple images.'

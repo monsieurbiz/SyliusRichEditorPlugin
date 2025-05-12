@@ -109,6 +109,8 @@ monsieurbiz_richeditor_plugin:
         link: 'Lien Youtube'
         width: 'Largeur du lecteur'
         height: 'Hauteur du lecteur'
+        width_help: 'Laissez vide pour une taille dynamique'
+        height_help: 'Laissez vide pour une taille dynamique'
     monsieurbiz.image_collection:
       title: 'Collection d''images'
       short_description: 'Une lame contenant une liste d''images.'

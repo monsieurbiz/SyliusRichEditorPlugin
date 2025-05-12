@@ -10,14 +10,34 @@
 {# Don't display video if URL is not correct (empty) #}
 {% set url = monsieurbiz_richeditor_youtube_link(element.link) %}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
+{% set elementWidth = null %}
+{% set elementHeight = null %}
+{% if element.width is defined and element.width is not empty %}
+    {% set elementWidth = element.width %}
+    {% set elementHeight = elementWidth * 9 / 16 %}
+{% endif %}
+{% if element.height is defined and element.height is not empty %}
+    {% set elementHeight = element.height %}
+    {% if elementWidth is null %}
+        {% set elementWidth = elementHeight * 16 / 9 %}
+    {% endif %}
+{% endif %}
 {% if url is not null %}
-    <div style="text-align: {{align}};">
-        <iframe
-            width="{{ element.width ?: 560 }}"
-            height="{{ element.height ?: 315 }}"
-            src="{{ monsieurbiz_richeditor_youtube_link(element.link) }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
+    <div
+        class="my-5 text-{{ align }} ui-element-youtube"
+    >
+        <div class="{% if elementWidth is null and elementHeight is null %}ratio ratio-16x9{% endif %}">
+            <iframe
+                loading="lazy"
+                class="rounded {% if elementWidth is null and elementHeight is null %}w-100{% endif %}"
+                {% if elementWidth is not null and elementHeight is not null %}
+                    width="{{ elementWidth }}"
+                    height="{{ elementHeight }}"
+                {% endif %}
+                src="{{ monsieurbiz_richeditor_youtube_link(element.link) }}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
     </div>
 {% endif %}
