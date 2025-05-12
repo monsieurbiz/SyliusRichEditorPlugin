@@ -1,0 +1,36 @@
+{#
+UI Element template
+type: two_columns
+element fields :
+    firstColumnWidth
+    marginAuto
+    reverseMobile
+    firstColumn
+    secondColumn
+#}
+
+{% set firstColumnWidth = element.firstColumnWidth|default('1/2') %}
+{% set marginAutoClass = element.marginAuto is defined and element.marginAuto ? 'm-auto' : '' %}
+{% set flexClassMobile = element.reverseMobile is defined and element.reverseMobile ? 'flex-column-reverse' : 'flex-column' %}
+
+{% set columnClasses = {
+    '1/5': {'first': 'col-md-2', 'second': 'col-md-10'},
+    '1/4': {'first': 'col-md-3', 'second': 'col-md-9'},
+    '1/3': {'first': 'col-md-4', 'second': 'col-md-8'},
+    '2/5': {'first': 'col-md-5', 'second': 'col-md-7'},
+    '1/2': {'first': 'col-md-6', 'second': 'col-md-6'},
+    '3/5': {'first': 'col-md-7', 'second': 'col-md-5'},
+    '2/3': {'first': 'col-md-8', 'second': 'col-md-4'},
+    '3/4': {'first': 'col-md-9', 'second': 'col-md-3'},
+    '4/5': {'first': 'col-md-10', 'second': 'col-md-2'}
+} %}
+
+{% set selectedClasses = columnClasses[firstColumnWidth]|default({'first': 'col-md-6', 'second': 'col-md-6'}) %}
+<div class="d-flex {{ flexClassMobile }} flex-md-row py-5 py-lg-5 ui-element-two-columns gap-4 gap-md-5">
+    <div class="w-100 {{ selectedClasses.first }} {{ marginAutoClass }}">
+        {{ monsieurbiz_richeditor_get_elements(element.firstColumn)|monsieurbiz_richeditor_render_elements }}
+    </div>
+    <div class="w-100 {{ selectedClasses.second }} {{ marginAutoClass }}">
+        {{ monsieurbiz_richeditor_get_elements(element.secondColumn)|monsieurbiz_richeditor_render_elements }}
+    </div>
+</div>

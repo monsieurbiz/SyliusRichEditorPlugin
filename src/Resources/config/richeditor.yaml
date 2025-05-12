@@ -170,6 +170,18 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image_collection.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
+        monsieurbiz.two_columns:
+            alias: two_columns
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.description'
+            icon: tabler:columns-2
+            wireframe: two-columns
+            tags: [ default, layout, two-columns ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TwoColumnsType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/two_columns.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/two_columns.html.twig'
         monsieurbiz.column:
             alias: column
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'

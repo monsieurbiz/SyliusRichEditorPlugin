@@ -63,41 +63,13 @@ sylius_fixtures:
                                                     }
                                                 },
                                                 {
-                                                    "code":"monsieurbiz.title",
+                                                    "code":"monsieurbiz.two_columns",
                                                     "data":{
-                                                        "content":"Explorer Essentials Sylius Adventurous 2024",
-                                                        "text_size":"l",
-                                                        "tag":"h2",
-                                                        "align":"left",
-                                                        "level":"secondary"
-                                                    }
-                                                },
-                                                {
-                                                    "code":"monsieurbiz.text",
-                                                    "data":{
-                                                        "content":"<p>Add a <strong>pop</strong> of color to your winter look with this vibrant beanie from Explorer Essentials' Sylius Adventurous 2024 collection. <strong>Made from 100%% cotton</strong>, this soft and cozy hat features a playful pompom on top and a multicolored design that gradates from rose to blue to violet.<br></p>",
-                                                        "align":""
-                                                    }
-                                                },
-                                                {
-                                                    "code":"monsieurbiz.button",
-                                                    "data":{
-                                                        "label":"See reviews",
-                                                        "link":"#reviews",
-                                                        "link_type":"internal",
-                                                        "align":"",
-                                                        "level":"primary"
-                                                    }
-                                                },
-                                                {
-                                                    "code":"monsieurbiz.image",
-                                                    "data":{
-                                                        "image":"/media/rich-editor/cap_banner.jpg",
-                                                        "alt":null,
-                                                        "title":null,
-                                                        "link":null,
-                                                        "link_type":null,
-                                                        "align":""
+                                                        "firstColumnWidth":"1/2",
+                                                        "marginAuto":false,
+                                                        "reverseMobile":false,
+                                                        "firstColumn":"[{\"code\":\"monsieurbiz.title\",\"data\":{\"content\":\"Explorer Essentials Sylius Adventurous 2024\",\"text_size\":\"l\",\"tag\":\"h2\",\"align\":\"left\",\"level\":\"secondary\"}},{\"code\":\"monsieurbiz.text\",\"data\":{\"content\":\"<p>Add a <strong>pop</strong> of color to your winter look with this vibrant beanie from Explorer Essentials' Sylius Adventurous 2024 collection. <strong>Made from 100%% cotton</strong>, this soft and cozy hat features a playful pompom on top and a multicolored design that gradates from rose to blue to violet.<br></p>\",\"align\":\"\"}},{\"code\":\"monsieurbiz.button\",\"data\":{\"label\":\"See reviews\",\"link\":\"#reviews\",\"link_type\":\"internal\",\"align\":\"\",\"level\":\"primary\"}}]",
+                                                        "secondColumn":"[{\"code\":\"monsieurbiz.image\",\"data\":{\"image\":\"/media/rich-editor/cap_banner.jpg\",\"alt\":null,\"title\":null,\"link\":null,\"link_type\":null,\"align\":\"\"}}]"
                                                     }
                                                 },
                                                 {
