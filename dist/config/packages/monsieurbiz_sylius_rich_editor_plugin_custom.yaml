@@ -66,8 +66,8 @@ sylius_fixtures:
                                                     "code":"monsieurbiz.two_columns",
                                                     "data":{
                                                         "firstColumnWidth":"1/2",
-                                                        "marginAuto":false,
-                                                        "reverseMobile":false,
+                                                        "marginAuto":true,
+                                                        "reverseMobile":true,
                                                         "firstColumn":"[{\"code\":\"monsieurbiz.title\",\"data\":{\"content\":\"Explorer Essentials Sylius Adventurous 2024\",\"text_size\":\"xs\",\"tag\":\"h2\",\"align\":\"left\",\"level\":\"secondary\"}},{\"code\":\"monsieurbiz.text\",\"data\":{\"content\":\"<p>Add a <strong>pop</strong> of color to your winter look with this vibrant beanie from Explorer Essentials' Sylius Adventurous 2024 collection. <strong>Made from 100%% cotton</strong>, this soft and cozy hat features a playful pompom on top and a multicolored design that gradates from rose to blue to violet.<br></p>\",\"align\":\"\"}},{\"code\":\"monsieurbiz.button\",\"data\":{\"label\":\"See reviews\",\"link\":\"#reviews\",\"link_type\":\"internal\",\"align\":\"\",\"level\":\"primary\"}}]",
                                                         "secondColumn":"[{\"code\":\"monsieurbiz.image\",\"data\":{\"image\":\"/media/rich-editor/cap_banner.jpg\",\"alt\":null,\"title\":null,\"link\":null,\"link_type\":null,\"align\":\"\"}}]"
                                                     }
@@ -75,7 +75,7 @@ sylius_fixtures:
                                                 {
                                                     "code":"monsieurbiz.separator",
                                                     "data":{
-                                                        "hidden":false,
+                                                        "hidden":true,
                                                         "style":"dashed",
                                                         "thickness":"medium"
                                                     }
@@ -105,11 +105,27 @@ sylius_fixtures:
                                                     }
                                                 },
                                                 {
+                                                    "code":"monsieurbiz.separator",
+                                                    "data":{
+                                                        "hidden":true,
+                                                        "style":"solid",
+                                                        "thickness":"fine"
+                                                    }
+                                                },
+                                                {
                                                     "code":"monsieurbiz.quote",
                                                     "data":{
                                                         "author":"Sarah K. (5/5 stars)",
                                                         "content":"<p>\"I've received so many compliments on this beanie! The pompom is so much fun and the colors are gorgeous.\"</p>",
                                                         "align":""
+                                                    }
+                                                },
+                                                {
+                                                    "code":"monsieurbiz.separator",
+                                                    "data":{
+                                                        "hidden":true,
+                                                        "style":"solid",
+                                                        "thickness":"fine"
                                                     }
                                                 },
                                                 {
@@ -123,7 +139,7 @@ sylius_fixtures:
                                                 {
                                                     "code":"monsieurbiz.separator",
                                                     "data":{
-                                                        "hidden":false,
+                                                        "hidden":true,
                                                         "style":"dashed",
                                                         "thickness":"medium"
                                                     }
@@ -178,14 +194,30 @@ sylius_fixtures:
                                                     "data":{
                                                         "link":"https://youtu.be/bESXAeVdaGk",
                                                         "width":null,
-                                                        "height":"400",
+                                                        "height":null,
                                                         "align":""
+                                                    }
+                                                },
+                                                {
+                                                    "code":"monsieurbiz.separator",
+                                                    "data":{
+                                                        "hidden":true,
+                                                        "style":"solid",
+                                                        "thickness":"fine"
                                                     }
                                                 },
                                                 {
                                                     "code":"monsieurbiz.html",
                                                     "data":{
                                                         "content":"<h3>More details</h3>\r\n<ul>\r\n<li>Brand: Explorer Essentials</li>\r\n<li>Collection: Sylius Adventurous 2024</li>\r\n<li>Material: 100%% cotton</li>\r\n</ul>"
+                                                    }
+                                                },
+                                                {
+                                                    "code":"monsieurbiz.separator",
+                                                    "data":{
+                                                        "hidden":true,
+                                                        "style":"solid",
+                                                        "thickness":"fine"
                                                     }
                                                 },
                                                 {
