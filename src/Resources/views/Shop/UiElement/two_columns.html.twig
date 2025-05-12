@@ -17,7 +17,7 @@ element fields :
     '1/5': {'first': 'col-md-2', 'second': 'col-md-10'},
     '1/4': {'first': 'col-md-3', 'second': 'col-md-9'},
     '1/3': {'first': 'col-md-4', 'second': 'col-md-8'},
-    '2/5': {'first': 'col-md-5', 'second': 'col-md-7'},
+    '2/5': {'first': 'col-md-4', 'second': 'col-md-8'},
     '1/2': {'first': 'col-md-6', 'second': 'col-md-6'},
     '3/5': {'first': 'col-md-7', 'second': 'col-md-5'},
     '2/3': {'first': 'col-md-8', 'second': 'col-md-4'},
@@ -26,11 +26,7 @@ element fields :
 } %}
 
 {% set selectedClasses = columnClasses[firstColumnWidth]|default({'first': 'col-md-6', 'second': 'col-md-6'}) %}
-<div class="d-flex {{ flexClassMobile }} flex-md-row py-5 py-lg-5 ui-element-two-columns gap-4 gap-md-5">
-    <div class="w-100 {{ selectedClasses.first }} {{ marginAutoClass }}">
-        {{ monsieurbiz_richeditor_get_elements(element.firstColumn)|monsieurbiz_richeditor_render_elements }}
-    </div>
-    <div class="w-100 {{ selectedClasses.second }} {{ marginAutoClass }}">
-        {{ monsieurbiz_richeditor_get_elements(element.secondColumn)|monsieurbiz_richeditor_render_elements }}
-    </div>
+<div class="d-flex {{ flexClassMobile }} flex-md-row py-5 py-lg-7.5 ui-element-two-columns gap-3">
+    <div class="col-12 {{ selectedClasses.first }} {{ marginAutoClass }}">{{ monsieurbiz_richeditor_get_elements(element.firstColumn)|monsieurbiz_richeditor_render_elements }}</div>
+    <div class="col-12 {{ selectedClasses.second }} {{ marginAutoClass }}">{{ monsieurbiz_richeditor_get_elements(element.secondColumn)|monsieurbiz_richeditor_render_elements }}</div>
 </div>
