@@ -14,12 +14,12 @@
 
 {% set textSize = element.text_size is defined and element.text_size is not empty ? element.text_size : '' %}
 {% set textSizeMap = {
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XS')): 'tiny',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_S')): 'small',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_M')): 'medium',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_L')): 'large',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XL')): 'huge',
-    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XXL')): 'very huge',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XS')): 'display-6',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_S')): 'display-5',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_M')): 'display-4',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_L')): 'display-3',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XL')): 'display-2',
+    (constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XXL')): 'display-1',
 } %}
 {% set textSize = textSizeMap[textSize]|default(textSizeMap[constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\TextSizeType::SIZE_XL')]) %}
 
@@ -32,5 +32,5 @@
 {% set titleColor = titleColorMap[titleColor]|default('') %}
 
 {% if element is not empty %}
-    <{{tag}} class="ui {{ textSize }} header" style="text-align: {{align}};{% if titleColor %}color: {{titleColor}};{% endif %}">{{ element.content }}</{{tag}}>
+    <{{tag}} class="{{ textSize }}" style="text-align: {{align}};{% if titleColor %}color: {{titleColor}};{% endif %}">{{ element.content }}</{{tag}}>
 {% endif %}
