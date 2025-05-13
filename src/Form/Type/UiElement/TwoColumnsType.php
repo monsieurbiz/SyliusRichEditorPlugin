@@ -22,6 +22,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class TwoColumnsType extends AbstractType
 {
+    public const WIDTH_1_5 = '1/5';
+
+    public const WIDTH_1_4 = '1/4';
+
+    public const WIDTH_1_3 = '1/3';
+
+    public const WIDTH_2_5 = '2/5';
+
+    public const WIDTH_1_2 = '1/2';
+
+    public const WIDTH_3_5 = '3/5';
+
+    public const WIDTH_2_3 = '2/3';
+
+    public const WIDTH_3_4 = '3/4';
+
+    public const WIDTH_4_5 = '4/5';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         parent::buildForm($builder, $options);
@@ -33,18 +51,18 @@ class TwoColumnsType extends AbstractType
                     new Assert\NotBlank([]),
                 ],
                 'choices' => [
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_5' => '1/5',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_4' => '1/4',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_3' => '1/3',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_2_5' => '2/5',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_2' => '1/2',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_3_5' => '3/5',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_2_3' => '2/3',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_3_4' => '3/4',
-                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_4_5' => '4/5',
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_5' => self::WIDTH_1_5,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_4' => self::WIDTH_1_4,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_3' => self::WIDTH_1_3,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_2_5' => self::WIDTH_2_5,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_2' => self::WIDTH_1_2,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_3_5' => self::WIDTH_3_5,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_2_3' => self::WIDTH_2_3,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_3_4' => self::WIDTH_3_4,
+                    'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_4_5' => self::WIDTH_4_5,
                 ],
                 'preferred_choices' => [
-                    '1/2',
+                    self::WIDTH_1_2,
                 ],
             ])
             ->add('marginAuto', CheckboxType::class, [

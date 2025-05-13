@@ -13,16 +13,26 @@ element fields :
 {% set marginAutoClass = element.marginAuto is defined and element.marginAuto ? 'm-auto' : '' %}
 {% set flexClassMobile = element.reverseMobile is defined and element.reverseMobile ? 'flex-column-reverse' : 'flex-column' %}
 
+{% set width_1_5 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_1_5') %}
+{% set width_1_4 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_1_4') %}
+{% set width_1_3 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_1_3') %}
+{% set width_2_5 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_2_5') %}
+{% set width_1_2 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_1_2') %}
+{% set width_3_5 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_3_5') %}
+{% set width_2_3 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_2_3') %}
+{% set width_3_4 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_3_4') %}
+{% set width_4_5 = constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\UiElement\\TwoColumnsType::WIDTH_4_5') %}
+
 {% set columnClasses = {
-    '1/5': {'first': 'col-md-2', 'second': 'col-md-10'},
-    '1/4': {'first': 'col-md-3', 'second': 'col-md-9'},
-    '1/3': {'first': 'col-md-4', 'second': 'col-md-8'},
-    '2/5': {'first': 'col-md-4', 'second': 'col-md-8'},
-    '1/2': {'first': 'col-md-6', 'second': 'col-md-6'},
-    '3/5': {'first': 'col-md-7', 'second': 'col-md-5'},
-    '2/3': {'first': 'col-md-8', 'second': 'col-md-4'},
-    '3/4': {'first': 'col-md-9', 'second': 'col-md-3'},
-    '4/5': {'first': 'col-md-10', 'second': 'col-md-2'}
+    (width_1_5): {'first': 'col-md-2', 'second': 'col-md-10'},
+    (width_1_4): {'first': 'col-md-3', 'second': 'col-md-9'},
+    (width_1_3): {'first': 'col-md-4', 'second': 'col-md-8'},
+    (width_2_5): {'first': 'col-md-5', 'second': 'col-md-7'},
+    (width_1_2): {'first': 'col-md-6', 'second': 'col-md-6'},
+    (width_3_5): {'first': 'col-md-7', 'second': 'col-md-5'},
+    (width_2_3): {'first': 'col-md-8', 'second': 'col-md-4'},
+    (width_3_4): {'first': 'col-md-9', 'second': 'col-md-3'},
+    (width_4_5): {'first': 'col-md-10', 'second': 'col-md-2'}
 } %}
 
 {% set selectedClasses = columnClasses[firstColumnWidth]|default({'first': 'col-md-6', 'second': 'col-md-6'}) %}
