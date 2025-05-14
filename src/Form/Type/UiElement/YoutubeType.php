@@ -39,6 +39,7 @@ class YoutubeType extends AbstractType
             ])
             ->add('width', FormTextType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.width',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.width_help',
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),
@@ -47,6 +48,7 @@ class YoutubeType extends AbstractType
             ])
             ->add('height', FormTextType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.height',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.field.height_help',
                 'required' => false,
                 'constraints' => [
                     new Assert\Type('numeric'),

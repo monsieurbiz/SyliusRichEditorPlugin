@@ -12,29 +12,29 @@
 {% set imageCount = element.images|length %}
 {% set gridClasses = '' %}
 
-{% if imageCount >= 5 %}
-    {% set gridClasses = 'five column' %}
-{% elseif imageCount == 4 %}
-    {% set gridClasses = 'four column' %}
+{% if imageCount >= 4 %}
+    {% set gridClasses = 'col-12 col-md-3' %}
 {% elseif imageCount == 3 %}
-    {% set gridClasses = 'three column' %}
+    {% set gridClasses = 'col-12 col-md-4' %}
 {% elseif imageCount == 2 %}
-    {% set gridClasses = 'two column' %}
+    {% set gridClasses = 'col-12 col-md-6' %}
 {% else %}
-    {% set gridClasses = 'one column' %}
+    {% set gridClasses = 'col-12' %}
 {% endif %}
 
-<div class="ui {{ gridClasses }} grid my-7.5 w-full">
-    {% for image in element.images %}
-        <div class="column">
-            {% if image.link is not empty %}
-                {% set linkIsBlank = image.link_type is defined and image.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
-                <a class="ui fluid image" href="{{ image.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <img class="ui rounded image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
-                </a>
-            {% else %}
-                <img class="ui fluid rounded image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
-            {% endif %}
-        </div>
-    {% endfor %}
+<div class="container m-2">
+    <div class="row row-gap-3">
+        {% for image in element.images %}
+            <div class="{{ gridClasses }}">
+                {% if image.link is not empty %}
+                    {% set linkIsBlank = image.link_type is defined and image.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
+                    <a href="{{ image.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                        <img class="img-fluid rounded" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
+                    </a>
+                {% else %}
+                    <img class="img-fluid rounded" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(image.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ image.alt|default('') }}" title="{{ image.title|default('') }}" />
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 </div>

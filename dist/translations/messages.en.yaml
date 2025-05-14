@@ -2,6 +2,21 @@ app:
     ui_element:
         google_maps:
             title: 'Google Maps'
-            short_description: 'Include a Google Maps'
             description: 'An element with a Google Maps link'
-            link: 'Link'
+            field:
+                link: 'Embed Link (The `src` of the iframe)'
+        text_collection:
+            title: 'Text collection'
+            description: 'Collection of text types'
+            field:  
+                items: 'Items'
+        product:
+            title: 'Product'
+            description: 'A product'
+            field:
+                product: 'Product'
+        product_collection:
+            title: 'Product collection'
+            description: 'A list products'
+            field:
+                products: 'Products'

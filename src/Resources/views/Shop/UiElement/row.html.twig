@@ -5,10 +5,10 @@
         content
 #}
 {% if element.content|default('') is not empty %}
-<div class="ui grid equal width container">
+<div class="d-flex flex-row flex-wrap gap-3">
     {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
     {% for column in content %}
-        <div class="row">
+        <div class="w-full">
            {{ column | monsieurbiz_richeditor_render_element }}
         </div>
     {% endfor %}

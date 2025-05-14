@@ -127,6 +127,7 @@ monsieurbiz_richeditor_plugin:
         cancel: 'Anuluj'
         save: 'Zapisz'
         add_image: 'Dodaj obraz'
+        delete_image: 'Usuń obraz'
         select_ui_element: 'Wybierz element UI'
         align:
             label: 'Wyrównanie'

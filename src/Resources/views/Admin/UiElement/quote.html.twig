@@ -8,8 +8,12 @@
 #}
 {% set align = element.align is defined and element.align is not empty ? element.align : 'inherit' %}
 {% if element is not empty %}
-<blockquote style="text-align: {{align}};">
-    {{ element.content | raw | nl2br }}
-    <br />— <cite>{{ element.author }}</cite>
-</blockquote>
+    <figure style="text-align: {{align}};">
+        <blockquote class="blockquote">
+            <p>{{ element.content | raw | nl2br }}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            {{ element.author }}
+        </figcaption>
+    </figure>
 {% endif %}

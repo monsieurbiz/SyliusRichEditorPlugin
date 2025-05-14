@@ -107,6 +107,7 @@ monsieurbiz_richeditor_plugin:
     cancel: 'Annuleren'
     save: 'Opslaan'
     add_image: 'Voeg afbeelding toe'
+    delete_image: 'Verwijder afbeelding'
   action:
     new: 'Schakel tussen beschikbare widgets'
     preview: 'Voorbeeld'

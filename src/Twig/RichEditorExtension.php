@@ -258,6 +258,18 @@ final class RichEditorExtension extends AbstractExtension
             }
         }
 
+        if ($path instanceof UploadedFile) {
+            return null;
+        }
+
+        /** Manage fakepath a better way */
+        /** To reproduce, add `Images collection` Ui Element, add a first image and select a file, click on `Add Image` */
+        /** The content will be posted and the path of the image will be `C:\\fakepath\\` and the filename */
+        /** @see https://davidwalsh.name/fakepath */
+        if (null !== $path && 0 === strpos($path, 'C:\\fakepath\\')) {
+            return null;
+        }
+
         return $path;
     }
 

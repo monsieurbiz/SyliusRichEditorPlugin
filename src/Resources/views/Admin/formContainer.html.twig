@@ -1,0 +1,14 @@
+{% form_theme form '@MonsieurBizSyliusRichEditorPlugin/Form/theme.html.twig' %}
+
+{% set formAttributes = form.vars.attr|merge({'data-model': 'norender|*'}) %} {# Do not reload the form on each field change #}
+{% set formAttributes = formAttributes|merge(
+    {
+        'action': url('monsieurbiz_richeditor_admin_form_submit', {
+            'code': this.uiElementCode,
+            'isEdition': this.isEdition ? 1 : 0,
+            'locale': this.locale
+        })}
+) %}
+<div {{ attributes }}>
+    {{ form(form, {attr: formAttributes}) }}
+</div>

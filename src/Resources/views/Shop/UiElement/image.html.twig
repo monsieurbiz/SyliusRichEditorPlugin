@@ -15,10 +15,10 @@
     {% if element.link is not empty %}
         {% set linkIsBlank = element.link_type is defined and element.link_type == constant('MonsieurBiz\\SyliusRichEditorPlugin\\Form\\Type\\LinkTypeType::TYPE_EXTERNAL') %}
         <a href="{{ element.link }}"{% if linkIsBlank %} target="_blank" rel="noopener noreferrer"{% endif %}>
-            <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+            <img class="img-fluid" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
         </a>
     {% else %}
-        <img class="ui fluid image" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
+        <img class="img-fluid" src="{{ monsieurbiz_richeditor_get_media_without_upload_dir(element.image)|imagine_filter('monsieurbiz_rich_editor_image') }}" alt="{{ element.alt|default('') }}" title="{{ element.title|default('') }}" />
     {% endif %}
 </p>
 {% endif %}

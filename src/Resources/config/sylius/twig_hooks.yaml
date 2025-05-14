@@ -1,0 +1,11 @@
+sylius_twig_hooks:
+    hooks:
+        sylius_admin.base#javascripts:
+            rich_editor_javascripts:
+                template: '@MonsieurBizSyliusRichEditorPlugin/Admin/app.html.twig'
+                priority: -100
+
+        sylius_shop.base#javascripts:
+            rich_editor_javascripts:
+                template: '@MonsieurBizSyliusRichEditorPlugin/Shop/app.html.twig'
+                priority: -100

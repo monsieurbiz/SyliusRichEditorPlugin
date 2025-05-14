@@ -21,14 +21,9 @@ final class GoogleMapsUiElement implements UiElementInterface
 {
     use UiElementTrait;
 
-    private LocaleContextInterface $localeContext;
-
-    /**
-     * GoogleMapsUiElement constructor.
-     */
-    public function __construct(LocaleContextInterface $localeContext)
-    {
-        $this->localeContext = $localeContext;
+    public function __construct(
+        private LocaleContextInterface $localeContext
+    ) {
     }
 
     public function getLocale(): string

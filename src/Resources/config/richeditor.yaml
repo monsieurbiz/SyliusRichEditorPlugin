@@ -6,7 +6,7 @@ monsieurbiz_sylius_richeditor:
             alias: html
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.html.description'
-            icon: html5
+            icon: tabler:file-type-html
             wireframe: html
             tags: [ default, html ]
             classes:
@@ -18,7 +18,7 @@ monsieurbiz_sylius_richeditor:
             alias: text
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.description'
-            icon: font
+            icon: entypo:text
             wireframe: text-paragraph 
             tags: [ default, text ]
             classes:
@@ -30,7 +30,7 @@ monsieurbiz_sylius_richeditor:
             alias: quote
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.description'
-            icon: quote left
+            icon: tabler:quote-filled
             wireframe: text-quote
             tags: [ default, quote ]
             classes:
@@ -42,7 +42,7 @@ monsieurbiz_sylius_richeditor:
             alias: image
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.description'
-            icon: file image
+            icon: tabler:photo
             wireframe: image
             tags: [ default, image ]
             classes:
@@ -54,7 +54,7 @@ monsieurbiz_sylius_richeditor:
             alias: video
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.description'
-            icon: film
+            icon: tabler:video
             wireframe: video-default
             tags: [ default, video ]
             classes:
@@ -66,7 +66,7 @@ monsieurbiz_sylius_richeditor:
             alias: button
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.description'
-            icon: hand pointer
+            icon: teenyicons:button-outline
             wireframe: button
             tags: [ default, button ]
             classes:
@@ -78,7 +78,7 @@ monsieurbiz_sylius_richeditor:
             alias: title
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
-            icon: heading
+            icon: tabler:heading
             wireframe: title
             tags: [ default, title ]
             classes:
@@ -89,7 +89,7 @@ monsieurbiz_sylius_richeditor:
         monsieurbiz.h1:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
-            icon: heading
+            icon: lucide:heading-1
             wireframe: title-h1
             tags: [ default, title, title-h1 ]
             classes:
@@ -97,10 +97,11 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h1.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h1.html.twig'
+            enabled: false
         monsieurbiz.h2:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
-            icon: heading
+            icon: lucide:heading-2
             wireframe: title-h2
             tags: [ default, title, title-h2 ]
             classes:
@@ -108,10 +109,11 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h2.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h2.html.twig'
+            enabled: false
         monsieurbiz.h3:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
-            icon: heading
+            icon: lucide:heading-3
             wireframe: title-h3
             tags: [ default, title, title-h3 ]
             classes:
@@ -119,11 +121,12 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h3.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h3.html.twig'
+            enabled: false
         monsieurbiz.separator:
             alias: separator
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.description'
-            icon: minus
+            icon: tabler:minus
             wireframe: divider
             tags: [ default, separator ]
             classes:
@@ -135,7 +138,8 @@ monsieurbiz_sylius_richeditor:
             alias: anchor
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.description'
-            icon: 'anchor'
+            icon: tabler:anchor
+            wireframe: anchor
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\AnchorType
             templates:
@@ -146,7 +150,7 @@ monsieurbiz_sylius_richeditor:
             alias: youtube
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.description'
-            icon: youtube
+            icon: tabler:brand-youtube
             wireframe: video-youtube
             tags: [ default, youtube ]
             classes:
@@ -158,7 +162,7 @@ monsieurbiz_sylius_richeditor:
             alias: image_collection
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.description'
-            icon: images
+            icon: tabler:library-photo
             wireframe: image-collection
             tags: [ default, image-collection ]
             classes:
@@ -166,11 +170,23 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image_collection.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
+        monsieurbiz.two_columns:
+            alias: two_columns
+            title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.title'
+            description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.description'
+            icon: tabler:columns-2
+            wireframe: two-columns
+            tags: [ default, layout, two-columns ]
+            classes:
+                form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TwoColumnsType
+            templates:
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/two_columns.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/two_columns.html.twig'
         monsieurbiz.column:
             alias: column
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.description'
-            icon: columns
+            icon: tabler:columns-2
             wireframe: column
             tags: [ default, layout, column ]
             classes:
@@ -182,7 +198,7 @@ monsieurbiz_sylius_richeditor:
             alias: row
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.description'
-            icon: bars
+            icon: tabler:layout-rows
             wireframe: row
             tags: [ default, layout, row ]
             classes:
@@ -194,7 +210,7 @@ monsieurbiz_sylius_richeditor:
             alias: markdown
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.description'
-            icon: file code
+            icon: tabler:markdown
             wireframe: markdown
             tags: [ default, markdown ]
             classes:

@@ -1,141 +1,163 @@
-{% include '@SyliusUi/_javascripts.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/js/rich-editor.js'} %}
-{% include '@SyliusUi/_stylesheets.html.twig' with {'path': 'bundles/monsieurbizsyliusricheditorplugin/css/rich-editor.css'} %}
+<script src="{{ asset('bundles/monsieurbizsyliusricheditorplugin/js/rich-editor.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('bundles/monsieurbizsyliusricheditorplugin/css/rich-editor.css') }}">
 
-<div class="ui small basic modal" id="monsieurbiz-rich-editor-confirmation-modal">
-    <div class="ui icon header">
-        <i class="warning sign icon"></i>
-        {{ 'sylius.ui.confirm_your_action'|trans }}
-    </div>
-    <div class="content">
-        <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
-    </div>
-    <div class="actions">
-        <div class="ui red basic cancel inverted button">
-            <i class="remove icon"></i>
-            {{ 'sylius.ui.no_label'|trans }}
-        </div>
-        <div class="ui green ok inverted button" id="monsieurbiz-rich-editor-confirmation-button">
-            <i class="checkmark icon"></i>
-            {{ 'sylius.ui.yes_label'|trans }}
-        </div>
-    </div>
-</div>
-
-<div class="ui small basic modal" id="monsieurbiz-rich-editor-confirmation-modal">
-    <div class="ui icon header">
-        <i class="warning sign icon"></i>
-        {{ 'sylius.ui.confirm_your_action'|trans }}
-    </div>
-    <div class="content">
-        <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
-    </div>
-    <div class="actions">
-        <div class="ui red basic cancel inverted button">
-            <i class="remove icon"></i>
-            {{ 'sylius.ui.no_label'|trans }}
-        </div>
-        <div class="ui green ok inverted button" id="monsieurbiz-rich-editor-confirmation-button">
-            <i class="checkmark icon"></i>
-            {{ 'sylius.ui.yes_label'|trans }}
+<div id="monsieurbiz-rich-editor-confirmation-modal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="warning sign icon"></i>
+                    {{ 'sylius.ui.confirm_your_action'|trans }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ 'sylius.ui.are_your_sure_you_want_to_perform_this_action'|trans }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    {{ ux_icon('material-symbols:remove-rounded', {class: 'icon'}) }}
+                    {{ 'sylius.ui.no_label'|trans }}
+                </button>
+                <button type="button" id="monsieurbiz-rich-editor-confirmation-button" data-bs-dismiss="modal" class="btn btn-primary">
+                    {{ ux_icon('fluent:checkmark-12-regular', {class: 'icon'}) }}
+                    {{ 'sylius.ui.yes_label'|trans }}
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
 <script id="monsieurbiz-rich-editor-actions" type="x-tmpl-mustache">
 {% verbatim %}
-<div class="ui horizontal divider">
-    <div class="ui compact tiny menu">
-        <a data-position="{{position}}" class="item js-uie-add" type="button">
-            <i class="plus square icon"></i>
-            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.add"|trans }}{% verbatim %}
-        </a>
-        <a data-position="{{position}}" class="item js-uie-paste disabled" type="button">
-            <i class="paste icon"></i>
-            {% endverbatim %}{{ "monsieurbiz_richeditor_plugin.form.paste_from_clipboard"|trans }}{% verbatim %}
-        </a>
+    <div class="col-12">
+        <div class="d-flex align-items-center">
+            <hr class="flex-grow-1">
+            <div class="btn-group" role="group">
+                <a data-position="{{position}}" class="item js-uie-add btn" type="button">
+                    {% endverbatim %}
+                        {{ ux_icon('fa-solid:plus-square', {class: 'icon w-3 h-3'}) }}
+                        {{ "monsieurbiz_richeditor_plugin.form.add"|trans }}
+                    {% verbatim %}
+                </a>
+                <div class="vr"></div>
+                <a data-position="{{position}}" class="item js-uie-paste btn" type="button">
+                    {% endverbatim %}
+                        {{ ux_icon('fa-solid:paste', {class: 'icon w-3 h-3'}) }}
+                        {{ "monsieurbiz_richeditor_plugin.form.paste_from_clipboard"|trans }}
+                    {% verbatim %}
+                </a>
+            </div>
+            <hr class="flex-grow-1">
+        </div>
     </div>
-</div>
 {% endverbatim %}
 </script>
 
 <script id="monsieurbiz-rich-editor-ui-element" type="x-tmpl-mustache">
 {% verbatim %}
-    <div class="ui segment js-uie-element">
-        <div
-            class="uie-flex uie-flex-cross-center uie-flex-main-between uie-w-full uie-mb-sm sm:uie-flex-column">
-            <h3 class="header uie-m-0">
-                <i class="{{icon}} icon"></i>
-                {{title}}
-                {{#disabled}}<span class="ui label">{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.ui.disabled'|trans }}{% verbatim %}</span>{{/disabled}}
-            </h3>
-            <div class="ui small basic icon buttons sm:uie-mt-xs">
-                <button class="ui button js-uie-delete" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.delete'|trans }}{% verbatim %}" data-inverted>
-                    <i class="trash alternate outline icon"></i>
-                </button>
-                <button class="ui button js-uie-edit" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.edit'|trans }}{% verbatim %}" data-inverted>
-                    <i class="pencil alternate icon"></i>
-                </button>
-                <button class="ui button js-uie-up" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_up'|trans }}{% verbatim %}" data-inverted>
-                    <i class="arrow up icon"></i>
-                </button>
-                <button class="ui button js-uie-down" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_down'|trans }}{% verbatim %}" data-inverted>
-                    <i class="arrow down icon"></i>
-                </button>
-                <button class="ui button js-uie-copy" type="button" data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copy'|trans }}{% verbatim %}" data-inverted>
-                    <i class="copy icon"></i>
-                </button>
+    <div class="col-12 js-uie-element">
+        <div class="border border-1 border-lightblack rounded-2 p-3">
+            <div
+                class="d-flex justify-content-between align-items-center">
+                <h3 class="header m-0 h3">
+                    {{#icon}}
+                        {{& iconHtml }}
+                    {{/icon}}
+                    {{title}}
+                    {{#disabled}}<span>{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.ui.disabled'|trans }}{% verbatim %}</span>{{/disabled}}
+                </h3>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button class="btn btn-outline-secondary js-uie-delete p-2" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.delete'|trans }}{% verbatim %}">
+                        {% endverbatim %}
+                                {{ ux_icon('iconamoon:trash', {class: 'm-0 w-3 h-3'}) }}
+                        {%  verbatim %}
+                    </button>
+                    <button class="btn btn-outline-secondary js-uie-edit p-2" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.edit'|trans }}{% verbatim %}">
+                        {% endverbatim %}
+                                {{ ux_icon('fa-solid:pencil-alt', {class: 'm-0 w-3 h-3'}) }}
+                        {%  verbatim %}
+                    </button>
+                    <button class="btn btn-outline-secondary js-uie-up p-2" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_up'|trans }}{% verbatim %}">
+                        {% endverbatim %}
+                                {{ ux_icon('tabler:arrow-up', {class: 'm-0 w-3 h-3'}) }}
+                        {%  verbatim %}
+                    </button>
+                    <button class="btn btn-outline-secondary js-uie-down p-2" type="button" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.move_down'|trans }}{% verbatim %}">
+                        {% endverbatim %}
+                                {{ ux_icon('tabler:arrow-down', {class: 'm-0 w-3 h-3'}) }}
+                        {%  verbatim %}
+                    </button>
+                    <button class="btn btn-outline-secondary js-uie-copy p-2" type="button" data-alternate-text="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}{% verbatim %}" data-tooltip="{% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.copy'|trans }}{% verbatim %}">
+                        {% endverbatim %}
+                                {{ ux_icon('fa-solid:copy', {class: 'm-0 w-3 h-3'}) }}
+                        {%  verbatim %}
+                    </button>
+                </div>
             </div>
+            <div class="fluid js-uie-preview mt-3">{{{preview}}}</div>
         </div>
-        <div class="ui fluid js-uie-preview">{{{preview}}}</div>
     </div>
 {% endverbatim %}
 </script>
 
 <script id="monsieurbiz-rich-editor-ui-elements-container" type="x-tmpl-mustache">
-    <div class="ui">
-        <div class="uie-flex uie-flex-cross-right">
-            <div class="ui buttons">
-                <button class="ui icon button js-uie-tools-copy-all" type="button" data-alternate-text="{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.copy_all_from_clipboard"|trans }}">
-                    <i class="copy icon"></i>
-                </button>
-                <button class="ui icon button js-uie-tools-paste-all" type="button" disabled data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.paste_all_from_clipboard"|trans }}">
-                    <i class="paste icon"></i>
-                </button>
-                 <button class="ui icon button js-uie-tools-trash-all" type="button" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.trash_all"|trans }}">
-                    <i class="trash icon"></i>
-                </button>
+    <div class="border border-1 border-lightblack rounded-2">
+        <div class="row">
+            <div class="d-flex justify-content-end">
+                <div class="btn-group m-3 mb-0" role="group">
+                    <button class="btn btn-outline-secondary p-2 js-uie-tools-copy-all" type="button" data-alternate-text="{{ 'monsieurbiz_richeditor_plugin.form.copied'|trans }}" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.copy_all_from_clipboard"|trans }}">
+                        {{ ux_icon('fa-solid:copy', {class: 'm-0 w-3 h-3'}) }}
+                    </button>
+                    <button class="btn btn-outline-secondary p-2 js-uie-tools-paste-all" type="button" disabled data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.paste_all_from_clipboard"|trans }}">
+                        {{ ux_icon('fa-solid:paste', {class: 'm-0 w-3 h-3'}) }}
+                    </button>
+                        <button class="btn btn-outline-secondary p-2 js-uie-tools-trash-all" type="button" data-tooltip="{{ "monsieurbiz_richeditor_plugin.form.trash_all"|trans }}">
+                        {{ ux_icon('iconamoon:trash', {class: 'm-0 w-3 h-3'}) }}
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="ui segment js-uie-container">
+            <div class="col-12 px-5 pb-5">
+                <div class="js-uie-container row g-1">
+                </div>
+            </div>
         </div>
     </div>
 </script>
 
 <script id="monsieurbiz-rich-editor-ui-element-card" type="x-tmpl-mustache">
 {% verbatim %}
-<div class="ui link card uie-card js-uie-new">
-    <div class="content left aligned">
-        <div class="header">
-            <div>
-                <i class="{{icon}} icon"></i>
-                {{title}}
+<div class="col">
+    <div class="card uie-card js-uie-new p-3 h-100">
+        <div class="content left aligned d-flex flex-column h-100">
+            <div class="header h3 mb-1">
+                <div>
+                    {{#icon}}
+                        {{& iconHtml }}
+                    {{/icon}}
+                    {{title}}
+                </div>
+                {{#description}}
+                    <div
+                        class="d-inline-flex align-items-center justify-content-center border p-1 rounded-2"
+                        data-tooltip="{{description}}">
+                    {% endverbatim %}
+                        {{ ux_icon('tabler:question-mark') }}
+                    {% verbatim %}
+                    </div>
+                {{/description}}
             </div>
-            {{#description}}
-            <div class="mini ui basic icon button" data-tooltip="{{description}}" data-inverted="" data-position="bottom center">
-                <i class="question icon"></i>
-            </div>
-            {{/description}}
+            {{#wireframe}}
+                <div class="wireframe flex-grow-1 d-flex align-items-end">
+                    {{& wireframeHtml }}
+                </div>
+            {{/wireframe}}
         </div>
-        {{#wireframe}}
-            <div class="wireframe">
-                {{& wireframeHtml }}
-            </div>
-        {{/wireframe}}
-    </div>
-    <div class="extra content right aligned">
-        {{#tags}}
-        <span class="ui basic tiny label">{{.}}</span>
-        {{/tags}}
+        <div class="content d-flex justify-content-end mt-3 gap-2">
+            {{#tags}}
+            <span class="badge badge-outline">{{.}}</span>
+            {{/tags}}
+        </div>
     </div>
 </div>
 {% endverbatim %}
@@ -146,18 +168,19 @@
 <div class="uie-panels js-uie-panels-{{uid}}">
     <div class="uie-panels__content js-uie-panels-selector-{{uid}}">
         <div class="uie-flex uie-flex-main-between uie-w-full uie-mb-md">
-            <h2 class="ui header uie-heading uie-m-0" id="uie-heading-{{uid}}">
+            <h2 class="header uie-heading uie-m-0" id="uie-heading-{{uid}}">
                 {% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.select_ui_element'|trans }}{% verbatim %}
             </h2>
             <div class="uie-ml-md">
-                <button class="ui button icon js-uie-panels-close-{{uid}}" type="button">
-                    <i class="close icon"></i>
-                    {% endverbatim %}{{ 'monsieurbiz_richeditor_plugin.form.close'|trans }}{% verbatim %}
+                <button class="btn btn-outline-primary js-uie-panels-close-{{uid}}" type="button">
+                    {% endverbatim %}
+                        {{ ux_icon('line-md:close') }}
+                        {{ 'monsieurbiz_richeditor_plugin.form.close'|trans }}
+                    {% verbatim %}
                 </button>
             </div>
         </div>
-
-        <div class="ui cards uie-cards js-uie-cards-container">
+        <div class="uie-cards js-uie-cards-container row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
         </div>
 
         <div class="uie-panels__new js-uie-panels-new-{{uid}}">
@@ -175,7 +198,6 @@
 </div>
 {% endverbatim %}
 </script>
-
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -223,15 +245,6 @@
             setupRichEditor(editor, tags, locale);
         });
 
-        // JQuery event triggered by @SyliusUiBundle/Resources/private/js/sylius-form-collection.js
-        $(document).on('collection-form-add', (event, addedElement) => {
-            document.dispatchEvent(new CustomEvent('rich-editor:reload', {
-                detail: {
-                    target: addedElement[0],
-                }
-            }));
-        });
-
         document.addEventListener('monsieurBizRichEditorInitForm', (e) => {
             // Init dynamic editors
             let editors = document.querySelectorAll('[data-component="rich-editor"]:not([data-rich-editor-uid])');
@@ -241,8 +254,6 @@
             });
 
             let form = e.detail.form;
-            $(form).find('[data-form-type="collection"]').CollectionForm();
-            $(form).find('.sylius-autocomplete').autoComplete();
         });
     });
 
