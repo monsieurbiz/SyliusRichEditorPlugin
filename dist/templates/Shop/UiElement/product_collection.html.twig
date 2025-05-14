@@ -7,16 +7,16 @@ element fields:
         title: string
         product_code: string
 element methods:
-    getProduct(string $code): ?ProductInterface
+    getProducts(): array
 #}
 
 {% if element.title|default(null) %}
     <div class="h1">{{ element.title }}</div>
 {% endif %}
 
-{% if element.products|default([])|length > 0 %}
+{% if element.products|length > 0 %}
     {% set products = ui_element.getProducts(element.products) %}
-    {% if products|default([])|length > 0 %}
+    {% if products|length > 0 %}
         <div class="container">
             <div class="row">
                 {% for product in products %}

@@ -5,12 +5,12 @@
         content
 #}
 {% if element.content|default('') is not empty %}
-<div class="ui row">
-    {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
-    {% for row in content %}
-        <div class="col" style="border: 2px dashed rgba(34,36,38,0.38); padding: 5px; margin: 5px; position: relative;">
-           {{ row | monsieurbiz_richeditor_render_element }}
-        </div>
-    {% endfor %}
-</div>
+    <div class="d-flex w-full gap-3">
+        {% set content = monsieurbiz_richeditor_get_elements(element.content) %}
+        {% for column in content %}
+            <div class="w-full">
+                {{ column | monsieurbiz_richeditor_render_element }}
+            </div>
+        {% endfor %}
+    </div>
 {% endif %}
