@@ -31,7 +31,7 @@ twig:
 
 liip_imagine:
     loaders:
-        monsieurbiz_sylius_rich_editor:
+        sylius_image:
             filesystem:
                 allow_unresolvable_data_roots: true
                 data_root:
