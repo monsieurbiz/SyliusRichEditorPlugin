@@ -87,8 +87,11 @@ bin/console asset:install
 
 ## Use it with the [Sylius Media Manager](https://github.com/monsieurbiz/SyliusMediaManagerPlugin/)
 
-The Media Manager is not compatible yet with Rich Editor v3.
-We are doing our best to make it work with it. Stay tuned!
+You don't need to do something, everything is compatible !
+
+```
+composer require monsieurbiz/sylius-media-manager-plugin="^2.0"
+```
 
 ## Use the Rich Editor
 
