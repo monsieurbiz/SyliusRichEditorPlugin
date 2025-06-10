@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Validator\Constraints;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
+#[Attribute]
 class YoutubeUrl extends Constraint
 {
     public string $message = 'The value "{{ string }}" does not contains a valid Youtube URL.';
