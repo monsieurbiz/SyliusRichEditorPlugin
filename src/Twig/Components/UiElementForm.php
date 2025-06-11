@@ -14,10 +14,9 @@ declare(strict_types=1);
 namespace MonsieurBiz\SyliusRichEditorPlugin\Twig\Components;
 
 use RuntimeException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
-use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -26,8 +25,7 @@ use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\LiveComponent\LiveCollectionTrait;
 
-#[AsLiveComponent(name: 'SyliusAdmin:MonsieurBizUiElement:Form', template: '@MonsieurBizSyliusRichEditorPlugin/Admin/formContainer.html.twig')]
-class UiElementForm extends AbstractController
+class UiElementForm
 {
     use ComponentToolsTrait;
     use ComponentWithFormTrait;
@@ -52,6 +50,11 @@ class UiElementForm extends AbstractController
     #[LiveProp]
     public ?string $locale = null;
 
+    public function __construct(
+        protected readonly FormFactoryInterface $formFactory,
+    ) {
+    }
+
     #[LiveAction]
     public function addCollectionItem(PropertyAccessorInterface $propertyAccessor, #[LiveArg] string $name): void
     {
@@ -68,7 +71,7 @@ class UiElementForm extends AbstractController
 
     protected function instantiateForm(): FormInterface
     {
-        return $this->createForm(
+        return $this->formFactory->create(
             $this->uiElementFormClass ?? throw new RuntimeException('Ui Element form class is not defined'),
             $this->data,
         );
