@@ -65,7 +65,7 @@ final class Configuration implements ConfigurationInterface
                                 ->addDefaultsIfNotSet()
                                 ->children()
                                     ->scalarNode('admin_form')
-                                        ->defaultValue('@MonsieurBizSyliusRichEditorPlugin/Admin/form.html.twig')
+                                        ->defaultValue('@MonsieurBizSyliusRichEditorPlugin/admin/form.html.twig')
                                     ->end()
                                     ->scalarNode('admin_render')->isRequired()->cannotBeEmpty()->end()
                                     ->scalarNode('front_render')->isRequired()->cannotBeEmpty()->end()

@@ -124,7 +124,7 @@ trait UiElementTrait
                 return '';
             }
 
-            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/Admin/wireframe.html.twig', ['wireframeCode' => $code]);
+            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/admin/wireframe.html.twig', ['wireframeCode' => $code]);
         } catch (Exception $e) {
             return '';
         }
@@ -142,7 +142,7 @@ trait UiElementTrait
                 return '';
             }
 
-            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/Admin/icon.html.twig', ['icon' => $icon]);
+            return $this->twig->render('@MonsieurBizSyliusRichEditorPlugin/admin/icon.html.twig', ['icon' => $icon]);
         } catch (Exception $e) {
             return '';
         }
