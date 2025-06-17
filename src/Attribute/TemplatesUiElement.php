@@ -21,7 +21,7 @@ final class TemplatesUiElement
     public function __construct(
         public string $adminRender,
         public string $frontRender,
-        public string $adminForm = '@MonsieurBizSyliusRichEditorPlugin/Admin/form.html.twig',
+        public string $adminForm = '@MonsieurBizSyliusRichEditorPlugin/admin/form.html.twig',
     ) {
     }
 }

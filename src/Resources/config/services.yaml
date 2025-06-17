@@ -66,4 +66,4 @@ services:
     MonsieurBiz\SyliusRichEditorPlugin\Twig\Components\UiElementForm:
         autoconfigure: false
         tags:
-            - { name: 'sylius.live_component.admin', key: 'SyliusAdmin:MonsieurBizUiElement:Form', template: '@MonsieurBizSyliusRichEditorPlugin/Admin/formContainer.html.twig' }
+            - { name: 'sylius.live_component.admin', key: 'SyliusAdmin:MonsieurBizUiElement:Form', template: '@MonsieurBizSyliusRichEditorPlugin/admin/form_container.html.twig' }
