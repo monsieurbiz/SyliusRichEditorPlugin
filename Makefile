@@ -1,10 +1,9 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
-APP_DIR=tests/Application
-SYLIUS_VERSION=2.1.0
-SYMFONY=cd ${APP_DIR} && symfony
+APP_DIR=vendor/sylius/test-application
+SYMFONY=symfony
 COMPOSER=symfony composer
-CONSOLE=${SYMFONY} console
+CONSOLE=${SYMFONY} php vendor/bin/console
 export COMPOSE_PROJECT_NAME=rich-editor
 PLUGIN_NAME=sylius-${COMPOSE_PROJECT_NAME}-plugin
 COMPOSE=docker compose
@@ -21,9 +20,7 @@ up: docker.up server.start ## Up the project (start docker, start symfony server
 stop: server.stop docker.stop ## Stop the project (stop docker, stop symfony server)
 down: server.stop docker.down ## Down the project (removes docker containers, stop symfony server)
 
-reset: ## Stop docker and remove dependencies
-	${MAKE} docker.down || true
-	rm -rf ${APP_DIR}
+reset: down ## Stop docker and remove dependencies
 	rm -rf node_modules yarn.lock vendor composer.lock
 .PHONY: reset
 
@@ -59,33 +56,12 @@ ${APP_DIR}/node_modules: yarn.install
 ### TEST APPLICATION
 ### ¯¯¯¯¯
 
-application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml
-
-${APP_DIR}:
-	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="~${SYLIUS_VERSION}" ${APP_DIR})
-
-setup_application:
-	rm -f ${APP_DIR}/yarn.lock
-	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
-	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
-	(cd ${APP_DIR} && ${COMPOSER} config minimum-stability dev)
-	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
-	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]')
-	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
-	$(MAKE) ${APP_DIR}/.php-version
-	$(MAKE) ${APP_DIR}/php.ini
-	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
-	$(MAKE) apply_dist
-	(cd ${APP_DIR} && ${COMPOSER} require --no-progress monsieurbiz/${PLUGIN_NAME}="*@dev")
-	rm -rf ${APP_DIR}/var/cache
-
+application: .php-version php.ini dependencies apply_dist ${APP_DIR}/docker-compose.yaml
+.PHONY: application
 
 ${APP_DIR}/docker-compose.yaml:
-	rm -f ${APP_DIR}/docker-compose.yml
-	rm -f ${APP_DIR}/docker-compose.yaml
-	rm -f ${APP_DIR}/compose.yml # Remove Sylius file about Docker
-	rm -f ${APP_DIR}/compose.override.dist.yml # Remove Sylius file about Docker
-	ln -s ../../docker-compose.yaml.dist ${APP_DIR}/docker-compose.yaml
+	rm -f ${APP_DIR}/{docker-compose.yml,docker-compose.yaml,compose.yml,compose.override.dist.yml} # Remove all Sylius files about Docker
+	ln -s ../../../docker-compose.yaml.dist ${APP_DIR}/docker-compose.yaml
 .PHONY: ${APP_DIR}/docker-compose.yaml
 
 ${APP_DIR}/.php-version: .php-version
@@ -136,19 +112,19 @@ test.container: ## Lint the symfony container
 	${CONSOLE} lint:container
 
 test.yaml: ## Lint the symfony Yaml files
-	${CONSOLE} lint:yaml ../../src/Resources/config --parse-tags
+	${CONSOLE} lint:yaml src/Resources/config tests/TestApplication/config --parse-tags
 
 test.schema: ## Validate MySQL Schema
 	${CONSOLE} doctrine:schema:validate
 
 test.twig: ## Validate Twig templates
-	${CONSOLE} lint:twig --no-debug templates/ ../../src/Resources/views/
+	${CONSOLE} lint:twig --no-debug src/Resources/views/ tests/TestApplication/templates/
 
 ###
 ### SYLIUS
 ### ¯¯¯¯¯¯
 
-sylius: dependencies sylius.database sylius.fixtures sylius.assets messenger.setup ## Install Sylius
+sylius: sylius.database sylius.fixtures sylius.assets messenger.setup ## Install Sylius
 .PHONY: sylius
 
 sylius.database: ## Setup the database
@@ -199,10 +175,10 @@ docker.dc: ## Run docker-compose command. Use ARGS="" to pass parameters to dock
 .PHONY: docker.dc
 
 server.start: ## Run the local webserver using Symfony
-	${SYMFONY} local:server:start -d
+	${SYMFONY} local:server:start -d --dir=${APP_DIR}/public
 
 server.stop: ## Stop the local webserver
-	${SYMFONY} local:server:stop
+	${SYMFONY} local:server:stop --dir=${APP_DIR}/public
 
 ###
 ### HELP
