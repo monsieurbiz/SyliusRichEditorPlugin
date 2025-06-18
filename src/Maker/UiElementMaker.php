@@ -69,14 +69,14 @@ final class UiElementMaker extends AbstractMaker
 
         // Generate templates
         $generator->generateTemplate(
-            \sprintf('Admin/UiElement/%s.html.twig', $code),
+            \sprintf('admin/ui_element/%s.html.twig', $code),
             __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
             [
                 'code' => $code,
             ]
         );
         $generator->generateTemplate(
-            \sprintf('Shop/UiElement/%s.html.twig', $code),
+            \sprintf('shop/ui_element/%s.html.twig', $code),
             __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
             [
                 'code' => $code,

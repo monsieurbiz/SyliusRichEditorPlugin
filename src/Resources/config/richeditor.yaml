@@ -12,8 +12,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/html.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/html.html.twig'
         monsieurbiz.text:
             alias: text
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
@@ -24,8 +24,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TextType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/text.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/text.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/text.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/text.html.twig'
         monsieurbiz.quote:
             alias: quote
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
@@ -36,8 +36,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\QuoteType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/quote.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/quote.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/quote.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/quote.html.twig'
         monsieurbiz.image:
             alias: image
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
@@ -48,8 +48,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/image.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/image.html.twig'
         monsieurbiz.video:
             alias: video
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
@@ -60,8 +60,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\VideoType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/video.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/video.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/video.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/video.html.twig'
         monsieurbiz.button:
             alias: button
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
@@ -72,8 +72,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ButtonLinkType # ButtonLink because ButtonType make a button field displayed
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/button.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/button.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/button.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/button.html.twig'
         monsieurbiz.title:
             alias: title
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
@@ -84,8 +84,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/title.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/title.html.twig'
         monsieurbiz.h1:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
@@ -95,8 +95,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h1.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h1.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h1.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h1.html.twig'
             enabled: false
         monsieurbiz.h2:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
@@ -107,8 +107,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h2.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h2.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h2.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h2.html.twig'
             enabled: false
         monsieurbiz.h3:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
@@ -119,8 +119,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/h3.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/h3.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h3.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h3.html.twig'
             enabled: false
         monsieurbiz.separator:
             alias: separator
@@ -132,8 +132,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\SeparatorType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/separator.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/separator.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/separator.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/separator.html.twig'
         monsieurbiz.anchor:
             alias: anchor
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.title'
@@ -143,8 +143,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\AnchorType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/anchor.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/anchor.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/anchor.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/anchor.html.twig'
             tags: [default, anchor]
         monsieurbiz.youtube:
             alias: youtube
@@ -156,8 +156,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\YoutubeType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/youtube.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/youtube.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/youtube.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/youtube.html.twig'
         monsieurbiz.image_collection:
             alias: image_collection
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
@@ -168,8 +168,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ImageCollectionType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/image_collection.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/image_collection.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/image_collection.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/image_collection.html.twig'
         monsieurbiz.two_columns:
             alias: two_columns
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.title'
@@ -180,8 +180,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TwoColumnsType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/two_columns.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/two_columns.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/two_columns.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/two_columns.html.twig'
         monsieurbiz.column:
             alias: column
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'
@@ -192,8 +192,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\ColumnType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/column.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/column.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/column.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/column.html.twig'
         monsieurbiz.row:
             alias: row
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
@@ -204,8 +204,8 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\RowType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/row.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/row.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/row.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/row.html.twig'
         monsieurbiz.markdown:
             alias: markdown
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.title'
@@ -216,5 +216,5 @@ monsieurbiz_sylius_richeditor:
             classes:
                 form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\MarkdownType
             templates:
-                admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/markdown.html.twig'
-                front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/markdown.html.twig'
+                admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/markdown.html.twig'
+                front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/markdown.html.twig'

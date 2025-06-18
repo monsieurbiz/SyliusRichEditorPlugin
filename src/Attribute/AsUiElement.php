@@ -82,8 +82,8 @@ class AsUiElement
     private function getTemplates(): TemplatesUiElement
     {
         return $this->templates ?? new TemplatesUiElement(
-            adminRender: 'Admin/UiElement/' . $this->getLastPartOfCode() . '.html.twig',
-            frontRender: 'Shop/UiElement/' . $this->getLastPartOfCode() . '.html.twig',
+            adminRender: 'admin/ui_element/' . $this->getLastPartOfCode() . '.html.twig',
+            frontRender: 'shop/ui_element/' . $this->getLastPartOfCode() . '.html.twig',
         );
     }
 
