@@ -242,13 +242,13 @@ monsieurbiz_sylius_richeditor:
         app.google_maps:
             title: 'app.ui_element.google_maps.title'
             description: 'app.ui_element.google_maps.description'
-            icon: map pin
+            icon: tabler:brand-google-maps
             classes:
                 form: App\Form\Type\UiElement\GoogleMapsType
                 #ui_element: App\UiElement\MyUiElement
             templates:
-                admin_render: '/Admin/UiElement/google_maps.html.twig'
-                front_render: '/Shop/UiElement/google_maps.html.twig'
+                admin_render: '/admin/ui_element/google_maps.html.twig'
+                front_render: '/shop/ui_element/google_maps.html.twig'
             tags: []
 ```
 
@@ -299,7 +299,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Attribute\AsUiElement;
 
 #[AsUiElement(
     code: 'app.google_maps',
-    icon: 'map pin',
+    icon: 'tabler:brand-google-maps',
 )]
 class GoogleMapsType extends AbstractType
 // ...
@@ -309,8 +309,8 @@ The title, description and templates values are generated automatically from the
 
 - the title will be `app.ui_element.google_maps.title`,
 - the description will be `app.ui_element.google_maps.description`,
-- the admin template will be `/Admin/UiElement/google_maps.html.twig`, 
-- and the front template will be `/Shop/UiElement/google_maps.html.twig`.
+- the admin template will be `/admin/ui_element/google_maps.html.twig`, 
+- and the front template will be `/shop/ui_element/google_maps.html.twig`.
 
 But you can override them if you want:
 
@@ -319,10 +319,10 @@ But you can override them if you want:
     code: 'app.google_maps',
     title: 'my_cusom.title', // Use your own translation key or a string
     description: 'my_custom.description',
-    icon: 'map pin',
+    icon: 'tabler:brand-google-maps',
     templates: new TemplatesUiElement(
-        adminRender: 'MyCusomPath/google_maps.html.twig',
-        frontRender: 'MyCusomPath/google_maps.html.twig',
+        adminRender: 'admin/my_custom_path/google_maps.html.twig',
+        frontRender: 'shop/my_custom_path/google_maps.html.twig',
     ),
     uiElement: GoogleMapsUiElement::class, // Use your own UiElement class
     tags: ['map'], // Add some tags to filter the UiElement
@@ -396,21 +396,21 @@ It will be displayed in the admin form to help the user to understand what the U
 The file can be either:
 * An SVG with a `.twig` extension. Example: `button.svg.twig`.
 * A classic twig template. Example `button.html.twig`.
-You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/Wireframe/*.{svg/html}.twig`
+You can add the files in the folder : `templates/MonsieurBizSyliusRichEditorPlugin/wireframe/*.{svg/html}.twig`
 In the YAML declaration of a UI Element, you can add the wireframe key with the name of the file without the extension.
 ```yaml
     monsieurbiz.title:
         alias: title
         title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
         description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.description'
-        icon: heading
+        icon: tabler:heading
         wireframe: title
         tags: [ default ]
         classes:
             form: MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\TitleType
         templates:
-            admin_render: '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/title.html.twig'
-            front_render: '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/title.html.twig'
+            admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/title.html.twig'
+            front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/title.html.twig'
 ```
 
 ## Wysiwyg Type

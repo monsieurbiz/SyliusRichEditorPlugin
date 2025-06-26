@@ -31,8 +31,8 @@ class MetadataSpec extends ObjectBehavior
             'form' => 'MonsieurBiz\SyliusRichEditorPlugin\Form\Type\UiElement\HtmlType',
         ],
         'templates' => [
-            'admin_render' => '@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig',
-            'front_render' => '@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig',
+            'admin_render' => '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/html.html.twig',
+            'front_render' => '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/html.html.twig',
         ],
     ];
 
@@ -112,8 +112,8 @@ class MetadataSpec extends ObjectBehavior
 
     public function it_gives_back_any_template(): void
     {
-        $this->getTemplate('admin_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/Admin/UiElement/html.html.twig');
-        $this->getTemplate('front_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/Shop/UiElement/html.html.twig');
+        $this->getTemplate('admin_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/html.html.twig');
+        $this->getTemplate('front_render')->shouldReturn('@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/html.html.twig');
         $this->shouldThrow(InvalidArgumentException::class)->during(
             'getTemplate',
             ['nope']
