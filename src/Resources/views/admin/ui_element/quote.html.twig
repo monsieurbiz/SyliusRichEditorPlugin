@@ -10,7 +10,7 @@
 {% if element is not empty %}
     <figure style="text-align: {{align}};">
         <blockquote class="blockquote">
-            <p>{{ element.content | raw | nl2br }}</p>
+            {{ element.content | raw | nl2br }}
         </blockquote>
         <figcaption class="blockquote-footer">
             {{ element.author }}
