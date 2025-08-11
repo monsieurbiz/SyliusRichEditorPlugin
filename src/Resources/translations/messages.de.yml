@@ -1,0 +1,224 @@
+monsieurbiz_richeditor_plugin:
+  ui_element:
+    monsieurbiz.column:
+      title: 'Spaltenlayout'
+      description: 'Ein Layout, um Elemente Spalte für Spalte darzustellen'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.row:
+      title: 'Zeilenlayout'
+      description: 'Ein Layout, um Elemente Zeile für Zeile darzustellen'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.html:
+      title: 'HTML'
+      description: 'Ein Element mit Rohdaten'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.text:
+      title: 'Text'
+      description: 'Ein Element mit Textinhalt'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.title:
+      title: 'Titel'
+      short_description: 'Ein Titelelement'
+      description: 'Ein Element mit dem gewünschten Titel'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.h1:
+      title: '<h1> Titel'
+      short_description: 'Überschrift Ebene 1'
+      description: 'Ein Element mit dem gewünschten Titel'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.h2:
+      title: '<h2> Titel'
+      short_description: 'Überschrift Ebene 2'
+      description: 'Ein Element mit dem gewünschten Titel'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.h3:
+      title: '<h3> Titel'
+      short_description: 'Überschrift Ebene 3'
+      description: 'Ein Element mit dem gewünschten Titel'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.image:
+      title: 'Bild'
+      short_description: 'Ein Element mit einem Bild, einem Alternativtext und einem Titel.'
+      description: 'Ein Element mit einem Bild, einem Alternativtext und einem Titel. Ein Link kann hinzugefügt werden.'
+      field:
+        current_image: 'Aktuelles Bild'
+        image: 'Bild'
+        alt: 'Alternativtext'
+        title: 'Titel'
+        link: 'Link'
+    monsieurbiz.quote:
+      title: 'Zitat'
+      description: 'Ein Element mit einem Autor und einem Inhalt'
+      field:
+        author: 'Autor'
+        content: 'Inhalt'
+    monsieurbiz.video:
+      title: 'Video'
+      short_description: 'Element mit einem Video und einem Hintergrundbild'
+      description: 'Ein Element mit einer Videodatei und einem Hintergrundbild, das angezeigt wird, bevor das Video abgespielt wird'
+      field:
+        video: 'Video'
+        image: 'Hintergrundbild'
+        controls: 'Steuerelemente anzeigen'
+        autoplay: 'Automatisches Abspielen (ohne Ton)'
+        loop: 'Wiederholen'
+    monsieurbiz.separator:
+      title: 'Trenner'
+      short_description: 'Ein Trenner'
+      description: 'Ein Trennerelement. Der Trenner kann auch versteckt sein.'
+      field:
+        hidden: 'Versteckter Trenner'
+        style:
+          label: 'Stil'
+          choices:
+            solid: 'Durchgezogen'
+            dashed: 'Gestrichelt'
+            dotted: 'Gepunktet'
+        thickness:
+          label: 'Dicke'
+          choices:
+            fine: 'Fein'
+            medium: 'Mittel'
+            thick: 'Dick'
+            very_thick: 'Sehr dick'
+    monsieurbiz.anchor:
+      title: Anker
+      description: Einen Anker hinzufügen, der über einen Link mit `#` erreichbar ist
+      field:
+        name: Name des Ankers (ohne `#`)
+    monsieurbiz.button:
+      title: 'Button'
+      short_description: 'Ein Button mit Text und Link.'
+      description: 'Ein Button mit Text und Link.'
+      field:
+        label: 'Beschriftung'
+        link: 'Link'
+    monsieurbiz.youtube:
+      title: 'Youtube'
+      short_description: 'Ein Youtube-Element.'
+      description: 'Ein Element, das ein Youtube-Video anzeigt.'
+      field:
+        link: 'Youtube-Link'
+        width: 'Iframe-Breite'
+        height: 'Iframe-Höhe'
+        width_help: 'Leer lassen für dynamische Größe'
+        height_help: 'Leer lassen für dynamische Größe'
+    monsieurbiz.image_collection:
+      title: 'Bildersammlung'
+      short_description: 'Ein Element mit mehreren Bildern.'
+      description: 'Ein Element mit mehreren Bildern. Für jedes Bild kann ein Link hinzugefügt werden.'
+      field:
+        images: 'Bilderliste'
+    monsieurbiz.markdown:
+      title: 'Markdown'
+      description: 'Ein Element mit Markdown-Inhalt'
+      field:
+        content: 'Inhalt'
+    monsieurbiz.two_columns:
+      title: '2 Spalten'
+      description: '2 Spalten mit dynamischer Breite'
+      fields:
+        margin_auto: 'Automatische Ausrichtung'
+        reverse_mobile: 'Reihenfolge auf Mobilgeräten umkehren'
+        first_column: 'Inhalt der ersten Spalte'
+        first_column_width: 'Breite der ersten Spalte'
+        second_column: 'Inhalt der zweiten Spalte'
+      choices:
+        first_column_width:
+          width_1_5: '1/5 (20%)'
+          width_1_4: '1/4 (25%)'
+          width_1_3: '1/3 (33%)'
+          width_2_5: '2/5 (40%)'
+          width_1_2: '1/2 (50%)'
+          width_3_5: '3/5 (60%)'
+          width_2_3: '2/3 (66%)'
+          width_3_4: '3/4 (75%)'
+          width_4_5: '4/5 (80%)'
+  file:
+    change: 'Datei ändern'
+  form:
+    add: 'Element hinzufügen'
+    move: 'Verschieben'
+    move_up: 'Nach oben verschieben'
+    move_down: 'Nach unten verschieben'
+    edit: 'Bearbeiten'
+    delete: 'Löschen'
+    close: 'Schließen'
+    confirm_delete: 'Möchten Sie dieses Element wirklich löschen?'
+    apply_changes: 'Änderungen übernehmen'
+    cancel_changes: 'Änderungen verwerfen'
+    placeholder: 'Widgets hierher ziehen'
+    current_image: 'Aktuelles Bild'
+    current_video: 'Aktuelles Video'
+    current_file: 'Aktuelle Datei'
+    add_element: '%uiElementTitle% hinzufügen'
+    edit_element: '%uiElementTitle% bearbeiten'
+    cancel: 'Abbrechen'
+    save: 'Speichern'
+    add_image: 'Bild hinzufügen'
+    delete_image: 'Bild entfernen'
+    select_ui_element: 'UI-Element auswählen'
+    add_item: 'Element hinzufügen'
+    delete_item: 'Element entfernen'
+    align:
+      label: 'Ausrichtung'
+      default: 'Standard'
+      left: 'Links'
+      center: 'Zentriert'
+      right: 'Rechts'
+      justify: 'Blocksatz'
+    level:
+      label: 'Stufe'
+      default: 'Standard'
+      primary: 'Primär'
+      secondary: 'Sekundär'
+      tertiary: 'Tertiär'
+    tag:
+      label: 'HTML-Tag'
+      label_help: 'Das HTML-Tag, das für diesen Titel verwendet werden soll. Standardmäßig wird ein <div>-Tag verwendet.'
+      default: 'Standard (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
+    text_size:
+      label: 'Textgröße'
+      default: 'Standard (Extra groß)'
+      xs: 'Extra klein'
+      s: 'Klein'
+      m: 'Mittel'
+      l: 'Groß'
+      xl: 'Extra groß'
+      xxl: 'Sehr groß'
+    clipboard: 'Zwischenablage'
+    paste_from_clipboard: 'Aus Zwischenablage einfügen'
+    paste_all_from_clipboard: 'Alle Elemente einfügen'
+    copy_all_from_clipboard: 'Alle Elemente kopieren'
+    trash_all: 'Alle Elemente entfernen'
+    copied: 'Kopiert!'
+    copy: 'Kopieren'
+  action:
+    new: 'Verfügbare Widgets ein-/ausblenden'
+    preview: 'Vorschau'
+  error:
+    cannot_parse_json: 'Der aktuelle Inhalt kann nicht analysiert werden'
+    cannot_find_type: 'Der Typ einiger UI-Elemente konnte nicht gefunden werden'
+    cannot_upload_image: 'Das Bild konnte nicht hochgeladen werden. Die Datei ist möglicherweise zu groß oder hat ein falsches Format.'
+    ajax_error: 'Ein technisches Problem ist aufgetreten. Bitte wenden Sie sich an den Administrator.'
+    unallowed_uielement: 'Element hier nicht erlaubt'
+  ui:
+    disabled: 'Deaktiviert'
+  common:
+    link_type: 'Link-Typ'
+    internal_link: 'Interner Link'
+    external_link: 'Externer Link'
