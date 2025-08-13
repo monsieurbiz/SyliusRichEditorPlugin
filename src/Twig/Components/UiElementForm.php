@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
@@ -75,5 +76,36 @@ class UiElementForm
             $this->uiElementFormClass ?? throw new RuntimeException('Ui Element form class is not defined'),
             $this->data,
         );
+    }
+
+    #[LiveListener('media-manager:file-selected')]
+    public function mediaManagerFileSelected(
+        #[LiveArg]
+        string $inputName,
+        #[LiveArg]
+        string $filePath,
+    ): void {
+        // Support any depth: e.g. menu_item[linkSettings][thumbnail] or menu_item[foo][bar][baz]
+        $inputNameParts = explode('[', str_replace(']', '', $inputName));
+        // Remove the first part (form name, e.g. menu_item)
+        array_shift($inputNameParts);
+        $this->setFormValueByPath($inputNameParts, $filePath);
+    }
+
+    /**
+     * Set a value in formValues using a path array (e.g. ['linkSettings','thumbnail']).
+     *
+     * @param array<int, string> $path
+     */
+    private function setFormValueByPath(array $path, mixed $value): void
+    {
+        $ref = &$this->formValues;
+        foreach ($path as $segment) {
+            if (!isset($ref[$segment]) || !\is_array($ref[$segment])) {
+                $ref[$segment] = [];
+            }
+            $ref = &$ref[$segment];
+        }
+        $ref = $value;
     }
 }
