@@ -30,13 +30,14 @@ class TitleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $requiredTitle = $options['required_title'] ?? false;
         $builder
             ->add('content', TextType::class, [
-                'required' => $options['required_title'] ?? false,
+                'required' => $requiredTitle,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.content',
-                'constraints' => [
+                'constraints' => $requiredTitle ? [
                     new Assert\NotBlank([]),
-                ],
+                ] : [],
             ])
             ->add('text_size', TextSizeType::class, [
                 'required' => false,
