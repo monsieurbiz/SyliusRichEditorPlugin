@@ -20,6 +20,7 @@ use MonsieurBiz\SyliusRichEditorPlugin\Form\Type\TextSizeType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class TitleType extends AbstractType
@@ -31,7 +32,7 @@ class TitleType extends AbstractType
     {
         $builder
             ->add('content', TextType::class, [
-                'required' => true,
+                'required' => $options['required_title'] ?? false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.content',
                 'constraints' => [
                     new Assert\NotBlank([]),
@@ -51,5 +52,12 @@ class TitleType extends AbstractType
                 'required' => false,
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'required_title' => true,
+        ]);
     }
 }
