@@ -3,7 +3,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/8.0/phpunit.xsd"
          colors="true"
-         bootstrap="tests/Application/config/bootstrap.php">
+         bootstrap="vendor/sylius/test-application/config/bootstrap.php">
     <testsuites>
         <testsuite name="MonsieurBizSyliusRichEditorPlugin Test Suite">
             <directory>tests/Unit</directory>
@@ -11,7 +11,7 @@
     </testsuites>
 
     <php>
-        <server name="KERNEL_CLASS_PATH" value="/tests/Application/src/Kernel.php" />
+        <server name="KERNEL_CLASS_PATH" value="Sylius\TestApplication\Kernel" />
         <server name="IS_DOCTRINE_ORM_SUPPORTED" value="true" />
 
         <env name="APP_ENV" value="test"/>
