@@ -25,6 +25,7 @@ class AlignmentType extends ChoiceType
         $resolver->setDefaults([
             'show_justify' => false,
             'label' => 'monsieurbiz_richeditor_plugin.form.align.label',
+            'help' => 'monsieurbiz_richeditor_plugin.form.align.help',
             'choices' => [
                 'monsieurbiz_richeditor_plugin.form.align.default' => '',
                 'monsieurbiz_richeditor_plugin.form.align.left' => 'left',

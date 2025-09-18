@@ -46,6 +46,7 @@ class TwoColumnsType extends AbstractType
         $builder
             ->add('firstColumnWidth', ChoiceType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.first_column_width',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.first_column_width_help',
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank([]),
@@ -67,10 +68,12 @@ class TwoColumnsType extends AbstractType
             ])
             ->add('marginAuto', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.margin_auto',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.margin_auto_help',
                 'required' => false,
             ])
             ->add('reverseMobile', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.reverse_mobile',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.reverse_mobile_help',
                 'required' => false,
             ])
             ->add('firstColumn', RichEditorType::class, [

@@ -44,10 +44,12 @@ class SeparatorType extends AbstractType
         $builder
             ->add('hidden', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.hidden',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.hidden_help',
                 'required' => false,
             ])
             ->add('style', ChoiceType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.label',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.help',
                 'choices' => [
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.solid' => self::SOLID_STYLE,
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.style.choices.dashed' => self::DASHED_STYLE,
@@ -56,6 +58,7 @@ class SeparatorType extends AbstractType
             ])
             ->add('thickness', ChoiceType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.thickness.label',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.thickness.help',
                 'choices' => [
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.thickness.choices.fine' => self::THICKNESS_FINE,
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.thickness.choices.medium' => self::THICKNESS_MEDIUM,

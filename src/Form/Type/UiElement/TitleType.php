@@ -41,9 +41,11 @@ class TitleType extends AbstractType
             ])
             ->add('text_size', TextSizeType::class, [
                 'required' => false,
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.text_size_help',
             ])
             ->add('tag', TagType::class, [
                 'required' => false,
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.tag_help',
             ])
             ->add('align', AlignmentType::class, [
                 'show_justify' => true,

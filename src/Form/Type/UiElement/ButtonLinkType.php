@@ -72,10 +72,12 @@ class ButtonLinkType extends AbstractType
             ->add('link', LinkType::class, [
                 'required' => $required,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link_help',
                 'constraints' => $constraintsLink,
             ])
             ->add('link_type', LinkTypeType::class, [
                 'required' => $required,
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.field.link_type_help',
                 'constraints' => $constraintsLinkType,
             ])
             ->add('align', AlignmentType::class)

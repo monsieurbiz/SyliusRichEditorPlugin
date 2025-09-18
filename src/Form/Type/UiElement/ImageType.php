@@ -55,14 +55,17 @@ class ImageType extends AbstractType
             ->add('alt', FormTextType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.alt',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.alt_help',
             ])
             ->add('title', FormTextType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.title_help',
             ])
             ->add('link', LinkType::class, [
                 'required' => false,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link_help',
                 'constraints' => [
                     new Assert\AtLeastOneOf([
                         'includeInternalMessages' => false,
@@ -76,6 +79,7 @@ class ImageType extends AbstractType
             ])
             ->add('link_type', LinkTypeType::class, [
                 'required' => false,
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link_type_help',
             ])
             ->add('align', AlignmentType::class)
         ;

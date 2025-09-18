@@ -5,6 +5,7 @@ app:
             description: 'An element with a Google Maps link'
             field:
                 link: 'Embed Link (The `src` of the iframe)'
+                link_help: 'Google Maps embed iframe src URL. Locale automatically adjusted (hl parameter replaced).'
         text_collection:
             title: 'Text collection'
             description: 'Collection of text types'

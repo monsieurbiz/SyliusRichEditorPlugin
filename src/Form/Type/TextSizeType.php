@@ -35,6 +35,7 @@ class TextSizeType extends ChoiceType
         parent::configureOptions($resolver);
         $resolver->setDefaults([
             'label' => 'monsieurbiz_richeditor_plugin.form.text_size.label',
+            'help' => 'monsieurbiz_richeditor_plugin.form.text_size.help',
             'choices' => [
                 'monsieurbiz_richeditor_plugin.form.text_size.default' => '',
                 'monsieurbiz_richeditor_plugin.form.text_size.xs' => self::SIZE_XS,
