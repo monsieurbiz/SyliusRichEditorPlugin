@@ -88,26 +88,26 @@ monsieurbiz_richeditor_plugin:
         hidden: 'Hidden separator'
         hidden_help: 'Creates invisible spacing without visible line (uses CSS ''invisible'' class).'
         style:
-         label: 'Style'
-         help: 'Border style: solid, dotted, or dashed line appearance.'
-         choices:
-           solid: 'Solid'
-           dashed: 'Dashed'
-           dotted: 'Dotted'
+          label: 'Style'
+          help: 'Border style: solid, dotted, or dashed line appearance.'
+          choices:
+            solid: 'Solid'
+            dashed: 'Dashed'
+            dotted: 'Dotted'
         thickness:
-         label: 'Thickness'
-         help: 'Border thickness: fine (1px), medium (2px), thick (4px), or very thick (5px).'
-         choices:
-           fine: 'Fine'
-           medium: 'Medium'
-           thick: 'Thick'
-           very_thick: 'Very thick'
+          label: 'Thickness'
+          help: 'Border thickness: fine (1px), medium (2px), thick (4px), or very thick (5px).'
+          choices:
+            fine: 'Fine'
+            medium: 'Medium'
+            thick: 'Thick'
+            very_thick: 'Very thick'
     monsieurbiz.anchor:
-        title: Anchor
-        description: Add an anchor to be accessible by link with `#`
-        field:
-            name: Anchor's name (Without `#`)
-            name_help: Unique identifier for page anchors (without #). Used in links like #section-name.
+      title: Anchor
+      description: Add an anchor to be accessible by link with `#`
+      field:
+        name: Anchor's name (Without `#`)
+        name_help: Unique identifier for page anchors (without #). Used in links like #section-name.
     monsieurbiz.button:
       title: 'Button'
       short_description: 'A button with a text and a link.'
@@ -196,32 +196,32 @@ monsieurbiz_richeditor_plugin:
       right: 'Right'
       justify: 'Justify'
     level:
-        label: 'Level'
-        help: 'Visual styling level: Primary, Secondary, Tertiary importance. Colors and appearance depend on active theme.'
-        default: 'Default'
-        primary: 'Primary'
-        secondary: 'Secondary'
-        tertiary: 'Tertiary'
+      label: 'Level'
+      help: 'Visual styling level: Primary, Secondary, Tertiary importance. Colors and appearance depend on active theme.'
+      default: 'Default'
+      primary: 'Primary'
+      secondary: 'Secondary'
+      tertiary: 'Tertiary'
     tag:
-        label: 'HTML Tag'
-        label_help: 'The HTML tag to use for this title. By default, it is a <div> tag.'
-        default: 'Default (div)'
-        h1: '<h1>'
-        h2: '<h2>'
-        h3: '<h3>'
-        h4: '<h4>'
-        h5: '<h5>'
-        h6: '<h6>'
+      label: 'HTML Tag'
+      label_help: 'The HTML tag to use for this title. By default, it is a <div> tag.'
+      default: 'Default (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
     text_size:
-        label: 'Text size'
-        help: 'Bootstrap display utility classes: XS=display-6 (smallest) to XXL=display-1 (largest).'
-        default: 'Default (Extra large)'
-        xs: 'Extra Small'
-        s: 'Small'
-        m: 'Medium'
-        l: 'Large'
-        xl: 'Extra Large'
-        xxl: 'Extra Extra Large'
+      label: 'Text size'
+      help: 'Bootstrap display utility classes: XS=display-6 (smallest) to XXL=display-1 (largest).'
+      default: 'Default (Extra large)'
+      xs: 'Extra Small'
+      s: 'Small'
+      m: 'Medium'
+      l: 'Large'
+      xl: 'Extra Large'
+      xxl: 'Extra Extra Large'
     clipboard: 'Clipboard'
     paste_from_clipboard: 'Paste from clipboard'
     paste_all_from_clipboard: 'Paste all elements'

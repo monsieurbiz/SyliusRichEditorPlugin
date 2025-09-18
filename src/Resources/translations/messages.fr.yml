@@ -20,14 +20,14 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant un contenu texte'
       field:
         content: 'Contenu'
-     monsieurbiz.title:
-       title: 'Titre'
-       short_description: 'Une lame contenant un titre'
-       description: 'Une lame contenant le titre de votre choix'
-       field:
-         content: 'Contenu'
-         text_size_help: 'Taille d''affichage Bootstrap : XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Remplace la taille par défaut.'
-         tag_help: 'Balise HTML sémantique (h1-h6 pour le SEO, div par défaut). Affecte la structure de page et le classement SEO.'
+    monsieurbiz.title:
+      title: 'Titre'
+      short_description: 'Une lame contenant un titre'
+      description: 'Une lame contenant le titre de votre choix'
+      field:
+        content: 'Contenu'
+        text_size_help: 'Taille d''affichage Bootstrap : XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Remplace la taille par défaut.'
+        tag_help: 'Balise HTML sémantique (h1-h6 pour le SEO, div par défaut). Affecte la structure de page et le classement SEO.'
     monsieurbiz.h1:
       title: '<h1> Titre'
       short_description: 'Une lame contenant un titre niveau 1'
@@ -46,55 +46,55 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame contenant le titre de votre choix'
       field:
         content: 'Contenu'
-     monsieurbiz.image:
-       title: 'Image'
-       short_description: 'Une lame contenant une image avec un champ alternatif et un titre.'
-       description: 'Une lame contenant une image avec un champ alternatif et un titre. Un lien peut également être mis sur l''image'
-       field:
-         current_image: 'Image actuelle'
-         image: 'Image'
-         alt: 'Texte alternatif'
-         alt_help: 'Texte alternatif pour les lecteurs d''écran et quand l''image ne se charge pas. Requis pour l''accessibilité.'
-         title: 'Titre'
-         title_help: 'Texte d''info-bulle affiché au survol de l''image. Texte descriptif optionnel.'
-         link: 'Lien'
-         link_help: 'URL optionnelle pour naviguer quand l''image est cliquée. Entoure l''image d''un lien cliquable.'
-         link_type_help: 'Les liens internes s''ouvrent dans le même onglet ; les liens externes s''ouvrent dans un nouvel onglet avec des attributs de sécurité.'
+    monsieurbiz.image:
+      title: 'Image'
+      short_description: 'Une lame contenant une image avec un champ alternatif et un titre.'
+      description: 'Une lame contenant une image avec un champ alternatif et un titre. Un lien peut également être mis sur l''image'
+      field:
+        current_image: 'Image actuelle'
+        image: 'Image'
+        alt: 'Texte alternatif'
+        alt_help: 'Texte alternatif pour les lecteurs d''écran et quand l''image ne se charge pas. Requis pour l''accessibilité.'
+        title: 'Titre'
+        title_help: 'Texte d''info-bulle affiché au survol de l''image. Texte descriptif optionnel.'
+        link: 'Lien'
+        link_help: 'URL optionnelle pour naviguer quand l''image est cliquée. Entoure l''image d''un lien cliquable.'
+        link_type_help: 'Les liens internes s''ouvrent dans le même onglet ; les liens externes s''ouvrent dans un nouvel onglet avec des attributs de sécurité.'
     monsieurbiz.quote:
       title: 'Citation'
       description: 'Une lame contenant un auteur et un contenu'
       field:
         author: 'Auteur'
         content: 'Contenu'
-     monsieurbiz.video:
-       title: 'Vidéo'
-       short_description: 'Une lame contenant une vidéo et une image de fond'
-       description: 'Une lame contenant un fichier vidéo et un fichier image de fond qui s''affichera avant la lecture de la vidéo'
-       field:
-         video: 'Vidéo'
-         image: 'Image de fond'
-         image_help: 'Image poster affichée avant que la vidéo ne joue. Définit l''attribut ''poster'' sur l''élément vidéo HTML5.'
-         controls: 'Afficher les contrôles'
-         controls_help: 'Ajoute l''attribut ''controls'' à la vidéo HTML5. Affiche les contrôles play/pause, timeline et volume.'
-         autoplay: 'Lancer automatiquement la vidéo (sans le son)'
-         autoplay_help: 'Ajoute les attributs ''autoplay muted''. Les politiques des navigateurs exigent l''autoplay muet pour l''expérience utilisateur.'
-         loop: 'Jouer en boucle'
-         loop_help: 'Ajoute l''attribut ''loop'' à la vidéo HTML5. Redémarre automatiquement à la fin.'
-     monsieurbiz.separator:
-       title: 'Séparateur'
-       short_description: 'Une lame permettant de faire séparateur'
-       description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
-       field:
-         hidden: 'Séparateur caché'
-         hidden_help: 'Crée un espacement invisible sans ligne visible (utilise la classe CSS ''invisible'').'
-         style:
+    monsieurbiz.video:
+      title: 'Vidéo'
+      short_description: 'Une lame contenant une vidéo et une image de fond'
+      description: 'Une lame contenant un fichier vidéo et un fichier image de fond qui s''affichera avant la lecture de la vidéo'
+      field:
+        video: 'Vidéo'
+        image: 'Image de fond'
+        image_help: 'Image poster affichée avant que la vidéo ne joue. Définit l''attribut ''poster'' sur l''élément vidéo HTML5.'
+        controls: 'Afficher les contrôles'
+        controls_help: 'Ajoute l''attribut ''controls'' à la vidéo HTML5. Affiche les contrôles play/pause, timeline et volume.'
+        autoplay: 'Lancer automatiquement la vidéo (sans le son)'
+        autoplay_help: 'Ajoute les attributs ''autoplay muted''. Les politiques des navigateurs exigent l''autoplay muet pour l''expérience utilisateur.'
+        loop: 'Jouer en boucle'
+        loop_help: 'Ajoute l''attribut ''loop'' à la vidéo HTML5. Redémarre automatiquement à la fin.'
+    monsieurbiz.separator:
+      title: 'Séparateur'
+      short_description: 'Une lame permettant de faire séparateur'
+      description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
+      field:
+        hidden: 'Séparateur caché'
+        hidden_help: 'Crée un espacement invisible sans ligne visible (utilise la classe CSS ''invisible'').'
+        style:
           label: 'Style'
           help: 'Style de bordure : solide, pointé ou tirets.'
           choices:
             solid: 'Solide'
             dashed: 'Pointillé'
             dotted: 'Pointé'
-         thickness:
+        thickness:
           label: 'Épaisseur'
           help: 'Épaisseur de bordure : fine (1px), moyenne (2px), épaisse (4px), ou très épaisse (5px).'
           choices:
@@ -102,21 +102,21 @@ monsieurbiz_richeditor_plugin:
             medium: 'Moyenne'
             thick: 'Épaisse'
             very_thick: 'Très épaisse'
-     monsieurbiz.anchor:
-       title: Ancre
-       description: Ajoute une ancre accessible avec un lien `#`
-       field:
-         name: Nom de l'ancre (Sans le `#`)
-         name_help: Identifiant unique pour les ancres de page (sans #). Utilisé dans les liens comme #nom-section.
-     monsieurbiz.button:
-       title: 'Bouton'
-       short_description: 'Un bouton avec un texte et un lien.'
-       description: 'Un bouton avec un texte et un lien.'
-       field:
-         label: 'Libellé'
-         link: 'Lien'
-         link_help: 'URL de destination quand le bouton est cliqué. Utilisez des chemins relatifs (/page) pour les liens internes.'
-         link_type_help: 'Les liens internes s''ouvrent dans le même onglet ; les liens externes s''ouvrent dans un nouvel onglet avec des attributs de sécurité.'
+    monsieurbiz.anchor:
+      title: Ancre
+      description: Ajoute une ancre accessible avec un lien `#`
+      field:
+        name: Nom de l'ancre (Sans le `#`)
+        name_help: Identifiant unique pour les ancres de page (sans #). Utilisé dans les liens comme #nom-section.
+    monsieurbiz.button:
+      title: 'Bouton'
+      short_description: 'Un bouton avec un texte et un lien.'
+      description: 'Un bouton avec un texte et un lien.'
+      field:
+        label: 'Libellé'
+        link: 'Lien'
+        link_help: 'URL de destination quand le bouton est cliqué. Utilisez des chemins relatifs (/page) pour les liens internes.'
+        link_type_help: 'Les liens internes s''ouvrent dans le même onglet ; les liens externes s''ouvrent dans un nouvel onglet avec des attributs de sécurité.'
     monsieurbiz.youtube:
       title: 'Youtube'
       short_description: 'Une vidéo youtube.'
@@ -138,18 +138,18 @@ monsieurbiz_richeditor_plugin:
       description: 'Une lame affichant un contenu rédigé en Markdown'
       field:
         content: 'Contenu'
-     monsieurbiz.two_columns:
-       title: '2 Colonnes'
-       description: '2 colonnes de contenu avec largeur dynamique'
-       fields:
-         margin_auto: 'Alignement automatique'
-         margin_auto_help: 'Ajoute la classe Bootstrap ''m-auto'' pour centrer le conteneur de colonnes horizontalement.'
-         reverse_mobile: 'Inverser l''ordre sur mobile'
-         reverse_mobile_help: 'Utilise ''flex-column-reverse'' sur mobile, ''flex-column'' sinon. Change l''ordre d''empilement sous le breakpoint md.'
-         first_column: 'Contenu de la première colonne'
-         first_column_width: 'Largeur de la première colonne'
-         first_column_width_help: 'Ratio de grille Bootstrap : 1/5=col-md-2/10, 1/2=col-md-6/6, etc. La deuxième colonne prend l''espace restant.'
-         second_column: 'Contenu de la seconde colonne'
+    monsieurbiz.two_columns:
+      title: '2 Colonnes'
+      description: '2 colonnes de contenu avec largeur dynamique'
+      fields:
+        margin_auto: 'Alignement automatique'
+        margin_auto_help: 'Ajoute la classe Bootstrap ''m-auto'' pour centrer le conteneur de colonnes horizontalement.'
+        reverse_mobile: 'Inverser l''ordre sur mobile'
+        reverse_mobile_help: 'Utilise ''flex-column-reverse'' sur mobile, ''flex-column'' sinon. Change l''ordre d''empilement sous le breakpoint md.'
+        first_column: 'Contenu de la première colonne'
+        first_column_width: 'Largeur de la première colonne'
+        first_column_width_help: 'Ratio de grille Bootstrap : 1/5=col-md-2/10, 1/2=col-md-6/6, etc. La deuxième colonne prend l''espace restant.'
+        second_column: 'Contenu de la seconde colonne'
       choices:
         first_column_width:
           width_1_5: '1/5 (20%)'
@@ -187,41 +187,41 @@ monsieurbiz_richeditor_plugin:
     select_ui_element: 'Choisissez un élément'
     add_item: 'Ajouter un élément'
     delete_item: 'Supprimer cet élément'
-     align:
-       label: 'Alignement'
-       help: 'Propriété CSS text-align : left, center, right, justify, ou hérité du parent.'
-       default: 'Par défaut'
-       left: 'Gauche'
-       center: 'Centré'
-       right: 'Droite'
-       justify: 'Justifié'
-     level:
-         label: 'Niveau'
-         help: 'Niveau de style visuel : importance Primaire, Secondaire, Tertiaire. Les couleurs et l''apparence dépendent du thème actif.'
-         default: 'Aucun'
-         primary: 'Primaire'
-         secondary: 'Secondaire'
-         tertiary: 'Tertiaire'
+    align:
+      label: 'Alignement'
+      help: 'Propriété CSS text-align : left, center, right, justify, ou hérité du parent.'
+      default: 'Par défaut'
+      left: 'Gauche'
+      center: 'Centré'
+      right: 'Droite'
+      justify: 'Justifié'
+    level:
+      label: 'Niveau'
+      help: 'Niveau de style visuel : importance Primaire, Secondaire, Tertiaire. Les couleurs et l''apparence dépendent du thème actif.'
+      default: 'Aucun'
+      primary: 'Primaire'
+      secondary: 'Secondaire'
+      tertiary: 'Tertiaire'
     tag:
-        label: 'Balise HTML'
-        label_help: 'La balise HTML à utiliser pour ce titre. Par défaut, c''est une balise <div>'
-        default: 'Par défaut (div)'
-        h1: '<h1>'
-        h2: '<h2>'
-        h3: '<h3>'
-        h4: '<h4>'
-        h5: '<h5>'
-        h6: '<h6>'
-     text_size:
-         label: 'Taille du texte'
-         help: 'Classes utilitaires d''affichage Bootstrap : XS=display-6 (plus petit) à XXL=display-1 (plus grand).'
-         default: 'Défaut (Très grand)'
-         xs: 'Très petit'
-         s: 'Petit'
-         m: 'Moyen'
-         l: 'Grand'
-         xl: 'Très grand'
-         xxl: 'Extra grand'
+      label: 'Balise HTML'
+      label_help: 'La balise HTML à utiliser pour ce titre. Par défaut, c''est une balise <div>'
+      default: 'Par défaut (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
+    text_size:
+      label: 'Taille du texte'
+      help: 'Classes utilitaires d''affichage Bootstrap : XS=display-6 (plus petit) à XXL=display-1 (plus grand).'
+      default: 'Défaut (Très grand)'
+      xs: 'Très petit'
+      s: 'Petit'
+      m: 'Moyen'
+      l: 'Grand'
+      xl: 'Très grand'
+      xxl: 'Extra grand'
     clipboard: 'Presse-papier'
     paste_from_clipboard: 'Coller depuis le presse-papier'
     paste_all_from_clipboard: 'Coller tous les éléments'
@@ -240,8 +240,8 @@ monsieurbiz_richeditor_plugin:
     unallowed_uielement: 'Élément non autorisé ici'
   ui:
     disabled: 'Désactivé'
-   common:
-     link_type: 'Type de lien'
-     link_type_help: 'Détermine le comportement du lien : interne (même onglet) vs externe (nouvel onglet avec attributs de sécurité).'
-     internal_link: 'Lien interne'
-     external_link: 'Lien externe'
+  common:
+    link_type: 'Type de lien'
+    link_type_help: 'Détermine le comportement du lien : interne (même onglet) vs externe (nouvel onglet avec attributs de sécurité).'
+    internal_link: 'Lien interne'
+    external_link: 'Lien externe'

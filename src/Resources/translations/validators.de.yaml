@@ -1,2 +1,2 @@
 monsieurbiz_richeditor_plugin:
-    not_valid_url: 'Dieser Wert ist keine gültige URL (absolut oder relativ) oder ein gültiger Hashtag.'
+  not_valid_url: 'Dieser Wert ist keine gültige URL (absolut oder relativ) oder ein gültiger Hashtag.'
