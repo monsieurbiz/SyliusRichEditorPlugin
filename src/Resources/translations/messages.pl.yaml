@@ -110,10 +110,10 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Bardzo grube'
     monsieurbiz.anchor:
       title: 'Kotwica'
-      description: 'Dodaj kotwicę dostępną przez link z `#`'
+      description: "Dodaj kotwicę dostępną przez link z #"
       field:
-        name: 'Nazwa kotwicy (Bez `#`)'
-        name_help: 'Unikalny identyfikator dla kotwic strony (bez #). Używany w linkach jak #nazwa-sekcji.'
+        name: "Nazwa kotwicy (Bez #)"
+        name_help: "Unikalny identyfikator dla kotwic strony (bez #). Używany w linkach jak #nazwa-sekcji."
     monsieurbiz.button:
       title: 'Przycisku'
       short_description: 'Przycisk z tekstem i linkiem.'

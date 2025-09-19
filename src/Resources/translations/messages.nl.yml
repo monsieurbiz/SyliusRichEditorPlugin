@@ -86,10 +86,10 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Zeer dik'
     monsieurbiz.anchor:
       title: Anker
-      description: Voeg een anker toe dat toegankelijk is via een link met `#`
+      description: "Voeg een anker toe dat toegankelijk is via een link met #"
       field:
-        name: Naam van het anker (Zonder de `#`)
-        name_help: Unieke identificatie voor pagina ankers (zonder #). Gebruikt in links zoals #sectie-naam.
+        name: "Naam van het anker (Zonder de #)"
+        name_help: "Unieke identificatie voor pagina ankers (zonder #). Gebruikt in links zoals #sectie-naam."
     monsieurbiz.button:
       title: 'Knop'
       short_description: 'Een knop met tekst en een link.'

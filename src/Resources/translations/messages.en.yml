@@ -104,10 +104,10 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Very thick'
     monsieurbiz.anchor:
       title: Anchor
-      description: Add an anchor to be accessible by link with `#`
+      description: "Add an anchor to be accessible by link with #"
       field:
-        name: Anchor's name (Without `#`)
-        name_help: Unique identifier for page anchors (without #). Used in links like #section-name.
+        name: "Anchor's name (Without #)"
+        name_help: "Unique identifier for page anchors (without #). Used in links like #section-name."
     monsieurbiz.button:
       title: 'Button'
       short_description: 'A button with a text and a link.'

@@ -103,11 +103,11 @@ monsieurbiz_richeditor_plugin:
             thick: 'Grueso'
             very_thick: 'Muy grueso'
     monsieurbiz.anchor:
-      title: Ancla
-      description: Añadir un ancla accesible por enlace con `#`
+      title: 'Ancla'
+      description: "Añadir un ancla accesible por enlace con #"
       field:
-        name: Nombre del ancla (Sin el `#`)
-        name_help: Identificador único para anclas de página (sin #). Usado en enlaces como #nombre-seccion.
+        name: "Nombre del ancla (Sin el #)"
+        name_help: "Identificador único para anclas de página (sin #). Usado en enlaces como #nombre-seccion."
     monsieurbiz.button:
       title: 'Botón'
       short_description: 'Un botón con un texto y un enlace.'

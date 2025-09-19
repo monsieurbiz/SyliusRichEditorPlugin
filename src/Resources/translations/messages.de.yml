@@ -104,10 +104,10 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Sehr dick'
     monsieurbiz.anchor:
       title: Anker
-      description: Einen Anker hinzufügen, der über einen Link mit `#` erreichbar ist
+      description: "Einen Anker hinzufügen, der über einen Link mit # erreichbar ist"
       field:
-        name: Name des Ankers (ohne `#`)
-        name_help: Eindeutige Kennung für Seitenanker (ohne #). Verwendet in Links wie #abschnitt-name.
+        name: "Name des Ankers (ohne #)"
+        name_help: "Eindeutige Kennung für Seitenanker (ohne #). Verwendet in Links wie #abschnitt-name."
     monsieurbiz.button:
       title: 'Button'
       short_description: 'Ein Button mit Text und Link.'

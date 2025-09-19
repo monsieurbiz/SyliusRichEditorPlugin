@@ -103,11 +103,11 @@ monsieurbiz_richeditor_plugin:
             thick: 'Debela'
             very_thick: 'Vrlo debela'
     monsieurbiz.anchor:
-      title: Sidro
-      description: Dodaj sidro dostupno putem linka s `#`
+      title: 'Sidro'
+      description: "Dodaj sidro dostupno putem linka s #"
       field:
-        name: Ime sidra (bez `#`)
-        name_help: Jedinstveni identifikator za sidra stranice (bez #). Koristi se u linkovima poput #ime-sekcije.
+        name: "Ime sidra (bez #)"
+        name_help: "Jedinstveni identifikator za sidra stranice (bez #). Koristi se u linkovima poput #ime-sekcije."
     monsieurbiz.button:
       title: 'Gumb'
       short_description: 'Gumb s tekstom i linkom.'
