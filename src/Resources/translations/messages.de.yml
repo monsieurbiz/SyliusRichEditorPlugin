@@ -26,6 +26,8 @@ monsieurbiz_richeditor_plugin:
       description: 'Ein Element mit dem gewünschten Titel'
       field:
         content: 'Inhalt'
+        text_size_help: 'Bootstrap-Display-Größe: XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Überschreibt Standardgröße.'
+        tag_help: 'Semantisches HTML-Tag (h1-h6 für SEO, div als Standard). Beeinflusst Seitenstruktur und SEO-Ranking.'
     monsieurbiz.h1:
       title: '<h1> Titel'
       short_description: 'Überschrift Ebene 1'
@@ -52,8 +54,12 @@ monsieurbiz_richeditor_plugin:
         current_image: 'Aktuelles Bild'
         image: 'Bild'
         alt: 'Alternativtext'
+        alt_help: 'Alternativtext für Screenreader und wenn das Bild nicht lädt. Erforderlich für Barrierefreiheit.'
         title: 'Titel'
+        title_help: 'Tooltip-Text beim Hover über das Bild. Optionaler beschreibender Text.'
         link: 'Link'
+        link_help: 'Optionale URL zum Navigieren beim Klick auf das Bild. Umhüllt das Bild mit einem klickbaren Link.'
+        link_type_help: 'Interne Links öffnen im gleichen Tab; externe Links öffnen in neuem Tab mit Sicherheitsattributen.'
     monsieurbiz.quote:
       title: 'Zitat'
       description: 'Ein Element mit einem Autor und einem Inhalt'
@@ -67,23 +73,30 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Hintergrundbild'
+        image_help: 'Poster-Bild, das vor der Videowiedergabe angezeigt wird. Setzt das ''poster''-Attribut am HTML5-Video-Element.'
         controls: 'Steuerelemente anzeigen'
+        controls_help: 'Fügt das ''controls''-Attribut zum HTML5-Video hinzu. Zeigt Play/Pause-, Timeline- und Lautstärke-Steuerelemente.'
         autoplay: 'Automatisches Abspielen (ohne Ton)'
+        autoplay_help: 'Fügt die Attribute ''autoplay muted'' hinzu. Browser-Richtlinien erfordern stumme Autoplay für Benutzererfahrung.'
         loop: 'Wiederholen'
+        loop_help: 'Fügt das ''loop''-Attribut zum HTML5-Video hinzu. Startet automatisch neu am Ende.'
     monsieurbiz.separator:
       title: 'Trenner'
       short_description: 'Ein Trenner'
       description: 'Ein Trennerelement. Der Trenner kann auch versteckt sein.'
       field:
         hidden: 'Versteckter Trenner'
+        hidden_help: 'Erstellt unsichtbaren Abstand ohne sichtbare Linie (verwendet CSS-Klasse ''invisible'').'
         style:
           label: 'Stil'
+          help: 'Randstil: durchgezogen, gepunktet oder gestrichelt.'
           choices:
             solid: 'Durchgezogen'
             dashed: 'Gestrichelt'
             dotted: 'Gepunktet'
         thickness:
           label: 'Dicke'
+          help: 'Randdicke: fein (1px), mittel (2px), dick (4px) oder sehr dick (5px).'
           choices:
             fine: 'Fein'
             medium: 'Mittel'
@@ -91,9 +104,10 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Sehr dick'
     monsieurbiz.anchor:
       title: Anker
-      description: Einen Anker hinzufügen, der über einen Link mit `#` erreichbar ist
+      description: "Einen Anker hinzufügen, der über einen Link mit # erreichbar ist"
       field:
-        name: Name des Ankers (ohne `#`)
+        name: "Name des Ankers (ohne #)"
+        name_help: "Eindeutige Kennung für Seitenanker (ohne #). Verwendet in Links wie #abschnitt-name."
     monsieurbiz.button:
       title: 'Button'
       short_description: 'Ein Button mit Text und Link.'
@@ -101,6 +115,8 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Beschriftung'
         link: 'Link'
+        link_help: 'Ziel-URL beim Klick auf den Button. Verwenden Sie relative Pfade (/seite) für interne Links.'
+        link_type_help: 'Interne Links öffnen im gleichen Tab; externe Links öffnen in neuem Tab mit Sicherheitsattributen.'
     monsieurbiz.youtube:
       title: 'Youtube'
       short_description: 'Ein Youtube-Element.'
@@ -127,9 +143,12 @@ monsieurbiz_richeditor_plugin:
       description: '2 Spalten mit dynamischer Breite'
       fields:
         margin_auto: 'Automatische Ausrichtung'
+        margin_auto_help: 'Fügt die Bootstrap-Klasse ''m-auto'' hinzu, um den Spalten-Container horizontal zu zentrieren.'
         reverse_mobile: 'Reihenfolge auf Mobilgeräten umkehren'
+        reverse_mobile_help: 'Verwendet ''flex-column-reverse'' auf Mobilgeräten, ''flex-column'' sonst. Ändert Stapelreihenfolge unter md-Breakpoint.'
         first_column: 'Inhalt der ersten Spalte'
         first_column_width: 'Breite der ersten Spalte'
+        first_column_width_help: 'Bootstrap-Grid-Verhältnis: 1/5=col-md-2/10, 1/2=col-md-6/6, usw. Die zweite Spalte nimmt den verbleibenden Platz ein.'
         second_column: 'Inhalt der zweiten Spalte'
       choices:
         first_column_width:
@@ -170,6 +189,7 @@ monsieurbiz_richeditor_plugin:
     delete_item: 'Element entfernen'
     align:
       label: 'Ausrichtung'
+      help: 'CSS text-align-Eigenschaft: left, center, right, justify oder vom Elternelement vererbt.'
       default: 'Standard'
       left: 'Links'
       center: 'Zentriert'
@@ -177,6 +197,7 @@ monsieurbiz_richeditor_plugin:
       justify: 'Blocksatz'
     level:
       label: 'Stufe'
+      help: 'Visueller Stil-Level: Primäre, Sekundäre, Tertiäre Wichtigkeit. Farben und Erscheinung hängen vom aktiven Theme ab.'
       default: 'Standard'
       primary: 'Primär'
       secondary: 'Sekundär'
@@ -193,6 +214,7 @@ monsieurbiz_richeditor_plugin:
       h6: '<h6>'
     text_size:
       label: 'Textgröße'
+      help: 'Bootstrap Display-Utility-Klassen: XS=display-6 (kleinste) bis XXL=display-1 (größte).'
       default: 'Standard (Extra groß)'
       xs: 'Extra klein'
       s: 'Klein'
@@ -220,5 +242,6 @@ monsieurbiz_richeditor_plugin:
     disabled: 'Deaktiviert'
   common:
     link_type: 'Link-Typ'
+    link_type_help: 'Bestimmt Link-Verhalten: intern (gleicher Tab) vs extern (neuer Tab mit Sicherheitsattributen).'
     internal_link: 'Interner Link'
     external_link: 'Externer Link'

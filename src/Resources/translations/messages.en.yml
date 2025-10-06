@@ -26,6 +26,8 @@ monsieurbiz_richeditor_plugin:
       description: 'An element containing the title you want'
       field:
         content: 'Content'
+        text_size_help: 'Bootstrap display size: XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Overrides default size.'
+        tag_help: 'HTML semantic tag (h1-h6 for SEO, div as default). Affects page structure and SEO ranking.'
     monsieurbiz.h1:
       title: '<h1> Title'
       short_description: 'Header level 1'
@@ -52,8 +54,12 @@ monsieurbiz_richeditor_plugin:
         current_image: 'Current image'
         image: 'Image'
         alt: 'Alternative text'
+        alt_help: 'Alternative text for screen readers and when image fails to load. Required for accessibility.'
         title: 'Title'
+        title_help: 'Tooltip text displayed when hovering over the image. Optional descriptive text.'
         link: 'Link'
+        link_help: 'Optional URL to navigate to when image is clicked. Wraps image in clickable link.'
+        link_type_help: 'Internal links open in same tab; external links open in new tab with security attributes.'
     monsieurbiz.quote:
       title: 'Quote'
       description: 'An element with an author and a content'
@@ -67,33 +73,41 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Background image'
+        image_help: 'Poster image shown before video plays. Sets ''poster'' attribute on HTML5 video element.'
         controls: 'Show controls'
+        controls_help: 'Adds ''controls'' attribute to HTML5 video. Shows play/pause, timeline, and volume controls.'
         autoplay: 'Autoplay (without sound)'
+        autoplay_help: 'Adds ''autoplay muted'' attributes. Browser policies require muted autoplay for user experience.'
         loop: 'Loop'
+        loop_help: 'Adds ''loop'' attribute to HTML5 video. Restarts automatically when reaching the end.'
     monsieurbiz.separator:
       title: 'Separator'
       short_description: 'A separator'
       description: 'A separator element. The separator can be a hidden one.'
       field:
         hidden: 'Hidden separator'
+        hidden_help: 'Creates invisible spacing without visible line (uses CSS ''invisible'' class).'
         style:
-         label: 'Style'
-         choices:
-           solid: 'Solid'
-           dashed: 'Dashed'
-           dotted: 'Dotted'
+          label: 'Style'
+          help: 'Border style: solid, dotted, or dashed line appearance.'
+          choices:
+            solid: 'Solid'
+            dashed: 'Dashed'
+            dotted: 'Dotted'
         thickness:
-         label: 'Thickness'
-         choices:
-           fine: 'Fine'
-           medium: 'Medium'
-           thick: 'Thick'
-           very_thick: 'Very thick'
+          label: 'Thickness'
+          help: 'Border thickness: fine (1px), medium (2px), thick (4px), or very thick (5px).'
+          choices:
+            fine: 'Fine'
+            medium: 'Medium'
+            thick: 'Thick'
+            very_thick: 'Very thick'
     monsieurbiz.anchor:
-        title: Anchor
-        description: Add an anchor to be accessible by link with `#`
-        field:
-            name: Anchor's name (Without `#`)
+      title: Anchor
+      description: "Add an anchor to be accessible by link with #"
+      field:
+        name: "Anchor's name (Without #)"
+        name_help: "Unique identifier for page anchors (without #). Used in links like #section-name."
     monsieurbiz.button:
       title: 'Button'
       short_description: 'A button with a text and a link.'
@@ -101,6 +115,8 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+        link_help: 'URL destination when button is clicked. Use relative paths (/page) for internal links.'
+        link_type_help: 'Internal links open in same tab; external links open in new tab with security attributes.'
     monsieurbiz.youtube:
       title: 'Youtube'
       short_description: 'A Youtube element.'
@@ -127,9 +143,12 @@ monsieurbiz_richeditor_plugin:
       description: '2 columns of content with dynamic width'
       fields:
         margin_auto: 'Automatic alignment'
+        margin_auto_help: 'Adds Bootstrap ''m-auto'' class to center the column container horizontally.'
         reverse_mobile: 'Reverse order on mobile'
+        reverse_mobile_help: 'Uses ''flex-column-reverse'' on mobile, ''flex-column'' otherwise. Changes stacking order below md breakpoint.'
         first_column: 'Content of the first column'
         first_column_width: 'First column width'
+        first_column_width_help: 'Bootstrap grid ratio: 1/5=col-md-2/10, 1/2=col-md-6/6, etc. Second column takes remaining space.'
         second_column: 'Content of the second column'
       choices:
         first_column_width:
@@ -170,36 +189,39 @@ monsieurbiz_richeditor_plugin:
     delete_item: 'Remove item'
     align:
       label: 'Alignment'
+      help: 'CSS text-align property: left, center, right, justify, or inherit from parent.'
       default: 'Default'
       left: 'Left'
       center: 'Center'
       right: 'Right'
       justify: 'Justify'
     level:
-        label: 'Level'
-        default: 'Default'
-        primary: 'Primary'
-        secondary: 'Secondary'
-        tertiary: 'Tertiary'
+      label: 'Level'
+      help: 'Visual styling level: Primary, Secondary, Tertiary importance. Colors and appearance depend on active theme.'
+      default: 'Default'
+      primary: 'Primary'
+      secondary: 'Secondary'
+      tertiary: 'Tertiary'
     tag:
-        label: 'HTML Tag'
-        label_help: 'The HTML tag to use for this title. By default, it is a <div> tag.'
-        default: 'Default (div)'
-        h1: '<h1>'
-        h2: '<h2>'
-        h3: '<h3>'
-        h4: '<h4>'
-        h5: '<h5>'
-        h6: '<h6>'
+      label: 'HTML Tag'
+      label_help: 'The HTML tag to use for this title. By default, it is a <div> tag.'
+      default: 'Default (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
     text_size:
-        label: 'Text size'
-        default: 'Default (Extra large)'
-        xs: 'Extra Small'
-        s: 'Small'
-        m: 'Medium'
-        l: 'Large'
-        xl: 'Extra Large'
-        xxl: 'Extra Extra Large'
+      label: 'Text size'
+      help: 'Bootstrap display utility classes: XS=display-6 (smallest) to XXL=display-1 (largest).'
+      default: 'Default (Extra large)'
+      xs: 'Extra Small'
+      s: 'Small'
+      m: 'Medium'
+      l: 'Large'
+      xl: 'Extra Large'
+      xxl: 'Extra Extra Large'
     clipboard: 'Clipboard'
     paste_from_clipboard: 'Paste from clipboard'
     paste_all_from_clipboard: 'Paste all elements'
@@ -220,5 +242,6 @@ monsieurbiz_richeditor_plugin:
     disabled: 'Disabled'
   common:
     link_type: 'Link type'
+    link_type_help: 'Determines link behavior: internal (same tab) vs external (new tab with security attributes).'
     internal_link: 'Internal link'
     external_link: 'External link'

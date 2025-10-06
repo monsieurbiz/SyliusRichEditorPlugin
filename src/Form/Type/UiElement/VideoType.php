@@ -50,6 +50,7 @@ class VideoType extends AbstractType
             ])
             ->add('image', $this->getImageType(), [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.image',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.image_help',
                 'data_class' => null,
                 'required' => false,
                 'attr' => ['data-image' => 'true'],
@@ -57,15 +58,18 @@ class VideoType extends AbstractType
             ->add('align', AlignmentType::class)
             ->add('controls', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.controls',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.controls_help',
                 'required' => false,
                 'data' => $options['data']['controls'] ?? true,
             ])
             ->add('autoplay', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.autoplay',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.autoplay_help',
                 'required' => false,
             ])
             ->add('loop', CheckboxType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.loop',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.field.loop_help',
                 'required' => false,
             ])
         ;

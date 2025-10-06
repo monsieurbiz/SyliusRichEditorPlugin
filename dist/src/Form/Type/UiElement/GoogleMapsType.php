@@ -34,6 +34,7 @@ class GoogleMapsType extends AbstractType
         $builder
             ->add('link', TextType::class, [
                 'label' => 'app.ui_element.google_maps.field.link',
+                'help' => 'app.ui_element.google_maps.field.link_help',
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank(),

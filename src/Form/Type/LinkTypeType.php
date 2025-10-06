@@ -27,6 +27,7 @@ class LinkTypeType extends ChoiceType
         parent::configureOptions($resolver);
         $resolver->setDefaults([
             'label' => 'monsieurbiz_richeditor_plugin.common.link_type',
+            'help' => 'monsieurbiz_richeditor_plugin.common.link_type_help',
             'choices' => [
                 'monsieurbiz_richeditor_plugin.common.internal_link' => self::TYPE_INTERNAL,
                 'monsieurbiz_richeditor_plugin.common.external_link' => self::TYPE_EXTERNAL,

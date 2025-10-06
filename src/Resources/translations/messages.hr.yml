@@ -26,6 +26,8 @@ monsieurbiz_richeditor_plugin:
       description: 'Element koji predstavlja naslov.'
       field:
         content: 'Sadržaj'
+        text_size_help: 'Bootstrap veličina prikaza: XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Zamjenjuje zadanu veličinu.'
+        tag_help: 'Semantička HTML oznaka (h1-h6 za SEO, div kao zadano). Utječe na strukturu stranice i SEO rangiranje.'
     monsieurbiz.h1:
       title: '<h1> naslov'
       short_description: 'Naslov razine 1.'
@@ -52,8 +54,12 @@ monsieurbiz_richeditor_plugin:
         current_image: 'Trenutačna slika'
         image: 'Slika'
         alt: 'Alternativni tekst'
+        alt_help: 'Alternativni tekst za čitače zaslona i kada se slika ne učita. Potreban za pristupačnost.'
         title: 'Naslov'
+        title_help: 'Tekst opisa koji se prikazuje kada se prelazi mišem preko slike. Opcionalni opisni tekst.'
         link: 'URL linka'
+        link_help: 'Opcionalni URL za navigaciju kada se klikne na sliku. Obmotava sliku u klikabilni link.'
+        link_type_help: 'Unutarnji linkovi otvaraju se u istoj kartici; vanjski linkovi otvaraju se u novoj kartici s atributima sigurnosti.'
     monsieurbiz.quote:
       title: 'Citat'
       description: 'Element s autorom i sadržajem.'
@@ -67,18 +73,41 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Uvodna slika'
+        image_help: 'Poster slika prikazana prije reprodukcije videa. Postavlja ''poster'' atribut na HTML5 video element.'
+        controls: 'Prikaži kontrole'
+        controls_help: 'Dodaje ''controls'' atribut HTML5 videu. Prikazuje kontrole za play/pause, vremensku liniju i glasnoću.'
+        autoplay: 'Automatska reprodukcija (bez zvuka)'
+        autoplay_help: 'Dodaje ''autoplay muted'' atribute. Pravila preglednika zahtijevaju nečujnu automatsku reprodukciju za korisničko iskustvo.'
+        loop: 'Ponavljanje'
+        loop_help: 'Dodaje ''loop'' atribut HTML5 videu. Automatski se restartira na kraju.'
     monsieurbiz.separator:
       title: 'Razdjelnik'
       short_description: 'Element koji razdvaja druge elemente.'
       description: 'Vidljivi ili nevidljivi element koji se nalazi između dva druga elementa i tako ih razdvaja.'
       field:
         hidden: 'Skriveni razdjelnik'
+        hidden_help: 'Stvara nevidljivi razmak bez vidljive linije (koristi CSS ''invisible'' klasu).'
         style:
-         label: 'Stil'
-         choices:
-           solid: 'Solidan'
-           dashed: 'Isprekidan'
-           dotted: 'Točkast'
+          label: 'Stil'
+          help: 'Stil granice: solidan, isprekidan ili točkast izgled.'
+          choices:
+            solid: 'Solidan'
+            dashed: 'Isprekidan'
+            dotted: 'Točkast'
+        thickness:
+          label: 'Debljina'
+          help: 'Debljina granice: fina (1px), srednja (2px), debela (4px) ili vrlo debela (5px).'
+          choices:
+            fine: 'Fina'
+            medium: 'Srednja'
+            thick: 'Debela'
+            very_thick: 'Vrlo debela'
+    monsieurbiz.anchor:
+      title: 'Sidro'
+      description: "Dodaj sidro dostupno putem linka s #"
+      field:
+        name: "Ime sidra (bez #)"
+        name_help: "Jedinstveni identifikator za sidra stranice (bez #). Koristi se u linkovima poput #ime-sekcije."
     monsieurbiz.button:
       title: 'Gumb'
       short_description: 'Gumb s tekstom i linkom.'
@@ -86,6 +115,8 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Natpis na gumbu'
         link: 'URL linka'
+        link_help: 'Odredišni URL kada se klikne gumb. Koristite relativne putanje (/stranica) za unutarnje linkove.'
+        link_type_help: 'Unutarnji linkovi otvaraju se u istoj kartici; vanjski linkovi otvaraju se u novoj kartici s atributima sigurnosti.'
     monsieurbiz.youtube:
       title: 'YouTube video'
       short_description: 'Element s YouTube videom.'
@@ -93,7 +124,9 @@ monsieurbiz_richeditor_plugin:
       field:
         link: 'URL YouTube videa'
         width: 'Širina okvira'
+        width_help: 'Ostavite prazno za dinamičku veličinu'
         height: 'Visina okvira'
+        height_help: 'Ostavite prazno za dinamičku veličinu'
     monsieurbiz.image_collection:
       title: 'Kolekcija slika'
       short_description: 'Element s više slika.'
@@ -105,6 +138,29 @@ monsieurbiz_richeditor_plugin:
       description: 'Element koji sadrži Markdown.'
       field:
         content: 'Sadržaj'
+    monsieurbiz.two_columns:
+      title: '2 stupca'
+      description: '2 stupca sadržaja s dinamičkom širinom'
+      fields:
+        margin_auto: 'Automatsko poravnanje'
+        margin_auto_help: 'Dodaje Bootstrap ''m-auto'' klasu za horizontalno centriranje kontejnera stupaca.'
+        reverse_mobile: 'Obrni redoslijed na mobilnim uređajima'
+        reverse_mobile_help: 'Koristi ''flex-column-reverse'' na mobilnim uređajima, ''flex-column'' inače. Mijenja redoslijed slaganja ispod md prekidne točke.'
+        first_column: 'Sadržaj prvog stupca'
+        first_column_width: 'Širina prvog stupca'
+        first_column_width_help: 'Bootstrap grid omjer: 1/5=col-md-2/10, 1/2=col-md-6/6, itd. Drugi stupac zauzima preostali prostor.'
+        second_column: 'Sadržaj drugog stupca'
+      choices:
+        first_column_width:
+          width_1_5: '1/5 (20%)'
+          width_1_4: '1/4 (25%)'
+          width_1_3: '1/3 (33%)'
+          width_2_5: '2/5 (40%)'
+          width_1_2: '1/2 (50%)'
+          width_3_5: '3/5 (60%)'
+          width_2_3: '2/3 (66%)'
+          width_3_4: '3/4 (75%)'
+          width_4_5: '4/5 (80%)'
   file:
     change: 'Zamijeni datoteku'
   form:
@@ -127,13 +183,50 @@ monsieurbiz_richeditor_plugin:
     add_image: 'Dodaj sliku'
     delete_image: 'Izbriši sliku'
     select_ui_element: 'Odaberite element'
+    add_item: 'Dodaj stavku'
+    delete_item: 'Ukloni stavku'
     align:
       label: 'Poravnavanje'
+      help: 'CSS text-align svojstvo: lijevo, središte, desno, obostrano ili naslijedno od roditelja.'
       default: 'Zadano'
       left: 'Lijevo'
       center: 'Sredina'
       right: 'Desno'
       justify: 'Obostrano'
+    level:
+      label: 'Razina'
+      help: 'Razina vizualnog stila: Primarna, Sekundarna, Tercijarna važnost. Boje i izgled ovise o aktivnoj temi.'
+      default: 'Zadano'
+      primary: 'Primarno'
+      secondary: 'Sekundarno'
+      tertiary: 'Tercijarno'
+    tag:
+      label: 'HTML oznaka'
+      label_help: 'HTML oznaka za korištenje za ovaj naslov. Zadano je <div> oznaka.'
+      default: 'Zadano (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
+    text_size:
+      label: 'Veličina teksta'
+      help: 'Bootstrap display utility klase: XS=display-6 (najmanji) do XXL=display-1 (najveći).'
+      default: 'Zadano (Vrlo velik)'
+      xs: 'Vrlo mali'
+      s: 'Mali'
+      m: 'Srednji'
+      l: 'Velik'
+      xl: 'Vrlo velik'
+      xxl: 'Izuzetno velik'
+    clipboard: 'Međuspremnik'
+    paste_from_clipboard: 'Zalijepi iz međuspremnika'
+    paste_all_from_clipboard: 'Zalijepi sve elemente'
+    copy_all_from_clipboard: 'Kopiraj sve elemente'
+    trash_all: 'Ukloni sve elemente'
+    copied: 'Kopirano!'
+    copy: 'Kopiraj'
   action:
     new: 'Prikaži dostupne elemente'
     preview: 'Pregled'
@@ -144,5 +237,6 @@ monsieurbiz_richeditor_plugin:
     ajax_error: 'Technikai probléma van. Kérjük, lépjen kapcsolatba rendszergazdájával.'
   common:
     link_type: 'Tip linka'
+    link_type_help: 'Određuje ponašanje linka: unutarnji (ista kartica) vs vanjski (nova kartica s atributima sigurnosti).'
     internal_link: 'Unutarnji link'
     external_link: 'Vanjski link'

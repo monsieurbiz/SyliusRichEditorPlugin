@@ -28,6 +28,7 @@ final class AnchorType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.field.name',
+                'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.field.name_help',
                 'required' => true,
                 'constraints' => [
                     new Assert\NotBlank(),

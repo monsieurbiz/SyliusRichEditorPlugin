@@ -29,6 +29,7 @@ class LevelType extends ChoiceType
         parent::configureOptions($resolver);
         $resolver->setDefaults([
             'label' => 'monsieurbiz_richeditor_plugin.form.level.label',
+            'help' => 'monsieurbiz_richeditor_plugin.form.level.help',
             'choices' => [
                 'monsieurbiz_richeditor_plugin.form.level.default' => '',
                 'monsieurbiz_richeditor_plugin.form.level.primary' => self::PRIMARY_LEVEL,

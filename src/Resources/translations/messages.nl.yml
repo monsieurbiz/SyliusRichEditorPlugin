@@ -26,6 +26,8 @@ monsieurbiz_richeditor_plugin:
       description: 'Een element met de gewenste titel'
       field:
         content: 'Inhoud'
+        text_size_help: 'Bootstrap display grootte: XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Overschrijft standaardgrootte.'
+        tag_help: 'Semantische HTML tag (h1-h6 voor SEO, div als standaard). Beïnvloedt paginastructuur en SEO ranking.'
     monsieurbiz.image:
       title: 'Afbeelding'
       short_description: 'Een element met een afbeelding, een alternatieve tekst en een titel.'
@@ -34,8 +36,12 @@ monsieurbiz_richeditor_plugin:
         current_image: 'Huidige afbeelding'
         image: 'Afbeelding'
         alt: 'Alternatieve tekst'
+        alt_help: 'Alternatieve tekst voor schermleezers en wanneer afbeelding niet laadt. Vereist voor toegankelijkheid.'
         title: 'Titel'
+        title_help: 'Tooltip tekst getoond bij hover over de afbeelding. Optionele beschrijvende tekst.'
         link: 'Link'
+        link_help: 'Optionele URL om naar te navigeren wanneer op afbeelding wordt geklikt. Omhult afbeelding met klikbare link.'
+        link_type_help: 'Interne links openen in hetzelfde tabblad; externe links openen in nieuw tabblad met beveiligingsattributen.'
     monsieurbiz.quote:
       title: 'Citaat'
       description: 'Een element met een auteur en inhoud'
@@ -49,18 +55,41 @@ monsieurbiz_richeditor_plugin:
       field:
         video: 'Video'
         image: 'Achtergrondafbeelding'
+        image_help: 'Poster afbeelding getoond voordat video wordt afgespeeld. Zet het ''poster'' attribuut op het HTML5 video element.'
+        controls: 'Toon bedieningselementen'
+        controls_help: 'Voegt het ''controls'' attribuut toe aan HTML5 video. Toont play/pause, tijdlijn en volume bedieningselementen.'
+        autoplay: 'Automatisch afspelen (zonder geluid)'
+        autoplay_help: 'Voegt de attributen ''autoplay muted'' toe. Browserbeleid vereist gedempt autoplay voor gebruikerservaring.'
+        loop: 'Herhalen'
+        loop_help: 'Voegt het ''loop'' attribuut toe aan HTML5 video. Herstart automatisch aan het einde.'
     monsieurbiz.separator:
       title: 'Scheiding'
       short_description: 'Een scheidingselement'
       description: 'Een scheidingselement dat optioneel verborgen kan zijn.'
       field:
         hidden: 'Verborgen scheidingselement'
+        hidden_help: 'Creëert onzichtbare ruimte zonder zichtbare lijn (gebruikt CSS ''invisible'' klasse).'
         style:
-         label: 'Stijl'
-         choices:
-           solid: 'Solide'
-           dashed: 'Gestippeld'
-           dotted: 'Gepunt'
+          label: 'Stijl'
+          help: 'Randstijl: solide, gestippeld of onderbroken.'
+          choices:
+            solid: 'Solide'
+            dashed: 'Gestippeld'
+            dotted: 'Gepunt'
+        thickness:
+          label: 'Dikte'
+          help: 'Randdikte: dun (1px), gemiddeld (2px), dik (4px) of zeer dik (5px).'
+          choices:
+            fine: 'Dun'
+            medium: 'Gemiddeld'
+            thick: 'Dik'
+            very_thick: 'Zeer dik'
+    monsieurbiz.anchor:
+      title: Anker
+      description: "Voeg een anker toe dat toegankelijk is via een link met #"
+      field:
+        name: "Naam van het anker (Zonder de #)"
+        name_help: "Unieke identificatie voor pagina ankers (zonder #). Gebruikt in links zoals #sectie-naam."
     monsieurbiz.button:
       title: 'Knop'
       short_description: 'Een knop met tekst en een link.'
@@ -68,6 +97,8 @@ monsieurbiz_richeditor_plugin:
       field:
         label: 'Label'
         link: 'Link'
+        link_help: 'Doel-URL wanneer op de knop wordt geklikt. Gebruik relatieve paden (/pagina) voor interne links.'
+        link_type_help: 'Interne links openen in hetzelfde tabblad; externe links openen in nieuw tabblad met beveiligingsattributen.'
     monsieurbiz.youtube:
       title: 'YouTube-video'
       short_description: 'Een YouTube-element.'
@@ -75,7 +106,9 @@ monsieurbiz_richeditor_plugin:
       field:
         link: 'YouTube-link'
         width: 'Breedte van de iframe'
+        width_help: 'Vaste iframe breedte in pixels. Indien alleen breedte ingesteld, hoogte berekend met 16:9 verhouding. Leeg = responsief.'
         height: 'Hoogte van de iframe'
+        height_help: 'Vaste iframe hoogte in pixels. Indien alleen hoogte ingesteld, breedte berekend met 16:9 verhouding. Leeg = responsief.'
     monsieurbiz.image_collection:
       title: 'Galerij'
       short_description: 'Een element met meerdere afbeeldingen.'
@@ -87,6 +120,29 @@ monsieurbiz_richeditor_plugin:
       description: 'Een element met inhoud in markdown'
       field:
         content: 'Inhoud'
+    monsieurbiz.two_columns:
+      title: '2 Kolommen'
+      description: '2 kolommen met dynamische breedte'
+      fields:
+        margin_auto: 'Automatische uitlijning'
+        margin_auto_help: 'Voegt Bootstrap ''m-auto'' klasse toe om kolomcontainer horizontaal te centreren.'
+        reverse_mobile: 'Volgorde omkeren op mobiel'
+        reverse_mobile_help: 'Gebruikt ''flex-column-reverse'' op mobiel, ''flex-column'' anders. Verandert stapelvolgorde onder md breakpoint.'
+        first_column: 'Inhoud van de eerste kolom'
+        first_column_width: 'Breedte van de eerste kolom'
+        first_column_width_help: 'Bootstrap grid verhouding: 1/5=col-md-2/10, 1/2=col-md-6/6, enz. Tweede kolom neemt overige ruimte.'
+        second_column: 'Inhoud van de tweede kolom'
+      choices:
+        first_column_width:
+          width_1_5: '1/5 (20%)'
+          width_1_4: '1/4 (25%)'
+          width_1_3: '1/3 (33%)'
+          width_2_5: '2/5 (40%)'
+          width_1_2: '1/2 (50%)'
+          width_3_5: '3/5 (60%)'
+          width_2_3: '2/3 (66%)'
+          width_3_4: '3/4 (75%)'
+          width_4_5: '4/5 (80%)'
   file:
     change: 'Bestand aanpassen'
   form:
@@ -108,6 +164,51 @@ monsieurbiz_richeditor_plugin:
     save: 'Opslaan'
     add_image: 'Voeg afbeelding toe'
     delete_image: 'Verwijder afbeelding'
+    select_ui_element: 'Selecteer een UI element'
+    add_item: 'Voeg item toe'
+    delete_item: 'Verwijder item'
+    align:
+      label: 'Uitlijning'
+      help: 'CSS text-align eigenschap: left, center, right, justify, of geërfd van parent.'
+      default: 'Standaard'
+      left: 'Links'
+      center: 'Midden'
+      right: 'Rechts'
+      justify: 'Uitgevuld'
+    level:
+      label: 'Niveau'
+      help: 'Visuele stijl niveau: Primaire, Secundaire, Tertiaire belangrijkheid. Kleuren en uiterlijk hangen af van actief thema.'
+      default: 'Standaard'
+      primary: 'Primair'
+      secondary: 'Secundair'
+      tertiary: 'Tertiair'
+    tag:
+      label: 'HTML Tag'
+      label_help: 'De HTML tag om te gebruiken voor deze titel. Standaard is een <div> tag.'
+      default: 'Standaard (div)'
+      h1: '<h1>'
+      h2: '<h2>'
+      h3: '<h3>'
+      h4: '<h4>'
+      h5: '<h5>'
+      h6: '<h6>'
+    text_size:
+      label: 'Tekstgrootte'
+      help: 'Bootstrap display utility klassen: XS=display-6 (kleinste) tot XXL=display-1 (grootste).'
+      default: 'Standaard (Extra groot)'
+      xs: 'Extra klein'
+      s: 'Klein'
+      m: 'Gemiddeld'
+      l: 'Groot'
+      xl: 'Extra groot'
+      xxl: 'Extra extra groot'
+    clipboard: 'Klembord'
+    paste_from_clipboard: 'Plakken van klembord'
+    paste_all_from_clipboard: 'Alle elementen plakken'
+    copy_all_from_clipboard: 'Alle elementen kopiëren'
+    trash_all: 'Alle elementen verwijderen'
+    copied: 'Gekopieerd!'
+    copy: 'Kopiëren'
   action:
     new: 'Schakel tussen beschikbare widgets'
     preview: 'Voorbeeld'
@@ -116,7 +217,11 @@ monsieurbiz_richeditor_plugin:
     cannot_find_type: 'Kan type niet vinden voor sommige UI-elementen'
     cannot_upload_image: 'Kan de afbeelding niet uploaden. Het bestand is mogelijk te groot of heeft een onjuist formaat.'
     ajax_error: 'Er is een technisch probleem. Neem contact op met uw beheerder.'
+    unallowed_uielement: 'Element niet toegestaan hier'
+  ui:
+    disabled: 'Uitgeschakeld'
   common:
     link_type: 'Type link'
+    link_type_help: 'Bepaalt link gedrag: intern (zelfde tabblad) vs extern (nieuw tabblad met beveiligingsattributen).'
     internal_link: 'Interne link'
     external_link: 'Externe link'
