@@ -14,6 +14,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/html.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/html.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_HTML_ENABLED)%'
         monsieurbiz.text:
             alias: text
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.title'
@@ -26,6 +27,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/text.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/text.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TEXT_ENABLED)%'
         monsieurbiz.quote:
             alias: quote
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.title'
@@ -38,6 +40,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/quote.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/quote.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_QUOTE_ENABLED)%'
         monsieurbiz.image:
             alias: image
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.title'
@@ -50,6 +53,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/image.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/image.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_IMAGE_ENABLED)%'
         monsieurbiz.video:
             alias: video
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.video.title'
@@ -62,6 +66,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/video.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/video.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_VIDEO_ENABLED)%'
         monsieurbiz.button:
             alias: button
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.button.title'
@@ -74,6 +79,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/button.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/button.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_BUTTON_ENABLED)%'
         monsieurbiz.title:
             alias: title
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.title'
@@ -86,6 +92,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/title.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/title.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TITLE_ENABLED)%'
         monsieurbiz.h1:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h1.description'
@@ -97,7 +104,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h1.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h1.html.twig'
-            enabled: false
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H1_ENABLED)%'
         monsieurbiz.h2:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h2.description'
@@ -109,7 +116,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h2.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h2.html.twig'
-            enabled: false
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H2_ENABLED)%'
         monsieurbiz.h3:
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.title'
             description: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.h3.description'
@@ -121,7 +128,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/h3.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/h3.html.twig'
-            enabled: false
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H3_ENABLED)%'
         monsieurbiz.separator:
             alias: separator
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.title'
@@ -134,6 +141,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/separator.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/separator.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_SEPARATOR_ENABLED)%'
         monsieurbiz.anchor:
             alias: anchor
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.anchor.title'
@@ -146,6 +154,7 @@ monsieurbiz_sylius_richeditor:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/anchor.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/anchor.html.twig'
             tags: [default, anchor]
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_ANCHOR_ENABLED)%'
         monsieurbiz.youtube:
             alias: youtube
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.youtube.title'
@@ -158,6 +167,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/youtube.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/youtube.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_YOUTUBE_ENABLED)%'
         monsieurbiz.image_collection:
             alias: image_collection
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image_collection.title'
@@ -170,6 +180,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/image_collection.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/image_collection.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_IMAGE_COLLECTION_ENABLED)%'
         monsieurbiz.two_columns:
             alias: two_columns
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.title'
@@ -182,6 +193,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/two_columns.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/two_columns.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TWO_COLUMNS_ENABLED)%'
         monsieurbiz.column:
             alias: column
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.title'
@@ -194,6 +206,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/column.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/column.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_COLUMN_ENABLED)%'
         monsieurbiz.row:
             alias: row
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.title'
@@ -206,6 +219,7 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/row.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/row.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_ROW_ENABLED)%'
         monsieurbiz.markdown:
             alias: markdown
             title: 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.title'
@@ -218,3 +232,4 @@ monsieurbiz_sylius_richeditor:
             templates:
                 admin_render: '@MonsieurBizSyliusRichEditorPlugin/admin/ui_element/markdown.html.twig'
                 front_render: '@MonsieurBizSyliusRichEditorPlugin/shop/ui_element/markdown.html.twig'
+            enabled: '%env(bool:MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_MARKDOWN_ENABLED)%'
