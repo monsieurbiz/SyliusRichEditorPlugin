@@ -24,7 +24,7 @@
 {% endif %}
 {% if url is not null %}
     <div
-        class="my-5 text-{{ align }} ui-element-youtube"
+        class="my-5 ui-element-youtube" style="text-align: {{ align }};"
     >
         <div class="{% if elementWidth is null and elementHeight is null %}ratio ratio-16x9{% endif %}">
             <iframe
