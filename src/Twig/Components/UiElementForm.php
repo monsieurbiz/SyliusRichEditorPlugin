@@ -78,6 +78,9 @@ class UiElementForm
         );
     }
 
+    /**
+     * @deprecated
+     */
     #[LiveListener('media-manager:file-selected')]
     public function mediaManagerFileSelected(
         #[LiveArg]
@@ -85,6 +88,7 @@ class UiElementForm
         #[LiveArg]
         string $filePath,
     ): void {
+        trigger_deprecation('monsieurbiz/sylius-rich-editor-plugin', '3.x', 'The "%s" method is deprecated and will be removed in a future version.', __METHOD__);
         // Support any depth: e.g. menu_item[linkSettings][thumbnail] or menu_item[foo][bar][baz]
         $inputNameParts = explode('[', str_replace(']', '', $inputName));
         // Remove the first part (form name, e.g. menu_item)
