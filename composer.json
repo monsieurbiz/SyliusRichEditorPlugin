@@ -18,7 +18,8 @@
         "phpstan/phpstan-doctrine": "^1.3.2",
         "phpstan/phpstan-webmozart-assert": "^1.1",
         "phpunit/phpunit": "^10.5",
-        "phpmd/phpmd": "^2.15"
+        "phpmd/phpmd": "^2.15",
+        "symfony/maker-bundle": "^1.65"
     },
     "suggest": {
         "monsieurbiz/sylius-media-manager-plugin": "To use the media manager in the ui elements"
