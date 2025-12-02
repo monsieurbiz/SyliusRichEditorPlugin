@@ -25,77 +25,83 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Form\AbstractType;
 use Webmozart\Assert\Assert;
 
-final class UiElementMaker extends AbstractMaker
-{
-    public static function getCommandName(): string
+if (class_exists(AbstractMaker::class)) {
+    final class UiElementMaker extends AbstractMaker
     {
-        return 'make:ui-element';
+        public static function getCommandName(): string
+        {
+            return 'make:ui-element';
+        }
+
+        /**
+         * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+         */
+        public function configureCommand(Command $command, InputConfiguration $inputConfig): void
+        {
+            $command
+                ->addArgument('code', InputArgument::OPTIONAL, 'The code of the UI Element (e.g. <fg=yellow>my_ui_element</>)')
+                ->addArgument('icon', InputArgument::OPTIONAL, 'The semantic icon code for the UI Element (e.g. <fg=yellow>map pin</>)', 'square')
+                ->addArgument('code_prefix', InputArgument::OPTIONAL, 'The code prefix for the UI Element (e.g. <fg=yellow>app</>)', 'app')
+                ->setDescription('Creates a new UI Element FormType and templates')
+            ;
+        }
+
+        public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
+        {
+            $code = $input->getArgument('code');
+            $icon = $input->getArgument('icon');
+            $codePrefix = $input->getArgument('code_prefix');
+            Assert::string($code);
+            $name = Str::asCamelCase($code);
+            $uiElementFormClassNameDetails = $generator->createClassNameDetails(
+                $name,
+                'Form\\Type\\UiElement\\',
+                'Type'
+            );
+            $generator->generateClass(
+                $uiElementFormClassNameDetails->getFullName(),
+                __DIR__ . '/../Resources/skeleton/UiElementFormType.tpl.php',
+                [
+                    'code' => \sprintf('%s.%s', $codePrefix, $code),
+                    'icon' => $icon,
+                    'tags' => json_encode([]),
+                ]
+            );
+
+            // Generate templates
+            $generator->generateTemplate(
+                \sprintf('admin/ui_element/%s.html.twig', $code),
+                __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
+                [
+                    'code' => $code,
+                ]
+            );
+            $generator->generateTemplate(
+                \sprintf('shop/ui_element/%s.html.twig', $code),
+                __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
+                [
+                    'code' => $code,
+                ]
+            );
+
+            $generator->writeChanges();
+
+            $this->writeSuccessMessage($io);
+            $io->text([
+                'Next: Open your new UI Element FormType and templates, and start customizing it.',
+            ]);
+        }
+
+        public function configureDependencies(DependencyBuilder $dependencies): void
+        {
+            $dependencies->addClassDependency(
+                AbstractType::class,
+                'monsieurbiz/sylius-rich-editor-plugin'
+            );
+        }
     }
-
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function configureCommand(Command $command, InputConfiguration $inputConfig): void
+} else {
+    final class UiElementMaker
     {
-        $command
-            ->addArgument('code', InputArgument::OPTIONAL, 'The code of the UI Element (e.g. <fg=yellow>my_ui_element</>)')
-            ->addArgument('icon', InputArgument::OPTIONAL, 'The semantic icon code for the UI Element (e.g. <fg=yellow>map pin</>)', 'square')
-            ->addArgument('code_prefix', InputArgument::OPTIONAL, 'The code prefix for the UI Element (e.g. <fg=yellow>app</>)', 'app')
-            ->setDescription('Creates a new UI Element FormType and templates')
-        ;
-    }
-
-    public function generate(InputInterface $input, ConsoleStyle $io, Generator $generator): void
-    {
-        $code = $input->getArgument('code');
-        $icon = $input->getArgument('icon');
-        $codePrefix = $input->getArgument('code_prefix');
-        Assert::string($code);
-        $name = Str::asCamelCase($code);
-        $uiElementFormClassNameDetails = $generator->createClassNameDetails(
-            $name,
-            'Form\\Type\\UiElement\\',
-            'Type'
-        );
-        $generator->generateClass(
-            $uiElementFormClassNameDetails->getFullName(),
-            __DIR__ . '/../Resources/skeleton/UiElementFormType.tpl.php',
-            [
-                'code' => \sprintf('%s.%s', $codePrefix, $code),
-                'icon' => $icon,
-                'tags' => json_encode([]),
-            ]
-        );
-
-        // Generate templates
-        $generator->generateTemplate(
-            \sprintf('admin/ui_element/%s.html.twig', $code),
-            __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
-            [
-                'code' => $code,
-            ]
-        );
-        $generator->generateTemplate(
-            \sprintf('shop/ui_element/%s.html.twig', $code),
-            __DIR__ . '/../Resources/skeleton/UiElementTemplate.tpl.php',
-            [
-                'code' => $code,
-            ]
-        );
-
-        $generator->writeChanges();
-
-        $this->writeSuccessMessage($io);
-        $io->text([
-            'Next: Open your new UI Element FormType and templates, and start customizing it.',
-        ]);
-    }
-
-    public function configureDependencies(DependencyBuilder $dependencies): void
-    {
-        $dependencies->addClassDependency(
-            AbstractType::class,
-            'monsieurbiz/sylius-rich-editor-plugin'
-        );
     }
 }

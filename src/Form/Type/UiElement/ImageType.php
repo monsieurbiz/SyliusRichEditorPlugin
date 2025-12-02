@@ -67,14 +67,14 @@ class ImageType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link',
                 'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.image.field.link_help',
                 'constraints' => [
-                    new Assert\AtLeastOneOf([
-                        'includeInternalMessages' => false,
-                        'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
-                        'constraints' => [
+                    new Assert\AtLeastOneOf(
+                        constraints: [
                             new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
                             new Assert\Regex(['pattern' => '`^(#|/.*)$`']),
                         ],
-                    ]),
+                        message: 'monsieurbiz_richeditor_plugin.not_valid_url',
+                        includeInternalMessages: false
+                    ),
                 ],
             ])
             ->add('link_type', LinkTypeType::class, [
