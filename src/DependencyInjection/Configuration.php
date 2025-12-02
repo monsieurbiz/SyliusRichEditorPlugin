@@ -36,7 +36,6 @@ final class Configuration implements ConfigurationInterface
 
     private function addUiElements(ArrayNodeDefinition $rootNode): void
     {
-        /** @phpstan-ignore-next-line */
         $rootNode
             ->children()
                 ->scalarNode('upload_directory')->end()

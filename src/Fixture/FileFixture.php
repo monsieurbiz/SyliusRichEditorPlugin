@@ -43,7 +43,6 @@ final class FileFixture extends AbstractFixture implements FixtureInterface
 
     protected function configureOptionsNode(ArrayNodeDefinition $optionsNode): void
     {
-        /** @phpstan-ignore-next-line */
         $optionsNode
             ->children()
                 ->arrayNode('files')

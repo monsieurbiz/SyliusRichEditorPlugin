@@ -38,28 +38,28 @@ class ButtonLinkType extends AbstractType
                 new Assert\NotBlank([]),
             ];
             $constraintsLink = [
-                new Assert\AtLeastOneOf([
-                    'includeInternalMessages' => false,
-                    'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
-                    'constraints' => [
+                new Assert\AtLeastOneOf(
+                    constraints: [
                         new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
                         new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
                     ],
-                ]),
+                    message: 'monsieurbiz_richeditor_plugin.not_valid_url',
+                    includeInternalMessages: false
+                ),
                 new Assert\NotBlank([]),
             ];
         } else {
             $constraintsLabel = [];
             $constraintsLinkType = [];
             $constraintsLink = [
-                new Assert\AtLeastOneOf([
-                    'includeInternalMessages' => false,
-                    'message' => 'monsieurbiz_richeditor_plugin.not_valid_url',
-                    'constraints' => [
+                new Assert\AtLeastOneOf(
+                    constraints: [
                         new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
                         new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
                     ],
-                ]),
+                    message: 'monsieurbiz_richeditor_plugin.not_valid_url',
+                    includeInternalMessages: false
+                ),
             ];
         }
 
