@@ -194,6 +194,35 @@ monsieurbiz_sylius_richeditor:
             enabled: false
 ```
 
+#### Disable UI Elements via environment variables
+
+Each UI Element can be enabled or disabled using environment variables. This is useful for managing UI Elements across different environments without modifying configuration files.
+
+```yaml
+# Example: Disable the YouTube element via environment variable
+MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_YOUTUBE_ENABLED=false
+```
+
+Available environment variables:
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_HTML_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TEXT_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_QUOTE_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_IMAGE_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_VIDEO_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_BUTTON_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TITLE_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H1_ENABLED` (default: false)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H2_ENABLED` (default: false)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_H3_ENABLED` (default: false)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_SEPARATOR_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_ANCHOR_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_YOUTUBE_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_IMAGE_COLLECTION_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_TWO_COLUMNS_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_COLUMN_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_ROW_ENABLED` (default: true)
+- `MONSIEURBIZ_SYLIUS_RICH_EDITOR_UI_ELEMENT_MARKDOWN_ENABLED` (default: true)
+
 ## Available elements
 
 - Two columns element (Layout)
