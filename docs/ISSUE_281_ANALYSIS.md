@@ -89,7 +89,7 @@ Users might expect: "Show products, but hide admin elements" to mean "show produ
 **Test Coverage**:
 - `testCaseSensitivity()` - Tests case sensitivity
 
-### 5. Multiple Elements with Same Tag (Potential Bug)
+### 5. Last-Match-Wins for Elements with Multiple Tags (Potential Bug)
 
 **Issue**: When an element has multiple tags and the manager tags process them, the behavior follows "last match wins" which might not be intuitive.
 
