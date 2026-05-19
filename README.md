@@ -251,6 +251,12 @@ With the Maker Bundle, you can create a new UiElement very easily:
 bin/console make:ui-element
 ```
 
+If you encounter a problem by running this command, you may have to install the MakerBundle : 
+
+```bash
+composer require --dev symfony/maker-bundle
+```
+
 Then you will have to answer some questions, or you can add arguments to the command to avoid the questions.
 
 ```bash
