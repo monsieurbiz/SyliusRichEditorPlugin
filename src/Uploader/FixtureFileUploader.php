@@ -13,24 +13,26 @@ declare(strict_types=1);
 
 namespace MonsieurBiz\SyliusRichEditorPlugin\Uploader;
 
-use Gaufrette\FilesystemInterface;
+use League\Flysystem\FilesystemException;
+use League\Flysystem\FilesystemOperator;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
-use Webmozart\Assert\Assert;
 
 final class FixtureFileUploader implements FixtureFileUploaderInterface
 {
-    private FilesystemInterface $filesystem;
-
-    public function __construct(FilesystemInterface $filesystem)
+    public function __construct(
+        #[Autowire(service: 'monsieurbiz_rich_editor_fixture_file')]
+        private FilesystemOperator $filesystem
+    )
     {
-        $this->filesystem = $filesystem;
     }
 
+    /**
+     * @throws FilesystemException
+     */
     public function upload(File $file, string $target): void
     {
-        Assert::isInstanceOf($file, File::class);
-
-        if ($this->filesystem->has($target)) {
+        if ($this->filesystem->fileExists($target)) {
             $this->remove($target);
         }
 
@@ -40,10 +42,15 @@ final class FixtureFileUploader implements FixtureFileUploaderInterface
         );
     }
 
+    /**
+     * @throws FilesystemException
+     */
     public function remove(string $path): bool
     {
-        if ($this->filesystem->has($path)) {
-            return $this->filesystem->delete($path);
+        if ($this->filesystem->fileExists($path)) {
+            $this->filesystem->delete($path);
+
+            return true;
         }
 
         return false;
