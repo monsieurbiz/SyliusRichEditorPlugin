@@ -9,7 +9,7 @@ flysystem:
         monsieurbiz_rich_editor_fixture_file:
             adapter: 'local'
             options:
-                directory: '%sylius_core.images_dir%/media'
+                directory: '%sylius_core.public_dir%/media'
             directory_visibility: 'public'
 
 parameters:
