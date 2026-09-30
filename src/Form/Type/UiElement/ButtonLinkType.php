@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class ButtonLinkType extends AbstractType
 {
     /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings("PHPMD.ElseExpression")
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

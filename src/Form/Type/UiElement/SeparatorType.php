@@ -66,7 +66,7 @@ class SeparatorType extends AbstractType
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.separator.field.thickness.choices.very_thick' => self::THICKNESS_VERY_THICK,
                 ],
             ])
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+            ->addEventListener(FormEvents::PRE_SET_DATA, static function (FormEvent $event): void {
                 /** @var array $data */
                 $data = $event->getData();
                 $data['hidden'] = (bool) ($data['hidden'] ?? false);

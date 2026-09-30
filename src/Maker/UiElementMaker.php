@@ -34,7 +34,7 @@ if (class_exists(AbstractMaker::class)) {
         }
 
         /**
-         * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+         * @SuppressWarnings("PHPMD.UnusedFormalParameter")
          */
         public function configureCommand(Command $command, InputConfiguration $inputConfig): void
         {

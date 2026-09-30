@@ -72,6 +72,7 @@ setup_application:
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]')
 	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
+	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress doctrine/orm="~3.5.0") # Temp: ORM >= 3.7 fails schema:validate on the unused ShipmentUnit mapping (Sylius/Sylius#19235, fixed only in sylius-standard 2.1.6's lock, PHP ^8.3)
 	$(MAKE) ${APP_DIR}/.php-version
 	$(MAKE) ${APP_DIR}/php.ini
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)

@@ -23,8 +23,7 @@ final class FixtureFileUploader implements FixtureFileUploaderInterface
     public function __construct(
         #[Autowire(service: 'monsieurbiz_rich_editor_fixture_file')]
         private FilesystemOperator $filesystem
-    )
-    {
+    ) {
     }
 
     /**
