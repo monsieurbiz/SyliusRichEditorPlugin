@@ -39,7 +39,7 @@ class ImageType extends AbstractType
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
@@ -85,6 +85,9 @@ class ImageType extends AbstractType
         ;
     }
 
+    /**
+     * @return class-string<\Symfony\Component\Form\FormTypeInterface>
+     */
     private function getImageType(): string
     {
         // @phpstan-ignore-next-line

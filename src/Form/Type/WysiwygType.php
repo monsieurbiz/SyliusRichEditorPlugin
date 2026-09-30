@@ -44,7 +44,7 @@ class WysiwygType extends TextareaType
     /**
      * @inheritdoc
      *
-     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings("PHPMD.ElseExpression")
      */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
@@ -63,7 +63,7 @@ class WysiwygType extends TextareaType
     {
         parent::configureOptions($resolver);
 
-        $locale = explode('_', $this->localeContext->getLocaleCode())[0] ?? self::DEFAULT_LOCALE;
+        $locale = explode('_', $this->localeContext->getLocaleCode())[0];
         $resolver->setDefaults([
             'editor_type' => self::DEFAULT_EDITOR_TYPE,
             'editor_height' => self::DEFAULT_EDITOR_HEIGHT,

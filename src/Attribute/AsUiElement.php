@@ -20,8 +20,8 @@ use MonsieurBiz\SyliusRichEditorPlugin\UiElement\UiElement;
 class AsUiElement
 {
     /**
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings("PHPMD.ExcessiveParameterList")
+     * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
      */
     public function __construct(
         public string $code,

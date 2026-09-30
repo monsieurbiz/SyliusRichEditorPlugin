@@ -17,5 +17,4 @@ parameters:
         - 'src/Maker/*.php'
 
     ignoreErrors:
-        - identifier: missingType.generics
         - identifier: missingType.iterableValue

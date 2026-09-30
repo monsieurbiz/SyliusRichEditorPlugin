@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class FileType extends CoreFileType
 {
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -30,7 +30,7 @@ class FileType extends CoreFileType
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {

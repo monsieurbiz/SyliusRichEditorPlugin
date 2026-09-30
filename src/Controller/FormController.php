@@ -45,7 +45,7 @@ class FormController extends AbstractController
     /**
      * Generate the form for an element.
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function viewAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale, string $code): Response
     {
@@ -97,8 +97,8 @@ class FormController extends AbstractController
     /**
      * Render all UI elements in HTML.
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
+     * @SuppressWarnings("PHPMD.ElseExpression")
      */
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
@@ -153,7 +153,7 @@ class FormController extends AbstractController
     /**
      * Validate submitted data and return an UI Element JSON if everything is OK.
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function submitAction(Request $request, FileUploaderInterface $fileUploader, SwitchAdminLocaleInterface $switchAdminLocale, string $code, bool $isEdition): Response
     {
@@ -243,7 +243,7 @@ class FormController extends AbstractController
      *
      * @return array|mixed|string
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     private function processFormDataWithoutChild(FormInterface $form, FileUploaderInterface $fileUploader, $requestData)
     {
@@ -270,7 +270,7 @@ class FormController extends AbstractController
      * The key is the full input name (ex : `image_collection[images][0][image]`)
      * It is used in form with file inputs when the form is not valid to avoid to loose uploaded files.
      *
-     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @SuppressWarnings("PHPMD.ElseExpression")
      */
     private function convertFormDataForRequest(array $formData, string $prefix = ''): array
     {

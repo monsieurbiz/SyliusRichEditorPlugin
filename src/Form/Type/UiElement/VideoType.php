@@ -37,7 +37,7 @@ class VideoType extends AbstractType
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
      */
     public function addFields(FormBuilderInterface $builder, array $options): void
     {
@@ -75,12 +75,18 @@ class VideoType extends AbstractType
         ;
     }
 
+    /**
+     * @return class-string<\Symfony\Component\Form\FormTypeInterface>
+     */
     private function getImageType(): string
     {
         // @phpstan-ignore-next-line
         return MonsieurBizSyliusRichEditorPlugin::imageMediaManagerExists() ? MediaManagerImageType::class : FileType::class;
     }
 
+    /**
+     * @return class-string<\Symfony\Component\Form\FormTypeInterface>
+     */
     private function getVideoType(): string
     {
         // @phpstan-ignore-next-line

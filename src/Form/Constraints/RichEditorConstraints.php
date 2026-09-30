@@ -23,7 +23,7 @@ final class RichEditorConstraints
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required.
      *
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
      */
     public static function getImageConstraints(array $data, string $fieldName, bool $required = true, array $defaultConstraints = []): array
     {
@@ -45,7 +45,7 @@ final class RichEditorConstraints
      * If user created the element, the field is required
      * If it's an edition and it contains a filename, we don't flag it as required.
      *
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     * @SuppressWarnings("PHPMD.BooleanArgumentFlag")
      */
     public static function getVideoConstraints(array $data, string $fieldName, bool $required = true, array $defaultConstraints = []): array
     {

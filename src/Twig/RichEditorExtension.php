@@ -161,7 +161,7 @@ final class RichEditorExtension extends AbstractExtension
      * @throws SyntaxError [twig.render] When an error occurred during compilation
      * @throws RuntimeError [twig.render] When an error occurred during rendering
      *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function renderElement(array $context, array $element): string
     {
@@ -236,7 +236,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     public function getCurrentFilePath(array $context, string $varName = 'full_name'): ?string
     {
@@ -299,7 +299,7 @@ final class RichEditorExtension extends AbstractExtension
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings("PHPMD.CyclomaticComplexity")
      */
     private function isAdmin(array $context): bool
     {
