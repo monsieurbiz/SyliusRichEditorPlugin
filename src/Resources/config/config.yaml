@@ -4,15 +4,13 @@ imports:
     - { resource: "richeditor.yaml" }
     - { resource: 'images.yaml' }
 
-knp_gaufrette:
-    adapters:
+flysystem:
+    storages:
         monsieurbiz_rich_editor_fixture_file:
-            local:
+            adapter: 'local'
+            options:
                 directory: '%sylius_core.public_dir%/media'
-                create: true
-    filesystems:
-        monsieurbiz_rich_editor_fixture_file:
-            adapter: 'monsieurbiz_rich_editor_fixture_file'
+            directory_visibility: 'public'
 
 parameters:
     env(MONSIEURBIZ_SYLIUS_RICH_EDITOR_UPLOAD_DIR): /media/rich-editor
