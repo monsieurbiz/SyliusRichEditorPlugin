@@ -15,9 +15,10 @@ This plugin adds a rich editor on the fields you want. Now you can manage your c
 
 ## Compatibility
 
-| Sylius Version | PHP Version     |
-|----------------|-----------------|
-| 2.0, 2.1       | 8.1 - 8.2       |
+| Sylius Version | Symfony Version | PHP Version |
+|----------------|-----------------|-------------|
+| 2.0, 2.1       | 6.4, 7.x        | 8.1 - 8.2   |
+| 2.3            | 8.x             | 8.4         |
 
 ℹ️ For Sylius 1.x, see our branch [branch 2.x] (https://github.com/monsieurbiz/SyliusRichEditorPlugin/tree/2.0) and all 2.x releases.
 

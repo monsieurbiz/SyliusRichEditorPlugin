@@ -13,7 +13,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.16",
-        "phpspec/phpspec": "^7.0",
+        "phpspec/phpspec": "^7.0 || ^8.0",
         "phpstan/phpstan": "^2.2",
         "phpstan/phpstan-doctrine": "^2.0",
         "phpstan/phpstan-webmozart-assert": "^2.0",

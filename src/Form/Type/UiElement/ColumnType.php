@@ -30,7 +30,7 @@ class ColumnType extends AbstractType
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.column.field.content',
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
         ;

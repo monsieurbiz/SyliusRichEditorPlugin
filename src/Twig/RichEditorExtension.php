@@ -247,8 +247,8 @@ final class RichEditorExtension extends AbstractExtension
         }
 
         $path = $form->vars['data'];
-        if (!empty($app->getRequest()->get('rich_editor_uploaded_files'))) {
-            $uploadedFile = $app->getRequest()->get('rich_editor_uploaded_files');
+        $uploadedFile = $app->getRequest()->request->all()['rich_editor_uploaded_files'] ?? null;
+        if (!empty($uploadedFile)) {
             if (null !== ($fullName = $uploadedFile[$varName] ?? null)) {
                 if ($fullName instanceof UploadedFile) {
                     return null;
@@ -311,7 +311,7 @@ final class RichEditorExtension extends AbstractExtension
 
         // Check Sylius section to know if we are in the admin
         /** @var ?array $sylius */
-        $sylius = $request->get('_sylius');
+        $sylius = $request->attributes->get('_sylius');
         if (isset($sylius['section'])) {
             return self::SYLIUS_ADMIN_SECTION === $sylius['section'];
         }

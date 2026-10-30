@@ -32,21 +32,21 @@ class ButtonLinkType extends AbstractType
         $required = $options['required'] ?? false;
         if ($required) {
             $constraintsLabel = [
-                new Assert\NotBlank([]),
+                new Assert\NotBlank(),
             ];
             $constraintsLinkType = [
-                new Assert\NotBlank([]),
+                new Assert\NotBlank(),
             ];
             $constraintsLink = [
                 new Assert\AtLeastOneOf(
                     constraints: [
-                        new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
-                        new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
+                        new Assert\Url(protocols: ['http', 'https'], relativeProtocol: true),
+                        new Assert\Regex(pattern: '`^(#|/|tel:|mailto:)`'),
                     ],
                     message: 'monsieurbiz_richeditor_plugin.not_valid_url',
                     includeInternalMessages: false
                 ),
-                new Assert\NotBlank([]),
+                new Assert\NotBlank(),
             ];
         } else {
             $constraintsLabel = [];
@@ -54,8 +54,8 @@ class ButtonLinkType extends AbstractType
             $constraintsLink = [
                 new Assert\AtLeastOneOf(
                     constraints: [
-                        new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
-                        new Assert\Regex(['pattern' => '`^(#|/|tel:|mailto:)`']),
+                        new Assert\Url(protocols: ['http', 'https'], relativeProtocol: true),
+                        new Assert\Regex(pattern: '`^(#|/|tel:|mailto:)`'),
                     ],
                     message: 'monsieurbiz_richeditor_plugin.not_valid_url',
                     includeInternalMessages: false

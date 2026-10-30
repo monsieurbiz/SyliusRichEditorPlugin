@@ -49,7 +49,7 @@ class TwoColumnsType extends AbstractType
                 'help' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.first_column_width_help',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
                 'choices' => [
                     'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.choices.first_column_width.width_1_5' => self::WIDTH_1_5,
@@ -80,14 +80,14 @@ class TwoColumnsType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.first_column',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->add('secondColumn', RichEditorType::class, [
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.two_columns.fields.second_column',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
         ;

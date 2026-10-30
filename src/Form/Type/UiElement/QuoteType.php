@@ -33,7 +33,7 @@ class QuoteType extends AbstractType
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.field.author',
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->add('content', WysiwygType::class, [
@@ -41,7 +41,7 @@ class QuoteType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.quote.field.content',
                 'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_MINIMAL,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->add('align', AlignmentType::class, [

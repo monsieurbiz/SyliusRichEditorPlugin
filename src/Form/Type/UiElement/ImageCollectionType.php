@@ -50,9 +50,9 @@ class ImageCollectionType extends AbstractType
                 ],
             ],
             'constraints' => [
-                new Assert\Count([
-                    'min' => 1,
-                ]),
+                new Assert\Count(
+                    min: 1,
+                ),
             ],
         ]);
     }

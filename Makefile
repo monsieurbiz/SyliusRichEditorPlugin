@@ -2,6 +2,9 @@
 SHELL=/bin/bash
 APP_DIR=tests/Application
 SYLIUS_VERSION=2.1.0
+SYMFONY_VERSION=
+DOCTRINE_ORM_VERSION=3.5.0
+SCHEMA_VALIDATE_ARGS=
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
@@ -46,6 +49,7 @@ yarn.install: ${APP_DIR}/yarn.lock
 ${APP_DIR}/yarn.lock:
 	ln -sf ${APP_DIR}/node_modules node_modules
 	touch ${APP_DIR}/yarn.lock
+	cd ${APP_DIR} && npm pkg set resolutions.webpack="~5.111.0" # Temp: webpack >= 5.112 removed the LoaderDependency module that @symfony/stimulus-bridge < 4.0.2 loads
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
 # No CSS and JS on this plugin yet
 #	${YARN} install
@@ -72,7 +76,9 @@ setup_application:
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]')
 	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
-	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress doctrine/orm="~3.5.0") # Temp: ORM >= 3.7 fails schema:validate on the unused ShipmentUnit mapping (Sylius/Sylius#19235, fixed only in sylius-standard 2.1.6's lock, PHP ^8.3)
+	$(if ${SYMFONY_VERSION},(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.require "~${SYMFONY_VERSION}")) # Optional: sylius-standard requires Symfony ^7.4 by default
+	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress doctrine/orm="~${DOCTRINE_ORM_VERSION}") # Temp: ORM >= 3.7 fails schema:validate on the unused ShipmentUnit mapping (Sylius/Sylius#19235, fixed only in sylius-standard 2.1.6's lock, PHP ^8.3)
+	(cd ${APP_DIR} && if grep -q FOSRestBundle config/bundles.php; then ${COMPOSER} require --no-install --no-scripts --no-progress friendsofsymfony/rest-bundle="^3.7"; fi) # Temp: sylius-standard < 2.3 registers FOSRestBundle, which sylius/paypal-plugin >= 2.1 no longer requires
 	$(MAKE) ${APP_DIR}/.php-version
 	$(MAKE) ${APP_DIR}/php.ini
 	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
@@ -140,7 +146,7 @@ test.yaml: ## Lint the symfony Yaml files
 	${CONSOLE} lint:yaml ../../src/Resources/config --parse-tags
 
 test.schema: ## Validate MySQL Schema
-	${CONSOLE} doctrine:schema:validate
+	${CONSOLE} doctrine:schema:validate ${SCHEMA_VALIDATE_ARGS}
 
 test.twig: ## Validate Twig templates
 	${CONSOLE} lint:twig --no-debug templates/ ../../src/Resources/views/

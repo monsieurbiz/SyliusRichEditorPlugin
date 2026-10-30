@@ -59,15 +59,15 @@ class FormController extends AbstractController
         // Check data in post
         $data = [];
         $isEdition = $request->isMethod('post');
-        $locale = $request->get('locale');
+        $locale = $this->getRequestValue($request, 'locale');
 
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
-        if (($locale = $request->get('locale')) && \is_string($locale)) {
+        if (($locale = $this->getRequestValue($request, 'locale')) && \is_string($locale)) {
             $switchAdminLocale->switchLocale($locale);
         }
 
-        if ($isEdition && ($data = $request->get('data'))) {
+        if ($isEdition && ($data = $this->getRequestValue($request, 'data'))) {
             if (!\is_string($data)) {
                 throw $this->createNotFoundException();
             }
@@ -102,7 +102,7 @@ class FormController extends AbstractController
      */
     public function renderElementsAction(Request $request, SwitchAdminLocaleInterface $switchAdminLocale): Response
     {
-        if ($uiElements = $request->get('ui_elements')) {
+        if ($uiElements = $this->getRequestValue($request, 'ui_elements')) {
             if (!\is_string($uiElements)) {
                 throw $this->createNotFoundException();
             }
@@ -114,7 +114,7 @@ class FormController extends AbstractController
 
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
-        if (($locale = $request->get('locale')) && \is_string($locale)) {
+        if (($locale = $this->getRequestValue($request, 'locale')) && \is_string($locale)) {
             $switchAdminLocale->switchLocale($locale);
         }
 
@@ -166,7 +166,7 @@ class FormController extends AbstractController
 
         // if we have a locale value in the post data, we change the current
         // admin locale to make the ui elements in the correct version.
-        if (($locale = $request->get('locale')) && \is_string($locale)) {
+        if (($locale = $this->getRequestValue($request, 'locale')) && \is_string($locale)) {
             $switchAdminLocale->switchLocale($locale);
         }
 
@@ -294,5 +294,17 @@ class FormController extends AbstractController
     private function getFormOptions(UiElementInterface $uiElement): array
     {
         return $uiElement instanceof UiElementFormOptionsInterface ? $uiElement->getFormOptions() : [];
+    }
+
+    /**
+     * Same lookup order as `Request::get()`, which is removed in Symfony 8.
+     */
+    private function getRequestValue(Request $request, string $key): mixed
+    {
+        if ($request->attributes->has($key)) {
+            return $request->attributes->get($key);
+        }
+
+        return $request->query->all()[$key] ?? $request->request->all()[$key] ?? null;
     }
 }

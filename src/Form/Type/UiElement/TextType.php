@@ -33,7 +33,7 @@ class TextType extends AbstractType
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.text.field.content',
                 'editor_toolbar_type' => EditorInterface::TOOLBAR_TYPE_MINIMAL,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->add('align', AlignmentType::class, [

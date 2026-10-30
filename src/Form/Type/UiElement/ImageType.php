@@ -69,8 +69,8 @@ class ImageType extends AbstractType
                 'constraints' => [
                     new Assert\AtLeastOneOf(
                         constraints: [
-                            new Assert\Url(['protocols' => ['http', 'https'], 'relativeProtocol' => true]),
-                            new Assert\Regex(['pattern' => '`^(#|/.*)$`']),
+                            new Assert\Url(protocols: ['http', 'https'], relativeProtocol: true),
+                            new Assert\Regex(pattern: '`^(#|/.*)$`'),
                         ],
                         message: 'monsieurbiz_richeditor_plugin.not_valid_url',
                         includeInternalMessages: false

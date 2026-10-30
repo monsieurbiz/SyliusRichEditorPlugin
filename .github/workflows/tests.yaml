@@ -9,13 +9,19 @@ jobs:
 
   php:
 
+    name: PHP ${{ matrix.php }} / Sylius ${{ matrix.sylius }} / Symfony ${{ matrix.symfony }}
+
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.2', '8.3']
-        node: ['20']
+        include:
+          - { php: '8.2', sylius: '2.1.0', symfony: '7.4', doctrine-orm: '3.5.0', node: '20' }
+          - { php: '8.3', sylius: '2.1.0', symfony: '7.4', doctrine-orm: '3.5.0', node: '20' }
+          - { php: '8.3', sylius: '2.2.0', symfony: '7.4', doctrine-orm: '3.5.0', node: '20' }
+          - { php: '8.4', sylius: '2.3.0', symfony: '8', doctrine-orm: '3.6.0', node: '22', schema-validate-args: '--skip-sync' }
+          - { php: '8.5', sylius: '2.3.0', symfony: '8', doctrine-orm: '3.6.0', node: '22', schema-validate-args: '--skip-sync' }
 
     env:
       SYMFONY_ARGS: --no-tls
@@ -48,8 +54,8 @@ jobs:
         id: cache-composer
         with:
           path: ${{ steps.composer-cache-directory.outputs.directory }}
-          key: composer2-php:${{ matrix.php }}-${{ github.sha }}
-          restore-keys: composer2-php:${{ matrix.php }}-
+          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-symfony:${{ matrix.symfony }}-${{ github.sha }}
+          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-symfony:${{ matrix.symfony }}-
 
       - name: Ensure that composer cache directory exists
         run: mkdir -p ${{ steps.composer-cache-directory.outputs.directory }}
@@ -57,7 +63,7 @@ jobs:
       - name: Composer Github Auth
         run: composer config -g github-oauth.github.com ${{ github.token }}
 
-      - run: make install
+      - run: make install SYLIUS_VERSION=${{ matrix.sylius }} SYMFONY_VERSION=${{ matrix.symfony }} DOCTRINE_ORM_VERSION=${{ matrix.doctrine-orm }}
 
       - run: make test.composer
 
@@ -75,6 +81,7 @@ jobs:
 
       - run: make test.twig
 
-      - run: make test.schema
+      # Sylius-Standard 2.3 migrations are not in sync with its own mapping on DBAL 4 (third-party tables only, the plugin has no entity)
+      - run: make test.schema SCHEMA_VALIDATE_ARGS="${{ matrix.schema-validate-args }}"
 
       - run: make test.container

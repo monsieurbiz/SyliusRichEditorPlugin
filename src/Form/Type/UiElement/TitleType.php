@@ -36,7 +36,7 @@ class TitleType extends AbstractType
                 'required' => $requiredTitle,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.title.field.content',
                 'constraints' => $requiredTitle ? [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ] : [],
             ])
             ->add('text_size', TextSizeType::class, [

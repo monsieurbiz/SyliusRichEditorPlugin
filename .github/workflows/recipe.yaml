@@ -9,6 +9,8 @@ jobs:
 
   recipe:
 
+    name: PHP ${{ matrix.php }} / Sylius ${{ matrix.sylius }}${{ matrix.symfony && format(' / Symfony {0}', matrix.symfony) || '' }}
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,6 +18,10 @@ jobs:
       matrix:
         php: ['8.2', '8.3']
         sylius: ["~2.0.0", "~2.1.0"]
+        include:
+          - { php: '8.3', sylius: '~2.2.0' }
+          - { php: '8.4', sylius: '~2.3.0', symfony: '~8' }
+          - { php: '8.5', sylius: '~2.3.0', symfony: '~8' }
 
     steps:
       - name: Setup PHP
@@ -44,8 +50,8 @@ jobs:
         id: cache-composer
         with:
           path: ${{ steps.composer-cache-directory.outputs.directory }}
-          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ hashFiles('**/composer.json') }}
-          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
+          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-symfony:${{ matrix.symfony }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-symfony:${{ matrix.symfony }}-
 
       - name: Ensure that composer cache directory exists
         run: mkdir -p ${{ steps.composer-cache-directory.outputs.directory }}
@@ -62,6 +68,19 @@ jobs:
         working-directory: ./sylius
         run: |
             composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
+
+      # Because the sylius-standard requires Symfony ^7.4 by default
+      - name: Make sure to install the required version of Symfony
+        if: matrix.symfony
+        working-directory: ./sylius
+        run: |
+            composer config --no-plugins extra.symfony.require "${{ matrix.symfony }}"
+
+      # Because the sylius-standard < 2.3 registers FOSRestBundle, which sylius/paypal-plugin >= 2.1 no longer requires
+      - name: Make sure FOSRestBundle is installed when registered
+        working-directory: ./sylius
+        run: |
+            if grep -q FOSRestBundle config/bundles.php; then composer require --no-install --no-scripts --no-progress friendsofsymfony/rest-bundle="^3.7"; fi
 
       - name: Setup some requirements
         working-directory: ./sylius

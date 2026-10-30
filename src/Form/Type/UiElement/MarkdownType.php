@@ -31,7 +31,7 @@ class MarkdownType extends AbstractType
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.markdown.field.content',
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->add('align', AlignmentType::class, [

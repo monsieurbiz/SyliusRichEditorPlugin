@@ -30,7 +30,7 @@ class RowType extends AbstractType
                 'required' => true,
                 'label' => 'monsieurbiz_richeditor_plugin.ui_element.monsieurbiz.row.field.content',
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
         ;

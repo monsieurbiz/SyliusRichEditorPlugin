@@ -43,7 +43,7 @@ class ProductType extends AbstractType
                 'label' => 'app.ui_element.product.field.product',
                 'required' => true,
                 'constraints' => [
-                    new Assert\NotBlank([]),
+                    new Assert\NotBlank(),
                 ],
             ])
             ->get('product_code')->addModelTransformer(
