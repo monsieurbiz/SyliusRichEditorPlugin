@@ -2,28 +2,40 @@ monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
       title: 'Colonne'
-      description: 'Une mise en page pour afficher les éléments colonne par colonne'
+      description: >-
+        Placez plusieurs éléments côte à côte, à raison d'un élément par colonne.
+        Choisissez cette lame pour comparer des éléments, par exemple plusieurs images.
+        Pour deux colonnes de largeur réglable contenant chacune plusieurs éléments, choisissez 2 Colonnes.
       field:
         content: 'Contenu'
     monsieurbiz.row:
       title: 'Ligne'
-      description: 'Une mise en page pour afficher les éléments ligne par ligne'
+      description: >-
+        Alignez des éléments, comme des boutons, sur une ligne. Ils passent à la ligne si la place manque.
+        Choisissez 2 Colonnes si vous voulez deux zones de contenu distinctes dont vous pouvez ajuster la largeur.
       field:
         content: 'Contenu'
     monsieurbiz.html:
       title: 'HTML'
-      description: 'Une lame contenant un contenu en brut'
+      description: >-
+        Insérez du code HTML de confiance si les autres lames ne produisent pas le balisage dont vous avez besoin.
+        Le code s'affiche tel quel. Pour du contenu courant à côté d'un Titre ou d'une Image, choisissez plutôt Texte.
       field:
         content: 'Contenu'
     monsieurbiz.text:
       title: 'Texte'
-      description: 'Une lame contenant un contenu texte'
+      description: >-
+        Rédigez des paragraphes, des listes ou des liens dans l'éditeur visuel. Placez le texte sous un Titre ou à côté d'une Image.
+        Pour mettre un lien en avant, ajoutez un Bouton. Pour attribuer un extrait à son auteur, choisissez Citation.
       field:
         content: 'Contenu'
     monsieurbiz.title:
       title: 'Titre'
       short_description: 'Une lame contenant un titre'
-      description: 'Une lame contenant le titre de votre choix'
+      description: >-
+        Introduisez une section par un titre court, puis ajoutez une lame Texte pour le développer.
+        Choisissez le niveau HTML (H1 à H6) selon la hiérarchie de la page. Par défaut, le titre s'affiche sans faire partie
+        de cette hiérarchie. Réglez séparément sa taille d'affichage.
       field:
         content: 'Contenu'
         text_size_help: 'Taille d''affichage Bootstrap : XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Remplace la taille par défaut.'
@@ -31,25 +43,34 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.h1:
       title: '<h1> Titre'
       short_description: 'Une lame contenant un titre niveau 1'
-      description: 'Une lame contenant le titre de votre choix'
+      description: >-
+        Indiquez le titre principal de la page, puis ajoutez une lame Texte pour l'introduction.
+        Utilisez cette lame seulement si la page n'a pas déjà de titre principal. Elle produit toujours un H1.
       field:
         content: 'Contenu'
     monsieurbiz.h2:
       title: '<h2> Titre'
       short_description: 'Une lame contenant un titre niveau 2'
-      description: 'Une lame contenant le titre de votre choix'
+      description: >-
+        Introduisez une section principale sous un H1, puis ajoutez du Texte ou d'autres lames en dessous.
+        Cette lame produit toujours un H2. Pour une sous-section, choisissez H3.
       field:
         content: 'Contenu'
     monsieurbiz.h3:
       title: '<h3> Titre'
       short_description: 'Une lame contenant un titre niveau 3'
-      description: 'Une lame contenant le titre de votre choix'
+      description: >-
+        Introduisez une sous-section sous un H2, puis ajoutez du Texte ou d'autres lames en dessous.
+        Cette lame produit toujours un H3. Pour une section principale, choisissez H2.
       field:
         content: 'Contenu'
     monsieurbiz.image:
       title: 'Image'
       short_description: 'Une lame contenant une image avec un champ alternatif et un titre.'
-      description: 'Une lame contenant une image avec un champ alternatif et un titre. Un lien peut également être mis sur l''image'
+      description: >-
+        Affichez une image seule ou à côté d'un Texte, par exemple dans 2 Colonnes.
+        Renseignez un texte alternatif si l'image transmet une information. Vous pouvez aussi rendre l'image cliquable.
+        Pour une légende visible, ajoutez une lame Texte. Pour regrouper plusieurs images en grille, choisissez Collection d'images.
       field:
         current_image: 'Image actuelle'
         image: 'Image'
@@ -62,14 +83,19 @@ monsieurbiz_richeditor_plugin:
         link_type_help: 'Les liens internes s''ouvrent dans le même onglet ; les liens externes s''ouvrent dans un nouvel onglet avec des attributs de sécurité.'
     monsieurbiz.quote:
       title: 'Citation'
-      description: 'Une lame contenant un auteur et un contenu'
+      description: >-
+        Mettez en valeur un témoignage ou un extrait en indiquant son auteur.
+        Ajoutez une lame Texte à part pour introduire la citation ou expliquer son contexte.
+        Si le passage n'est pas une citation, choisissez plutôt Texte.
       field:
         author: 'Auteur'
         content: 'Contenu'
     monsieurbiz.video:
       title: 'Vidéo'
       short_description: 'Une lame contenant une vidéo et une image de fond'
-      description: 'Une lame contenant un fichier vidéo et un fichier image de fond qui s''affichera avant la lecture de la vidéo'
+      description: >-
+        Lisez une vidéo à partir d'un fichier. Vous pouvez choisir une image à afficher avant le début de la lecture.
+        Ajoutez une lame Texte pour présenter la vidéo ou fournir une transcription. Si vous avez un lien YouTube, choisissez la lame YouTube.
       field:
         video: 'Vidéo'
         image: 'Image de fond'
@@ -83,7 +109,9 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.separator:
       title: 'Séparateur'
       short_description: 'Une lame permettant de faire séparateur'
-      description: 'Une lame permettant de faire séparateur. Le séparateur peut être caché.'
+      description: >-
+        Marquez une coupure entre deux sections, par exemple avant le Titre suivant.
+        Affichez un trait ou masquez-le pour ne garder qu'un espace. Cette lame ne crée pas de titre et ne regroupe pas le contenu.
       field:
         hidden: 'Séparateur caché'
         hidden_help: 'Crée un espacement invisible sans ligne visible (utilise la classe CSS ''invisible'').'
@@ -104,14 +132,20 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Très épaisse'
     monsieurbiz.anchor:
       title: 'Ancre'
-      description: "Ajoute une ancre accessible avec un lien #"
+      description: >-
+        Créez une destination invisible pour un lien dans la page. Placez-la juste avant la section à atteindre,
+        puis faites pointer un Bouton ou un lien dans un Texte vers #nom-section. Donnez à chaque ancre un nom unique dans la page,
+        sans le # initial.
       field:
         name: "Nom de l'ancre (Sans le #)"
         name_help: "Identifiant unique pour les ancres de page (sans #). Utilisé dans les liens comme #nom-section."
     monsieurbiz.button:
       title: 'Bouton'
       short_description: 'Un bouton avec un texte et un lien.'
-      description: 'Un bouton avec un texte et un lien.'
+      description: >-
+        Mettez un lien en avant avec un libellé d'action clair, par exemple « Voir la collection ».
+        Placez-le après un Texte ou près d'une Image. Il peut mener vers une autre page ou vers une Ancre sur la même page.
+        Il ne sert pas à envoyer un formulaire. Pour un lien dans un paragraphe, choisissez Texte.
       field:
         label: 'Libellé'
         link: 'Lien'
@@ -120,7 +154,9 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.youtube:
       title: 'Youtube'
       short_description: 'Une vidéo youtube.'
-      description: 'Une lame affichant une vidéo Youtube.'
+      description: >-
+        Intégrez une vidéo YouTube à partir de son lien. Laissez les dimensions vides pour que le lecteur s'adapte à la largeur disponible.
+        Ajoutez du Texte pour présenter la vidéo. Si vous avez un fichier vidéo plutôt qu'un lien YouTube, choisissez Vidéo.
       field:
         link: 'Lien Youtube'
         width: 'Largeur du lecteur'
@@ -130,17 +166,24 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.image_collection:
       title: 'Collection d''images'
       short_description: 'Une lame contenant une liste d''images.'
-      description: 'Une lame contenant une liste d''images.'
+      description: >-
+        Regroupez plusieurs images dans une grille. Chaque image peut avoir son propre texte alternatif et son propre lien.
+        Ajoutez un Titre au-dessus de la grille pour la présenter. Pour une seule image, choisissez Image.
       field:
         images: 'Liste d''images'
     monsieurbiz.markdown:
       title: 'Markdown'
-      description: 'Une lame affichant un contenu rédigé en Markdown'
+      description: >-
+        Rédigez du contenu mis en forme avec la syntaxe Markdown, par exemple des listes ou des liens sous un Titre.
+        Choisissez Texte si vous préférez un éditeur visuel. Ajoutez un Bouton séparé pour mettre un lien en avant.
       field:
         content: 'Contenu'
     monsieurbiz.two_columns:
       title: '2 Colonnes'
-      description: '2 colonnes de contenu avec largeur dynamique'
+      description: >-
+        Placez deux groupes d'éléments côte à côte, par exemple une Image d'un côté et un Titre,
+        un Texte et un Bouton de l'autre. Choisissez la répartition des largeurs.
+        Sur petit écran, les colonnes s'empilent et vous pouvez inverser leur ordre.
       fields:
         margin_auto: 'Alignement automatique'
         margin_auto_help: 'Ajoute la classe Bootstrap ''m-auto'' pour centrer le conteneur de colonnes horizontalement.'

@@ -2,28 +2,40 @@ monsieurbiz_richeditor_plugin:
   ui_element:
     monsieurbiz.column:
       title: 'Column Layout'
-      description: 'A layout to display elements column by column'
+      description: >-
+        Place several elements side by side, with one element per column.
+        Use it to compare items, such as several images.
+        For two columns with adjustable widths and several elements in each, use 2 Columns.
       field:
         content: 'Content'
     monsieurbiz.row:
       title: 'Row Layout'
-      description: 'A layout to display elements row by row'
+      description: >-
+        Group elements such as buttons in a horizontal row that can wrap onto another line.
+        Use 2 Columns instead when you need two separate content areas with adjustable widths.
       field:
         content: 'Content'
     monsieurbiz.html:
       title: 'HTML'
-      description: 'An element with raw data'
+      description: >-
+        Insert trusted HTML when the other elements cannot produce the markup you need.
+        The code is rendered as written. For ordinary copy next to a Title or Image, use Text instead.
       field:
         content: 'Content'
     monsieurbiz.text:
       title: 'Text'
-      description: 'An element with a text content'
+      description: >-
+        Write paragraphs, lists or links with the visual editor. Use it below a Title or next to an Image.
+        Use a separate Button for a prominent link, or Quote when you want to attribute an excerpt.
       field:
         content: 'Content'
     monsieurbiz.title:
       title: 'Title'
       short_description: 'A title element'
-      description: 'An element containing the title you want'
+      description: >-
+        Introduce a section with a short heading, then add a Text element for the body.
+        Choose the HTML level (H1 to H6) to match the page hierarchy. The default displays the text
+        without making it a heading in that hierarchy. Set the visual size separately.
       field:
         content: 'Content'
         text_size_help: 'Bootstrap display size: XS=display-6, S=display-5, M=display-4, L=display-3, XL=display-2, XXL=display-1. Overrides default size.'
@@ -31,25 +43,34 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.h1:
       title: '<h1> Title'
       short_description: 'Header level 1'
-      description: 'An element containing the title you want'
+      description: >-
+        Mark the main heading of a page, then add Text for the introduction.
+        Use it only if the page does not already have a main heading. This element always renders as H1.
       field:
         content: 'Content'
     monsieurbiz.h2:
       title: '<h2> Title'
       short_description: 'Header level 2'
-      description: 'An element containing the title you want'
+      description: >-
+        Introduce a main section under an H1, then add Text or other content below it.
+        This element always renders as H2. Use H3 for a subsection.
       field:
         content: 'Content'
     monsieurbiz.h3:
       title: '<h3> Title'
       short_description: 'Header level 3'
-      description: 'An element containing the title you want'
+      description: >-
+        Introduce a subsection under an H2, then add Text or other content below it.
+        This element always renders as H3. Use H2 for a main section.
       field:
         content: 'Content'
     monsieurbiz.image:
       title: 'Image'
       short_description: 'An element with an image, an alternative text and a title..'
-      description: 'An element with an image, an alternative text and a title. A link can be added on it.'
+      description: >-
+        Show one image on its own or next to Text, for example in 2 Columns.
+        Provide alternative text if the image conveys information. You can also make the image clickable.
+        For a visible caption, add Text. To group several images in a grid, use Image Collection.
       field:
         current_image: 'Current image'
         image: 'Image'
@@ -62,14 +83,19 @@ monsieurbiz_richeditor_plugin:
         link_type_help: 'Internal links open in same tab; external links open in new tab with security attributes.'
     monsieurbiz.quote:
       title: 'Quote'
-      description: 'An element with an author and a content'
+      description: >-
+        Highlight a testimonial or an excerpt and name its author.
+        Add a separate Text element to introduce the quote or explain its context.
+        Use Text instead if the passage is not a quotation.
       field:
         author: 'Author'
         content: 'Content'
     monsieurbiz.video:
       title: 'Video'
       short_description: 'Element with a video and a background video image'
-      description: 'An element with a video file and a background image file rendering before you play the video'
+      description: >-
+        Play a video from a file. You can choose a cover image to show before playback starts.
+        Use Text to introduce the video or provide a transcript. For a YouTube link, use the YouTube element instead.
       field:
         video: 'Video'
         image: 'Background image'
@@ -83,7 +109,9 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.separator:
       title: 'Separator'
       short_description: 'A separator'
-      description: 'A separator element. The separator can be a hidden one.'
+      description: >-
+        Mark a break between two sections, for example before the next Title.
+        Choose a visible line or hide it to leave only space. This element does not add a heading or group the content.
       field:
         hidden: 'Hidden separator'
         hidden_help: 'Creates invisible spacing without visible line (uses CSS ''invisible'' class).'
@@ -104,14 +132,20 @@ monsieurbiz_richeditor_plugin:
             very_thick: 'Very thick'
     monsieurbiz.anchor:
       title: Anchor
-      description: "Add an anchor to be accessible by link with #"
+      description: >-
+        Set an invisible destination for a link within the page. Place it just before the target section,
+        then point a Button or a Text link to #section-name. Give each anchor a unique name on the page,
+        without the initial #.
       field:
         name: "Anchor's name (Without #)"
         name_help: "Unique identifier for page anchors (without #). Used in links like #section-name."
     monsieurbiz.button:
       title: 'Button'
       short_description: 'A button with a text and a link.'
-      description: 'A button with a text and a link.'
+      description: >-
+        Highlight a link with a clear action label, such as “View the collection”.
+        Place it after Text or near an Image. It can link to another page or to an Anchor on the same page.
+        It does not submit a form. For a link within a paragraph, use Text.
       field:
         label: 'Label'
         link: 'Link'
@@ -120,7 +154,9 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.youtube:
       title: 'Youtube'
       short_description: 'A Youtube element.'
-      description: 'An element which displays a Youtube video.'
+      description: >-
+        Embed a YouTube video from its link. Leave the dimensions empty for a player that adapts to the available width.
+        Add Text to introduce the video. To play a video file instead of using a YouTube link, choose Video.
       field:
         link: 'Youtube link'
         width: 'Iframe width'
@@ -130,17 +166,23 @@ monsieurbiz_richeditor_plugin:
     monsieurbiz.image_collection:
       title: 'Image Collection'
       short_description: 'An element with multiple images.'
-      description: 'An element with multiple images. A link can be added on each image.'
+      description: >-
+        Group several images in a grid. Each image can have its own alternative text and link.
+        Add a Title above the grid if it needs an introduction. For a single image, use Image instead.
       field:
         images: 'Images list'
     monsieurbiz.markdown:
       title: 'Markdown'
-      description: 'An element with markdown content'
+      description: >-
+        Write formatted content using Markdown syntax, for example lists or links below a Title.
+        Use Text if you prefer a visual editor. Add a separate Button if a link needs to stand out.
       field:
         content: 'Content'
     monsieurbiz.two_columns:
       title: '2 Columns'
-      description: '2 columns of content with dynamic width'
+      description: >-
+        Arrange exactly two groups of elements side by side, for example an Image on one side and a Title,
+        Text and Button on the other. Choose the width split. On small screens the columns stack, and you can reverse their order.
       fields:
         margin_auto: 'Automatic alignment'
         margin_auto_help: 'Adds Bootstrap ''m-auto'' class to center the column container horizontally.'
