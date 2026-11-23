@@ -1,12 +1,14 @@
 .DEFAULT_GOAL := help
 SHELL=/bin/bash
 APP_DIR=tests/Application
-SYLIUS_VERSION=2.1.0
+SYLIUS_STANDARD_VERSION=~2.3.0
+SYLIUS_VERSION=~2.3.3
+SYLIUS_FIXTURES_HOSTNAME ?= 127.0.0.1
 SYMFONY=cd ${APP_DIR} && symfony
 COMPOSER=symfony composer
 CONSOLE=${SYMFONY} console
-export COMPOSE_PROJECT_NAME=rich-editor
-PLUGIN_NAME=sylius-${COMPOSE_PROJECT_NAME}-plugin
+export COMPOSE_PROJECT_NAME ?= rich-editor
+PLUGIN_NAME=sylius-rich-editor-plugin
 COMPOSE=docker compose
 YARN=yarn
 
@@ -27,7 +29,7 @@ reset: ## Stop docker and remove dependencies
 	rm -rf node_modules yarn.lock vendor composer.lock
 .PHONY: reset
 
-dependencies: composer.lock node_modules ## Setup the dependencies
+dependencies: composer.lock yarn.install ## Setup the dependencies
 .PHONY: dependencies
 
 .php-version: .php-version.dist
@@ -41,19 +43,11 @@ php.ini: php.ini.dist
 composer.lock: composer.json
 	${COMPOSER} install --no-scripts --no-plugins
 
-yarn.install: ${APP_DIR}/yarn.lock
-
-${APP_DIR}/yarn.lock:
-	ln -sf ${APP_DIR}/node_modules node_modules
-	touch ${APP_DIR}/yarn.lock
+yarn.install:
+	cd ${APP_DIR} && npm pkg set 'devDependencies.@symfony/stimulus-bridge=^4.0.2'
 	cd ${APP_DIR} && ${YARN} install && ${YARN} build
-# No CSS and JS on this plugin yet
-#	${YARN} install
-#	${YARN} encore prod
-
-node_modules: ${APP_DIR}/node_modules ## Install the Node dependencies using yarn
-
-${APP_DIR}/node_modules: yarn.install
+	ln -sfn ${APP_DIR}/node_modules node_modules
+.PHONY: yarn.install
 
 ###
 ### TEST APPLICATION
@@ -62,23 +56,20 @@ ${APP_DIR}/node_modules: yarn.install
 application: .php-version php.ini ${APP_DIR} setup_application ${APP_DIR}/docker-compose.yaml
 
 ${APP_DIR}:
-	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="~${SYLIUS_VERSION}" ${APP_DIR})
+	(${COMPOSER} create-project --no-interaction --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard="${SYLIUS_STANDARD_VERSION}" ${APP_DIR})
 
 setup_application:
-	rm -f ${APP_DIR}/yarn.lock
 	(cd ${APP_DIR} && ${COMPOSER} config repositories.plugin '{"type": "path", "url": "../../"}')
 	(cd ${APP_DIR} && ${COMPOSER} config extra.symfony.allow-contrib true)
-	(cd ${APP_DIR} && ${COMPOSER} config minimum-stability dev)
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins allow-plugins true)
 	(cd ${APP_DIR} && ${COMPOSER} config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]')
-	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress sylius/sylius="~${SYLIUS_VERSION}") # Make sure to install the required version of sylius because the sylius-standard has a soft constraint
-	(cd ${APP_DIR} && ${COMPOSER} require --no-install --no-scripts --no-progress doctrine/orm="~3.5.0") # Temp: ORM >= 3.7 fails schema:validate on the unused ShipmentUnit mapping (Sylius/Sylius#19235, fixed only in sylius-standard 2.1.6's lock, PHP ^8.3)
+	# The MySQL migrations for Sylius and its bundled payment plugins use DBAL 3 type comments.
+	(cd ${APP_DIR} && ${COMPOSER} require --no-update sylius/sylius="${SYLIUS_VERSION}" monsieurbiz/${PLUGIN_NAME}="*@dev" doctrine/dbal="^3.10")
 	$(MAKE) ${APP_DIR}/.php-version
 	$(MAKE) ${APP_DIR}/php.ini
-	(cd ${APP_DIR} && ${COMPOSER} install --no-interaction)
+	(cd ${APP_DIR} && ${COMPOSER} update --no-interaction --no-progress)
 	$(MAKE) apply_dist
-	(cd ${APP_DIR} && ${COMPOSER} require --no-progress monsieurbiz/${PLUGIN_NAME}="*@dev")
-	rm -rf ${APP_DIR}/var/cache
+	${CONSOLE} cache:clear
 
 
 ${APP_DIR}/docker-compose.yaml:
@@ -158,7 +149,7 @@ sylius.database: ## Setup the database
 	${CONSOLE} doctrine:migration:migrate -n
 
 sylius.fixtures: ## Run the fixtures
-	${CONSOLE} sylius:fixtures:load -n default
+	cd ${APP_DIR} && SYLIUS_FIXTURES_HOSTNAME="${SYLIUS_FIXTURES_HOSTNAME}" symfony console sylius:fixtures:load -n default
 
 sylius.assets: ## Install all assets with symlinks
 	${CONSOLE} assets:install --symlink

@@ -14,8 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['8.2', '8.3']
-        sylius: ["~2.0.0", "~2.1.0"]
+        php: ['8.3']
 
     steps:
       - name: Setup PHP
@@ -44,8 +43,8 @@ jobs:
         id: cache-composer
         with:
           path: ${{ steps.composer-cache-directory.outputs.directory }}
-          key: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-${{ hashFiles('**/composer.json') }}
-          restore-keys: composer2-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-
+          key: composer2-recipe-php:${{ matrix.php }}-${{ hashFiles('plugin/composer.json', 'plugin/.github/workflows/recipe.yaml') }}
+          restore-keys: composer2-recipe-php:${{ matrix.php }}-
 
       - name: Ensure that composer cache directory exists
         run: mkdir -p ${{ steps.composer-cache-directory.outputs.directory }}
@@ -55,20 +54,19 @@ jobs:
 
       - name: Create Sylius-Standard project without install
         run: |
-          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "${{ matrix.sylius }}"
+          composer create-project --prefer-dist --no-scripts --no-progress --no-install sylius/sylius-standard sylius "~2.3.0"
 
       # Because the sylius-standard has a soft constraint
       - name: Make sure to install the required version of Sylius
         working-directory: ./sylius
         run: |
-            composer require --no-install --no-scripts --no-progress sylius/sylius="${{ matrix.sylius }}"
+            composer require --no-update sylius/sylius="~2.3.3"
 
       - name: Setup some requirements
         working-directory: ./sylius
         run: |
             composer config --no-plugins allow-plugins true
             composer config --no-plugins extra.symfony.allow-contrib true
-            composer config --no-plugins secure-http false
             composer config --no-plugins --unset platform.php
             composer config --no-plugins extra.symfony.docker false
             composer config --no-plugins --json extra.symfony.endpoint '["https://api.github.com/repos/monsieurbiz/symfony-recipes/contents/index.json?ref=flex/master","flex://defaults"]'
@@ -77,4 +75,5 @@ jobs:
       - name: Require plugin & install all dependencies
         working-directory: ./sylius
         run: |
-          composer require monsieurbiz/sylius-rich-editor-plugin="*@dev"
+          composer require --no-update monsieurbiz/sylius-rich-editor-plugin="*@dev"
+          composer update --no-progress
