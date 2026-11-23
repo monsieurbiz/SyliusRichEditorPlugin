@@ -1,3 +1,7 @@
+sylius_labs_doctrine_migrations_extra:
+    migrations:
+        'DoctrineMigrations': ['Sylius\Bundle\CoreBundle\Migrations']
+
 monsieurbiz_sylius_richeditor:
     ui_elements:
 #        Example without PHP Attributes

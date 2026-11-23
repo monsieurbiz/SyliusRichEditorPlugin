@@ -4,11 +4,11 @@
 
 You'll need:
 
-- PHP 7.4 minimum.
+- PHP 8.3 for the Sylius test application.
 - docker, for the database.
 - symfony CLI, to run the local server.
 - composer, to install PHP dependencies.
-- npm and yarn, to install ui dependencies and build the JS/CSS files.
+- Node.js 22.13 or later in the 22.x series, with npm and Yarn, to build the UI assets.
 
 ## Installation
 
@@ -18,6 +18,15 @@ make install
 
 This will run a Sylius app (the one in `tests/Application/`) with the plugin
 installed and all Sylius' sample data. It uses the symfony binary.
+
+The test application and the Flex recipe check use Sylius 2.3.
+If `tests/Application` was generated with an earlier Sylius version, move it
+aside before running `make install` so the installer can generate the new
+configuration. The install resets the local test database and loads fixtures.
+
+The demo shop uses `127.0.0.1` by default. If you use a custom local domain,
+set `SYLIUS_FIXTURES_HOSTNAME` to that hostname without a port when running
+`make install`.
 
 ## Usage
 
